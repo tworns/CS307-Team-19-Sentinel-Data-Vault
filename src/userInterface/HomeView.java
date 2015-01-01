@@ -176,6 +176,10 @@ public class HomeView {
 		JButton btnDeleteData = new JButton("Delete Entry");
 		btnDeleteData.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (currentEntry == null) {
+					JOptionPane.showMessageDialog(null, "Please choose an entry!");
+					return;
+				}
 				System.out.println(currentEntry.getEntryName());
 				Object[] options = { "OK", "CANCEL" };
 				int result = JOptionPane.showOptionDialog(null, "Are you sure you want to permanently delete this data entry?", "Warning", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
@@ -210,12 +214,16 @@ public class HomeView {
 		JButton btnEditData = new JButton("Edit Entry");
 		btnEditData.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (currentEntry == null) {
+					JOptionPane.showMessageDialog(null, "Please choose an entry!");
+					return;
+				}
 				EditDataEntryView editDataEntry = new EditDataEntryView(currentUser, currentEntry);
 				editDataEntry.getJframe().setVisible(true);
 			}
 		});
 		btnEditData.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
-
+		
 		JButton btnShareData = new JButton("Share Entry");
 		btnShareData.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -231,15 +239,7 @@ public class HomeView {
 			}
 		});
 		btnShareData.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
-		btnEditData.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				EditDataEntryView editDataEntry = new EditDataEntryView(currentUser, currentEntry);
-				editDataEntry.getJframe().setVisible(true);
-			}
-		});
-		btnEditData.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
-
-
+		
 		GroupLayout gl_panel_north = new GroupLayout(panel_north);
 		gl_panel_north.setHorizontalGroup(
 				gl_panel_north.createParallelGroup(Alignment.LEADING)
@@ -790,6 +790,7 @@ public class HomeView {
 				System.out.println(selectedNodeName);
 
 				//if data item
+				
 				if (selectedNode.isLeaf()) {
 
 					DatabaseManager dm = new DatabaseManager("vault_database");
@@ -940,6 +941,9 @@ public class HomeView {
 
 					System.out.println("Leaf: " + selectedNodeName);
 					indexList.clear();
+				}
+				else {
+					currentEntry = null;
 				}
 
 				return;
