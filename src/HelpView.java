@@ -4,6 +4,15 @@ import javax.swing.JFrame;
 
 public class HelpView {
 
+	/*
+	 * HelpView
+	 * 2015 10 01 ~ 
+	 * 1st Sprint
+	 * Jiho Choi
+	 * 
+	 */
+	
+	
 	private JFrame frame;
 
 	/**
