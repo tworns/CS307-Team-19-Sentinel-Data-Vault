@@ -24,6 +24,12 @@ import javax.swing.JComboBox;
 import javax.swing.JTabbedPane;
 import javax.swing.JPanel;
 import java.awt.Color;
+import javax.swing.JScrollPane;
+import javax.swing.JDesktopPane;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.FormSpecs;
+import com.jgoodies.forms.layout.RowSpec;
 
 public class MainView {
 
@@ -70,7 +76,7 @@ public class MainView {
 		frmSentinelDataVault.getContentPane().setBackground(Color.WHITE);
 		frmSentinelDataVault.setBackground(Color.WHITE);
 		frmSentinelDataVault.setTitle("Sentinel Data Vault");
-		frmSentinelDataVault.setBounds(100, 100, 600, 400);
+		frmSentinelDataVault.setBounds(100, 100, 550, 400);
 		frmSentinelDataVault.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JMenuBar menuBar = new JMenuBar();
@@ -112,105 +118,90 @@ public class MainView {
 		
 		JLabel label_4 = new JLabel("");
 		
+		JList list = new JList();
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setLayout(new FormLayout(new ColumnSpec[] {
+				ColumnSpec.decode("44px"),
+				ColumnSpec.decode("75px"),
+				FormSpecs.RELATED_GAP_COLSPEC,
+				FormSpecs.DEFAULT_COLSPEC,
+				FormSpecs.RELATED_GAP_COLSPEC,
+				FormSpecs.DEFAULT_COLSPEC,
+				FormSpecs.RELATED_GAP_COLSPEC,
+				FormSpecs.DEFAULT_COLSPEC,
+				FormSpecs.RELATED_GAP_COLSPEC,
+				FormSpecs.DEFAULT_COLSPEC,},
+			new RowSpec[] {
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				RowSpec.decode("29px"),}));
+		
 		JButton btnData = new JButton("Data");
+		panel_1.add(btnData, "2, 2, left, top");
 		btnData.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
 		
-		JList list = new JList();
+		JButton btnNewData = new JButton("New Data");
+		btnNewData.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		panel_1.add(btnNewData, "4, 2, left, top");
 		
-		JButton btnNewButton = new JButton("New Data");
+		JButton button_3 = new JButton("Edit Data");
+		panel_1.add(button_3, "6, 2, left, top");
+		frmSentinelDataVault.getContentPane().setLayout(new FormLayout(new ColumnSpec[] {
+				ColumnSpec.decode("1px"),
+				FormSpecs.RELATED_GAP_COLSPEC,
+				ColumnSpec.decode("208px:grow"),
+				ColumnSpec.decode("331px"),},
+			new RowSpec[] {
+				RowSpec.decode("22px"),
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				RowSpec.decode("39px"),
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				RowSpec.decode("max(188dlu;default):grow"),}));
+		frmSentinelDataVault.getContentPane().add(label_3, "1, 1, left, top");
+		frmSentinelDataVault.getContentPane().add(label, "1, 1, left, top");
+		frmSentinelDataVault.getContentPane().add(label_1, "1, 1, left, top");
+		frmSentinelDataVault.getContentPane().add(label_2, "1, 1, left, top");
+		frmSentinelDataVault.getContentPane().add(list, "1, 1, left, top");
+		frmSentinelDataVault.getContentPane().add(label_4, "1, 1, left, top");
+		frmSentinelDataVault.getContentPane().add(menuBar, "1, 1, 4, 1, fill, top");
+		frmSentinelDataVault.getContentPane().add(panel_1, "3, 3, 2, 1, fill, top");
+		
+		JButton btnSort = new JButton("Sort");
+		panel_1.add(btnSort, "8, 2, left, top");
+		
+		JButton btnNewButton = new JButton("Lock");
+		panel_1.add(btnNewButton, "10, 2, left, top");
+		
+		JTabbedPane tabbedPane_1 = new JTabbedPane(JTabbedPane.TOP);
+		frmSentinelDataVault.getContentPane().add(tabbedPane_1, "3, 5, fill, fill");
+		
+		JPanel panel = new JPanel();
+		tabbedPane_1.addTab("New tab", null, panel, null);
+		
+		JPanel panel_2 = new JPanel();
+		tabbedPane_1.addTab("New tab", null, panel_2, null);
+		
+		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		
+		JTree tree = new JTree();
+		tabbedPane.addTab("List", null, tree, null);
+		
+		JPanel panel_3 = new JPanel();
+		tabbedPane.addTab("Category", null, panel_3, null);
+		frmSentinelDataVault.getContentPane().add(tabbedPane, "4, 5, fill, fill");
+		
+		JPanel panel_4 = new JPanel();
+		tabbedPane.addTab("Item", null, panel_4, null);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		
-		JButton button_3 = new JButton("Edit Data");
-		
-		JTextPane textPane = new JTextPane();
-		
-		JComboBox comboBox = new JComboBox();
-		
-		JButton btnCategory = new JButton("");
-		btnCategory.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		
-		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		GroupLayout groupLayout = new GroupLayout(frmSentinelDataVault.getContentPane());
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(label_3)
-						.addComponent(label)
-						.addComponent(label_1)
-						.addComponent(label_2)
-						.addComponent(list)
-						.addComponent(label_4)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addContainerGap()
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addGap(207)
-									.addComponent(comboBox, 0, 26, Short.MAX_VALUE)
-									.addGap(185))
-								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(btnData)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 71, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-										.addGroup(groupLayout.createSequentialGroup()
-											.addGap(6)
-											.addComponent(tabbedPane, GroupLayout.PREFERRED_SIZE, 201, GroupLayout.PREFERRED_SIZE))
-										.addGroup(groupLayout.createSequentialGroup()
-											.addComponent(button_3, GroupLayout.PREFERRED_SIZE, 68, GroupLayout.PREFERRED_SIZE)
-											.addPreferredGap(ComponentPlacement.RELATED)
-											.addComponent(btnCategory, GroupLayout.PREFERRED_SIZE, 68, GroupLayout.PREFERRED_SIZE)))
-									.addGap(53)))
-							.addGap(116)))
-					.addGap(0))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(textPane, GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
-					.addGap(395))
-				.addComponent(menuBar, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 540, Short.MAX_VALUE)
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(label_3)
-						.addComponent(label)
-						.addComponent(label_1)
-						.addComponent(label_2)
-						.addComponent(list)
-						.addComponent(label_4)
-						.addComponent(menuBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnData, GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
-						.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
-						.addComponent(button_3, GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
-						.addComponent(btnCategory, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(textPane, GroupLayout.PREFERRED_SIZE, 104, GroupLayout.PREFERRED_SIZE)
-						.addComponent(tabbedPane, GroupLayout.PREFERRED_SIZE, 276, GroupLayout.PREFERRED_SIZE))
-					.addGap(40)
-					.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
-		);
-		
-		JTree tree = new JTree();
-		tabbedPane.addTab("New tab", null, tree, null);
-		
-		JPanel panel = new JPanel();
-		tabbedPane.addTab("New tab", null, panel, null);
-		frmSentinelDataVault.getContentPane().setLayout(groupLayout);
 
 	/*
 	 * MenuBar
