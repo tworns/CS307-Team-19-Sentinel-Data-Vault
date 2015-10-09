@@ -12,6 +12,18 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
+import java.awt.FlowLayout;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JTextPane;
+import javax.swing.JComboBox;
+import javax.swing.JTabbedPane;
+import javax.swing.JPanel;
+import java.awt.Color;
 
 public class MainView {
 
@@ -25,8 +37,6 @@ public class MainView {
 	 */
 	
 	private JFrame frmSentinelDataVault;
-	private JTextField textField_1;
-	private JTextField textField_2;
 
 	/**
 	 * Launch the application.
@@ -56,24 +66,22 @@ public class MainView {
 	 */
 	private void initialize() {
 		frmSentinelDataVault = new JFrame();
+		frmSentinelDataVault.setResizable(false);
+		frmSentinelDataVault.getContentPane().setBackground(Color.WHITE);
+		frmSentinelDataVault.setBackground(Color.WHITE);
 		frmSentinelDataVault.setTitle("Sentinel Data Vault");
-		frmSentinelDataVault.setBounds(100, 100, 541, 386);
+		frmSentinelDataVault.setBounds(100, 100, 600, 400);
 		frmSentinelDataVault.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		JButton btnNewButton = new JButton("New Data");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		frmSentinelDataVault.getContentPane().setLayout(new GridLayout(0, 6, 0, 0));
 		
 		JMenuBar menuBar = new JMenuBar();
 		
 				JMenu file = new JMenu("File");
 				JMenu edit = new JMenu("Edit");
+				JMenu view = new JMenu("View");
 				JMenu help = new JMenu("Help");
 				JMenuItem newMenuItem = new JMenuItem("New");
 				JMenuItem openMenuItem = new JMenuItem("Open");
+				JMenuItem viewMenuItem = new JMenuItem("View");
 				JMenuItem exitMenuItem = new JMenuItem("Exit");
 				JMenuItem properties = new JMenuItem("Properties");
 				JMenuItem setting = new JMenuItem("Setting");
@@ -82,77 +90,127 @@ public class MainView {
 				menuBar.add(file);
 				file.add(newMenuItem);
 				file.add(openMenuItem);
+				file.add(viewMenuItem);
 				file.add(exitMenuItem);
 				
 				menuBar.add(edit);
 				edit.add(properties);
 				edit.add(setting);
 				
+				menuBar.add(view);
+				
 				menuBar.add(help);
 				help.add(search);
-				
-				frmSentinelDataVault.getContentPane().add(menuBar);
 		
 		JLabel label = new JLabel("");
-		frmSentinelDataVault.getContentPane().add(label);
 		
 		JLabel label_1 = new JLabel("");
-		frmSentinelDataVault.getContentPane().add(label_1);
 		
 		JLabel label_2 = new JLabel("");
-		frmSentinelDataVault.getContentPane().add(label_2);
 		
 		JLabel label_3 = new JLabel("");
-		frmSentinelDataVault.getContentPane().add(label_3);
 		
 		JLabel label_4 = new JLabel("");
-		frmSentinelDataVault.getContentPane().add(label_4);
-		frmSentinelDataVault.getContentPane().add(btnNewButton);
 		
-		JButton btnEdit = new JButton("Edit Data");
-		btnEdit.addActionListener(new ActionListener() {
+		JButton btnData = new JButton("Data");
+		btnData.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		frmSentinelDataVault.getContentPane().add(btnEdit);
-		
-		JLabel label_5 = new JLabel("");
-		frmSentinelDataVault.getContentPane().add(label_5);
-		
-		JButton button_1 = new JButton("Edit Data");
-		frmSentinelDataVault.getContentPane().add(button_1);
-		
-		JButton button_2 = new JButton("Edit Data");
-		frmSentinelDataVault.getContentPane().add(button_2);
 		
 		JList list = new JList();
-		frmSentinelDataVault.getContentPane().add(list);
 		
-		textField_1 = new JTextField();
-		frmSentinelDataVault.getContentPane().add(textField_1);
-		textField_1.setColumns(10);
+		JButton btnNewButton = new JButton("New Data");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		
-		JLabel label_6 = new JLabel("");
-		frmSentinelDataVault.getContentPane().add(label_6);
+		JButton button_3 = new JButton("Edit Data");
+		
+		JTextPane textPane = new JTextPane();
+		
+		JComboBox comboBox = new JComboBox();
+		
+		JButton btnCategory = new JButton("");
+		btnCategory.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		
+		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		GroupLayout groupLayout = new GroupLayout(frmSentinelDataVault.getContentPane());
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(label_3)
+						.addComponent(label)
+						.addComponent(label_1)
+						.addComponent(label_2)
+						.addComponent(list)
+						.addComponent(label_4)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addContainerGap()
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGap(207)
+									.addComponent(comboBox, 0, 26, Short.MAX_VALUE)
+									.addGap(185))
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(btnData)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 71, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+										.addGroup(groupLayout.createSequentialGroup()
+											.addGap(6)
+											.addComponent(tabbedPane, GroupLayout.PREFERRED_SIZE, 201, GroupLayout.PREFERRED_SIZE))
+										.addGroup(groupLayout.createSequentialGroup()
+											.addComponent(button_3, GroupLayout.PREFERRED_SIZE, 68, GroupLayout.PREFERRED_SIZE)
+											.addPreferredGap(ComponentPlacement.RELATED)
+											.addComponent(btnCategory, GroupLayout.PREFERRED_SIZE, 68, GroupLayout.PREFERRED_SIZE)))
+									.addGap(53)))
+							.addGap(116)))
+					.addGap(0))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(textPane, GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
+					.addGap(395))
+				.addComponent(menuBar, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 540, Short.MAX_VALUE)
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(label_3)
+						.addComponent(label)
+						.addComponent(label_1)
+						.addComponent(label_2)
+						.addComponent(list)
+						.addComponent(label_4)
+						.addComponent(menuBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnData, GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+						.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+						.addComponent(button_3, GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+						.addComponent(btnCategory, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(textPane, GroupLayout.PREFERRED_SIZE, 104, GroupLayout.PREFERRED_SIZE)
+						.addComponent(tabbedPane, GroupLayout.PREFERRED_SIZE, 276, GroupLayout.PREFERRED_SIZE))
+					.addGap(40)
+					.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap())
+		);
 		
 		JTree tree = new JTree();
-		frmSentinelDataVault.getContentPane().add(tree);
+		tabbedPane.addTab("New tab", null, tree, null);
 		
-		JLabel label_7 = new JLabel("");
-		frmSentinelDataVault.getContentPane().add(label_7);
-		
-		JLabel label_8 = new JLabel("");
-		frmSentinelDataVault.getContentPane().add(label_8);
-		
-		JLabel label_9 = new JLabel("");
-		frmSentinelDataVault.getContentPane().add(label_9);
-		
-		JButton button = new JButton("New button");
-		frmSentinelDataVault.getContentPane().add(button);
-		
-		textField_2 = new JTextField();
-		frmSentinelDataVault.getContentPane().add(textField_2);
-		textField_2.setColumns(10);
+		JPanel panel = new JPanel();
+		tabbedPane.addTab("New tab", null, panel, null);
+		frmSentinelDataVault.getContentPane().setLayout(groupLayout);
 
 	/*
 	 * MenuBar
