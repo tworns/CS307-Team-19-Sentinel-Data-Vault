@@ -1,11 +1,11 @@
 import java.time.LocalDateTime;
 
-public class DoubleFieldData extends DataEntry {
+public class DoubleFieldEntry extends DataEntry {
 
 	private String entryName1;
 	private String entryName2;
 
-	public DoubleFieldData(String entryType, String encryptionKey, String owner, Boolean highSecurity,
+	public DoubleFieldEntry(String entryType, String encryptionKey, String owner, Boolean highSecurity,
 			LocalDateTime lastModified, String entryName1, String entryName2) {
 		super(entryType, encryptionKey, owner, highSecurity, lastModified);
 		this.entryName1 = entryName1;

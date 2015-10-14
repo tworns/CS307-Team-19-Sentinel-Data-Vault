@@ -1,10 +1,10 @@
 import java.time.LocalDateTime;
 
-public class SingleFieldData extends DataEntry {
+public class SingleFieldEntry extends DataEntry {
 
 	private String entryName;
 
-	public SingleFieldData(String entryType, String entryName, String encryptionKey, String owner, Boolean highSecurity,
+	public SingleFieldEntry(String entryType, String entryName, String encryptionKey, String owner, Boolean highSecurity,
 			LocalDateTime lastModified) {
 		super(entryType, encryptionKey, owner, highSecurity, lastModified);
 		this.entryName = entryName;
