@@ -13,7 +13,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.*;
 
 
-public class signupView extends JFrame {
+public class SignupView extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField usernameField;
@@ -27,7 +27,7 @@ public class signupView extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					signupView frame = new signupView();
+					SignupView frame = new SignupView();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -39,7 +39,7 @@ public class signupView extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public signupView() {
+	public SignupView() {
 		super("Create your account");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -13,7 +13,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 
-public class loginView {
+public class LoginView {
 
 	private JFrame frame;
 	private JTextField textField;
@@ -27,7 +27,7 @@ public class loginView {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					loginView window = new loginView();
+					LoginView window = new LoginView();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -39,7 +39,7 @@ public class loginView {
 	/**
 	 * Create the application.
 	 */
-	public loginView() {
+	public LoginView() {
 		initialize();
 	}
 
@@ -90,7 +90,7 @@ public class loginView {
 		btnSignUp = new JButton("Sign up");
 		btnSignUp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				signupView signup = new signupView();
+				SignupView signup = new SignupView();
 				signup.setVisible(true);
 			}
 		});
