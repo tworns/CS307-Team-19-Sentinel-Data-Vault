@@ -21,6 +21,7 @@ import net.miginfocom.swing.MigLayout;
 import javax.swing.JLabel;
 import javax.swing.JSpinner;
 import javax.swing.JFormattedTextField;
+import javax.swing.JProgressBar;
 
 public class HomeView{
 
@@ -86,58 +87,64 @@ public class HomeView{
 		JButton btnNewButton_4 = new JButton("New button");
 		panel_1.add(btnNewButton_4);
 		
+		JPanel panel_3 = new JPanel();
+		frmSentinelDataVault.getContentPane().add(panel_3, BorderLayout.SOUTH);
+		
+		JProgressBar progressBar = new JProgressBar();
+		panel_3.add(progressBar);
+		
+		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		frmSentinelDataVault.getContentPane().add(tabbedPane, BorderLayout.EAST);
+		
+		Choice choice = new Choice();
+		tabbedPane.addTab("item", null, choice, null);
+		
 		JPanel panel_2 = new JPanel();
-		frmSentinelDataVault.getContentPane().add(panel_2, BorderLayout.EAST);
-		panel_2.setLayout(new MigLayout("", "[130px,grow][128px]", "[26px][][][][][][][][][][]"));
+		tabbedPane.addTab("Debit Card", null, panel_2, null);
+		panel_2.setLayout(new MigLayout("", "[130px,grow][128px]", "[26px][][][][][][][][][]"));
 		
 		JLabel lblCreditCard = new JLabel("Debit Card");
 		panel_2.add(lblCreditCard, "cell 0 0");
 		
 		JSpinner spinner = new JSpinner();
-		panel_2.add(spinner, "cell 0 2");
+		panel_2.add(spinner, "cell 0 1");
 		
 		JLabel lblNewLabel = new JLabel("Card Number");
-		panel_2.add(lblNewLabel, "cell 0 3");
+		panel_2.add(lblNewLabel, "cell 0 2");
 		
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
-		panel_2.add(textField_1, "cell 0 4 2 1,growx");
+		panel_2.add(textField_1, "cell 0 3 2 1,growx");
 		
 		JLabel lblNameOnCard = new JLabel("Name on Card");
-		panel_2.add(lblNameOnCard, "cell 0 5");
+		panel_2.add(lblNameOnCard, "cell 0 4");
 		
 		textField = new JTextField();
-		panel_2.add(textField, "cell 0 6 2 1,growx");
+		panel_2.add(textField, "cell 0 5 2 1,growx");
 		textField.setColumns(10);
 		
 		JLabel lblCvv = new JLabel("CVV");
-		panel_2.add(lblCvv, "cell 0 7");
+		panel_2.add(lblCvv, "cell 0 6");
 		
 		JFormattedTextField frmtdtxtfldXxx = new JFormattedTextField();
 		frmtdtxtfldXxx.setText("* * *");
-		panel_2.add(frmtdtxtfldXxx, "cell 0 8,growx");
+		panel_2.add(frmtdtxtfldXxx, "cell 0 7,growx");
 		
 		JLabel lblExpiration = new JLabel("Expiration Date");
-		panel_2.add(lblExpiration, "cell 0 9");
+		panel_2.add(lblExpiration, "cell 0 8");
 		
 		JFormattedTextField frmtdtxtfldMmYy = new JFormattedTextField();
 		frmtdtxtfldMmYy.setText("MM / YY");
-		panel_2.add(frmtdtxtfldMmYy, "cell 0 10,growx");
+		panel_2.add(frmtdtxtfldMmYy, "cell 0 9,growx");
 		
-		JPanel panel_3 = new JPanel();
-		frmSentinelDataVault.getContentPane().add(panel_3, BorderLayout.SOUTH);
-		
-		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		frmSentinelDataVault.getContentPane().add(tabbedPane, BorderLayout.CENTER);
+		JTabbedPane tabbedPane_1 = new JTabbedPane(JTabbedPane.TOP);
+		frmSentinelDataVault.getContentPane().add(tabbedPane_1, BorderLayout.CENTER);
 		
 		JList list = new JList();
-		tabbedPane.addTab("List", null, list, null);
+		tabbedPane_1.addTab("New tab", null, list, null);
 		
 		JDesktopPane desktopPane = new JDesktopPane();
-		tabbedPane.addTab("Category", null, desktopPane, null);
-		
-		Choice choice = new Choice();
-		tabbedPane.addTab("item", null, choice, null);
+		tabbedPane_1.addTab("New tab", null, desktopPane, null);
 		
 		JMenuBar menuBar = new JMenuBar();
 		frmSentinelDataVault.setJMenuBar(menuBar);
