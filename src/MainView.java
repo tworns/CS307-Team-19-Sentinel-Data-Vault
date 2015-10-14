@@ -76,7 +76,7 @@ public class MainView {
 		frmSentinelDataVault.getContentPane().setBackground(Color.WHITE);
 		frmSentinelDataVault.setBackground(Color.WHITE);
 		frmSentinelDataVault.setTitle("Sentinel Data Vault");
-		frmSentinelDataVault.setBounds(100, 100, 550, 400);
+		frmSentinelDataVault.setBounds(100, 100, 700, 450);
 		frmSentinelDataVault.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JMenuBar menuBar = new JMenuBar();
@@ -137,7 +137,7 @@ public class MainView {
 				RowSpec.decode("29px"),}));
 		
 		JButton btnData = new JButton("Data");
-		panel_1.add(btnData, "2, 2, left, top");
+		panel_1.add(btnData, "2, 2, left, center");
 		btnData.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -170,7 +170,7 @@ public class MainView {
 		frmSentinelDataVault.getContentPane().add(list, "1, 1, left, top");
 		frmSentinelDataVault.getContentPane().add(label_4, "1, 1, left, top");
 		frmSentinelDataVault.getContentPane().add(menuBar, "1, 1, 4, 1, fill, top");
-		frmSentinelDataVault.getContentPane().add(panel_1, "3, 3, 2, 1, fill, top");
+		frmSentinelDataVault.getContentPane().add(panel_1, "3, 3, 2, 2, fill, top");
 		
 		JButton btnSort = new JButton("Sort");
 		panel_1.add(btnSort, "8, 2, left, top");
