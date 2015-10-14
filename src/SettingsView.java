@@ -40,11 +40,13 @@ public class SettingsView {
 		frmSettings.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmSettings.getContentPane().setLayout(null);
 		
+		//High security toggle & tool tip
 		JCheckBox chckbxHighSecurityLevel = new JCheckBox("High Security Level ");
 		chckbxHighSecurityLevel.setToolTipText("Toggling this setting will change ALL user encryptions to the strongest possible.");
 		chckbxHighSecurityLevel.setBounds(48, 53, 148, 25);
 		frmSettings.getContentPane().add(chckbxHighSecurityLevel);
 		
+		//Allows user to set lock out time up to max
 		JSpinner spinner = new JSpinner();
 		spinner.setModel(new SpinnerNumberModel(1, 1, 7, 1));
 		spinner.setBounds(48, 87, 30, 22);
@@ -54,6 +56,7 @@ public class SettingsView {
 		lblMaxLockoutTime.setBounds(90, 90, 159, 16);
 		frmSettings.getContentPane().add(lblMaxLockoutTime);
 		
+		//box lets user decide when to back up
 		JComboBox comboBox = new JComboBox();
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Weekly", "Monthly", "Every 3 Months", "Every 6 Months", "Yearly"}));
 		comboBox.setBounds(47, 127, 113, 22);
@@ -67,7 +70,7 @@ public class SettingsView {
 		lblUserSettings.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblUserSettings.setBounds(49, 13, 118, 25);
 		frmSettings.getContentPane().add(lblUserSettings);
-		
+		//Lets user set the file size past which they'll be warned about file size.
 		JComboBox comboBox_1 = new JComboBox();
 		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"10 MB", "50 MB", "100 MB", "512 MB", "1 GB", "2 GB", "3 GB", "4 GB", "5 GB"}));
 		comboBox_1.setBounds(48, 162, 113, 22);
@@ -77,10 +80,22 @@ public class SettingsView {
 		lblFileSizeLimit.setBounds(176, 165, 142, 16);
 		frmSettings.getContentPane().add(lblFileSizeLimit);
 		
+		//Will eventually contain an action listener that saves preferences to User
 		JButton btnOk = new JButton("Ok");
+		btnOk.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				if(e.getActionCommand().equalsIgnoreCase("Ok")) {
+			//TODO SAVE SETTINGS TO USER CLASS
+					frmSettings.dispose();
+		}
+			}
+			
+		
+		});
 		btnOk.setBounds(65, 217, 97, 25);
 		frmSettings.getContentPane().add(btnOk);
 		
+		//closes window
 		JButton btnCancel = new JButton("Cancel");
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent clickCancel) {
