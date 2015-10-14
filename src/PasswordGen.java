@@ -1,4 +1,4 @@
-package sentinelSecurity;
+
 import java.util.*;
 public class PasswordGen {
 	public int length;
