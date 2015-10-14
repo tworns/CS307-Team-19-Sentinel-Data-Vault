@@ -11,12 +11,12 @@ public class PasswordGen {
 		this.num = num;
 		this.upper = upper;
 		
-		genny(length, specials, num, upper);
+		generator(length, specials, num, upper);
 		
 	}
 	
 	
-		public String genny(int length, int specials, int num, int upper){
+		public String generator(int length, int specials, int num, int upper){
 			Random r = new Random();	
 			r.nextInt();
 			char [] pass = new char[length];
