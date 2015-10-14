@@ -79,16 +79,17 @@ public class signupView extends JFrame {
 				String username = usernameField.getText();
 				String password1 = passwordField1.getText();
 				String password2 = passwordField2.getText();
-				if(!(password1.equals(password2))){
-					JOptionPane.showMessageDialog(null,"Your password doesn't match");
-					password1 = "";
-					password2 = "";
-				}
 				if (password1.equals("") || password2.equals("")||username.equals("")){
 					JOptionPane.showMessageDialog(null,"You need to enter all the fields!");
 					password1 = "";
 					password2 = "";
 				}
+				if(!(password1.equals(password2))){
+					JOptionPane.showMessageDialog(null,"Your password doesn't match");
+					password1 = "";
+					password2 = "";
+				}
+				
 				if (password1.equals(password2) && !password1.equals("") && !username.equals("")){
 					JOptionPane.showMessageDialog(null,"You have successfully created your account!");
 					dispose();
