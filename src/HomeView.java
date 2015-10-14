@@ -22,6 +22,8 @@ import javax.swing.JLabel;
 import javax.swing.JSpinner;
 import javax.swing.JFormattedTextField;
 import javax.swing.JProgressBar;
+import javax.swing.JTree;
+import javax.swing.SpinnerListModel;
 
 public class HomeView{
 
@@ -81,6 +83,16 @@ public class HomeView{
 		JButton btnNewButton_1 = new JButton("Edit Data");
 		panel.add(btnNewButton_1);
 		
+		JButton btnShareData = new JButton("Share Data");
+		btnShareData.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		panel.add(btnShareData);
+		
+		JButton btnSecurity = new JButton("Security");
+		panel.add(btnSecurity);
+		
 		JPanel panel_1 = new JPanel();
 		frmSentinelDataVault.getContentPane().add(panel_1, BorderLayout.WEST);
 		
@@ -93,21 +105,22 @@ public class HomeView{
 		JProgressBar progressBar = new JProgressBar();
 		panel_3.add(progressBar);
 		
+		//JProgressBar progressBar = new JProgressBar();
+		//panel_3.add(progressBar);
+		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		frmSentinelDataVault.getContentPane().add(tabbedPane, BorderLayout.EAST);
 		
-		Choice choice = new Choice();
-		tabbedPane.addTab("item", null, choice, null);
-		
 		JPanel panel_2 = new JPanel();
 		tabbedPane.addTab("Debit Card", null, panel_2, null);
-		panel_2.setLayout(new MigLayout("", "[130px,grow][128px]", "[26px][][][][][][][][][]"));
+		panel_2.setLayout(new MigLayout("", "[130px,grow][128px]", "[26px][][][][][][][][][][][][][]"));
 		
 		JLabel lblCreditCard = new JLabel("Debit Card");
 		panel_2.add(lblCreditCard, "cell 0 0");
 		
 		JSpinner spinner = new JSpinner();
-		panel_2.add(spinner, "cell 0 1");
+		spinner.setModel(new SpinnerListModel(new String[] {"PayPal", "DISCOVER", "AMERICAN EXPRESS", "MasterCard", "VISA"}));
+		panel_2.add(spinner, "cell 0 1,growx");
 		
 		JLabel lblNewLabel = new JLabel("Card Number");
 		panel_2.add(lblNewLabel, "cell 0 2");
@@ -137,14 +150,19 @@ public class HomeView{
 		frmtdtxtfldMmYy.setText("MM / YY");
 		panel_2.add(frmtdtxtfldMmYy, "cell 0 9,growx");
 		
+		JButton btnExport = new JButton("Export");
+		panel_2.add(btnExport, "cell 1 13,alignx right");
+		
 		JTabbedPane tabbedPane_1 = new JTabbedPane(JTabbedPane.TOP);
 		frmSentinelDataVault.getContentPane().add(tabbedPane_1, BorderLayout.CENTER);
 		
-		JList list = new JList();
-		tabbedPane_1.addTab("New tab", null, list, null);
+		JTree tree = new JTree();
+		tabbedPane_1.addTab("Tree List", null, tree, null);
 		
-		JDesktopPane desktopPane = new JDesktopPane();
-		tabbedPane_1.addTab("New tab", null, desktopPane, null);
+		Choice choice = new Choice();
+		tabbedPane_1.addTab("Category", null, choice, null);
+		
+		
 		
 		JMenuBar menuBar = new JMenuBar();
 		frmSentinelDataVault.setJMenuBar(menuBar);
