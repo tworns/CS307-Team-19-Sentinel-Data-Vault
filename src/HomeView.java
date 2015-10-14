@@ -24,6 +24,8 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JProgressBar;
 import javax.swing.JTree;
 import javax.swing.SpinnerListModel;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.DefaultMutableTreeNode;
 
 public class HomeView{
 
@@ -64,8 +66,8 @@ public class HomeView{
 		frmSentinelDataVault.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmSentinelDataVault.getContentPane().setLayout(new BorderLayout(0, 0));
 		
-		JPanel panel = new JPanel();
-		frmSentinelDataVault.getContentPane().add(panel, BorderLayout.NORTH);
+		JPanel panel_North = new JPanel();
+		frmSentinelDataVault.getContentPane().add(panel_North, BorderLayout.NORTH);
 		
 		JButton btnNewButton = new JButton("New Data");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -74,93 +76,116 @@ public class HomeView{
 		});
 		
 		JButton btnNewButton_3 = new JButton("Lock");
-		panel.add(btnNewButton_3);
+		panel_North.add(btnNewButton_3);
 		
 		JButton btnNewButton_2 = new JButton("Data");
-		panel.add(btnNewButton_2);
-		panel.add(btnNewButton);
+		panel_North.add(btnNewButton_2);
+		panel_North.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Edit Data");
-		panel.add(btnNewButton_1);
+		panel_North.add(btnNewButton_1);
 		
 		JButton btnShareData = new JButton("Share Data");
 		btnShareData.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		panel.add(btnShareData);
+		panel_North.add(btnShareData);
 		
 		JButton btnSecurity = new JButton("Security");
-		panel.add(btnSecurity);
+		panel_North.add(btnSecurity);
 		
-		JPanel panel_1 = new JPanel();
-		frmSentinelDataVault.getContentPane().add(panel_1, BorderLayout.WEST);
+		JPanel panel_West = new JPanel();
+		frmSentinelDataVault.getContentPane().add(panel_West, BorderLayout.WEST);
 		
 		JButton btnNewButton_4 = new JButton("New button");
-		panel_1.add(btnNewButton_4);
+		panel_West.add(btnNewButton_4);
 		
-		JPanel panel_3 = new JPanel();
-		frmSentinelDataVault.getContentPane().add(panel_3, BorderLayout.SOUTH);
+		JPanel panel_South = new JPanel();
+		frmSentinelDataVault.getContentPane().add(panel_South, BorderLayout.SOUTH);
 		
 		JProgressBar progressBar = new JProgressBar();
-		panel_3.add(progressBar);
+		panel_South.add(progressBar);
 		
 		//JProgressBar progressBar = new JProgressBar();
 		//panel_3.add(progressBar);
 		
-		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		frmSentinelDataVault.getContentPane().add(tabbedPane, BorderLayout.EAST);
+		JTabbedPane tabbedPane_East = new JTabbedPane(JTabbedPane.TOP);
+		frmSentinelDataVault.getContentPane().add(tabbedPane_East, BorderLayout.EAST);
 		
-		JPanel panel_2 = new JPanel();
-		tabbedPane.addTab("Debit Card", null, panel_2, null);
-		panel_2.setLayout(new MigLayout("", "[130px,grow][128px]", "[26px][][][][][][][][][][][][][]"));
+		JPanel panel_DebitCard = new JPanel();
+		tabbedPane_East.addTab("Debit Card", null, panel_DebitCard, null);
+		panel_DebitCard.setLayout(new MigLayout("", "[130px,grow][128px]", "[26px][][][][][][][][][][][][][]"));
 		
 		JLabel lblCreditCard = new JLabel("Debit Card");
-		panel_2.add(lblCreditCard, "cell 0 0");
+		panel_DebitCard.add(lblCreditCard, "cell 0 0");
 		
 		JSpinner spinner = new JSpinner();
-		spinner.setModel(new SpinnerListModel(new String[] {"PayPal", "DISCOVER", "AMERICAN EXPRESS", "MasterCard", "VISA"}));
-		panel_2.add(spinner, "cell 0 1,growx");
+		spinner.setModel(new SpinnerListModel(new String[] {"VISA", "MasterCard", "AMERICAN EXPRESS", "DISCOVER", "PayPal"}));
+		panel_DebitCard.add(spinner, "cell 0 1, growx");
 		
 		JLabel lblNewLabel = new JLabel("Card Number");
-		panel_2.add(lblNewLabel, "cell 0 2");
+		panel_DebitCard.add(lblNewLabel, "cell 0 2");
 		
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
-		panel_2.add(textField_1, "cell 0 3 2 1,growx");
+		panel_DebitCard.add(textField_1, "cell 0 3 2 1,growx");
 		
 		JLabel lblNameOnCard = new JLabel("Name on Card");
-		panel_2.add(lblNameOnCard, "cell 0 4");
+		panel_DebitCard.add(lblNameOnCard, "cell 0 4");
 		
 		textField = new JTextField();
-		panel_2.add(textField, "cell 0 5 2 1,growx");
+		panel_DebitCard.add(textField, "cell 0 5 2 1,growx");
 		textField.setColumns(10);
 		
 		JLabel lblCvv = new JLabel("CVV");
-		panel_2.add(lblCvv, "cell 0 6");
+		panel_DebitCard.add(lblCvv, "cell 0 6");
 		
 		JFormattedTextField frmtdtxtfldXxx = new JFormattedTextField();
 		frmtdtxtfldXxx.setText("* * *");
-		panel_2.add(frmtdtxtfldXxx, "cell 0 7,growx");
+		panel_DebitCard.add(frmtdtxtfldXxx, "cell 0 7,growx");
 		
 		JLabel lblExpiration = new JLabel("Expiration Date");
-		panel_2.add(lblExpiration, "cell 0 8");
+		panel_DebitCard.add(lblExpiration, "cell 0 8");
 		
 		JFormattedTextField frmtdtxtfldMmYy = new JFormattedTextField();
 		frmtdtxtfldMmYy.setText("MM / YY");
-		panel_2.add(frmtdtxtfldMmYy, "cell 0 9,growx");
+		panel_DebitCard.add(frmtdtxtfldMmYy, "cell 0 9,growx");
 		
 		JButton btnExport = new JButton("Export");
-		panel_2.add(btnExport, "cell 1 13,alignx right");
+		panel_DebitCard.add(btnExport, "cell 1 13,alignx right");
 		
-		JTabbedPane tabbedPane_1 = new JTabbedPane(JTabbedPane.TOP);
-		frmSentinelDataVault.getContentPane().add(tabbedPane_1, BorderLayout.CENTER);
+		JTabbedPane tabbedPane_Center = new JTabbedPane(JTabbedPane.TOP);
+		frmSentinelDataVault.getContentPane().add(tabbedPane_Center, BorderLayout.CENTER);
 		
 		JTree tree = new JTree();
-		tabbedPane_1.addTab("Tree List", null, tree, null);
+		tree.setModel(new DefaultTreeModel(
+			new DefaultMutableTreeNode("User Name") {
+				{
+					DefaultMutableTreeNode node_1;
+					node_1 = new DefaultMutableTreeNode("Login Account ");
+						node_1.add(new DefaultMutableTreeNode("Google"));
+						node_1.add(new DefaultMutableTreeNode("Purdue"));
+					add(node_1);
+					node_1 = new DefaultMutableTreeNode("Credit / Debit Card");
+						node_1.add(new DefaultMutableTreeNode("Chase"));
+						node_1.add(new DefaultMutableTreeNode("Purdue Federal Credit Union"));
+						node_1.add(new DefaultMutableTreeNode("Bank of America"));
+					add(node_1);
+					node_1 = new DefaultMutableTreeNode("Serial Number");
+						node_1.add(new DefaultMutableTreeNode("MS Office "));
+						node_1.add(new DefaultMutableTreeNode(""));
+					add(node_1);
+					node_1 = new DefaultMutableTreeNode("License");
+						node_1.add(new DefaultMutableTreeNode("Driver's License"));
+					add(node_1);
+				}
+			}
+		));
+		tabbedPane_Center.addTab("List", null, tree, null);
 		
 		Choice choice = new Choice();
-		tabbedPane_1.addTab("Category", null, choice, null);
+		tabbedPane_Center.addTab("Category", null, choice, null);
 		
 		
 		
