@@ -73,8 +73,8 @@ public class loginView {
 				String password = passwordField.getText();
 				//Condition needs to be changed accordingly
 				if(username.equals("cs307@purdue.edu") && password.equals("12345")) {
-					newframe regFace =new newframe();
-					regFace.setVisible(true);
+					HomeView regFace =new HomeView();
+					regFace.frmSentinelDataVault.setVisible(true);
 					frame.dispose();
 				}
 				else{

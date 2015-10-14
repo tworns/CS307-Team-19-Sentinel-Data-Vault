@@ -22,9 +22,9 @@ import javax.swing.JLabel;
 import javax.swing.JSpinner;
 import javax.swing.JFormattedTextField;
 
-public class HomeView {
+public class HomeView{
 
-	private JFrame frmSentinelDataVault;
+	public JFrame frmSentinelDataVault;
 	private JTextField textField_1;
 	private JTextField textField;
 
