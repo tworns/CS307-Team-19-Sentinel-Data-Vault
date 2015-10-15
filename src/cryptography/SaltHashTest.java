@@ -1,6 +1,7 @@
 package cryptography;
 
 import java.security.MessageDigest;
+import java.security.SecureRandom;
 import java.security.NoSuchAlgorithmException;
 import java.util.Scanner;
 
