@@ -70,7 +70,7 @@ public class LoginView {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String username = textField.getText();
-				String password = passwordField.getText();
+				String password = String.valueOf(passwordField.getPassword()); // getText() is deprecated; changed to getPassword()
 				//Condition needs to be changed accordingly
 				if(username.equals("cs307@purdue.edu") && password.equals("12345")) {
 					
