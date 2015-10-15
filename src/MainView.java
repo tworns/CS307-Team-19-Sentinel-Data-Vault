@@ -78,6 +78,7 @@ public class MainView {
 		panel.add(panel_1, BorderLayout.NORTH);
 		
 		JButton btnLock = new JButton("Lock");
+		btnLock.setToolTipText("Lock");
 		panel_1.add(btnLock);
 		
 		JButton btnNewData = new JButton("New Data");
@@ -245,7 +246,7 @@ public class MainView {
 		panel_3.add(txtPm, "cell 0 4,growx");
 		txtPm.setColumns(10);
 		
-		JLabel lblDetails = new JLabel("Details");
+		JLabel lblDetails = new JLabel("Data Details");
 		panel_3.add(lblDetails, "cell 0 5");
 		
 		JList list = new JList();
