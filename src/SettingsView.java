@@ -77,7 +77,11 @@ public class SettingsView {
 		frmSettings.getContentPane().add(comboBox_1);
 		
 		JLabel lblFileSizeLimit = new JLabel("File Size Limit Warning ");
+<<<<<<< HEAD
 		lblFileSizeLimit.setBounds(176, 165, 190, 16);
+=======
+		lblFileSizeLimit.setBounds(176, 165, 183, 16);
+>>>>>>> origin/master
 		frmSettings.getContentPane().add(lblFileSizeLimit);
 		
 		//Will eventually contain an action listener that saves preferences to User

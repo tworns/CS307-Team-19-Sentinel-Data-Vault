@@ -78,7 +78,7 @@ public class MainView {
 		panel.add(panel_1, BorderLayout.NORTH);
 		
 		JButton btnLock = new JButton("Lock");
-		btnLock.setToolTipText("Lock");
+		btnLock.setToolTipText("Lock mode for data in but not data out");
 		panel_1.add(btnLock);
 		
 		JButton btnNewData = new JButton("New Data");

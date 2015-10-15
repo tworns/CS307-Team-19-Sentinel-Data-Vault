@@ -69,22 +69,38 @@ public class SecurityView {
 		
 		//toggle for special characters
 		JCheckBox chckbxNoSpecialCharacters = new JCheckBox("No Special Characters");
+<<<<<<< HEAD
 		chckbxNoSpecialCharacters.setBounds(28, 94, 227, 25);
+=======
+		chckbxNoSpecialCharacters.setBounds(28, 94, 170, 25);
+>>>>>>> origin/master
 		panel.add(chckbxNoSpecialCharacters);
 		
 		//toggle for uppercase letters
 		JCheckBox chckbxNoUppercase = new JCheckBox("No Uppercase");
+<<<<<<< HEAD
 		chckbxNoUppercase.setBounds(28, 34, 227, 25);
+=======
+		chckbxNoUppercase.setBounds(28, 34, 117, 25);
+>>>>>>> origin/master
 		panel.add(chckbxNoUppercase);
 		
 		//toggle for numbers
 		JCheckBox chckbxNoNumbers = new JCheckBox("No Numbers");
+<<<<<<< HEAD
 		chckbxNoNumbers.setBounds(28, 64, 227, 25);
+=======
+		chckbxNoNumbers.setBounds(28, 64, 107, 25);
+>>>>>>> origin/master
 		panel.add(chckbxNoNumbers);
 		
 		//length of password to be input
 		JLabel lblLengthOfPassword = new JLabel("Password Length");
+<<<<<<< HEAD
 		lblLengthOfPassword.setBounds(88, 136, 167, 16);
+=======
+		lblLengthOfPassword.setBounds(88, 136, 118, 16);
+>>>>>>> origin/master
 		panel.add(lblLengthOfPassword);
 		
 		
@@ -101,8 +117,8 @@ public class SecurityView {
 		btnGenerate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent clickGenerate) {
 				if(clickGenerate.getActionCommand().equalsIgnoreCase("Generate")) { 
-					PasswordGen k = new PasswordGen(4,0,0,0); //TODO use user set values instead of hard coding. Hardcoded for test purpose only.
-					String password = k.generator(4,0,0,0);
+					PasswordGen k = new PasswordGen(8,0,0,0); //TODO use user set values instead of hard coding. Hardcoded for test purpose only.
+					String password = k.generator(8,0,0,0);
 					JTextArea displayPass = new JTextArea(1,1);
 					displayPass.setText(password);
 					displayPass.setEditable(false);
@@ -130,7 +146,7 @@ public class SecurityView {
 		
 		//password entry field
 		JLabel lblEnterPassword = new JLabel("Enter Password");
-		lblEnterPassword.setBounds(22, 13, 96, 16);
+		lblEnterPassword.setBounds(22, 13, 106, 16);
 		panel_1.add(lblEnterPassword);
 		
 		//button that actually sets off the checking of the password.

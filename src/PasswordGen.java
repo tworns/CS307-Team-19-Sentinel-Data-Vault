@@ -20,20 +20,27 @@ public class PasswordGen {
 			Random r = new Random();	
 			r.nextInt();
 			char [] pass = new char[length];
-			for(int i = 0; i < length; i++){ 
-				if(r.nextInt() <= 1 || r.nextInt() >=1) {
-					pass[i] = 'a';
-				}
-				else { 
-					pass[i] = '0';
-				}
-				
-		}
 			//TODO Fix this. Currently returns the hex(?) value of the char [] object. 
 			//Maybe use secure password API 
 			String out = pass.toString();
+			char[] alpha = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
+			char[] numbers = {'1','2', '3','4', '5', '6', '7', '8','9', '0'};
+			char[] punct = {'!','@','#','$','%'};
 			out = out.substring(3,out.length());
-		return out;
+			StringBuilder s = new StringBuilder(out);
+			for(int i = out.length(); i < length; i++) { 
+				if(i%3 == 1) {
+					s.append(alpha[(i%26)]);
+				}
+				if (i%3 == 2) { 
+					s.append(punct[i%5]);
+				}
+				else { 
+					s.append(numbers[(i%10)]);
+				}
+			}
+		
+		return s.toString();
 		
 			
 	}
