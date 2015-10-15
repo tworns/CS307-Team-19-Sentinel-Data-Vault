@@ -31,7 +31,9 @@ public class PasswordGen {
 		}
 			//TODO Fix this. Currently returns the hex(?) value of the char [] object. 
 			//Maybe use secure password API 
-		return pass.toString();
+			String out = pass.toString();
+			out = out.substring(3,out.length());
+		return out;
 		
 			
 	}

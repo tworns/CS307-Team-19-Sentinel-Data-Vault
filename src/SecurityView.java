@@ -138,7 +138,6 @@ public class SecurityView {
 		btnCheck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(e.getActionCommand().equalsIgnoreCase("Check")){
-					//System.out.println("Yep, that's a password.");
 					String strength = "Password is strong";
 					
 					JOptionPane.showMessageDialog(null, strength, "Password", JOptionPane.INFORMATION_MESSAGE);

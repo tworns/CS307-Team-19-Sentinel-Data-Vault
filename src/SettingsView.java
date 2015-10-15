@@ -5,7 +5,7 @@ import java.awt.event.*;
 
 public class SettingsView {
 
-	private JFrame frmSettings;
+	public JFrame frmSettings;
 
 	/**
 	 * Launch the application.
