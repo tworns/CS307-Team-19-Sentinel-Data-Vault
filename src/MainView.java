@@ -27,7 +27,7 @@ import java.awt.event.ActionEvent;
 
 public class MainView {
 
-	private JFrame frmSentinelDataVault;
+	public JFrame frmSentinelDataVault;
 	private JTextField txtNameOnCard;
 	private JTextField txtUserId;
 	private JTextField txtPassword;
@@ -66,6 +66,8 @@ public class MainView {
 		frmSentinelDataVault.setBounds(100, 100, 700, 450);
 		frmSentinelDataVault.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmSentinelDataVault.getContentPane().setLayout(new BoxLayout(frmSentinelDataVault.getContentPane(), BoxLayout.X_AXIS));
+		
+		
 		
 		JPanel panel = new JPanel();
 		frmSentinelDataVault.getContentPane().add(panel);
@@ -156,18 +158,18 @@ public class MainView {
 		panel_4.add(lblExpirationDate, "cell 0 8");
 		
 		JComboBox comboBox_2 = new JComboBox();
-		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"January ", "February ", "March ", "April ", "May ", "June ", "July ", "August ", "September ", "October ", "November ", "December"}));
+		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"01 ", "02 ", "03 ", "04 ", "05", "06 ", "07 ", "08 ", "09 ", "10", "11 ", "12"}));
 		panel_4.add(comboBox_2, "flowx,cell 0 9");
 		
 		JButton btnShare = new JButton("Share");
 		panel_4.add(btnShare, "flowx,cell 0 10,aligny top");
 		
-		JFormattedTextField frmtdtxtfldYyyy = new JFormattedTextField();
-		frmtdtxtfldYyyy.setText("YYYY");
-		panel_4.add(frmtdtxtfldYyyy, "cell 0 9");
-		
 		JButton btnExport = new JButton("Export");
 		panel_4.add(btnExport, "cell 0 10,alignx left,aligny top");
+		
+		JComboBox comboBox_1 = new JComboBox();
+		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30"}));
+		panel_4.add(comboBox_1, "cell 0 9");
 		
 		JPanel panel_2 = new JPanel();
 		tabbedPane.addTab("Account Login", null, panel_2, null);
