@@ -96,6 +96,15 @@ public class MainView {
 		});
 		panel_1.add(btnSecurity);
 		
+		JButton btnSetting = new JButton("Setting");
+		btnSetting.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				SettingsView frmSettings = new SettingsView();
+				frmSettings.frmSettings.setVisible(true);
+			}
+		});
+		panel_1.add(btnSetting);
+		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		panel.add(tabbedPane, BorderLayout.EAST);
 		
@@ -206,22 +215,25 @@ public class MainView {
 		
 		JPanel panel_3 = new JPanel();
 		panel.add(panel_3, BorderLayout.WEST);
-		panel_3.setLayout(new MigLayout("", "[68px,grow][65px,grow]", "[16px][][][][grow]"));
+		panel_3.setLayout(new MigLayout("", "[68px,grow][65px,grow]", "[16px][][][][grow][grow][grow]"));
+		
+		JButton btnLogout = new JButton("LOGOUT");
+		panel_3.add(btnLogout, "cell 0 0");
 		
 		JLabel lblUserName = new JLabel("User Name");
-		panel_3.add(lblUserName, "cell 0 0");
+		panel_3.add(lblUserName, "cell 0 1");
 		
 		txtUserName = new JTextField();
 		txtUserName.setText("User Name");
-		panel_3.add(txtUserName, "cell 0 1");
+		panel_3.add(txtUserName, "cell 0 2");
 		txtUserName.setColumns(10);
 		
 		JLabel lblLastLogin = new JLabel("Last Login");
-		panel_3.add(lblLastLogin, "cell 0 2");
+		panel_3.add(lblLastLogin, "cell 0 3");
 		
 		txtYyyymmdd = new JTextField();
 		txtYyyymmdd.setText("YYYY.MM.DD");
-		panel_3.add(txtYyyymmdd, "cell 0 3,growx");
+		panel_3.add(txtYyyymmdd, "cell 0 4,growx");
 		txtYyyymmdd.setColumns(10);
 		
 		JProgressBar progressBar = new JProgressBar();
