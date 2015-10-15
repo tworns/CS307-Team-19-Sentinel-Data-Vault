@@ -15,7 +15,7 @@ import java.awt.event.ActionEvent;
 
 public class LoginView {
 
-	private JFrame frame;
+	public JFrame frame;
 	private JTextField textField;
 	private JPasswordField passwordField;
 	private JButton btnSignUp;

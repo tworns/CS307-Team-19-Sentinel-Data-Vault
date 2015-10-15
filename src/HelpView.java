@@ -1,6 +1,12 @@
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JSplitPane;
+import java.awt.BorderLayout;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import net.miginfocom.swing.MigLayout;
 
 public class HelpView {
 
@@ -14,6 +20,7 @@ public class HelpView {
 	
 	
 	public JFrame frame;
+	private JTextField txtHelp;
 
 	/**
 	 * Launch the application.
@@ -45,6 +52,21 @@ public class HelpView {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		JSplitPane splitPane = new JSplitPane();
+		frame.getContentPane().add(splitPane, BorderLayout.CENTER);
+		
+		JPanel panel = new JPanel();
+		splitPane.setRightComponent(panel);
+		panel.setLayout(new MigLayout("", "[130px]", "[26px]"));
+		
+		txtHelp = new JTextField();
+		txtHelp.setText("Help");
+		panel.add(txtHelp, "cell 0 0");
+		txtHelp.setColumns(10);
+		
+		JButton btnHelp = new JButton("Help");
+		splitPane.setLeftComponent(btnHelp);
 	}
 
 }

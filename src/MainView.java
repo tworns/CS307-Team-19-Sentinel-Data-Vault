@@ -32,7 +32,6 @@ public class MainView {
 	private JTextField txtUserId;
 	private JTextField txtPassword;
 	private JTextField txtUserName;
-	private JTextField txtYyyymmdd;
 
 	/**
 	 * Launch the application.
@@ -215,26 +214,28 @@ public class MainView {
 		
 		JPanel panel_3 = new JPanel();
 		panel.add(panel_3, BorderLayout.WEST);
-		panel_3.setLayout(new MigLayout("", "[68px,grow][65px,grow]", "[16px][][][][grow][grow][grow]"));
+		panel_3.setLayout(new MigLayout("", "[68px,grow][65px,grow]", "[][][][][]"));
 		
 		JButton btnLogout = new JButton("LOGOUT");
-		panel_3.add(btnLogout, "cell 0 0");
+		btnLogout.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				LoginView frmLog = new LoginView();
+				frmLog.frame.setVisible(true);
+				frmSentinelDataVault.dispose();
+			}
+		});
+		panel_3.add(btnLogout, "cell 1 0");
 		
-		JLabel lblUserName = new JLabel("User Name");
+		JLabel lblUserName = new JLabel("Login Email");
 		panel_3.add(lblUserName, "cell 0 1");
 		
 		txtUserName = new JTextField();
-		txtUserName.setText("User Name");
-		panel_3.add(txtUserName, "cell 0 2");
+		txtUserName.setText("cs307@purdue.edu");
+		panel_3.add(txtUserName, "cell 0 2 2 1,growx");
 		txtUserName.setColumns(10);
 		
 		JLabel lblLastLogin = new JLabel("Last Login");
 		panel_3.add(lblLastLogin, "cell 0 3");
-		
-		txtYyyymmdd = new JTextField();
-		txtYyyymmdd.setText("YYYY.MM.DD");
-		panel_3.add(txtYyyymmdd, "cell 0 4,growx");
-		txtYyyymmdd.setColumns(10);
 		
 		JProgressBar progressBar = new JProgressBar();
 		panel.add(progressBar, BorderLayout.SOUTH);
