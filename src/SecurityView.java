@@ -4,10 +4,11 @@ import javax.swing.*;
 
 public class SecurityView {
 
-	private JFrame frame;
+	public JFrame frame;
 	private int instanceCount;
 	private SecurityView instance; 
 	private JPasswordField passwordField;
+	public Object frmSentinelDataVault;
 	/*
 	 * Launch the application.
 	 */
@@ -22,12 +23,15 @@ public class SecurityView {
 				}
 			}
 		});
+		
+		
+		
 	}
 
 	/**
 	 * Create the application.
 	 */
-	private SecurityView() {
+	public SecurityView() {
 		initialize();
 	}
 
