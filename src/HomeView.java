@@ -26,12 +26,21 @@ import javax.swing.JTree;
 import javax.swing.SpinnerListModel;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.DefaultMutableTreeNode;
+import java.awt.FlowLayout;
+import java.awt.Window;
+
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.RowSpec;
+import com.jgoodies.forms.layout.FormSpecs;
 
 public class HomeView{
 
 	public JFrame frmSentinelDataVault;
 	private JTextField textField_1;
 	private JTextField textField;
+	private JTextField txtDataamount;
+	private JTextField textField_3;
 
 	/**
 	 * Launch the application.
@@ -62,7 +71,7 @@ public class HomeView{
 	private void initialize() {
 		frmSentinelDataVault = new JFrame();
 		frmSentinelDataVault.setTitle("Sentinel Data Vault");
-		frmSentinelDataVault.setBounds(100, 100, 650, 450);
+		frmSentinelDataVault.setBounds(100, 100, 700, 450);
 		frmSentinelDataVault.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmSentinelDataVault.getContentPane().setLayout(new BorderLayout(0, 0));
 		
@@ -93,13 +102,38 @@ public class HomeView{
 		panel_North.add(btnShareData);
 		
 		JButton btnSecurity = new JButton("Security");
+		
+		btnSecurity.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				SecurityView regFace =new SecurityView();
+				((Window) regFace.frmSentinelDataVault).setVisible(true);
+				
+			}
+		});
+		
 		panel_North.add(btnSecurity);
 		
 		JPanel panel_West = new JPanel();
 		frmSentinelDataVault.getContentPane().add(panel_West, BorderLayout.WEST);
+		panel_West.setLayout(new FormLayout(new ColumnSpec[] {
+				ColumnSpec.decode("16px"),
+				ColumnSpec.decode("117px:grow"),},
+			new RowSpec[] {
+				RowSpec.decode("29px"),
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,}));
 		
-		JButton btnNewButton_4 = new JButton("New button");
-		panel_West.add(btnNewButton_4);
+		txtDataamount = new JTextField();
+		txtDataamount.setText("DataAmount");
+		txtDataamount.setColumns(10);
+		panel_West.add(txtDataamount, "2, 3, fill, default");
+		
+		textField_3 = new JTextField();
+		textField_3.setText("Username");
+		textField_3.setColumns(10);
+		panel_West.add(textField_3, "2, 5, fill, default");
 		
 		JPanel panel_South = new JPanel();
 		frmSentinelDataVault.getContentPane().add(panel_South, BorderLayout.SOUTH);
@@ -115,9 +149,9 @@ public class HomeView{
 		
 		JPanel panel_DebitCard = new JPanel();
 		tabbedPane_East.addTab("Debit Card", null, panel_DebitCard, null);
-		panel_DebitCard.setLayout(new MigLayout("", "[130px,grow][128px]", "[26px][][][][][][][][][][][][][]"));
+		panel_DebitCard.setLayout(new MigLayout("", "[130px,grow][128px,grow]", "[26px][][][][][][][][][][]"));
 		
-		JLabel lblCreditCard = new JLabel("Debit Card");
+		JLabel lblCreditCard = new JLabel("Debit Card Type");
 		panel_DebitCard.add(lblCreditCard, "cell 0 0");
 		
 		JSpinner spinner = new JSpinner();
@@ -148,12 +182,19 @@ public class HomeView{
 		JLabel lblExpiration = new JLabel("Expiration Date");
 		panel_DebitCard.add(lblExpiration, "cell 0 8");
 		
+		JLabel lblPin = new JLabel("PIN");
+		panel_DebitCard.add(lblPin, "cell 1 8");
+		
 		JFormattedTextField frmtdtxtfldMmYy = new JFormattedTextField();
 		frmtdtxtfldMmYy.setText("MM / YY");
 		panel_DebitCard.add(frmtdtxtfldMmYy, "cell 0 9,growx");
 		
+		JFormattedTextField formattedTextField = new JFormattedTextField();
+		formattedTextField.setText("* * * *");
+		panel_DebitCard.add(formattedTextField, "cell 1 9,growx");
+		
 		JButton btnExport = new JButton("Export");
-		panel_DebitCard.add(btnExport, "cell 1 13,alignx right");
+		panel_DebitCard.add(btnExport, "cell 1 10,alignx right");
 		
 		JTabbedPane tabbedPane_Center = new JTabbedPane(JTabbedPane.TOP);
 		frmSentinelDataVault.getContentPane().add(tabbedPane_Center, BorderLayout.CENTER);
@@ -167,14 +208,15 @@ public class HomeView{
 						node_1.add(new DefaultMutableTreeNode("Google"));
 						node_1.add(new DefaultMutableTreeNode("Purdue"));
 					add(node_1);
-					node_1 = new DefaultMutableTreeNode("Credit / Debit Card");
-						node_1.add(new DefaultMutableTreeNode("Chase"));
-						node_1.add(new DefaultMutableTreeNode("Purdue Federal Credit Union"));
+					node_1 = new DefaultMutableTreeNode("Credit Card");
 						node_1.add(new DefaultMutableTreeNode("Bank of America"));
+					add(node_1);
+					node_1 = new DefaultMutableTreeNode("Debit Card");
+						node_1.add(new DefaultMutableTreeNode("Chase"));
+						node_1.add(new DefaultMutableTreeNode("Purdue Federal Credit Union\t\t"));
 					add(node_1);
 					node_1 = new DefaultMutableTreeNode("Serial Number");
 						node_1.add(new DefaultMutableTreeNode("MS Office "));
-						node_1.add(new DefaultMutableTreeNode(""));
 					add(node_1);
 					node_1 = new DefaultMutableTreeNode("License");
 						node_1.add(new DefaultMutableTreeNode("Driver's License"));
