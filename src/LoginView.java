@@ -73,9 +73,17 @@ public class LoginView {
 				String password = passwordField.getText();
 				//Condition needs to be changed accordingly
 				if(username.equals("cs307@purdue.edu") && password.equals("12345")) {
+					
+					MainView window =new MainView();
+					window.frmSentinelDataVault.setVisible(true);
+					frame.dispose();
+					
+					/*
 					HomeView regFace =new HomeView();
 					regFace.frmSentinelDataVault.setVisible(true);
 					frame.dispose();
+					*/
+					
 				}
 				else{
 					JOptionPane.showMessageDialog(null,"Wrong Password / Username");
