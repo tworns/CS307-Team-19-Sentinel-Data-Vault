@@ -43,27 +43,27 @@ public class SettingsView {
 		//High security toggle & tool tip
 		JCheckBox chckbxHighSecurityLevel = new JCheckBox("High Security Level ");
 		chckbxHighSecurityLevel.setToolTipText("Toggling this setting will change ALL user encryptions to the strongest possible.");
-		chckbxHighSecurityLevel.setBounds(48, 53, 148, 25);
+		chckbxHighSecurityLevel.setBounds(145, 53, 190, 25);
 		frmSettings.getContentPane().add(chckbxHighSecurityLevel);
 		
 		//Allows user to set lock out time up to max
 		JSpinner spinner = new JSpinner();
 		spinner.setModel(new SpinnerNumberModel(1, 1, 7, 1));
-		spinner.setBounds(48, 87, 30, 22);
+		spinner.setBounds(101, 90, 59, 22);
 		frmSettings.getContentPane().add(spinner);
 		
 		JLabel lblMaxLockoutTime = new JLabel("Max Lockout Time (Days)");
-		lblMaxLockoutTime.setBounds(90, 90, 159, 16);
+		lblMaxLockoutTime.setBounds(176, 90, 159, 16);
 		frmSettings.getContentPane().add(lblMaxLockoutTime);
 		
 		//box lets user decide when to back up
 		JComboBox comboBox = new JComboBox();
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Weekly", "Monthly", "Every 3 Months", "Every 6 Months", "Yearly"}));
-		comboBox.setBounds(47, 127, 113, 22);
+		comboBox.setBounds(49, 128, 113, 22);
 		frmSettings.getContentPane().add(comboBox);
 		
 		JLabel lblBackupFrequency = new JLabel("Backup Frequency");
-		lblBackupFrequency.setBounds(176, 130, 113, 16);
+		lblBackupFrequency.setBounds(176, 130, 190, 16);
 		frmSettings.getContentPane().add(lblBackupFrequency);
 		
 		JLabel lblUserSettings = new JLabel("User Settings");
@@ -77,7 +77,7 @@ public class SettingsView {
 		frmSettings.getContentPane().add(comboBox_1);
 		
 		JLabel lblFileSizeLimit = new JLabel("File Size Limit Warning ");
-		lblFileSizeLimit.setBounds(176, 165, 142, 16);
+		lblFileSizeLimit.setBounds(176, 165, 190, 16);
 		frmSettings.getContentPane().add(lblFileSizeLimit);
 		
 		//Will eventually contain an action listener that saves preferences to User

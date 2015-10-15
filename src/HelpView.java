@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import net.miginfocom.swing.MigLayout;
+import javax.swing.JLabel;
 
 public class HelpView {
 
@@ -20,7 +21,6 @@ public class HelpView {
 	
 	
 	public JFrame frame;
-	private JTextField txtHelp;
 
 	/**
 	 * Launch the application.
@@ -58,12 +58,10 @@ public class HelpView {
 		
 		JPanel panel = new JPanel();
 		splitPane.setRightComponent(panel);
-		panel.setLayout(new MigLayout("", "[130px]", "[26px]"));
+		panel.setLayout(new MigLayout("", "[130px]", "[26px][]"));
 		
-		txtHelp = new JTextField();
-		txtHelp.setText("Help");
-		panel.add(txtHelp, "cell 0 0");
-		txtHelp.setColumns(10);
+		JLabel lblHelp = new JLabel("Help");
+		panel.add(lblHelp, "cell 0 0,growx");
 		
 		JButton btnHelp = new JButton("Help");
 		splitPane.setLeftComponent(btnHelp);

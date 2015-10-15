@@ -24,6 +24,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JList;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JScrollBar;
 
 public class MainView {
 
@@ -32,6 +33,7 @@ public class MainView {
 	private JTextField txtUserId;
 	private JTextField txtPassword;
 	private JTextField txtUserName;
+	private JTextField txtPm;
 
 	/**
 	 * Launch the application.
@@ -107,28 +109,6 @@ public class MainView {
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		panel.add(tabbedPane, BorderLayout.EAST);
 		
-		JPanel panel_5 = new JPanel();
-		tabbedPane.addTab("New Data", null, panel_5, null);
-		panel_5.setLayout(new MigLayout("", "[]", "[][][][][][][][][]"));
-		
-		JButton btnNewLoginAccount = new JButton("new Login Account");
-		panel_5.add(btnNewLoginAccount, "cell 0 0,growx");
-		
-		JButton btnNewCreditCard = new JButton("new Credit Card");
-		panel_5.add(btnNewCreditCard, "cell 0 1,growx");
-		
-		JButton btnNewDebitCard = new JButton("new Debit Card");
-		panel_5.add(btnNewDebitCard, "cell 0 2,growx");
-		
-		JButton btnNewLicense = new JButton("new License");
-		panel_5.add(btnNewLicense, "cell 0 3,growx");
-		
-		JButton btnNewSerialNumber = new JButton("new Serial Number");
-		panel_5.add(btnNewSerialNumber, "cell 0 4,growx");
-		
-		JButton btnExportAllData = new JButton("Export All Data");
-		panel_5.add(btnExportAllData, "cell 0 8,growx");
-		
 		JPanel panel_4 = new JPanel();
 		tabbedPane.addTab("Debit Card", null, panel_4, null);
 		panel_4.setLayout(new MigLayout("", "[78px,grow][85px]", "[29px][][][][][][][][][][]"));
@@ -179,6 +159,28 @@ public class MainView {
 		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30"}));
 		panel_4.add(comboBox_1, "cell 0 9");
 		
+		JPanel panel_5 = new JPanel();
+		tabbedPane.addTab("New Data", null, panel_5, null);
+		panel_5.setLayout(new MigLayout("", "[]", "[][][][][][][][][]"));
+		
+		JButton btnNewLoginAccount = new JButton("new Login Account");
+		panel_5.add(btnNewLoginAccount, "cell 0 0,growx");
+		
+		JButton btnNewCreditCard = new JButton("new Credit Card");
+		panel_5.add(btnNewCreditCard, "cell 0 1,growx");
+		
+		JButton btnNewDebitCard = new JButton("new Debit Card");
+		panel_5.add(btnNewDebitCard, "cell 0 2,growx");
+		
+		JButton btnNewLicense = new JButton("new License");
+		panel_5.add(btnNewLicense, "cell 0 3,growx");
+		
+		JButton btnNewSerialNumber = new JButton("new Serial Number");
+		panel_5.add(btnNewSerialNumber, "cell 0 4,growx");
+		
+		JButton btnExportAllData = new JButton("Export All Data");
+		panel_5.add(btnExportAllData, "cell 0 8,growx");
+		
 		JPanel panel_2 = new JPanel();
 		tabbedPane.addTab("Account Login", null, panel_2, null);
 		panel_2.setLayout(new MigLayout("", "[grow]", "[][][][][][][][][][][]"));
@@ -214,28 +216,43 @@ public class MainView {
 		
 		JPanel panel_3 = new JPanel();
 		panel.add(panel_3, BorderLayout.WEST);
-		panel_3.setLayout(new MigLayout("", "[68px,grow][65px,grow]", "[][][][][]"));
+		panel_3.setLayout(new MigLayout("", "[170.00px,grow]", "[][][][][][][grow]"));
 		
-		JButton btnLogout = new JButton("LOGOUT");
-		btnLogout.addActionListener(new ActionListener() {
+		JButton btnSignOut = new JButton("Sign out");
+		btnSignOut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				LoginView frmLog = new LoginView();
 				frmLog.frame.setVisible(true);
 				frmSentinelDataVault.dispose();
+				
 			}
 		});
-		panel_3.add(btnLogout, "cell 1 0");
+		panel_3.add(btnSignOut, "cell 0 0");
 		
 		JLabel lblUserName = new JLabel("Login Email");
 		panel_3.add(lblUserName, "cell 0 1");
 		
 		txtUserName = new JTextField();
 		txtUserName.setText("cs307@purdue.edu");
-		panel_3.add(txtUserName, "cell 0 2 2 1,growx");
+		panel_3.add(txtUserName, "cell 0 2,growx");
 		txtUserName.setColumns(10);
 		
 		JLabel lblLastLogin = new JLabel("Last Login");
 		panel_3.add(lblLastLogin, "cell 0 3");
+		
+		txtPm = new JTextField();
+		txtPm.setText("2015.10.15 PM 7:30");
+		panel_3.add(txtPm, "cell 0 4,growx");
+		txtPm.setColumns(10);
+		
+		JLabel lblDetails = new JLabel("Details");
+		panel_3.add(lblDetails, "cell 0 5");
+		
+		JList list = new JList();
+		panel_3.add(list, "flowx,cell 0 6,grow");
+		
+		JScrollBar scrollBar = new JScrollBar();
+		panel_3.add(scrollBar, "cell 0 6");
 		
 		JProgressBar progressBar = new JProgressBar();
 		panel.add(progressBar, BorderLayout.SOUTH);
