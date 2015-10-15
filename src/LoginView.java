@@ -49,14 +49,14 @@ public class LoginView {
 	private void initialize() {
 		frame = new JFrame("Login");
 		frame.setResizable(false);
-		frame.setBounds(100, 100, 452, 294);
+		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JLabel lblEmail = new JLabel("E-mail:");
-		lblEmail.setBounds(74, 95, 56, 18);
+		lblEmail.setBounds(81, 95, 56, 18);
 		
 		JLabel lblPassword = new JLabel("Password:");
-		lblPassword.setBounds(63, 132, 72, 18);
+		lblPassword.setBounds(65, 132, 72, 18);
 		
 		textField = new JTextField();
 		textField.setBounds(157, 92, 219, 24);
@@ -66,7 +66,7 @@ public class LoginView {
 		passwordField.setBounds(157, 129, 219, 24);
 		
 		JButton btnNewButton = new JButton("Login");
-		btnNewButton.setBounds(237, 171, 89, 27);
+		btnNewButton.setBounds(287, 171, 89, 27);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String username = textField.getText();
@@ -102,7 +102,7 @@ public class LoginView {
 				signup.setVisible(true);
 			}
 		});
-		btnSignUp.setBounds(130, 171, 89, 27);
+		btnSignUp.setBounds(186, 171, 89, 27);
 		frame.getContentPane().add(btnSignUp);
 		frame.getContentPane().add(btnNewButton);
 		frame.getContentPane().add(lblPassword);
