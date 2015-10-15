@@ -289,7 +289,7 @@ public class MainView {
 		mntmHelp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				HelpView regFace2 =new HelpView();
-				//regFace2.frmHelp.setVisible(true);
+				regFace2.frame.setVisible(true);
 			}
 		});
 		mnHelp.add(mntmHelp);

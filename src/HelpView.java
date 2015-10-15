@@ -13,7 +13,7 @@ public class HelpView {
 	 */
 	
 	
-	private JFrame frame;
+	public JFrame frame;
 
 	/**
 	 * Launch the application.
