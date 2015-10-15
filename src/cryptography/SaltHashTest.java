@@ -2,13 +2,17 @@ package cryptography;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Scanner;
 
 public class SaltHashTest {
 
 	public static void main(String[] args) throws NoSuchAlgorithmException {
 		// TODO Auto-generated method stub
-
-		String storedPassword = "password1234";
+		
+		System.out.println("Choose a password:");
+		Scanner in = new Scanner(System.in);
+		
+		String storedPassword = in.nextLine();
 		String salt = "voodooshit"; // Needs to be randomly-generated, long, and unique to each user; will be stored along with the hash
 		String saltedPassword = salt + storedPassword;
 		
@@ -29,13 +33,11 @@ public class SaltHashTest {
 			hexString.append(hex);
 		}
 		
-		System.out.println("Stored Hex Hash:\t" + hexString.toString());
-		
 		// Reset the MessageDigest
 		md.reset();
 		
-		// Enter a password to test against
-		String testPassword = "password1234";
+		System.out.println("\nEnter your password:");
+		String testPassword = in.nextLine();
 		String saltedTestPassword = salt + testPassword;
 		
 		// Update the digest with the test password in byte form
@@ -53,8 +55,18 @@ public class SaltHashTest {
 			}
 			hexString2.append(hex2);
 		}
+				
+		if (hexString.toString().equals(hexString2.toString())) {
+			System.out.println("\nLogin successful!\n");
+		}
+		else {
+			System.out.println("\nIncorrect password!\n");
+		}
 		
+		System.out.println("Stored Hex Hash:\t" + hexString.toString());
 		System.out.println("Entered Hex Hash:\t" + hexString2.toString());
+
+		in.close();
 		
 	}
 
