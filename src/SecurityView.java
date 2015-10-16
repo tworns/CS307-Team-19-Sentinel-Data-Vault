@@ -55,6 +55,7 @@ public class SecurityView {
 	private void initialize() {
 		//displays window
 		frame = new JFrame();
+		frame.setResizable(false);
 		frame.setBounds(100, 100, 450, 300);
 		frame.setTitle("Security View");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -37,6 +37,7 @@ public class SettingsView {
 	 */
 	private void initialize(String user) {
 		frmSettings = new JFrame();
+		frmSettings.setResizable(false);
 		frmSettings.setTitle("Settings");
 		frmSettings.setBounds(100, 100, 450, 300);
 		frmSettings.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
