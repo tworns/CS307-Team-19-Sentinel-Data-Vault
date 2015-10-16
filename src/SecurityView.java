@@ -69,20 +69,30 @@ public class SecurityView {
 		
 		//toggle for special characters
 		JCheckBox chckbxNoSpecialCharacters = new JCheckBox("No Special Characters");
+
 		chckbxNoSpecialCharacters.setToolTipText("Toggling this option will generate a password with no special characters (!,@,#,$, etc.).");
+
 		chckbxNoSpecialCharacters.setBounds(28, 94, 170, 25);
 		panel.add(chckbxNoSpecialCharacters);
 		
 		//toggle for uppercase letters
 		JCheckBox chckbxNoUppercase = new JCheckBox("No Uppercase");
+
 		chckbxNoUppercase.setToolTipText("Toggling this option will generate a password with no uppercase letters.");
 		chckbxNoUppercase.setBounds(28, 34, 117, 25);
+
+		chckbxNoUppercase.setBounds(28, 34, 227, 25);
+
 		panel.add(chckbxNoUppercase);
 		
 		//toggle for numbers
 		JCheckBox chckbxNoNumbers = new JCheckBox("No Numbers");
+
 		chckbxNoNumbers.setToolTipText("Toggling this option will generate a password with no numbers.");
 		chckbxNoNumbers.setBounds(28, 64, 107, 25);
+
+		chckbxNoNumbers.setBounds(28, 64, 227, 25);
+
 		panel.add(chckbxNoNumbers);
 		
 		//length of password to be input
