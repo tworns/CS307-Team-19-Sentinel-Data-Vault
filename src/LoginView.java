@@ -16,6 +16,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import org.eclipse.wb.swing.FocusTraversalOnArray;
+import java.awt.Component;
 
 
 public class LoginView {
@@ -166,5 +168,6 @@ public class LoginView {
 		btnForgotPassword = new JButton("Forgot Password");
 		btnForgotPassword.setBounds(229, 174, 140, 27);
 		frame.getContentPane().add(btnForgotPassword);
+		frame.getContentPane().setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{lblEmail, textField, lblPassword, passwordField, btnNewButton, btnSignUp, btnForgotPassword}));
 	}
 }
