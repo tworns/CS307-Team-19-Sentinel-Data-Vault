@@ -76,7 +76,7 @@ public class SignupView extends JFrame {
 		passwordField2.setBounds(169, 110, 160, 24);
 		contentPane.add(passwordField2);
 		
-		JButton btnNewButton = new JButton("Creat account!");
+		JButton btnNewButton = new JButton("Create account!");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String username = usernameField.getText();
