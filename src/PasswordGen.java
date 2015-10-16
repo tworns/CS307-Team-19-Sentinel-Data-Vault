@@ -28,12 +28,8 @@ public class PasswordGen {
 			char[] punct = {'!','@','#','$','%'};
 			out = out.substring(3,out.length());
 			StringBuilder s = new StringBuilder(out);
-			System.out.print( "Length input:" + length + "\n");
-			System.out.print("Length of out:" + out.length()+"\n");
-			
 			for(int i = out.length()+1; i < length; i++) { 
 			
-				System.out.print("Length of s:"+s.length() +"\n");
 				if( i >= length) { 
 					return s.toString();
 				}
