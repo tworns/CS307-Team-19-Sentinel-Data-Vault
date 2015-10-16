@@ -13,6 +13,8 @@ import javax.swing.JTree;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.JTextPane;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class HelpView {
 
@@ -85,11 +87,19 @@ public class HelpView {
 				}
 			}
 		));
-		frame.getContentPane().add(tree, "cell 0 0,alignx left,growy");
+		frame.getContentPane().add(tree, "flowy,cell 0 0,alignx left,growy");
 		
 		JTextPane txtpnHelp = new JTextPane();
 		txtpnHelp.setText("Help");
-		frame.getContentPane().add(txtpnHelp, "cell 1 0,alignx left,aligny center");
+		frame.getContentPane().add(txtpnHelp, "flowx,cell 1 0,alignx left,aligny center");
+		
+		JButton btnNewButton = new JButton("Cancel");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				frame.dispose();
+			}
+		});
+		frame.getContentPane().add(btnNewButton, "cell 0 0");
 	}
 
 }
