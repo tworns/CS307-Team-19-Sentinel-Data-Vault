@@ -164,9 +164,22 @@ public class SecurityView {
 		btnCheck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(e.getActionCommand().equalsIgnoreCase("Check")){
-					String strength = "Password is strong";
-					
-					JOptionPane.showMessageDialog(null, strength, "Password", JOptionPane.INFORMATION_MESSAGE);
+					String strength = "Your password is";
+					String output = strength;
+					char[] input = passwordField.getPassword();
+					StringBuilder s = new StringBuilder();
+					s.append(input);
+					String password = s.toString();
+					if(password.length() >10 && password.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*([!@#$%&*,.])).+$") == true){
+						 output += " strong. \n";
+					}
+					else if(password.length() < 9 || ((password.matches("([a-z]+)") == true || password.matches("([A-Z]+)") == true || password.matches("([0-9]+)") == true || password.matches("([^a-zA-Z0-9]+)")) || password.matches("([^a-zA-Z0-9 ])\\1+")) == true || password.matches("([A-Za-z0-9])\\1+") == true) { 
+						 output += " weak. \n";
+					}
+					else { 
+						 output += " adequate. \n";
+					}
+					JOptionPane.showMessageDialog(null, output, "Password", JOptionPane.INFORMATION_MESSAGE);
 					
 				}
 			}
