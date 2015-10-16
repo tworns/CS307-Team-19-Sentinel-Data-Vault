@@ -54,12 +54,9 @@ public class SettingsView {
 		frmSettings.getContentPane().add(spinner);
 		
 		JLabel lblMaxLockoutTime = new JLabel("Max Lockout Time (Days)");
-<<<<<<< HEAD
-		lblMaxLockoutTime.setBounds(176, 90, 159, 16);
-=======
+
 		lblMaxLockoutTime.setToolTipText("This field sets the maximum time, in days, the user will be barred from logging in after a number of failed login attempts.");
 		lblMaxLockoutTime.setBounds(90, 90, 159, 16);
->>>>>>> origin/master
 		frmSettings.getContentPane().add(lblMaxLockoutTime);
 		
 		//box lets user decide when to back up
@@ -70,12 +67,8 @@ public class SettingsView {
 		frmSettings.getContentPane().add(comboBox);
 		
 		JLabel lblBackupFrequency = new JLabel("Backup Frequency");
-<<<<<<< HEAD
-		lblBackupFrequency.setBounds(176, 130, 190, 16);
-=======
 		lblBackupFrequency.setToolTipText("This field sets how often all user data is backed up on disk.");
 		lblBackupFrequency.setBounds(176, 130, 113, 16);
->>>>>>> origin/master
 		frmSettings.getContentPane().add(lblBackupFrequency);
 		
 		JLabel lblUserSettings = new JLabel("User Settings");
@@ -90,13 +83,9 @@ public class SettingsView {
 		frmSettings.getContentPane().add(comboBox_1);
 		
 		JLabel lblFileSizeLimit = new JLabel("File Size Limit Warning ");
-<<<<<<< HEAD
 		lblFileSizeLimit.setBounds(176, 165, 190, 16);
-
-=======
 		lblFileSizeLimit.setToolTipText("This field is the maximum size a backup file can reach before the user is warned. ");
-		lblFileSizeLimit.setBounds(176, 165, 183, 16);
->>>>>>> origin/master
+
 		frmSettings.getContentPane().add(lblFileSizeLimit);
 		
 		//Will eventually contain an action listener that saves preferences to User
