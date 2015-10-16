@@ -19,7 +19,7 @@ public class SignupView extends JFrame {
 	private JTextField usernameField;
 	private JPasswordField passwordField1;
 	private JPasswordField passwordField2;
-	private JPasswordField passwordField;
+	private JTextField answerField;
 
 	/**
 	 * Launch the application.
@@ -80,20 +80,33 @@ public class SignupView extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String username = usernameField.getText();
-				String password1 = passwordField1.getText();
-				String password2 = passwordField2.getText();
-				if (password1.equals("") || password2.equals("")||username.equals("")){
+				String password1 = String.valueOf(passwordField1.getPassword());
+				String password2 = String.valueOf(passwordField2.getPassword());
+				String answer = answerField.getText();
+				//check user enter all fields
+				if (password1.equals("") || password2.equals("")||username.equals("")||answer.equals("")){
 					JOptionPane.showMessageDialog(null,"You need to enter all the fields!");
 					password1 = "";
 					password2 = "";
 				}
+				//check password consistency
 				if(!(password1.equals(password2))){
 					JOptionPane.showMessageDialog(null,"Your password doesn't match");
 					password1 = "";
 					password2 = "";
 				}
 				
-				if (password1.equals(password2) && !password1.equals("") && !username.equals("")){
+				//minimum password length check
+				if(((password1.length() < 8) && (password1.length()>0)) || 
+						((password2.length() < 8) && (password2.length()>0))){
+					JOptionPane.showMessageDialog(null,"Your password needs to contain at least 8 characters!");
+					password1 = "";
+					password2 = "";
+				}
+				
+				//send user info to database
+				if (password1.equals(password2) && !password1.equals("") && !username.equals("")
+						&&!answer.equals("")){
 					JOptionPane.showMessageDialog(null,"You have successfully created your account!");
 					dispose();
 				}
@@ -111,10 +124,6 @@ public class SignupView extends JFrame {
 		comboBox.setBounds(169, 140, 253, 27);
 		contentPane.add(comboBox);
 		
-		passwordField = new JPasswordField();
-		passwordField.setBounds(169, 172, 160, 24);
-		contentPane.add(passwordField);
-		
 		JLabel lblAnswer = new JLabel("Answer:");
 		lblAnswer.setBounds(99, 173, 56, 18);
 		contentPane.add(lblAnswer);
@@ -123,11 +132,16 @@ public class SignupView extends JFrame {
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				
+				dispose();
 			
 			}
 		});
 		btnCancel.setBounds(305, 207, 117, 29);
 		contentPane.add(btnCancel);
+		
+		answerField = new JTextField();
+		answerField.setBounds(169, 170, 160, 24);
+		contentPane.add(answerField);
+		answerField.setColumns(10);
 	}
 }

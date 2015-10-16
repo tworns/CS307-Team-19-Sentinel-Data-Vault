@@ -73,7 +73,7 @@ public class LoginView {
 				String username = textField.getText();
 				String password = String.valueOf(passwordField.getPassword()); // getText() is deprecated; changed to getPassword()
 				//Condition needs to be changed accordingly
-				if(username.equals("cs307@purdue.edu") && password.equals("12345")) {
+				if(username.equals("cs307@purdue.edu") && password.equals("12345678")) {
 					
 					MainView window =new MainView();
 					window.frmSentinelDataVault.setVisible(true);
