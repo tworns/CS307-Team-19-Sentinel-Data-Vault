@@ -108,7 +108,10 @@ public class SecurityView {
 		JSpinner spinner = new JSpinner();
 		spinner.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
-				spinLength = (Integer) spinner.getValue();
+				spinLength = (Integer)spinner.getValue();
+				if(spinLength == 0) { 
+					spinLength += 8;
+				}
 			}
 		});
 		spinner.setToolTipText("This field specifies the length of the password to be generated.");
