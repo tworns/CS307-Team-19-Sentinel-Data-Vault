@@ -67,7 +67,7 @@ public class LoginView {
 		passwordField.setBounds(139, 129, 176, 24);
 		
 		JButton btnNewButton = new JButton("Login");
-		btnNewButton.setBounds(336, 92, 72, 61);
+		btnNewButton.setBounds(338, 95, 72, 61);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String username = textField.getText();
@@ -112,7 +112,7 @@ public class LoginView {
 		frame.getContentPane().add(passwordField);
 		
 		btnForgotPassword = new JButton("Forgot Password");
-		btnForgotPassword.setBounds(258, 173, 151, 29);
+		btnForgotPassword.setBounds(259, 173, 151, 29);
 		frame.getContentPane().add(btnForgotPassword);
 	}
 }
