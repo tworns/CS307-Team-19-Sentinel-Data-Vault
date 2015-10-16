@@ -15,6 +15,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.JTextPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class HelpView {
 
@@ -27,7 +28,8 @@ public class HelpView {
 	 */
 	
 	
-	public JFrame frame;
+	public JFrame frmHelp;
+	private JTextField txtHelp;
 
 	/**
 	 * Launch the application.
@@ -37,7 +39,7 @@ public class HelpView {
 			public void run() {
 				try {
 					HelpView window = new HelpView();
-					window.frame.setVisible(true);
+					window.frmHelp.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -56,14 +58,15 @@ public class HelpView {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(new MigLayout("", "[151px][264.00px]", "[246px]"));
+		frmHelp = new JFrame();
+		frmHelp.setTitle("Help");
+		frmHelp.setBounds(100, 100, 450, 300);
+		frmHelp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmHelp.getContentPane().setLayout(new MigLayout("", "[151px][][grow]", "[213px,grow][29px]"));
 		
 		JTree tree = new JTree();
 		tree.setModel(new DefaultTreeModel(
-			new DefaultMutableTreeNode("Help") {
+			new DefaultMutableTreeNode("FAQ") {
 				{
 					DefaultMutableTreeNode node_1;
 					node_1 = new DefaultMutableTreeNode("Creating Account");
@@ -75,31 +78,32 @@ public class HelpView {
 					node_1 = new DefaultMutableTreeNode("Creating New Data");
 						node_1.add(new DefaultMutableTreeNode("basketball"));
 						node_1.add(new DefaultMutableTreeNode("soccer"));
-						node_1.add(new DefaultMutableTreeNode("football"));
-						node_1.add(new DefaultMutableTreeNode("hockey"));
 					add(node_1);
 					node_1 = new DefaultMutableTreeNode("Setting");
 						node_1.add(new DefaultMutableTreeNode("hot dogs"));
 						node_1.add(new DefaultMutableTreeNode("pizza"));
-						node_1.add(new DefaultMutableTreeNode("ravioli"));
-						node_1.add(new DefaultMutableTreeNode("bananas"));
 					add(node_1);
 				}
 			}
 		));
-		frame.getContentPane().add(tree, "flowy,cell 0 0,alignx left,growy");
-		
-		JTextPane txtpnHelp = new JTextPane();
-		txtpnHelp.setText("Help");
-		frame.getContentPane().add(txtpnHelp, "flowx,cell 1 0,alignx left,aligny center");
+		frmHelp.getContentPane().add(tree, "cell 0 0,alignx left,growy");
 		
 		JButton btnNewButton = new JButton("Cancel");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				frame.dispose();
+				frmHelp.dispose();
 			}
 		});
-		frame.getContentPane().add(btnNewButton, "cell 0 0");
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(Color.WHITE);
+		frmHelp.getContentPane().add(panel, "cell 2 0,grow");
+		
+		txtHelp = new JTextField();
+		txtHelp.setText("Help");
+		panel.add(txtHelp);
+		txtHelp.setColumns(10);
+		frmHelp.getContentPane().add(btnNewButton, "cell 2 1,alignx right,aligny top");
 	}
 
 }
