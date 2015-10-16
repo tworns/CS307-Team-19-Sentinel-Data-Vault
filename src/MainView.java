@@ -34,6 +34,7 @@ public class MainView {
 	private JTextField txtPassword;
 	private JTextField txtUserName;
 	private JTextField txtPm;
+	public String username;
 
 	/**
 	 * Launch the application.
@@ -42,7 +43,8 @@ public class MainView {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MainView window = new MainView();
+					String s = "username";
+					MainView window = new MainView(s);
 					window.frmSentinelDataVault.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -54,8 +56,10 @@ public class MainView {
 	/**
 	 * Create the application.
 	 */
-	public MainView() {
+	public MainView(String username) {
+		this.username = username;
 		initialize();
+		
 	}
 
 	/**
@@ -101,7 +105,8 @@ public class MainView {
 		JButton btnSetting = new JButton("Setting");
 		btnSetting.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				SettingsView frmSettings = new SettingsView();
+				SettingsView frmSettings = new SettingsView(username);
+				frmSettings.username = username;
 				frmSettings.frmSettings.setVisible(true);
 			}
 		});
@@ -242,7 +247,7 @@ public class MainView {
 		panel_3.add(lblUserName, "cell 0 1");
 		
 		txtUserName = new JTextField();
-		txtUserName.setText("cs307@purdue.edu");
+		txtUserName.setText(username);
 		panel_3.add(txtUserName, "cell 0 2,growx");
 		txtUserName.setColumns(10);
 		

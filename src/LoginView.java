@@ -27,6 +27,7 @@ public class LoginView {
 	private JPasswordField passwordField;
 	private JButton btnSignUp;
 	private JButton btnForgotPassword;
+	public String username = "";
 
 	/**
 	 * Launch the application.
@@ -77,7 +78,7 @@ public class LoginView {
 		btnNewButton.setBounds(338, 92, 72, 61);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String username = textField.getText();
+				username = textField.getText();
 				String password = String.valueOf(passwordField.getPassword()); // getText() is deprecated; changed to getPassword()
 				
 				/**** SHA implementation to validate password ****/
@@ -125,7 +126,8 @@ public class LoginView {
 					// Condition needs to be changed accordingly
 					if (username.equals(dataManager.retrieveUsername()) && hexPassword.equals(hexTruePassword)) {
 						
-						MainView window = new MainView();
+						MainView window = new MainView(username);
+						//window.username = username;
 						window.frmSentinelDataVault.setVisible(true);
 						frame.dispose();
 						

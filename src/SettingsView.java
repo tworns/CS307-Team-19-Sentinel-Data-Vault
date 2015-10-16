@@ -6,7 +6,7 @@ import java.awt.event.*;
 public class SettingsView {
 
 	public JFrame frmSettings;
-
+	public String username; // TO SET THIS: create new SettingsView object, then objectname.username = <string>;
 	/**
 	 * Launch the application.
 	 */
@@ -14,7 +14,8 @@ public class SettingsView {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					SettingsView window = new SettingsView();
+					String s = "username";
+					SettingsView window = new SettingsView(s);
 					window.frmSettings.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -26,14 +27,15 @@ public class SettingsView {
 	/**
 	 * Create the application.
 	 */
-	public SettingsView() {
-		initialize();
+	public SettingsView(String username) {
+		this.username = username;
+		initialize(username);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize(String user) {
 		frmSettings = new JFrame();
 		frmSettings.setTitle("Settings");
 		frmSettings.setBounds(100, 100, 450, 300);
