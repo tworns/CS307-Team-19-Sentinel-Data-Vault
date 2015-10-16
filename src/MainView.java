@@ -219,7 +219,7 @@ public class MainView {
 		
 		JPanel panel_3 = new JPanel();
 		panel.add(panel_3, BorderLayout.WEST);
-		panel_3.setLayout(new MigLayout("", "[170.00px,grow]", "[][][][][][][grow]"));
+		panel_3.setLayout(new MigLayout("", "[170.00px,grow]", "[][][][][][][grow][]"));
 		
 		JButton btnSignOut = new JButton("Sign out");
 		btnSignOut.addActionListener(new ActionListener() {
@@ -256,6 +256,9 @@ public class MainView {
 		
 		JScrollBar scrollBar = new JScrollBar();
 		panel_3.add(scrollBar, "cell 0 6");
+		
+		JButton btnDeleteAccount = new JButton("Delete Account");
+		panel_3.add(btnDeleteAccount, "cell 0 7");
 		
 		JProgressBar progressBar = new JProgressBar();
 		panel.add(progressBar, BorderLayout.SOUTH);
