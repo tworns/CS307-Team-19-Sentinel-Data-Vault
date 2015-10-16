@@ -55,7 +55,7 @@ public class SettingsView {
 		spinner.setBounds(48, 87, 70, 22);
 		frmSettings.getContentPane().add(spinner);
 		
-		JLabel lblMaxLockoutTime = new JLabel("Max Lockout Time (Hours)");
+		JLabel lblMaxLockoutTime = new JLabel("Max Lockout Time (Days)");
 
 		lblMaxLockoutTime.setToolTipText("This field sets the maximum time, in days, the user will be barred from logging in after a number of failed login attempts.");
 		lblMaxLockoutTime.setBounds(130, 90, 182, 16);
@@ -64,7 +64,7 @@ public class SettingsView {
 		//box lets user decide when to back up & tooltip
 		JComboBox comboBox = new JComboBox();
 		comboBox.setToolTipText("This field sets how often all user data is backed up on disk.");
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Weekly", "Monthly", "Every 3 Months", "Every 6 Months", "Yearly"}));
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Hourly", "Daily", "Weekly", "Monthly", "Annually"}));
 		comboBox.setBounds(47, 127, 113, 22);
 		frmSettings.getContentPane().add(comboBox);
 		
