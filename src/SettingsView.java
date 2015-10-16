@@ -50,13 +50,13 @@ public class SettingsView {
 		JSpinner spinner = new JSpinner();
 		spinner.setToolTipText("This field sets the maximum time, in days, the user will be barred from logging in after a number of failed login attempts.");
 		spinner.setModel(new SpinnerNumberModel(1, 1, 7, 1));
-		spinner.setBounds(48, 87, 30, 22);
+		spinner.setBounds(48, 87, 70, 22);
 		frmSettings.getContentPane().add(spinner);
 		
-		JLabel lblMaxLockoutTime = new JLabel("Max Lockout Time (Days)");
+		JLabel lblMaxLockoutTime = new JLabel("Max Lockout Time (Hours)");
 
 		lblMaxLockoutTime.setToolTipText("This field sets the maximum time, in days, the user will be barred from logging in after a number of failed login attempts.");
-		lblMaxLockoutTime.setBounds(90, 90, 159, 16);
+		lblMaxLockoutTime.setBounds(130, 90, 182, 16);
 		frmSettings.getContentPane().add(lblMaxLockoutTime);
 		
 		//box lets user decide when to back up

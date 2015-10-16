@@ -98,7 +98,7 @@ public class SignupView extends JFrame {
 				}
 			}
 		});
-		btnNewButton.setBounds(159, 230, 145, 27);
+		btnNewButton.setBounds(169, 208, 145, 27);
 		contentPane.add(btnNewButton);
 		
 		JLabel lblSecurityQuestion = new JLabel("Security Question:");
