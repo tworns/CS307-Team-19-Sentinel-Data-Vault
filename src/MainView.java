@@ -124,6 +124,8 @@ public class MainView {
 		JLabel lblCardNumber = new JLabel("Card Number");
 		panel_4.add(lblCardNumber, "cell 0 2");
 		
+		
+		
 		JFormattedTextField formattedTextField = new JFormattedTextField();
 		formattedTextField.setText("**** **** **** ****");
 		panel_4.add(formattedTextField, "cell 0 3,growx");
