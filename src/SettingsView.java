@@ -46,7 +46,7 @@ public class SettingsView {
 		chckbxHighSecurityLevel.setBounds(48, 53, 222, 25);
 		frmSettings.getContentPane().add(chckbxHighSecurityLevel);
 		
-		//Allows user to set lock out time up to max
+		//Allows user to set lock out time up to max & tooltip
 		JSpinner spinner = new JSpinner();
 		spinner.setToolTipText("This field sets the maximum time, in days, the user will be barred from logging in after a number of failed login attempts.");
 		spinner.setModel(new SpinnerNumberModel(1, 1, 7, 1));
@@ -59,7 +59,7 @@ public class SettingsView {
 		lblMaxLockoutTime.setBounds(130, 90, 182, 16);
 		frmSettings.getContentPane().add(lblMaxLockoutTime);
 		
-		//box lets user decide when to back up
+		//box lets user decide when to back up & tooltip
 		JComboBox comboBox = new JComboBox();
 		comboBox.setToolTipText("This field sets how often all user data is backed up on disk.");
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Weekly", "Monthly", "Every 3 Months", "Every 6 Months", "Yearly"}));
@@ -75,7 +75,8 @@ public class SettingsView {
 		lblUserSettings.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblUserSettings.setBounds(49, 13, 118, 25);
 		frmSettings.getContentPane().add(lblUserSettings);
-		//Lets user set the file size past which they'll be warned about file size.
+		
+		//Lets user set the file size past which they'll be warned about file size. & tool tip
 		JComboBox comboBox_1 = new JComboBox();
 		comboBox_1.setToolTipText("This field is the maximum size a backup file can reach before the user is warned. ");
 		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"10 MB", "50 MB", "100 MB", "512 MB", "1 GB", "2 GB", "3 GB", "4 GB", "5 GB"}));

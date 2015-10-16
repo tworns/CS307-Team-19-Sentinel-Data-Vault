@@ -26,9 +26,9 @@ public class PasswordGen {
 			char[] alpha = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
 			char[] numbers = {'1','2', '3','4', '5', '6', '7', '8','9', '0'};
 			char[] punct = {'!','@','#','$','%'};
-			out = out.substring(3,out.length());
+			out = out.substring(3,out.length()); //takes the string representation of the char[]
 			StringBuilder s = new StringBuilder(out);
-			for(int i = out.length()+1; i < length; i++) { 
+			for(int i = out.length()+1; i < length; i++) {  //adds to the string representation of the char[] to meet length. Probably super unsecure.
 			
 				if( i >= length) { 
 					return s.toString();
