@@ -2,7 +2,7 @@
 public class DatabaseManager {
 	
 	private String username = "cs307@purdue.edu";
-	private String userPassword = "12345";
+	private String userPassword = "12345678";
 	
 	public void handleRequest() {
 		
