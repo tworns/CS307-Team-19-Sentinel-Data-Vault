@@ -248,7 +248,7 @@ public class MainView {
 		panel_3.add(txtPm, "cell 0 4,growx");
 		txtPm.setColumns(10);
 		
-		JLabel lblDetails = new JLabel("Data Details");
+		JLabel lblDetails = new JLabel("Account Details");
 		panel_3.add(lblDetails, "cell 0 5");
 		
 		JList list = new JList();
