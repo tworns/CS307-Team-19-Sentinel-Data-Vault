@@ -5,6 +5,9 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
+import sun.security.provider.MD2;
+
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
@@ -75,13 +78,13 @@ public class LoginView {
 				String username = textField.getText();
 				String password = String.valueOf(passwordField.getPassword()); // getText() is deprecated; changed to getPassword()
 				
-				/**** SHA implementation to validate login and password ****/
+				/**** SHA implementation to validate password ****/
 				String salt = "asdf!@#$%"; // TODO use SecureRandom to generate salt
 				String saltedPassword = salt + password;
 				// Update the digest with the password in byte form
 				MessageDigest md;
 				try {
-					md = MessageDigest.getInstance("SHA-256");
+					md = MessageDigest.getInstance("SHA-256"); // TODO algorithm should depend on user's security level setting
 					md.update(saltedPassword.getBytes());
 					// Hash the digest
 					byte byteData[] = md.digest();
@@ -99,10 +102,11 @@ public class LoginView {
 					md.reset();
 					// Get the user's actual password 
 					// This actual password hash will eventually be retrieved from database
-					String testPassword = "12345";
-					String saltedTestPassword = salt + testPassword;
+					DatabaseManager dataManager = new DatabaseManager();
+					String truePassword = dataManager.retrievePassword(username);
+					String saltedTruePassword = salt + truePassword;
 					// Update the digest with the test password in byte form
-					md.update(saltedTestPassword.getBytes());
+					md.update(saltedTruePassword.getBytes());
 					// Hash the digest
 					byte byteData2[] = md.digest();
 					// Convert the hash to hex for storage
@@ -114,10 +118,10 @@ public class LoginView {
 						}
 						hexPasswordBuff2.append(hex2);
 					}
-					String hexTestPassword = hexPasswordBuff2.toString();
+					String hexTruePassword = hexPasswordBuff2.toString();
 					// Test that entered password hash matches user's stored password hash
 					// Condition needs to be changed accordingly
-					if (username.equals("cs307@purdue.edu") && hexTestPassword.equals(hexPassword)) {
+					if (username.equals(dataManager.retrieveUsername()) && hexPassword.equals(hexTruePassword)) {
 						
 						MainView window = new MainView();
 						window.frmSentinelDataVault.setVisible(true);

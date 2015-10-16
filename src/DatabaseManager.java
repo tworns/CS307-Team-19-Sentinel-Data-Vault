@@ -1,25 +1,24 @@
 
 public class DatabaseManager {
 	
+	private String username = "cs307@purdue.edu";
+	private String userPassword = "12345";
+	
 	public void handleRequest() {
 		
 	}
 	
-	public String retrievePassword() {
-		String password = "password";
-		
-		return password;
+	public String retrievePassword(String userEmail) {
+		if (userEmail.equals(username)) {
+			return userPassword;
+		}
+		else {
+			return "FAILED";
+		}
 	}
 	
-	public String retrieveUsername() {
-		String username = "username";
-		
+	public String retrieveUsername() {		
 		return username;
-	}
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
 	}
 
 }
