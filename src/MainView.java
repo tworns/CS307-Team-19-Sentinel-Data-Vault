@@ -156,8 +156,7 @@ public class MainView {
 		 * 
 		 * comboBox Value
 		 * */
-		
-		
+
 		
 		JButton btnShare = new JButton("Share");
 		panel_4.add(btnShare, "flowx,cell 0 10,aligny top");
