@@ -127,7 +127,6 @@ public class LoginView {
 					if (username.equals(dataManager.retrieveUsername()) && hexPassword.equals(hexTruePassword)) {
 						
 						MainView window = new MainView(username);
-						//window.username = username;
 						window.frmSentinelDataVault.setVisible(true);
 						frame.dispose();
 						
