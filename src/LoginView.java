@@ -11,6 +11,8 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 
 public class LoginView {
@@ -72,25 +74,71 @@ public class LoginView {
 			public void actionPerformed(ActionEvent e) {
 				String username = textField.getText();
 				String password = String.valueOf(passwordField.getPassword()); // getText() is deprecated; changed to getPassword()
-				//Condition needs to be changed accordingly
-				if(username.equals("cs307@purdue.edu") && password.equals("12345678")) {
-					
-					MainView window =new MainView();
-					window.frmSentinelDataVault.setVisible(true);
-					frame.dispose();
-					
-					/*
-					HomeView regFace =new HomeView();
-					regFace.frmSentinelDataVault.setVisible(true);
-					frame.dispose();
-					*/
-					
-				}
-				else{
-					JOptionPane.showMessageDialog(null,"Wrong Password / Username");
-					textField.setText("");
-					passwordField.setText("");
-					textField.requestFocus();
+				
+				/**** SHA implementation to validate login and password ****/
+				String salt = "asdf!@#$%"; // TODO use SecureRandom to generate salt
+				String saltedPassword = salt + password;
+				// Update the digest with the password in byte form
+				MessageDigest md;
+				try {
+					md = MessageDigest.getInstance("SHA-256");
+					md.update(saltedPassword.getBytes());
+					// Hash the digest
+					byte byteData[] = md.digest();
+					// Convert the hash to hex for storage/comparison
+					StringBuffer hexPasswordBuff = new StringBuffer();
+					for (int i = 0; i < byteData.length; i++) {
+						String hex = Integer.toHexString(0xff & byteData[i]);
+						if (hex.length() == 1) {
+							hexPasswordBuff.append('0');
+						}
+						hexPasswordBuff.append(hex);
+					}
+					String hexPassword = hexPasswordBuff.toString();
+					// Reset the MessageDigest
+					md.reset();
+					// Get the user's actual password 
+					// This actual password hash will eventually be retrieved from database
+					String testPassword = "12345";
+					String saltedTestPassword = salt + testPassword;
+					// Update the digest with the test password in byte form
+					md.update(saltedTestPassword.getBytes());
+					// Hash the digest
+					byte byteData2[] = md.digest();
+					// Convert the hash to hex for storage
+					StringBuffer hexPasswordBuff2 = new StringBuffer();
+					for (int i = 0; i < byteData2.length; i++) {
+						String hex2 = Integer.toHexString(0xff & byteData2[i]);
+						if (hex2.length() == 1) {
+							hexPasswordBuff2.append('0');
+						}
+						hexPasswordBuff2.append(hex2);
+					}
+					String hexTestPassword = hexPasswordBuff2.toString();
+					// Test that entered password hash matches user's stored password hash
+					// Condition needs to be changed accordingly
+					if (username.equals("cs307@purdue.edu") && hexTestPassword.equals(hexPassword)) {
+						
+						MainView window = new MainView();
+						window.frmSentinelDataVault.setVisible(true);
+						frame.dispose();
+						
+						/*
+						HomeView regFace =new HomeView();
+						regFace.frmSentinelDataVault.setVisible(true);
+						frame.dispose();
+						*/
+						
+					}
+					else {
+						JOptionPane.showMessageDialog(null,"Wrong Password / Username");
+						textField.setText("");
+						passwordField.setText("");
+						textField.requestFocus();
+					}
+				} catch (NoSuchAlgorithmException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
 			}
 		});
