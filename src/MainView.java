@@ -152,6 +152,13 @@ public class MainView {
 		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"01 ", "02 ", "03 ", "04 ", "05", "06 ", "07 ", "08 ", "09 ", "10", "11 ", "12"}));
 		panel_4.add(comboBox_2, "flowx,cell 0 9");
 		
+		/*
+		 * 
+		 * comboBox Value
+		 * */
+		
+		
+		
 		JButton btnShare = new JButton("Share");
 		panel_4.add(btnShare, "flowx,cell 0 10,aligny top");
 		
