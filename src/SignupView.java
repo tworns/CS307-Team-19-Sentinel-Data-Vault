@@ -42,6 +42,7 @@ public class SignupView extends JFrame {
 	 */
 	public SignupView() {
 		super("Create your account");
+		setTitle("Create Your Account");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -98,7 +99,7 @@ public class SignupView extends JFrame {
 				}
 			}
 		});
-		btnNewButton.setBounds(169, 208, 145, 27);
+		btnNewButton.setBounds(169, 208, 129, 27);
 		contentPane.add(btnNewButton);
 		
 		JLabel lblSecurityQuestion = new JLabel("Security Question:");
@@ -117,5 +118,16 @@ public class SignupView extends JFrame {
 		JLabel lblAnswer = new JLabel("Answer:");
 		lblAnswer.setBounds(99, 173, 56, 18);
 		contentPane.add(lblAnswer);
+		
+		JButton btnCancel = new JButton("Cancel");
+		btnCancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+			
+			}
+		});
+		btnCancel.setBounds(305, 207, 117, 29);
+		contentPane.add(btnCancel);
 	}
 }
