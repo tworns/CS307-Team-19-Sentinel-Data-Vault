@@ -43,7 +43,7 @@ public class SettingsView {
 		//High security toggle & tool tip
 		JCheckBox chckbxHighSecurityLevel = new JCheckBox("High Security Level ");
 		chckbxHighSecurityLevel.setToolTipText("Toggling this setting will change ALL user encryptions to the strongest possible.");
-		chckbxHighSecurityLevel.setBounds(48, 53, 148, 25);
+		chckbxHighSecurityLevel.setBounds(48, 53, 222, 25);
 		frmSettings.getContentPane().add(chckbxHighSecurityLevel);
 		
 		//Allows user to set lock out time up to max
