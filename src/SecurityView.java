@@ -1,6 +1,8 @@
 import java.awt.EventQueue;
 import java.awt.event.*;
 import javax.swing.*;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ChangeEvent;
 
 public class SecurityView {
 
@@ -9,6 +11,7 @@ public class SecurityView {
 	private SecurityView instance; 
 	private JPasswordField passwordField;
 	public Object frmSentinelDataVault;
+	private int spinLength;
 	/*
 	 * Launch the application.
 	 */
@@ -103,6 +106,11 @@ public class SecurityView {
 		
 		
 		JSpinner spinner = new JSpinner();
+		spinner.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				spinLength = (Integer) spinner.getValue();
+			}
+		});
 		spinner.setToolTipText("This field specifies the length of the password to be generated.");
 		spinner.setModel(new SpinnerNumberModel(8, 8, 32, 1));
 		spinner.setBounds(31, 134, 45, 19);
@@ -116,8 +124,8 @@ public class SecurityView {
 		btnGenerate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent clickGenerate) {
 				if(clickGenerate.getActionCommand().equalsIgnoreCase("Generate")) { 
-					PasswordGen k = new PasswordGen(8,0,0,0); //TODO use user set values instead of hard coding. Hardcoded for test purpose only.
-					String password = k.generator(8,0,0,0);
+					PasswordGen k = new PasswordGen(spinLength,0,0,0); //TODO use user set values instead of hard coding. Hardcoded for test purpose only.
+					String password = k.generator(spinLength,0,0,0);
 					JTextArea displayPass = new JTextArea(1,1);
 					displayPass.setText(password);
 					displayPass.setEditable(false);
