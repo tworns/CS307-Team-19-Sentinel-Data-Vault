@@ -3,15 +3,17 @@ import java.util.*;
 
 
 
-/*
- * APIs
- * PasswordGenerator API Class
- * 		http://javadoc.iaik.tugraz.at/iaik_jce/current/iaik/utils/PasswordGenerator.html
- * */
 
 public class PasswordGen {
 	
-	
+	/*
+	 * APIs
+	 * PasswordGenerator API Class
+	 * 		http://javadoc.iaik.tugraz.at/iaik_jce/current/iaik/utils/PasswordGenerator.html
+	 * 
+	 * 
+	 * */
+
 	
 	public int length;
 	public int specials;

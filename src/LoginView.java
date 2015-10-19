@@ -28,9 +28,19 @@ public class LoginView {
 	private JButton btnSignUp;
 	private JButton btnForgotPassword;
 	public String username = "";
+	private JLabel lblSentinelDataVault;
 
 	/**
 	 * Launch the application.
+	 *  
+	 *   
+	 *    
+	 *    
+	 * APIs
+	 *    
+	 * EmailValidator Class   
+	 * 	https://commons.apache.org/proper/commons-validator/apidocs/org/apache/commons/validator/routines/EmailValidator.html
+	 *    
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -68,14 +78,14 @@ public class LoginView {
 		lblPassword.setBounds(65, 132, 72, 18);
 		
 		textField = new JTextField();
-		textField.setBounds(139, 92, 176, 24);
+		textField.setBounds(139, 95, 176, 24);
 		textField.setColumns(10);
 		
 		passwordField = new JPasswordField();
 		passwordField.setBounds(139, 129, 176, 24);
 		
 		JButton btnNewButton = new JButton("Login");
-		btnNewButton.setBounds(338, 92, 72, 61);
+		btnNewButton.setBounds(327, 95, 72, 61);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				username = textField.getText();
@@ -169,6 +179,10 @@ public class LoginView {
 		btnForgotPassword = new JButton("Forgot Password");
 		btnForgotPassword.setBounds(229, 174, 140, 27);
 		frame.getContentPane().add(btnForgotPassword);
+		
+		lblSentinelDataVault = new JLabel("Sentinel Data Vault");
+		lblSentinelDataVault.setBounds(161, 33, 129, 27);
+		frame.getContentPane().add(lblSentinelDataVault);
 		frame.getContentPane().setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{lblEmail, textField, lblPassword, passwordField, btnNewButton, btnSignUp, btnForgotPassword}));
 	}
 }

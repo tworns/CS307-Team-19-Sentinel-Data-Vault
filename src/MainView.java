@@ -37,8 +37,15 @@ public class MainView {
 	public String username;
 
 	/**
-	 * Launch the application.
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
 	 */
+	
+	
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -325,6 +332,12 @@ public class MainView {
 		
 		JMenu mnEdit = new JMenu("Edit");
 		menuBar.add(mnEdit);
+		
+		JMenu mnUser = new JMenu("User");
+		menuBar.add(mnUser);
+		
+		JMenuItem mntmAccountDeletion = new JMenuItem("Account Deletion");
+		mnUser.add(mntmAccountDeletion);
 		
 		JMenu mnSearch = new JMenu("Search");
 		menuBar.add(mnSearch);

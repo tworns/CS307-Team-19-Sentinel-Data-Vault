@@ -29,7 +29,6 @@ public class HelpView {
 	
 	
 	public JFrame frmHelp;
-	private JTextField txtHelp;
 
 	/**
 	 * Launch the application.
@@ -86,7 +85,7 @@ public class HelpView {
 				}
 			}
 		));
-		frmHelp.getContentPane().add(tree, "cell 0 0,alignx left,growy");
+		frmHelp.getContentPane().add(tree, "cell 0 0 1 2,alignx left,growy");
 		
 		JButton btnNewButton = new JButton("Cancel");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -95,14 +94,14 @@ public class HelpView {
 			}
 		});
 		
-		JPanel panel = new JPanel();
-		panel.setBackground(Color.WHITE);
-		frmHelp.getContentPane().add(panel, "cell 2 0,grow");
+		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		frmHelp.getContentPane().add(tabbedPane, "cell 2 0,grow");
 		
-		txtHelp = new JTextField();
-		txtHelp.setText("Help");
-		panel.add(txtHelp);
-		txtHelp.setColumns(10);
+		JPanel panel = new JPanel();
+		tabbedPane.addTab("New tab", null, panel, null);
+		
+		JPanel panel_1 = new JPanel();
+		tabbedPane.addTab("New tab", null, panel_1, null);
 		frmHelp.getContentPane().add(btnNewButton, "cell 2 1,alignx right,aligny top");
 	}
 
