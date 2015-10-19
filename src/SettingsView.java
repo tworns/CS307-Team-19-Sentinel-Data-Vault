@@ -46,32 +46,32 @@ public class SettingsView {
 		//High security toggle & tool tip
 		JCheckBox chckbxHighSecurityLevel = new JCheckBox("High Security Level ");
 		chckbxHighSecurityLevel.setToolTipText("Toggling this setting will change ALL user encryptions to the strongest possible.");
-		chckbxHighSecurityLevel.setBounds(48, 53, 222, 25);
+		chckbxHighSecurityLevel.setBounds(48, 50, 222, 25);
 		frmSettings.getContentPane().add(chckbxHighSecurityLevel);
 		
 		//Allows user to set lock out time up to max & tooltip
 		JSpinner spinner = new JSpinner();
 		spinner.setToolTipText("This field sets the maximum time, in days, the user will be barred from logging in after a number of failed login attempts.");
 		spinner.setModel(new SpinnerNumberModel(1, 1, 7, 1));
-		spinner.setBounds(48, 87, 70, 22);
+		spinner.setBounds(48, 109, 70, 22);
 		frmSettings.getContentPane().add(spinner);
 		
 		JLabel lblMaxLockoutTime = new JLabel("Max Lockout Time (Days)");
 
 		lblMaxLockoutTime.setToolTipText("This field sets the maximum time, in days, the user will be barred from logging in after a number of failed login attempts.");
-		lblMaxLockoutTime.setBounds(130, 90, 182, 16);
+		lblMaxLockoutTime.setBounds(131, 112, 182, 16);
 		frmSettings.getContentPane().add(lblMaxLockoutTime);
 		
 		//box lets user decide when to back up & tooltip
 		JComboBox comboBox = new JComboBox();
 		comboBox.setToolTipText("This field sets how often all user data is backed up on disk.");
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Hourly", "Daily", "Weekly", "Monthly", "Annually"}));
-		comboBox.setBounds(47, 127, 113, 22);
+		comboBox.setBounds(48, 140, 113, 22);
 		frmSettings.getContentPane().add(comboBox);
 		
 		JLabel lblBackupFrequency = new JLabel("Backup Frequency");
 		lblBackupFrequency.setToolTipText("This field sets how often all user data is backed up on disk.");
-		lblBackupFrequency.setBounds(176, 130, 113, 16);
+		lblBackupFrequency.setBounds(173, 140, 113, 16);
 		frmSettings.getContentPane().add(lblBackupFrequency);
 		
 		JLabel lblUserSettings = new JLabel("User Settings");
@@ -83,11 +83,11 @@ public class SettingsView {
 		JComboBox comboBox_1 = new JComboBox();
 		comboBox_1.setToolTipText("This field is the maximum size a backup file can reach before the user is warned. ");
 		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"10 MB", "50 MB", "100 MB", "512 MB", "1 GB", "2 GB", "3 GB", "4 GB", "5 GB"}));
-		comboBox_1.setBounds(48, 162, 113, 22);
+		comboBox_1.setBounds(48, 174, 113, 22);
 		frmSettings.getContentPane().add(comboBox_1);
 		
 		JLabel lblFileSizeLimit = new JLabel("File Size Limit Warning ");
-		lblFileSizeLimit.setBounds(176, 165, 190, 16);
+		lblFileSizeLimit.setBounds(173, 176, 190, 16);
 		lblFileSizeLimit.setToolTipText("This field is the maximum size a backup file can reach before the user is warned. ");
 
 
@@ -105,7 +105,7 @@ public class SettingsView {
 			
 		
 		});
-		btnOk.setBounds(65, 217, 97, 25);
+		btnOk.setBounds(129, 233, 97, 25);
 		frmSettings.getContentPane().add(btnOk);
 		
 		//closes window
@@ -117,7 +117,17 @@ public class SettingsView {
 				}
 			}
 		});
-		btnCancel.setBounds(191, 217, 97, 25);
+		btnCancel.setBounds(250, 233, 97, 25);
 		frmSettings.getContentPane().add(btnCancel);
+		
+		JCheckBox chckbxD = new JCheckBox("Turn on account wipe after                      attemps");
+		chckbxD.setToolTipText("Toggling this setting will change ALL user encryptions to the strongest possible.");
+		chckbxD.setBounds(48, 75, 367, 25);
+		frmSettings.getContentPane().add(chckbxD);
+		
+		JSpinner spinner_1 = new JSpinner();
+		spinner_1.setToolTipText("This field sets the maximum time, in days, the user will be barred from logging in after a number of failed login attempts.");
+		spinner_1.setBounds(255, 77, 70, 22);
+		frmSettings.getContentPane().add(spinner_1);
 	}
 }
