@@ -129,5 +129,6 @@ public class SettingsView {
 		spinner_1.setToolTipText("This field sets the maximum time, in days, the user will be barred from logging in after a number of failed login attempts.");
 		spinner_1.setBounds(255, 77, 70, 22);
 		frmSettings.getContentPane().add(spinner_1);
+		
 	}
 }

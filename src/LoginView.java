@@ -18,6 +18,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import org.eclipse.wb.swing.FocusTraversalOnArray;
 import java.awt.Component;
+import java.awt.Font;
 
 
 public class LoginView {
@@ -181,7 +182,8 @@ public class LoginView {
 		frame.getContentPane().add(btnForgotPassword);
 		
 		lblSentinelDataVault = new JLabel("Sentinel Data Vault");
-		lblSentinelDataVault.setBounds(161, 33, 129, 27);
+		lblSentinelDataVault.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		lblSentinelDataVault.setBounds(139, 33, 189, 27);
 		frame.getContentPane().add(lblSentinelDataVault);
 		frame.getContentPane().setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{lblEmail, textField, lblPassword, passwordField, btnNewButton, btnSignUp, btnForgotPassword}));
 	}
