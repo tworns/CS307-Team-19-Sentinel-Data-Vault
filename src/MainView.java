@@ -92,6 +92,9 @@ public class MainView {
 		btnLock.setToolTipText("Lock mode for data in but not data out");
 		panel_1.add(btnLock);
 		
+		JButton btnNewDataEntry = new JButton("New Data Entry");
+		panel_1.add(btnNewDataEntry);
+		
 		JButton btnNewData = new JButton("New Data");
 		panel_1.add(btnNewData);
 		
@@ -121,6 +124,28 @@ public class MainView {
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		panel.add(tabbedPane, BorderLayout.EAST);
+		
+		JPanel panel_5 = new JPanel();
+		tabbedPane.addTab("New Data", null, panel_5, null);
+		panel_5.setLayout(new MigLayout("", "[]", "[][][][][][][][][]"));
+		
+		JButton btnNewLoginAccount = new JButton("new Login Account");
+		panel_5.add(btnNewLoginAccount, "cell 0 0,growx");
+		
+		JButton btnNewCreditCard = new JButton("new Credit Card");
+		panel_5.add(btnNewCreditCard, "cell 0 1,growx");
+		
+		JButton btnNewDebitCard = new JButton("new Debit Card");
+		panel_5.add(btnNewDebitCard, "cell 0 2,growx");
+		
+		JButton btnNewLicense = new JButton("new License");
+		panel_5.add(btnNewLicense, "cell 0 3,growx");
+		
+		JButton btnNewSerialNumber = new JButton("new Serial Number");
+		panel_5.add(btnNewSerialNumber, "cell 0 4,growx");
+		
+		JButton btnExportAllData = new JButton("Export All Data");
+		panel_5.add(btnExportAllData, "cell 0 8,growx");
 		
 		JPanel panel_4 = new JPanel();
 		tabbedPane.addTab("Debit Card", null, panel_4, null);
@@ -179,28 +204,6 @@ public class MainView {
 		JComboBox comboBox_1 = new JComboBox();
 		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30"}));
 		panel_4.add(comboBox_1, "cell 0 9");
-		
-		JPanel panel_5 = new JPanel();
-		tabbedPane.addTab("New Data", null, panel_5, null);
-		panel_5.setLayout(new MigLayout("", "[]", "[][][][][][][][][]"));
-		
-		JButton btnNewLoginAccount = new JButton("new Login Account");
-		panel_5.add(btnNewLoginAccount, "cell 0 0,growx");
-		
-		JButton btnNewCreditCard = new JButton("new Credit Card");
-		panel_5.add(btnNewCreditCard, "cell 0 1,growx");
-		
-		JButton btnNewDebitCard = new JButton("new Debit Card");
-		panel_5.add(btnNewDebitCard, "cell 0 2,growx");
-		
-		JButton btnNewLicense = new JButton("new License");
-		panel_5.add(btnNewLicense, "cell 0 3,growx");
-		
-		JButton btnNewSerialNumber = new JButton("new Serial Number");
-		panel_5.add(btnNewSerialNumber, "cell 0 4,growx");
-		
-		JButton btnExportAllData = new JButton("Export All Data");
-		panel_5.add(btnExportAllData, "cell 0 8,growx");
 		
 		JPanel panel_2 = new JPanel();
 		tabbedPane.addTab("Account Login", null, panel_2, null);
