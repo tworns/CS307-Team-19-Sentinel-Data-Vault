@@ -1,3 +1,3 @@
-# Project Name
+# Sentinel Data Vault
 
-CS30700 Software Engineering – Team 19 – Sentinel Data Vault – Fall 2015
+### CS307 Software Engineering – Team 19 – Fall 2015
