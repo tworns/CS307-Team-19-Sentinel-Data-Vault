@@ -1,30 +1,10 @@
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.BoxLayout;
-import javax.swing.JPanel;
-import java.awt.BorderLayout;
-import javax.swing.JMenuBar;
-import javax.swing.JMenu;
-import java.awt.Panel;
-import javax.swing.JButton;
-import javax.swing.JTabbedPane;
-import javax.swing.JProgressBar;
-import javax.swing.JTree;
-import javax.swing.JDesktopPane;
-import javax.swing.tree.DefaultTreeModel;
-import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.JLabel;
+import java.awt.*;
+import javax.swing.*;
+import javax.swing.tree.*;
+import java.awt.event.*;
 import net.miginfocom.swing.MigLayout;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JFormattedTextField;
-import javax.swing.JTextField;
-import javax.swing.JMenuItem;
-import javax.swing.JList;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JScrollBar;
+
 
 public class MainView {
 

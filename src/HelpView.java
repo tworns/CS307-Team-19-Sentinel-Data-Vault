@@ -1,21 +1,10 @@
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JSplitPane;
-import java.awt.BorderLayout;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.JButton;
+import javax.swing.*;
+import javax.swing.tree.*;
 import net.miginfocom.swing.MigLayout;
-import javax.swing.JLabel;
-import javax.swing.JTabbedPane;
-import javax.swing.JTree;
-import javax.swing.tree.DefaultTreeModel;
-import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.JTextPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.Color;
+
 
 public class HelpView {
 
