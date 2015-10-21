@@ -1,8 +1,11 @@
+package userInterface;
 import java.awt.EventQueue;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+
+import security.PasswordGen;
 
 
 public class SecurityView {

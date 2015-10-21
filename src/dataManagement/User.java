@@ -1,3 +1,4 @@
+package dataManagement;
 public class User {
 
 	private String username;

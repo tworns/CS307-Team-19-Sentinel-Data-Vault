@@ -1,3 +1,4 @@
+package dataManagement;
 import java.time.LocalDateTime;
 
 public class DoubleFieldEntry extends DataEntry {
