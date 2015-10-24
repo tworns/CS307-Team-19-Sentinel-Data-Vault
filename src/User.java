@@ -1,5 +1,7 @@
 public class User {
 
+
+	
 	private String username;
 	private String password;
 	private String dataKey;
@@ -16,6 +18,7 @@ public class User {
 		this.defultHighSecurity = false;
 	}
 
+	
 	public String getUsername() {
 		return this.username;
 	}
@@ -63,4 +66,7 @@ public class User {
 	public void setDefaultHighSecurity(Boolean defultHighSecurity) {
 		this.defultHighSecurity = defultHighSecurity;
 	}
+
+
 }
+
