@@ -1,3 +1,4 @@
+package userInterface;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*; 
@@ -5,6 +6,8 @@ import sun.security.provider.MD2;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import org.eclipse.wb.swing.FocusTraversalOnArray;
+
+import controllers.DatabaseManager;
 
 
 
