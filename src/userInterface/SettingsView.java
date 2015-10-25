@@ -65,8 +65,15 @@ public class SettingsView {
 		
 		//box lets user decide when to back up & tooltip
 		JComboBox comboBox = new JComboBox();
+		comboBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) { //GETS VALUE FROM COMBO BOX
+				String s  = (String) comboBox.getSelectedItem();
+				System.out.println(s);
+			}
+		});
 		comboBox.setToolTipText("This field sets how often all user data is backed up on disk.");
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Hourly", "Daily", "Weekly", "Monthly", "Annually"}));
+		
 		comboBox.setBounds(48, 140, 113, 22);
 		frmSettings.getContentPane().add(comboBox);
 		
