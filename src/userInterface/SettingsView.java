@@ -41,7 +41,7 @@ public class SettingsView {
 		frmSettings.setResizable(false);
 		frmSettings.setTitle("Settings");
 		frmSettings.setBounds(100, 100, 450, 300);
-		frmSettings.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmSettings.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frmSettings.getContentPane().setLayout(null);
 		
 		//High security toggle & tool tip
@@ -76,6 +76,11 @@ public class SettingsView {
 		
 		//Lets user set the file size past which they'll be warned about file size. & tool tip
 		JComboBox comboBox_1 = new JComboBox();
+		comboBox_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String size = (String) comboBox_1.getSelectedItem();
+			}
+		});
 		comboBox_1.setToolTipText("This field is the maximum size a backup file can reach before the user is warned. ");
 		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"10 MB", "50 MB", "100 MB", "512 MB", "1 GB", "2 GB", "3 GB", "4 GB", "5 GB"}));
 		comboBox_1.setBounds(48, 174, 113, 22);

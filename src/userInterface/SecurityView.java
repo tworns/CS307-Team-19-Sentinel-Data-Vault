@@ -62,7 +62,7 @@ public class SecurityView {
 		frame.setResizable(false);
 		frame.setBounds(100, 100, 450, 300);
 		frame.setTitle("Security View");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		//display code for the tabs
