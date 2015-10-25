@@ -50,19 +50,6 @@ public class SettingsView {
 		chckbxHighSecurityLevel.setBounds(48, 50, 222, 25);
 		frmSettings.getContentPane().add(chckbxHighSecurityLevel);
 		
-		//Allows user to set lock out time up to max & tooltip
-		JSpinner spinner = new JSpinner();
-		spinner.setToolTipText("This field sets the maximum time, in days, the user will be barred from logging in after a number of failed login attempts.");
-		spinner.setModel(new SpinnerNumberModel(1, 1, 7, 1));
-		spinner.setBounds(48, 109, 70, 22);
-		frmSettings.getContentPane().add(spinner);
-		
-		JLabel lblMaxLockoutTime = new JLabel("Max Lockout Time (Days)");
-
-		lblMaxLockoutTime.setToolTipText("This field sets the maximum time, in days, the user will be barred from logging in after a number of failed login attempts.");
-		lblMaxLockoutTime.setBounds(131, 112, 182, 16);
-		frmSettings.getContentPane().add(lblMaxLockoutTime);
-		
 		//box lets user decide when to back up & tooltip
 		JComboBox comboBox = new JComboBox();
 		comboBox.addActionListener(new ActionListener() {
@@ -128,15 +115,10 @@ public class SettingsView {
 		btnCancel.setBounds(250, 233, 97, 25);
 		frmSettings.getContentPane().add(btnCancel);
 		
-		JCheckBox chckbxD = new JCheckBox("Turn on account wipe after                      attemps");
+		JCheckBox chckbxD = new JCheckBox("Turn on account wipe after 5 failed login attemps");
 		chckbxD.setToolTipText("Toggling this setting will enable wiping of all data after a specific number of failed login attempts.");
-		chckbxD.setBounds(48, 75, 367, 25);
+		chckbxD.setBounds(44, 91, 367, 25);
 		frmSettings.getContentPane().add(chckbxD);
-		
-		JSpinner spinner_1 = new JSpinner();
-		spinner_1.setToolTipText("This field sets the maximum time, in days, the user will be barred from logging in after a number of failed login attempts.");
-		spinner_1.setBounds(255, 77, 70, 22);
-		frmSettings.getContentPane().add(spinner_1);
 		
 	}
 }
