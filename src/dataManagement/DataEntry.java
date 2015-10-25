@@ -4,6 +4,7 @@ import java.util.List;
 
 public abstract class DataEntry {
 
+	private String entryName;
 	private String entryType;
 	private String encryptionKey;
 	private String owner;
@@ -11,8 +12,9 @@ public abstract class DataEntry {
 	private Boolean highSecurity;
 	private LocalDateTime lastModified;
 
-	public DataEntry(String entryType, String encryptionKey, String owner, Boolean highSecurity,
+	public DataEntry(String entryName, String entryType, String encryptionKey, String owner, Boolean highSecurity,
 			LocalDateTime lastModified) {
+		this.entryName = entryName;
 		this.entryType = entryType;
 		this.encryptionKey = encryptionKey;
 		this.owner = owner;
@@ -20,6 +22,10 @@ public abstract class DataEntry {
 		this.lastModified = lastModified;
 	}
 
+	public String getEntryName() {
+		return this.entryName;
+	}
+	
 	public String getEntryType() {
 		return this.entryType;
 	}
