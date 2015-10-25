@@ -6,11 +6,11 @@ public class User {
 	private String username;
 	private String password;
 	private String dataKey;
-	private int securityQuestion;
+	private String securityQuestion;
 	private String securityAnswer;
 	private Boolean defultHighSecurity;
 
-	public User(String username, String password, String dataKey, int securityQuestion, String securityAnswer) {
+	public User(String username, String password, String dataKey, String securityQuestion, String securityAnswer) {
 		this.username = username;
 		this.password = password;
 		this.dataKey = dataKey;
@@ -32,7 +32,7 @@ public class User {
 		return this.dataKey;
 	}
 
-	public int getSecurityQuestion() {
+	public String getSecurityQuestion() {
 		return this.securityQuestion;
 	}
 
@@ -56,7 +56,7 @@ public class User {
 		this.dataKey = dataKey;
 	}
 
-	public void setSecurityQuestion(int securityQuestion) {
+	public void setSecurityQuestion(String securityQuestion) {
 		this.securityQuestion = securityQuestion;
 	}
 
