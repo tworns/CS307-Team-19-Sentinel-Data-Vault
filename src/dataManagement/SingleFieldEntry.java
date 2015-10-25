@@ -3,19 +3,19 @@ import java.time.LocalDateTime;
 
 public class SingleFieldEntry extends DataEntry {
 
-	private String entryName;
+	private String fieldData;
 
-	public SingleFieldEntry(String entryType, String entryName, String encryptionKey, String owner, Boolean highSecurity,
+	public SingleFieldEntry(String entryName, String entryType, String fieldData, String encryptionKey, String owner, Boolean highSecurity,
 			LocalDateTime lastModified) {
-		super(entryType, encryptionKey, owner, highSecurity, lastModified);
-		this.entryName = entryName;
+		super(entryName, entryType, encryptionKey, owner, highSecurity, lastModified);
+		this.fieldData = fieldData;
 	}
 
 	public String getEntryName() {
-		return this.entryName;
+		return this.fieldData;
 	}
 
 	public void setEntryName(String entryName) {
-		this.entryName = entryName;
+		this.fieldData = entryName;
 	}
 }
