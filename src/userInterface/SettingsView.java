@@ -129,7 +129,7 @@ public class SettingsView {
 		frmSettings.getContentPane().add(btnCancel);
 		
 		JCheckBox chckbxD = new JCheckBox("Turn on account wipe after                      attemps");
-		chckbxD.setToolTipText("Toggling this setting will change ALL user encryptions to the strongest possible.");
+		chckbxD.setToolTipText("Toggling this setting will enable wiping of all data after a specific number of failed login attempts.");
 		chckbxD.setBounds(48, 75, 367, 25);
 		frmSettings.getContentPane().add(chckbxD);
 		
