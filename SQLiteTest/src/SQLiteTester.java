@@ -21,7 +21,11 @@ public class SQLiteTester {
 		try {
 			// Establish connection and open the database
 			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:test.db");
+			// c = DriverManager.getConnection("jdbc:sqlite:test.db");
+			//c = DriverManager.getConnection("jdbc:sqlite:SDB DB.sqlite");
+			//c = DriverManager.getConnection("jdbc:sqlite:SDB DB.sqlite");
+			c = DriverManager.getConnection("jdbc:sqlite:vault_databse.sqlite");
+			
 			c.setAutoCommit(false); // Forces database changes to be saved ONLY after a commit
 			System.out.println("Database opened successfully!");
 			
@@ -72,6 +76,7 @@ public class SQLiteTester {
 		    rs.close();
 			stmt.close();
 			c.close();
+			
 		}
 		catch (Exception e) {
 			System.err.println( e.getClass().getName() + ": " + e.getMessage() );
