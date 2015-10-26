@@ -5,7 +5,9 @@ import javax.swing.border.EmptyBorder;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
+import controllers.DatabaseManager;
+import controllers.VaultController;
+import cryptography.SaltGenerator;
 
 public class SignupView extends JFrame {
 
@@ -14,6 +16,7 @@ public class SignupView extends JFrame {
 	private JPasswordField passwordField1;
 	private JPasswordField passwordField2;
 	private JTextField answerField;
+	private String question;
 
 	/**
 	 * Launch the application.
@@ -77,7 +80,13 @@ public class SignupView extends JFrame {
 				String password1 = String.valueOf(passwordField1.getPassword());
 				String password2 = String.valueOf(passwordField2.getPassword());
 				String answer = answerField.getText();
-				//check user enter all fields
+				VaultController v = new VaultController();
+				//checker will return 4 if succeeded
+				int result = v.createAccountCheck(password1, password2, username,question, answer);
+				if (result == 4){
+					dispose();
+				}
+				/*//check user enter all fields
 				if (password1.equals("") || password2.equals("")||username.equals("")||answer.equals("")){
 					JOptionPane.showMessageDialog(null,"You need to enter all the fields!");
 					password1 = "";
@@ -103,7 +112,7 @@ public class SignupView extends JFrame {
 						&&!answer.equals("")){
 					JOptionPane.showMessageDialog(null,"You have successfully created your account!");
 					dispose();
-				}
+				}*/
 			}
 		});
 		btnNewButton.setBounds(169, 208, 129, 27);
@@ -114,6 +123,11 @@ public class SignupView extends JFrame {
 		contentPane.add(lblSecurityQuestion);
 		
 		JComboBox comboBox = new JComboBox();
+		comboBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				question  = (String) comboBox.getSelectedItem();
+			}
+		});
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"What is your mother's name?", "What is your first pet's name?", "Where is your favorite city?"}));
 		comboBox.setBounds(169, 140, 253, 27);
 		contentPane.add(comboBox);
