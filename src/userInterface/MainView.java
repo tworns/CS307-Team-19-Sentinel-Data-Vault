@@ -14,6 +14,9 @@ import javax.swing.JProgressBar;
 import javax.swing.JTree;
 import javax.swing.JDesktopPane;
 import javax.swing.tree.DefaultTreeModel;
+
+import dataManagement.User;
+
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.JLabel;
 import net.miginfocom.swing.MigLayout;
@@ -36,6 +39,7 @@ public class MainView {
 	private JTextField txtUserName;
 	private JTextField txtPm;
 	public String username;
+	public User currentUser;
 
 	/**
 	 * 
@@ -249,6 +253,7 @@ public class MainView {
 		JButton btnSignOut = new JButton("Sign out");
 		btnSignOut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				currentUser = null;
 				LoginView frmLog = new LoginView();
 				frmLog.frame.setVisible(true);
 				frmSentinelDataVault.dispose();
