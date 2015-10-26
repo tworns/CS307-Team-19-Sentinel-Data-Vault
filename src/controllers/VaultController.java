@@ -1,6 +1,7 @@
 package controllers;
 
 import java.security.NoSuchAlgorithmException;
+import java.time.LocalDateTime;
 
 import javax.swing.JOptionPane;
 import cryptography.SaltGenerator;
@@ -45,8 +46,10 @@ public class VaultController {
 				&&!answer.equals("")){
 			SaltGenerator s = new SaltGenerator();
 			String passwordSalt = s.generateSalt();
-			User newuser =  new User(username, password1, passwordSalt, "default datakey", question, answer);
 			
+			LocalDateTime createdtime = LocalDateTime.now();
+			User newuser =  new User(username, password1, passwordSalt, "default datakey", question, answer,createdtime);
+
 			DatabaseManager d = new DatabaseManager();
 			d.addUserToDatabase(newuser);
 			JOptionPane.showMessageDialog(null,"You have successfully created your account!");
