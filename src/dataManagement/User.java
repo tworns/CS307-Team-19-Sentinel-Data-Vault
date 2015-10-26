@@ -57,8 +57,12 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	public void setPasswordSalt(String passwordSalt) {
+		this.passwordSalt = passwordSalt;
+	}
 
-	public void getDataKey(String dataKey) {
+	public void setDataKey(String dataKey) {
 		this.dataKey = dataKey;
 	}
 
