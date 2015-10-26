@@ -30,10 +30,16 @@ public class VaultController {
 			return 3;
 		}
 		
+		if(question.equals(null)||question.equals("")||question.equals("Please choose a security question below")){
+			JOptionPane.showMessageDialog(null,"Please choose one security question!");
+			return 6;
+		}
+		
 		//send user info to database
 		if (password1.equals(password2) && !password1.equals("") && !username.equals("")
 				&&!answer.equals("")){
 			//User newuser = new User(password1, );
+			System.out.println(question);
 			JOptionPane.showMessageDialog(null,"You have successfully created your account!");
 			return 4;
 		}

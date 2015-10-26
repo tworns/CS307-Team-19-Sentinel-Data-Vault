@@ -82,10 +82,17 @@ public class SignupView extends JFrame {
 				String answer = answerField.getText();
 				VaultController v = new VaultController();
 				//checker will return 4 if succeeded
-				int result = v.createAccountCheck(password1, password2, username,question, answer);
-				if (result == 4){
-					dispose();
+				
+				if(question == (null)){
+					JOptionPane.showMessageDialog(null,"Please choose one security question!");
 				}
+				else{
+					int result = v.createAccountCheck(password1, password2, username,question, answer);
+					if (result == 4){
+						dispose();
+					}
+				}
+				
 				/*//check user enter all fields
 				if (password1.equals("") || password2.equals("")||username.equals("")||answer.equals("")){
 					JOptionPane.showMessageDialog(null,"You need to enter all the fields!");
@@ -128,7 +135,7 @@ public class SignupView extends JFrame {
 				question  = (String) comboBox.getSelectedItem();
 			}
 		});
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"What is your mother's name?", "What is your first pet's name?", "Where is your favorite city?"}));
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Please choose a security question below", "What is your mother's name?", "What is your first pet's name?", "Where is your favorite city?"}));
 		comboBox.setBounds(169, 140, 253, 27);
 		contentPane.add(comboBox);
 		
