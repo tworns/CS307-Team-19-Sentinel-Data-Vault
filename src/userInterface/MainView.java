@@ -96,8 +96,10 @@ public class MainView {
 		JButton btnNewData = new JButton("Delete Entry");
 		btnNewData.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int result = JOptionPane.showConfirmDialog(null,
-						"Are you sure you want to delete the Entry?", "", JOptionPane.YES_NO_CANCEL_OPTION);
+				Object[] options = { "OK", "CANCEL" };
+				int result = JOptionPane.showOptionDialog(null,
+						"Data Entry will be deleted permanently.\nAre you sure you want to delete the Entry?", "Warning", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+						null, options, options[1]);
 				if (result == 0) {
 					System.out.println("Delete Entry");
 				}
