@@ -28,6 +28,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JList;
 import java.awt.event.ActionListener;
+import java.util.Locale;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollBar;
 
@@ -249,6 +250,8 @@ public class MainView {
 		JButton btnSignOut = new JButton("Sign out");
 		btnSignOut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Locale locale = new Locale("EN", "US");
+				JOptionPane.setDefaultLocale(locale);
 				if(JOptionPane.showConfirmDialog(null, "Are You Sure?", "Sign Out",JOptionPane.YES_NO_OPTION, JOptionPane.DEFAULT_OPTION) == 0) {
 					currentUser = null;
 					LoginView frmLog = new LoginView();
