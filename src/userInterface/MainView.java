@@ -96,7 +96,11 @@ public class MainView {
 		JButton btnNewDataEntry = new JButton("New Data Entry");
 		panel_1.add(btnNewDataEntry);
 		
-		JButton btnNewData = new JButton("New Data");
+		JButton btnNewData = new JButton("Delete Data");
+		btnNewData.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		panel_1.add(btnNewData);
 		
 		JButton btnEditData = new JButton("Edit Data");
