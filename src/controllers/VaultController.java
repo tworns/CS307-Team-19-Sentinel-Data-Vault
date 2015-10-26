@@ -2,7 +2,6 @@ package controllers;
 
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDateTime;
-
 import javax.swing.JOptionPane;
 import cryptography.SaltGenerator;
 import dataManagement.User;
@@ -57,15 +56,4 @@ public class VaultController {
 		}
 		return 5;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-
 }

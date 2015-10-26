@@ -28,7 +28,7 @@ public class DatabaseManager {
 			Statement stmt = DBconnection.createStatement();
 			// Insert the user account into the "users" table
 		    String sql = "INSERT INTO users (user_email, password_hash, security_question, security_answer, last_login, high_security, account_wipe_set, backup_frequency, max_backup_size) " +
-		          "VALUES (2, 'Becky', 31, 'New York', 30000.00);";
+		          "VALUES (2, 'Becky', 31, 'New York', 30000.00);"; // TODO update the SQL insert statement for adding user
 		    stmt.executeUpdate(sql);
 		} catch (SQLException e) {
 			System.err.println( e.getClass().getName() + ": " + e.getMessage());

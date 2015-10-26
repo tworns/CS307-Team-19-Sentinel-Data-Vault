@@ -1,4 +1,5 @@
 package userInterface;
+
 import java.awt.EventQueue;
 import javax.swing.*;
 
@@ -12,6 +13,7 @@ public class SettingsView {
 	public JFrame frmSettings;
 	public String username; // TO SET THIS: create new SettingsView object, then objectname.username = <string>;
 	public User currentUser; //Returns the User object that's been modified by the GUI.
+	
 	/**
 	 * Launch the application.
 	 */
@@ -41,6 +43,7 @@ public class SettingsView {
 		
 		return currentUser;
 	}
+	
 	/**
 	 * Initialize the contents of the frame.
 	 */

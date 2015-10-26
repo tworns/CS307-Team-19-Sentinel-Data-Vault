@@ -2,9 +2,6 @@ package security;
 
 import java.util.*;
 
-
-
-
 public class PasswordGen {
 	
 	/*
@@ -14,7 +11,6 @@ public class PasswordGen {
 	 * 
 	 * 
 	 * */
-
 	
 	public int length;
 	public int specials;
@@ -30,7 +26,6 @@ public class PasswordGen {
 		generator(length, specials, num, upper);
 
 	}
-
 
 	public String generator(int length, int specials, int num, int upper){
 		Random r = new Random();	
@@ -61,8 +56,6 @@ public class PasswordGen {
 		}
 
 		return s.toString();
-
-
 	}
 }
 
