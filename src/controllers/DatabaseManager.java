@@ -26,6 +26,12 @@ public class DatabaseManager {
 		Connection DBconnection = connectToDatabase();
 		try {
 			Statement stmt = DBconnection.createStatement();
+			
+			/*
+			 *  TODO add functionality to check that user does not already exist!
+			 *  – what should the function return if this is the case???
+			 */
+			
 			// Insert the user account into the "users" table
 		    //String sql = "INSERT INTO users (user_email, password_hash, security_question, security_answer, last_login, high_security, account_wipe_set, backup_frequency, max_backup_size) " +
 		    //      "VALUES (2, 'Becky', 31, 'New York', 30000.00);"; // TODO update the SQL insert statement for adding user
@@ -47,9 +53,16 @@ public class DatabaseManager {
 		    			+ newUser.isAccountWipeSet() + ", "
 		    			+ newUser.getBackupFrequency() + ", "
 		    			+ newUser.getMaxBackupSize()
-		    		+ ")"
+		    		+ ");"
 		    		;
+			// Execute and commit database changes
 		    stmt.executeUpdate(sql);
+		    DBconnection.commit();
+		    
+		    // Disconnect from database
+		    stmt.close();
+		    DBconnection.close();
+		    
 		} catch (SQLException e) {
 			System.err.println( e.getClass().getName() + ": " + e.getMessage());
 			e.printStackTrace();
