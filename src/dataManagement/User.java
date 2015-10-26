@@ -3,8 +3,12 @@ package dataManagement;
 import java.time.LocalDateTime;
 
 public class User {
+	
+	private static final Boolean DEFAULT_HIGH_SECURITY = false;	// By default, use normal security
+	private static final Boolean DEFAULT_ACCOUNT_WIPE = false;	// By default, account wipe turned OFF
+	private static final String DEFAULT_BACKUP_FREQ = "Weekly";	// By default, backup frequency is weekly
+	private static final int DEFAULT_MAX_BACKUP_SIZE = 1000;	// In megabytes; default is 1 GB
 
-	// TODO Finish adding all corresponding database fields!!!
 	private String username;
 	private String passwordHash;
 	private String passwordSalt;
@@ -14,6 +18,8 @@ public class User {
 	private LocalDateTime lastLogin;
 	private Boolean defaultHighSecurity;
 	private Boolean accountWipeSet;
+	private String backupFrequency;
+	private int maxBackupSize;
 
 	public User(String username, String passwordHash, String passwordSalt, String dataKey, String securityQuestion, String securityAnswer, LocalDateTime lastLogin) {
 		this.username = username;
@@ -23,8 +29,10 @@ public class User {
 		this.securityQuestion = securityQuestion;
 		this.securityAnswer = securityAnswer;
 		this.lastLogin = lastLogin;
-		this.defaultHighSecurity = false;
-		this.accountWipeSet = false;
+		this.defaultHighSecurity = DEFAULT_HIGH_SECURITY;
+		this.accountWipeSet = DEFAULT_ACCOUNT_WIPE;
+		this.backupFrequency = DEFAULT_BACKUP_FREQ;
+		this.maxBackupSize = DEFAULT_MAX_BACKUP_SIZE; 
 	}
 
 	
@@ -63,7 +71,15 @@ public class User {
 	public Boolean isAccountWipeSet() {
 		return this.accountWipeSet;
 	}
+	
+	public String getBackupFrequency() {
+		return this.backupFrequency;
+	}
 
+	public int getMaxBackupSize() {
+		return this.maxBackupSize;
+	}
+	
 	public void setUsername(String username) {
 		this.username = username;
 	}
@@ -98,6 +114,14 @@ public class User {
 	
 	public void setAccountWipe(Boolean accountWipeSet) {
 		this.accountWipeSet = accountWipeSet;
+	}
+	
+	public void setBackupFrequency(String backupFrequency) {
+		this.backupFrequency = backupFrequency;
+	}
+	
+	public void setMaxBackupSize(int maxBackupSize) {
+		this.maxBackupSize = maxBackupSize;
 	}
 }
 

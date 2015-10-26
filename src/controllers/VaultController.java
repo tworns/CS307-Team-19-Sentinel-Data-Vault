@@ -48,7 +48,7 @@ public class VaultController {
 			String passwordSalt = s.generateSalt();
 			
 			LocalDateTime createdtime = LocalDateTime.now();
-			User newuser =  new User(username, password1, passwordSalt, "default datakey", question, answer,createdtime);
+			User newuser =  new User(username, password1, passwordSalt, "default datakey", question, answer, createdtime);
 
 			DatabaseManager d = new DatabaseManager();
 			d.addUserToDatabase(newuser);
