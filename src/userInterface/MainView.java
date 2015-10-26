@@ -25,6 +25,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFormattedTextField;
 import javax.swing.JTextField;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JList;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -103,6 +104,11 @@ public class MainView {
 		JButton btnNewData = new JButton("Delete Entry");
 		btnNewData.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				int result = JOptionPane.showConfirmDialog(null,
+						"Are you sure you want to delete the Entry?", "", JOptionPane.YES_NO_CANCEL_OPTION);
+				if (result == 0) {
+					System.out.println("Delete Entry");
+				}
 			}
 		});
 		panel_1.add(btnNewData);
