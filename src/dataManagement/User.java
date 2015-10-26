@@ -5,14 +5,16 @@ public class User {
 	
 	private String username;
 	private String password;
+	private String passwordSalt;
 	private String dataKey;
 	private String securityQuestion;
 	private String securityAnswer;
 	private Boolean defultHighSecurity;
 
-	public User(String username, String password, String dataKey, String securityQuestion, String securityAnswer) {
+	public User(String username, String password, String passwordSalt, String dataKey, String securityQuestion, String securityAnswer) {
 		this.username = username;
 		this.password = password;
+		this.passwordSalt = passwordSalt;
 		this.dataKey = dataKey;
 		this.securityQuestion = securityQuestion;
 		this.securityAnswer = securityAnswer;
@@ -26,6 +28,10 @@ public class User {
 
 	public String getPassword() {
 		return this.password;
+	}
+	
+	public String getPasswordSalt() {
+		return this.passwordSalt;
 	}
 
 	public String getDataKey() {
