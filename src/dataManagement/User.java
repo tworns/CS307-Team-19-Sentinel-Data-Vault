@@ -1,24 +1,30 @@
 package dataManagement;
+
+import java.time.LocalDateTime;
+
 public class User {
 
-
-	
+	// TODO Finish adding all corresponding database fields!!!
 	private String username;
-	private String password;
+	private String passwordHash;
 	private String passwordSalt;
 	private String dataKey;
 	private String securityQuestion;
 	private String securityAnswer;
-	private Boolean defultHighSecurity;
+	private LocalDateTime lastLogin;
+	private Boolean defaultHighSecurity;
+	private Boolean accountWipeSet;
 
-	public User(String username, String password, String passwordSalt, String dataKey, String securityQuestion, String securityAnswer) {
+	public User(String username, String passwordHash, String passwordSalt, String dataKey, String securityQuestion, String securityAnswer, LocalDateTime lastLogin) {
 		this.username = username;
-		this.password = password;
+		this.passwordHash = passwordHash;
 		this.passwordSalt = passwordSalt;
 		this.dataKey = dataKey;
 		this.securityQuestion = securityQuestion;
 		this.securityAnswer = securityAnswer;
-		this.defultHighSecurity = false;
+		this.lastLogin = lastLogin;
+		this.defaultHighSecurity = false;
+		this.accountWipeSet = false;
 	}
 
 	
@@ -26,8 +32,8 @@ public class User {
 		return this.username;
 	}
 
-	public String getPassword() {
-		return this.password;
+	public String getPasswordHash() {
+		return this.passwordHash;
 	}
 	
 	public String getPasswordSalt() {
@@ -46,16 +52,24 @@ public class User {
 		return this.securityAnswer;
 	}
 
+	public LocalDateTime getLastLogin() {
+		return this.lastLogin;
+	}
+	
 	public Boolean isHighSecurity() {
-		return this.defultHighSecurity;
+		return this.defaultHighSecurity;
+	}
+	
+	public Boolean isAccountWipeSet() {
+		return this.accountWipeSet;
 	}
 
 	public void setUsername(String username) {
 		this.username = username;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setPasswordHash(String passwordHash) {
+		this.passwordHash = passwordHash;
 	}
 	
 	public void setPasswordSalt(String passwordSalt) {
@@ -73,11 +87,17 @@ public class User {
 	public void setSecurityAnswer(String securityAnswer) {
 		this.securityAnswer = securityAnswer;
 	}
-
-	public void setDefaultHighSecurity(Boolean defultHighSecurity) {
-		this.defultHighSecurity = defultHighSecurity;
+	
+	public void setLastLogin(LocalDateTime lastLogin) {
+		this.lastLogin = lastLogin;
 	}
 
-
+	public void setDefaultHighSecurity(Boolean defaultHighSecurity) {
+		this.defaultHighSecurity = defaultHighSecurity;
+	}
+	
+	public void setAccountWipe(Boolean accountWipeSet) {
+		this.accountWipeSet = accountWipeSet;
+	}
 }
 
