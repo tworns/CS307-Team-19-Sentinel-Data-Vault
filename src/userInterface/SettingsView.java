@@ -1,6 +1,9 @@
 package userInterface;
 import java.awt.EventQueue;
 import javax.swing.*;
+
+import dataManagement.User;
+
 import java.awt.Font;
 import java.awt.event.*;
 
@@ -8,6 +11,7 @@ public class SettingsView {
 
 	public JFrame frmSettings;
 	public String username; // TO SET THIS: create new SettingsView object, then objectname.username = <string>;
+	public User currentUser; //Returns the User object that's been modified by the GUI.
 	/**
 	 * Launch the application.
 	 */
@@ -33,6 +37,10 @@ public class SettingsView {
 		initialize(username);
 	}
 
+	public User getUser() { 
+		
+		return currentUser;
+	}
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -46,6 +54,12 @@ public class SettingsView {
 		
 		//High security toggle & tool tip
 		JCheckBox chckbxHighSecurityLevel = new JCheckBox("High Security Level ");
+		chckbxHighSecurityLevel.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent arg0) {
+				Boolean b = chckbxHighSecurityLevel.isSelected();
+				//TODO Add setting value to User Class
+			}
+		});
 		chckbxHighSecurityLevel.setToolTipText("Toggling this setting will change ALL user encryptions to the strongest possible.");
 		chckbxHighSecurityLevel.setBounds(48, 50, 222, 25);
 		frmSettings.getContentPane().add(chckbxHighSecurityLevel);
@@ -55,11 +69,11 @@ public class SettingsView {
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) { //GETS VALUE FROM COMBO BOX
 				String s  = (String) comboBox.getSelectedItem();
-				System.out.println(s);
+				System.out.println(s); //TODO Add this value to user instead of printing.
 			}
 		});
 		comboBox.setToolTipText("This field sets how often all user data is backed up on disk.");
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Hourly", "Daily", "Weekly", "Monthly", "Annually"}));
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Select Value", "Hourly", "Daily", "Weekly", "Monthly", "Annually"}));
 		
 		comboBox.setBounds(48, 140, 113, 22);
 		frmSettings.getContentPane().add(comboBox);
@@ -79,10 +93,11 @@ public class SettingsView {
 		comboBox_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String size = (String) comboBox_1.getSelectedItem();
+				System.out.println(size); //TODO Add this to user instead of printing.
 			}
 		});
 		comboBox_1.setToolTipText("This field is the maximum size a backup file can reach before the user is warned. ");
-		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"10 MB", "50 MB", "100 MB", "512 MB", "1 GB", "2 GB", "3 GB", "4 GB", "5 GB"}));
+		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Select Value", "10 MB", "50 MB", "100 MB", "512 MB", "1 GB", "2 GB", "3 GB", "4 GB", "5 GB"}));
 		comboBox_1.setBounds(48, 174, 113, 22);
 		frmSettings.getContentPane().add(comboBox_1);
 		
@@ -121,8 +136,14 @@ public class SettingsView {
 		frmSettings.getContentPane().add(btnCancel);
 		
 		JCheckBox chckbxD = new JCheckBox("Turn on account wipe after 5 failed login attemps");
+		chckbxD.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				Boolean wipe = chckbxD.isSelected();
+				//TODO Update User class with this value
+			}
+		});
 		chckbxD.setToolTipText("Toggling this setting will enable wiping of all data after a specific number of failed login attempts.");
-		chckbxD.setBounds(44, 91, 367, 25);
+		chckbxD.setBounds(48, 92, 367, 25);
 		frmSettings.getContentPane().add(chckbxD);
 		
 	}
