@@ -4,6 +4,9 @@ import java.security.SecureRandom;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+/**
+ * Class for generating secure, random salts (and pepper) for password hashing
+ */
 public class SaltGenerator {
 	SecureRandom prng;
 	
