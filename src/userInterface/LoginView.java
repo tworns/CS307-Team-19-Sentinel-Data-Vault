@@ -8,6 +8,7 @@ import java.security.NoSuchAlgorithmException;
 import org.eclipse.wb.swing.FocusTraversalOnArray;
 
 import controllers.DatabaseManager;
+import cryptography.SaltGenerator;
 
 
 
@@ -82,13 +83,20 @@ public class LoginView {
 				username = textField.getText();
 				String password = String.valueOf(passwordField.getPassword()); // getText() is deprecated; changed to getPassword()
 				
-				/**** SHA implementation to validate password ****/
-				String salt = "asdf!@#$%"; // TODO use SecureRandom to generate salt
-				String saltedPassword = salt + password;
-				// Update the digest with the password in byte form
-				MessageDigest md;
+				/** 
+				 * SHA implementation to validate password
+				 * 
+				 * TODO implement hash(hash(password + pepper), salt)	NOTE: pepper must be system-wide
+				 * 		current: hash(password + salt)
+				 * 
+				 */
 				try {
-					md = MessageDigest.getInstance("SHA-256"); // TODO algorithm should depend on user's security level setting
+					// Generate some tasty salt
+					SaltGenerator seasoner = new SaltGenerator();
+					String salt = seasoner.generateSalt(); // TODO actual user salt will be retrieved from database
+					String saltedPassword = salt + password;
+					// Update the digest with the password in byte form
+					MessageDigest md = MessageDigest.getInstance("SHA-256"); // TODO algorithm should depend on user's security level setting
 					md.update(saltedPassword.getBytes());
 					// Hash the digest
 					byte byteData[] = md.digest();

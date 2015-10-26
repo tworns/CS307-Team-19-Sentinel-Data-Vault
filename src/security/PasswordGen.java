@@ -20,6 +20,7 @@ public class PasswordGen {
 	public int specials;
 	public int num;
 	public int upper;
+	
 	public PasswordGen(int length, int specials, int num, int upper) { 
 		this.length = length;
 		this.specials = specials;
