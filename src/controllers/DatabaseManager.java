@@ -27,8 +27,28 @@ public class DatabaseManager {
 		try {
 			Statement stmt = DBconnection.createStatement();
 			// Insert the user account into the "users" table
-		    String sql = "INSERT INTO users (user_email, password_hash, security_question, security_answer, last_login, high_security, account_wipe_set, backup_frequency, max_backup_size) " +
-		          "VALUES (2, 'Becky', 31, 'New York', 30000.00);"; // TODO update the SQL insert statement for adding user
+		    //String sql = "INSERT INTO users (user_email, password_hash, security_question, security_answer, last_login, high_security, account_wipe_set, backup_frequency, max_backup_size) " +
+		    //      "VALUES (2, 'Becky', 31, 'New York', 30000.00);"; // TODO update the SQL insert statement for adding user
+		    
+			// TODO Need to verify SQL syntax for values of each type (i.e. TEXT, NUMERIC, BLOB, etc.)
+			// TODO Find out the proper quotation for data types (i.e. "" or '' etc...)
+			String sql =
+		    		"INSERT INTO users (user_email, password_hash, security_question, security_answer, "
+		    		+ "last_login, high_security, account_wipe_set, backup_frequency, max_backup_size) "
+		    		+ "VALUES ("
+		    			+ newUser.getUsername() + ", "
+		    			+ newUser.getPasswordHash() + ", "
+		    			+ newUser.getPasswordSalt() + ", "
+		    			+ newUser.getDataKey() + ", "
+		    			+ newUser.getSecurityQuestion() + ", "
+		    			+ newUser.getSecurityAnswer() + ", "
+		    			+ newUser.getLastLogin() + ", "
+		    			+ newUser.isHighSecurity() + ", "
+		    			+ newUser.isAccountWipeSet() + ", "
+		    			+ newUser.getBackupFrequency() + ", "
+		    			+ newUser.getMaxBackupSize()
+		    		+ ")"
+		    		;
 		    stmt.executeUpdate(sql);
 		} catch (SQLException e) {
 			System.err.println( e.getClass().getName() + ": " + e.getMessage());
