@@ -25,6 +25,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFormattedTextField;
 import javax.swing.JTextField;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JList;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -40,15 +41,6 @@ public class MainView {
 	private JTextField txtPm;
 	public String username;
 	public User currentUser;
-
-	/**
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 */
-	
 	
 	
 	public static void main(String[] args) {
@@ -257,10 +249,12 @@ public class MainView {
 		JButton btnSignOut = new JButton("Sign out");
 		btnSignOut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				currentUser = null;
-				LoginView frmLog = new LoginView();
-				frmLog.frame.setVisible(true);
-				frmSentinelDataVault.dispose();
+				if(JOptionPane.showConfirmDialog(null, "Are You Sure?", "Sign Out",JOptionPane.YES_NO_OPTION, JOptionPane.DEFAULT_OPTION) == 0) {
+					currentUser = null;
+					LoginView frmLog = new LoginView();
+					frmLog.frame.setVisible(true);
+					frmSentinelDataVault.dispose();
+				}
 				
 			}
 		});
