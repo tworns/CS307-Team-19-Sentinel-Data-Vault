@@ -4,6 +4,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 import java.awt.event.ActionListener;
+import java.security.NoSuchAlgorithmException;
 import java.awt.event.ActionEvent;
 import controllers.DatabaseManager;
 import controllers.VaultController;
@@ -87,9 +88,15 @@ public class SignupView extends JFrame {
 					JOptionPane.showMessageDialog(null,"Please choose one security question!");
 				}
 				else{
-					int result = v.createAccountCheck(password1, password2, username,question, answer);
-					if (result == 4){
-						dispose();
+					int result;
+					try {
+						result = v.createAccountCheck(password1, password2, username,question, answer);
+						if (result == 4){
+							dispose();
+						}
+					} catch (NoSuchAlgorithmException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
 					}
 				}
 				

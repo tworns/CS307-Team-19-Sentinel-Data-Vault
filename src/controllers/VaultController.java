@@ -1,11 +1,16 @@
 package controllers;
 
-import javax.swing.JOptionPane;
+import java.security.NoSuchAlgorithmException;
 
+import javax.swing.JOptionPane;
+import cryptography.SaltGenerator;
+import dataManagement.User;
 
 public class VaultController {
 	
-	public int createAccountCheck(String password1, String password2, String username,String question, String answer){
+	public int createAccountCheck(String password1, String password2, String username,String question, String answer) throws NoSuchAlgorithmException{
+		//ToDo: **********Need to add valid email address check***********
+		
 		//check user enter all fields
 		if (password1.equals("") || password2.equals("")||username.equals("")||answer.equals("")){
 			JOptionPane.showMessageDialog(null,"You need to enter all the fields!");
@@ -38,8 +43,12 @@ public class VaultController {
 		//send user info to database
 		if (password1.equals(password2) && !password1.equals("") && !username.equals("")
 				&&!answer.equals("")){
-			//User newuser = new User(password1, );
-			System.out.println(question);
+			SaltGenerator s = new SaltGenerator();
+			String passwordSalt = s.generateSalt();
+			User newuser =  new User(username, password1, passwordSalt, "default datakey", question, answer);
+			
+			DatabaseManager d = new DatabaseManager();
+			d.addUserToDatabase(newuser);
 			JOptionPane.showMessageDialog(null,"You have successfully created your account!");
 			return 4;
 		}
