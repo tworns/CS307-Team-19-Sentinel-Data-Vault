@@ -11,11 +11,11 @@ public class SingleFieldEntry extends DataEntry {
 		this.fieldData = fieldData;
 	}
 
-	public String getEntryName() {
+	public String getFieldData() {
 		return this.fieldData;
 	}
 
-	public void setEntryName(String entryName) {
-		this.fieldData = entryName;
+	public void setFieldData(String fieldData) {
+		this.fieldData = fieldData;
 	}
 }

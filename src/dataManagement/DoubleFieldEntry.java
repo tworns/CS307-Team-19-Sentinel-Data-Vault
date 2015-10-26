@@ -13,19 +13,19 @@ public class DoubleFieldEntry extends DataEntry {
 		this.fieldData2 = fieldData2;
 	}
 
-	public String getEntryName1() {
+	public String getFieldData1() {
 		return this.fieldData1;
 	}
 
-	public String getEntryName2() {
+	public String getFieldData2() {
 		return this.fieldData2;
 	}
 
-	public void setEntryName1(String entryName1) {
-		this.fieldData1 = entryName1;
+	public void setFieldData1(String fieldData1) {
+		this.fieldData1 = fieldData1;
 	}
 
-	public void setEntryName2(String entryName2) {
-		this.fieldData2 = entryName2;
+	public void setFieldData2(String fieldData2) {
+		this.fieldData2 = fieldData2;
 	}
 }

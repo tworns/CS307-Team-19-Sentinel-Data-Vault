@@ -45,6 +45,10 @@ public abstract class DataEntry {
 	public Boolean isHighSecurity() {
 		return this.highSecurity;
 	}
+	
+	public void setEntryName(String entryName) {
+		this.entryName = entryName;
+	}
 
 	public void setEntryType(String entryType) {
 		this.entryType = entryType;

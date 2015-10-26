@@ -12,11 +12,11 @@ public class MultiFieldEntry extends DataEntry {
 		this.fieldDataList = fieldDataList;
 	}
 
-	public List<String> getEntryList() {
+	public List<String> getFieldDataList() {
 		return this.fieldDataList;
 	}
 
-	public void setEntryList(List<String> entryList) {
-		this.fieldDataList = entryList;
+	public void setFieldDataList(List<String> fieldDataList) {
+		this.fieldDataList = fieldDataList;
 	}
 }
