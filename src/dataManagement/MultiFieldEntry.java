@@ -6,7 +6,7 @@ public class MultiFieldEntry extends DataEntry {
 
 	private List<String> fieldDataList;
 
-	public MultiFieldEntry(String entryName, String entryType, String encryptionKey, String owner, Boolean highSecurity,
+	public MultiFieldEntry(String entryName, String entryType, String encryptionKey, String owner, int highSecurity,
 			LocalDateTime lastModified, List<String> fieldDataList) {
 		super(entryName, entryType, encryptionKey, owner, highSecurity, lastModified);
 		this.fieldDataList = fieldDataList;

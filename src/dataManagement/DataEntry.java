@@ -9,10 +9,10 @@ public abstract class DataEntry {
 	private String encryptionKey;
 	private String owner;
 	private List<String> validUsers;
-	private Boolean highSecurity;
+	private int highSecurity;
 	private LocalDateTime lastModified;
 
-	public DataEntry(String entryName, String entryType, String encryptionKey, String owner, Boolean highSecurity,
+	public DataEntry(String entryName, String entryType, String encryptionKey, String owner, int highSecurity,
 			LocalDateTime lastModified) {
 		this.entryName = entryName;
 		this.entryType = entryType;
@@ -42,7 +42,7 @@ public abstract class DataEntry {
 		return this.lastModified;
 	}
 
-	public Boolean isHighSecurity() {
+	public int isHighSecurity() {
 		return this.highSecurity;
 	}
 	
@@ -60,6 +60,10 @@ public abstract class DataEntry {
 
 	public void setOwner(String owner) {
 		this.owner = owner;
+	}
+	
+	public void setHighSecurity(int highSecurity) {
+		this.highSecurity = highSecurity;
 	}
 
 	public void addValidUser(String user) {

@@ -4,8 +4,8 @@ import java.time.LocalDateTime;
 
 public class User {
 	
-	private static final Boolean DEFAULT_HIGH_SECURITY = false;	// By default, use normal security
-	private static final Boolean DEFAULT_ACCOUNT_WIPE = false;	// By default, account wipe turned OFF
+	private static final int DEFAULT_HIGH_SECURITY = 0;	// By default, use normal security (0 = false)
+	private static final int DEFAULT_ACCOUNT_WIPE = 0;	// By default, account wipe turned OFF (0 = false)
 	private static final String DEFAULT_BACKUP_FREQ = "Weekly";	// By default, backup frequency is weekly
 	private static final int DEFAULT_MAX_BACKUP_SIZE = 1000;	// In megabytes; default is 1 GB
 
@@ -16,8 +16,8 @@ public class User {
 	private String securityQuestion;
 	private String securityAnswer;
 	private LocalDateTime lastLogin;
-	private Boolean defaultHighSecurity;
-	private Boolean accountWipeSet;
+	private int defaultHighSecurity;
+	private int accountWipeSet;
 	private String backupFrequency;
 	private int maxBackupSize;
 
@@ -64,11 +64,11 @@ public class User {
 		return this.lastLogin;
 	}
 	
-	public Boolean isHighSecurity() {
+	public int isHighSecurity() {
 		return this.defaultHighSecurity;
 	}
 	
-	public Boolean isAccountWipeSet() {
+	public int isAccountWipeSet() {
 		return this.accountWipeSet;
 	}
 	
@@ -108,11 +108,11 @@ public class User {
 		this.lastLogin = lastLogin;
 	}
 
-	public void setDefaultHighSecurity(Boolean defaultHighSecurity) {
+	public void setDefaultHighSecurity(int defaultHighSecurity) {
 		this.defaultHighSecurity = defaultHighSecurity;
 	}
 	
-	public void setAccountWipe(Boolean accountWipeSet) {
+	public void setAccountWipe(int accountWipeSet) {
 		this.accountWipeSet = accountWipeSet;
 	}
 	

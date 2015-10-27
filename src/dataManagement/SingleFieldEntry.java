@@ -5,7 +5,7 @@ public class SingleFieldEntry extends DataEntry {
 
 	private String fieldData;
 
-	public SingleFieldEntry(String entryName, String entryType, String fieldData, String encryptionKey, String owner, Boolean highSecurity,
+	public SingleFieldEntry(String entryName, String entryType, String fieldData, String encryptionKey, String owner, int highSecurity,
 			LocalDateTime lastModified) {
 		super(entryName, entryType, encryptionKey, owner, highSecurity, lastModified);
 		this.fieldData = fieldData;

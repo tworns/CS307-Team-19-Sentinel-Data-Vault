@@ -6,7 +6,7 @@ public class DoubleFieldEntry extends DataEntry {
 	private String fieldData1;
 	private String fieldData2;
 
-	public DoubleFieldEntry(String entryName, String entryType, String encryptionKey, String owner, Boolean highSecurity,
+	public DoubleFieldEntry(String entryName, String entryType, String encryptionKey, String owner, int highSecurity,
 			LocalDateTime lastModified, String fieldData1, String fieldData2) {
 		super(entryName, entryType, encryptionKey, owner, highSecurity, lastModified);
 		this.fieldData1 = fieldData1;
