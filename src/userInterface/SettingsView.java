@@ -111,7 +111,7 @@ public class SettingsView {
 		frmSettings.getContentPane().add(lblFileSizeLimit);
 		
 		//Will eventually contain an action listener that saves preferences to User
-		JButton btnOk = new JButton("Ok");
+		JButton btnOk = new JButton("Save");
 		btnOk.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				if(e.getActionCommand().equalsIgnoreCase("Ok")) {
@@ -157,7 +157,15 @@ public class SettingsView {
 		btnChangePassword.setBounds(48, 220, 139, 25);
 		frmSettings.getContentPane().add(btnChangePassword);
 		
-		JButton btnDeleteAccount = new JButton("Delete Account");
+		JButton btnDeleteAccount = new JButton("Delete Account"); //Delete Account Button
+		btnDeleteAccount.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(JOptionPane.showConfirmDialog(null, "Are You Sure?", "Sign Out",JOptionPane.YES_NO_OPTION, JOptionPane.DEFAULT_OPTION) == 0) {
+					//This is for the user answering yes.
+					//TODO Actually delete stuff, close windows, etc.
+				}
+			}
+		});
 		btnDeleteAccount.setBounds(219, 220, 129, 25);
 		frmSettings.getContentPane().add(btnDeleteAccount);
 		
