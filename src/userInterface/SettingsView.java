@@ -78,12 +78,12 @@ public class SettingsView {
 		comboBox.setToolTipText("This field sets how often all user data is backed up on disk.");
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Select Value", "Hourly", "Daily", "Weekly", "Monthly", "Annually"}));
 		
-		comboBox.setBounds(48, 140, 113, 22);
+		comboBox.setBounds(58, 126, 113, 22);
 		frmSettings.getContentPane().add(comboBox);
 		
 		JLabel lblBackupFrequency = new JLabel("Backup Frequency");
 		lblBackupFrequency.setToolTipText("This field sets how often all user data is backed up on disk.");
-		lblBackupFrequency.setBounds(173, 140, 113, 16);
+		lblBackupFrequency.setBounds(183, 126, 113, 16);
 		frmSettings.getContentPane().add(lblBackupFrequency);
 		
 		JLabel lblUserSettings = new JLabel("User Settings");
@@ -101,11 +101,11 @@ public class SettingsView {
 		});
 		comboBox_1.setToolTipText("This field is the maximum size a backup file can reach before the user is warned. ");
 		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Select Value", "10 MB", "50 MB", "100 MB", "512 MB", "1 GB", "2 GB", "3 GB", "4 GB", "5 GB"}));
-		comboBox_1.setBounds(48, 174, 113, 22);
+		comboBox_1.setBounds(58, 160, 113, 22);
 		frmSettings.getContentPane().add(comboBox_1);
 		
 		JLabel lblFileSizeLimit = new JLabel("File Size Limit Warning ");
-		lblFileSizeLimit.setBounds(173, 176, 190, 16);
+		lblFileSizeLimit.setBounds(183, 163, 190, 16);
 		lblFileSizeLimit.setToolTipText("This field is the maximum size a backup file can reach before the user is warned. ");
 
 
@@ -148,6 +148,15 @@ public class SettingsView {
 		chckbxD.setToolTipText("Toggling this setting will enable wiping of all data after a specific number of failed login attempts.");
 		chckbxD.setBounds(48, 92, 367, 25);
 		frmSettings.getContentPane().add(chckbxD);
+		
+		JButton btnChangePassword = new JButton("Change Password");
+		btnChangePassword.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				PasswordChangeView k = new PasswordChangeView(currentUser);
+			}
+		});
+		btnChangePassword.setBounds(157, 195, 139, 25);
+		frmSettings.getContentPane().add(btnChangePassword);
 		
 	}
 }
