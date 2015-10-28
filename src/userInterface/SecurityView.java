@@ -180,7 +180,7 @@ public class SecurityView {
 						 output += " strong. \n";
 					}
 					//checks if password is less than length 9, only contains capital, lowercase, numbers, or special characters, and checks for repeated characters.
-					else if(password.length() < 9 || ((password.matches("([a-z]+)") == true || password.matches("([A-Z]+)") == true || password.matches("([0-9]+)") == true || password.matches("([^a-zA-Z0-9]+)")) || password.matches("([^a-zA-Z0-9 ])\\1+")) == true || password.matches("([A-Za-z0-9])\\1+") == true) { 
+					else if(password.length() < 9 || ((password.matches("([a-z]+)") == true || password.matches("([A-Z]+)") == true || password.matches("([0-9]+)") == true || password.matches("([^a-zA-Z0-9]+)")) ==true || password.matches("([^a-zA-Z0-9 ])\\1+")) == true || password.matches("([A-Za-z0-9])\\1+") == true) { 
 						 output += " weak. \n";
 					}
 					else { 
