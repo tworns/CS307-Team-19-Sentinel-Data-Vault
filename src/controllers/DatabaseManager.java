@@ -29,8 +29,21 @@ public class DatabaseManager {
 			
 			/*
 			 *  TODO add functionality to check that user does not already exist!
+			 *  1. Execute a SELECT statement
+			 *  2. Retrieve result in a ResultSet
+			 *  3. If ResultSet is empty, the user does not exist; proceed with creation
+			 *     Else, user already exists, return a failure value
 			 *  – what should the function return if this is the case???
+			 *  
+			 *  select count(*) from users where user_email = 'newUser.getUsername()';
 			 */
+			
+			ResultSet results = stmt.executeQuery("SELECT count(*) FROM users WHERE user_email = "
+					+ "'" + newUser.getUsername() + "';");
+			
+			if(results.getInt(1) != 0) {
+				// user exists, return failure value
+			}
 			
 			// Insert the user account into the "users" table
 		    //String sql = "INSERT INTO users (user_email, password_hash, security_question, security_answer, last_login, high_security, account_wipe_set, backup_frequency, max_backup_size) " +
@@ -67,6 +80,9 @@ public class DatabaseManager {
 		} catch (SQLException e) {
 			System.err.println( e.getClass().getName() + ": " + e.getMessage());
 			e.printStackTrace();
+			
+			// TODO return a failure value
+			
 		}
 	}
 	
