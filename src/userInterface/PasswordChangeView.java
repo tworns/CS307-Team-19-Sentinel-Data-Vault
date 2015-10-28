@@ -125,7 +125,11 @@ public class PasswordChangeView {
 		JButton btnNewButton = new JButton("Change");//Confirm (change) button
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(newPass1.equals(newPass2) && oldPass.equals(currentUser.getPasswordHash())){ //TODO make sure oldPass is hashed
+				if(newPass1.equals(newPass2) && oldPass.equals(currentUser.getPasswordHash()) && answer.equals(currentUser.getSecurityAnswer())){ //TODO make sure oldPass is hashed
+					currentUser.setPasswordHash(newPass1);
+					frmChangePassword.dispose();
+				}
+				else{ 
 					
 				}
 			}
