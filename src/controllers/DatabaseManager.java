@@ -34,24 +34,23 @@ public class DatabaseManager {
 			
 			// Insert the user account into the "users" table
 		    //String sql = "INSERT INTO users (user_email, password_hash, security_question, security_answer, last_login, high_security, account_wipe_set, backup_frequency, max_backup_size) " +
-		    //      "VALUES (2, 'Becky', 31, 'New York', 30000.00);"; // TODO update the SQL insert statement for adding user
+		    //      "VALUES (2, 'Becky', 31, 'New York', 30000.00);";
 		    
 			// TODO Need to verify SQL syntax for values of each type (i.e. TEXT, NUMERIC, BLOB, etc.)
-			// TODO Find out the proper quotation for data types (i.e. "" or '' etc...)
 			String sql =
 		    		"INSERT INTO users (user_email, password_hash, security_question, security_answer, "
 		    		+ "last_login, high_security, account_wipe_set, backup_frequency, max_backup_size) "
 		    		+ "VALUES ("
-		    			+ newUser.getUsername() + ", "
-		    			+ newUser.getPasswordHash() + ", "
-		    			+ newUser.getPasswordSalt() + ", "
-		    			+ newUser.getDataKey() + ", "
-		    			+ newUser.getSecurityQuestion() + ", "
-		    			+ newUser.getSecurityAnswer() + ", "
-		    			+ newUser.getLastLogin() + ", "
+		    			+ "'" + newUser.getUsername() + "', "
+		    			+ "'" + newUser.getPasswordHash() + "', "
+		    			+ "'" + newUser.getPasswordSalt() + "', "
+		    			+ "'" + newUser.getDataKey() + "', "
+		    			+ "'" + newUser.getSecurityQuestion() + "', "
+		    			+ "'" + newUser.getSecurityAnswer() + "', "
+		    			+ "'" + newUser.getLastLogin().toString() + "', "
 		    			+ newUser.isHighSecurity() + ", "
 		    			+ newUser.isAccountWipeSet() + ", "
-		    			+ newUser.getBackupFrequency() + ", "
+		    			+ "'" + newUser.getBackupFrequency() + "', "
 		    			+ newUser.getMaxBackupSize()
 		    		+ ");"
 		    		;
@@ -62,6 +61,8 @@ public class DatabaseManager {
 		    // Disconnect from database
 		    stmt.close();
 		    DBconnection.close();
+		    
+		    // TODO return a success value
 		    
 		} catch (SQLException e) {
 			System.err.println( e.getClass().getName() + ": " + e.getMessage());
