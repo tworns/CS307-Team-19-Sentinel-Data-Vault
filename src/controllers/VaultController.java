@@ -5,8 +5,24 @@ import java.time.LocalDateTime;
 import javax.swing.JOptionPane;
 import cryptography.SaltGenerator;
 import dataManagement.User;
+import javax.mail.*;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
 
 public class VaultController {
+	
+	public static boolean isValidEmailAddress(String email) {
+		   boolean result = true;
+		   try {
+		      InternetAddress emailAddr = new InternetAddress(email);
+		      emailAddr.validate();
+		   } catch (AddressException ex) {
+		      result = false;
+		   }
+		   return result;
+	}
+	
+	
 	
 	public int createAccountCheck(String password1, String password2, String username,String question, String answer) throws NoSuchAlgorithmException{
 		//ToDo: **********Need to add valid email address check***********
@@ -18,12 +34,19 @@ public class VaultController {
 			password2 = "";
 			return 1;
 		}
+		
+		//check is valid email address
+		if(isValidEmailAddress(username)== false){
+			JOptionPane.showMessageDialog(null,"You need to enter a valid email address!");
+			return 2;
+		}
+		
 		//check password consistency
 		if(!(password1.equals(password2))){
 			JOptionPane.showMessageDialog(null,"Your password doesn't match");
 			password1 = "";
 			password2 = "";
-			return 2;
+			return 7;
 		}
 		
 		//minimum password length check
@@ -35,6 +58,7 @@ public class VaultController {
 			return 3;
 		}
 		
+		//security question check
 		if(question.equals("")||question.equals("Please choose a security question below")){
 			JOptionPane.showMessageDialog(null,"Please choose one security question!");
 			return 6;
@@ -47,9 +71,13 @@ public class VaultController {
 			String passwordSalt = s.generateSalt();
 			
 			LocalDateTime createdtime = LocalDateTime.now();
+			
+			//TO DO: ********default data key is a place holder*******
 			User newuser =  new User(username, password1, passwordSalt, "default datakey", question, answer, createdtime);
 
 			DatabaseManager d = new DatabaseManager();
+			
+			//TO DO: *******This method will have a return value,need to change accordingly*******
 			d.addUserToDatabase(newuser);
 			JOptionPane.showMessageDialog(null,"You have successfully created your account!");
 			return 4;

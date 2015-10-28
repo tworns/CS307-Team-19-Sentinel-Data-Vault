@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import controllers.DatabaseManager;
 import controllers.VaultController;
 import cryptography.SaltGenerator;
+import javax.mail.*;
 
 public class SignupView extends JFrame {
 
