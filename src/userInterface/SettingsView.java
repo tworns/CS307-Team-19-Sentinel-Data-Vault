@@ -10,8 +10,7 @@ import java.awt.event.*;
 
 public class SettingsView {
 
-	public JFrame frmSettings;
-	public String username; // TO SET THIS: create new SettingsView object, then objectname.username = <string>;
+	public JFrame frmSettings; // TO SET THIS: create new SettingsView object, then objectname.username = <string>;
 	public User currentUser; //Returns the User object that's been modified by the GUI.
 	
 	/**
@@ -21,7 +20,7 @@ public class SettingsView {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					String s = "username";
+					User s = new User(null, null, null, null, null, null, null);
 					SettingsView window = new SettingsView(s);
 					window.frmSettings.setVisible(true);
 				} catch (Exception e) {
@@ -34,9 +33,9 @@ public class SettingsView {
 	/**
 	 * Create the application.
 	 */
-	public SettingsView(String username) {
-		this.username = username;
-		initialize(username);
+	public SettingsView(User user) {
+		this.currentUser = user;
+		initialize(user);
 	}
 
 	public User getUser() { 
@@ -47,7 +46,7 @@ public class SettingsView {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize(String user) {
+	private void initialize(User user) {
 		frmSettings = new JFrame();
 		frmSettings.setResizable(false);
 		frmSettings.setTitle("Settings");
