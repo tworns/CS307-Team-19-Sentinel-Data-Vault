@@ -123,6 +123,13 @@ public class PasswordChangeView {
 		textField_3.setColumns(10);
 		
 		JButton btnNewButton = new JButton("Change");//Confirm (change) button
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(newPass1.equals(newPass2) && oldPass.equals(currentUser.getPasswordHash())){ //TODO make sure oldPass is hashed
+					
+				}
+			}
+		});
 		btnNewButton.setBounds(54, 220, 97, 25);
 		frmChangePassword.getContentPane().add(btnNewButton);
 		
