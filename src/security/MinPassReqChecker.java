@@ -1,8 +1,8 @@
 package security;
 
-public class PasswordChecker {
+public class MinPassReqChecker {
 
-	public PasswordChecker(String password) { 
+	public MinPassReqChecker(String password) { 
 	}
 
 public int minStandard(String password){ 
