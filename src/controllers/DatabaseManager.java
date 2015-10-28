@@ -1,9 +1,7 @@
 package controllers;
 
 import dataManagement.User;
-import java.security.NoSuchAlgorithmException;
 import java.sql.*;
-import cryptography.PasswordHasher;
 
 public class DatabaseManager {
 	
@@ -77,23 +75,6 @@ public class DatabaseManager {
 			
 			// return a failure value
 			return -1;
-		}
-	}
-	
-	/*
-	 *  TODO Should this method be moved to VaultController???
-	 */
-	public Boolean isValidPassword(User user, String password) throws NoSuchAlgorithmException {
-		// Hash the given password
-		PasswordHasher ph = new PasswordHasher();
-		String givenHash = ph.hashPassword(password, user.getPasswordSalt());
-		
-		// Compare user's stored password hash with given password hash
-		if (user.getPasswordHash().equals(givenHash)) {
-			return true;
-		}
-		else {
-			return false;
 		}
 	}
 	
