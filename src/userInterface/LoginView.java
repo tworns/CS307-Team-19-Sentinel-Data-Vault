@@ -86,7 +86,7 @@ public class LoginView {
 				/** 
 				 * SHA implementation to validate password
 				 * 
-				 * TODO implement hash(hash(password + pepper), salt)	NOTE: pepper must be system-wide
+				 * TODO implement hash(hash(password + pepper) + salt)	NOTE: pepper must be system-wide
 				 * 		current: hash(password + salt)
 				 * 
 				 */
