@@ -66,14 +66,14 @@ public class DatabaseManager {
 		    stmt.close();
 		    DBconnection.close();
 		    
-		    // TODO return a success value
+		    // return a success value
 		    return 1;
 		    
 		} catch (SQLException e) {
 			System.err.println( e.getClass().getName() + ": " + e.getMessage());
 			e.printStackTrace();
 			
-			// TODO return a failure value
+			// return a failure value
 			return -1;
 		}
 	}
