@@ -17,7 +17,7 @@ public class SignupView extends JFrame {
 	private JPasswordField passwordField1;
 	private JPasswordField passwordField2;
 	private JTextField answerField;
-	private String question;
+	private String question = "";
 
 	/**
 	 * Launch the application.
@@ -82,51 +82,20 @@ public class SignupView extends JFrame {
 				String password2 = String.valueOf(passwordField2.getPassword());
 				String answer = answerField.getText();
 				VaultController v = new VaultController();
-				//checker will return 4 if succeeded
-				
-				if(question == (null)){
-					JOptionPane.showMessageDialog(null,"Please choose one security question!");
-				}
-				else{
-					int result;
-					try {
-						result = v.createAccountCheck(password1, password2, username,question, answer);
-						if (result == 4){
+				//checker will return 4 if succeeded, then dispose signup frame
+
+				int result;
+				try {
+					result = v.createAccountCheck(password1, password2, username,question, answer);
+					if (result == 4){
 							dispose();
-						}
-					} catch (NoSuchAlgorithmException e1) {
+					}
+				} catch (NoSuchAlgorithmException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
-					}
 				}
 				
-				/*//check user enter all fields
-				if (password1.equals("") || password2.equals("")||username.equals("")||answer.equals("")){
-					JOptionPane.showMessageDialog(null,"You need to enter all the fields!");
-					password1 = "";
-					password2 = "";
-				}
-				//check password consistency
-				if(!(password1.equals(password2))){
-					JOptionPane.showMessageDialog(null,"Your password doesn't match");
-					password1 = "";
-					password2 = "";
-				}
 				
-				//minimum password length check
-				if(((password1.length() < 8) && (password1.length()>0)) || 
-						((password2.length() < 8) && (password2.length()>0))){
-					JOptionPane.showMessageDialog(null,"Your password needs to contain at least 8 characters!");
-					password1 = "";
-					password2 = "";
-				}
-				
-				//send user info to database
-				if (password1.equals(password2) && !password1.equals("") && !username.equals("")
-						&&!answer.equals("")){
-					JOptionPane.showMessageDialog(null,"You have successfully created your account!");
-					dispose();
-				}*/
 			}
 		});
 		btnNewButton.setBounds(169, 208, 129, 27);

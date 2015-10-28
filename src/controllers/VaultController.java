@@ -35,7 +35,7 @@ public class VaultController {
 			return 3;
 		}
 		
-		if(question.equals(null)||question.equals("")||question.equals("Please choose a security question below")){
+		if(question.equals("")||question.equals("Please choose a security question below")){
 			JOptionPane.showMessageDialog(null,"Please choose one security question!");
 			return 6;
 		}
