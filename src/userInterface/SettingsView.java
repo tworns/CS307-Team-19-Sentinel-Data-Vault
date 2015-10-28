@@ -35,7 +35,7 @@ public class SettingsView {
 	 */
 	public SettingsView(User user) {
 		this.currentUser = user;
-		initialize(user);
+		initialize();
 	}
 
 	public User getUser() { 
@@ -46,7 +46,7 @@ public class SettingsView {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize(User user) {
+	private void initialize() {
 		frmSettings = new JFrame();
 		frmSettings.setResizable(false);
 		frmSettings.setTitle("Settings");
