@@ -80,6 +80,9 @@ public class DatabaseManager {
 		}
 	}
 	
+	/*
+	 *  TODO Should this method be moved to VaultController???
+	 */
 	public Boolean isValidPassword(User user, String password) throws NoSuchAlgorithmException {
 		// Hash the given password
 		PasswordHasher ph = new PasswordHasher();
