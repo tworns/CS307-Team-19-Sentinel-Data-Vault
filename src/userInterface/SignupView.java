@@ -112,7 +112,7 @@ public class SignupView extends JFrame {
 				question  = (String) comboBox.getSelectedItem();
 			}
 		});
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Please choose a security question below", "What is your mother's name?", "What is your first pet's name?", "Where is your favorite city?"}));
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Please choose a security question below", "What is the maiden name of your mother?", "What is name of your pet", "Where is your favorite city?"}));
 		comboBox.setBounds(169, 140, 253, 27);
 		contentPane.add(comboBox);
 		
