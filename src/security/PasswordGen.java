@@ -2,20 +2,26 @@ package security;
 
 import java.util.*;
 
+import org.passay.CharacterRule;
+import org.passay.EnglishCharacterData;
+import org.passay.PasswordGenerator;
+
 public class PasswordGen {
 	
 	/*
 	 * APIs
 	 * PasswordGenerator API Class
 	 * 		http://javadoc.iaik.tugraz.at/iaik_jce/current/iaik/utils/PasswordGenerator.html
-	 * 
-	 * 
 	 * */
 	
 	public int length;
 	public int specials;
 	public int num;
 	public int upper;
+	
+	public PasswordGen() {
+		
+	}
 	
 	public PasswordGen(int length, int specials, int num, int upper) { 
 		this.length = length;
@@ -56,6 +62,49 @@ public class PasswordGen {
 		}
 
 		return s.toString();
+	}
+	
+	public String generatePassword(Boolean containsUpper, Boolean containsLower, Boolean containsDigit, Boolean containsSpecial, int length) {
+//		CharacterRule upperRule;
+//		CharacterRule lowerRule;
+//		CharacterRule digitRule;
+//		CharacterRule specialRule;
+		
+		List<CharacterRule> passRules = Arrays.asList();
+		
+		// TODO Implement method of adding rules to list if they are true
+		
+		if (containsUpper) {
+			CharacterRule upperRule = new CharacterRule(EnglishCharacterData.UpperCase, 1);
+			//passRules.add(new CharacterRule(EnglishCharacterData.UpperCase, 1));
+			passRules.add(upperRule);
+		}
+		if (containsLower) {
+			CharacterRule lowerRule = new CharacterRule(EnglishCharacterData.LowerCase, 1);
+			//passRules.add(new CharacterRule(EnglishCharacterData.LowerCase, 1));
+			passRules.add(lowerRule);
+		}
+		if (containsDigit) {
+			CharacterRule digitRule = new CharacterRule(EnglishCharacterData.Digit, 1);
+			//passRules.add(new CharacterRule(EnglishCharacterData.Digit, 1));
+			passRules.add(digitRule);
+		}
+		if (containsSpecial) {
+			CharacterRule specialRule = new CharacterRule(EnglishCharacterData.Special, 1);
+			//passRules.add(new CharacterRule(EnglishCharacterData.Special, 1));
+			passRules.add(specialRule);
+		}
+		
+		//List<CharacterRule> passRules = Arrays.asList(upperRule, lowerRule, digitRule, specialRule);
+		PasswordGenerator generator = new PasswordGenerator();
+		
+		return generator.generatePassword(length, passRules);
+	}
+	
+	public static void main(String args[]) {
+		PasswordGen pg = new PasswordGen();
+		String password = pg.generatePassword(true, true, true, true, 20);
+		System.out.println(password);
 	}
 }
 

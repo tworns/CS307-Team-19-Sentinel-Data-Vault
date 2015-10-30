@@ -1,10 +1,10 @@
 package userInterface;
+
 import java.awt.EventQueue;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-
 import security.PasswordGen;
 
 
@@ -16,6 +16,7 @@ public class SecurityView {
 	private JPasswordField passwordField;
 	public Object frmSentinelDataVault;
 	private int spinLength;
+	
 	/*
 	 * Launch the application.
 	 */
@@ -30,9 +31,6 @@ public class SecurityView {
 				}
 			}
 		});
-		
-		
-		
 	}
 
 	/**
@@ -53,6 +51,7 @@ public class SecurityView {
 			return newInstance;
 		}	
 	}
+	
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -180,7 +179,7 @@ public class SecurityView {
 						 output += " strong. \n";
 					}
 					//checks if password is less than length 9, only contains capital, lowercase, numbers, or special characters, and checks for repeated characters.
-					else if(password.length() < 9 || ((password.matches("([a-z]+)") == true || password.matches("([A-Z]+)") == true || password.matches("([0-9]+)") == true || password.matches("([^a-zA-Z0-9]+)")) || password.matches("([^a-zA-Z0-9 ])\\1+")) == true || password.matches("([A-Za-z0-9])\\1+") == true) { 
+					else if(password.length() < 9 || ((password.matches("([a-z]+)") == true || password.matches("([A-Z]+)") == true || password.matches("([0-9]+)") == true || password.matches("([^a-zA-Z0-9]+)")) ==true || password.matches("([^a-zA-Z0-9 ])\\1+")) == true || password.matches("([A-Za-z0-9])\\1+") == true) { 
 						 output += " weak. \n";
 					}
 					else { 

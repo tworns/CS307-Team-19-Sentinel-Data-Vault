@@ -10,8 +10,7 @@ import java.awt.event.*;
 
 public class SettingsView {
 
-	public JFrame frmSettings;
-	public String username; // TO SET THIS: create new SettingsView object, then objectname.username = <string>;
+	public JFrame frmSettings; // TO SET THIS: create new SettingsView object, then objectname.username = <string>;
 	public User currentUser; //Returns the User object that's been modified by the GUI.
 	
 	/**
@@ -21,7 +20,7 @@ public class SettingsView {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					String s = "username";
+					User s = new User(null, null, null, null, null, null, null);
 					SettingsView window = new SettingsView(s);
 					window.frmSettings.setVisible(true);
 				} catch (Exception e) {
@@ -34,9 +33,9 @@ public class SettingsView {
 	/**
 	 * Create the application.
 	 */
-	public SettingsView(String username) {
-		this.username = username;
-		initialize(username);
+	public SettingsView(User user) {
+		this.currentUser = user;
+		initialize();
 	}
 
 	public User getUser() { 
@@ -47,11 +46,11 @@ public class SettingsView {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize(String user) {
+	private void initialize() {
 		frmSettings = new JFrame();
 		frmSettings.setResizable(false);
 		frmSettings.setTitle("Settings");
-		frmSettings.setBounds(100, 100, 450, 300);
+		frmSettings.setBounds(100, 100, 456, 360);
 		frmSettings.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frmSettings.getContentPane().setLayout(null);
 		
@@ -78,12 +77,12 @@ public class SettingsView {
 		comboBox.setToolTipText("This field sets how often all user data is backed up on disk.");
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Select Value", "Hourly", "Daily", "Weekly", "Monthly", "Annually"}));
 		
-		comboBox.setBounds(48, 140, 113, 22);
+		comboBox.setBounds(58, 126, 113, 22);
 		frmSettings.getContentPane().add(comboBox);
 		
 		JLabel lblBackupFrequency = new JLabel("Backup Frequency");
 		lblBackupFrequency.setToolTipText("This field sets how often all user data is backed up on disk.");
-		lblBackupFrequency.setBounds(173, 140, 113, 16);
+		lblBackupFrequency.setBounds(183, 126, 113, 16);
 		frmSettings.getContentPane().add(lblBackupFrequency);
 		
 		JLabel lblUserSettings = new JLabel("User Settings");
@@ -101,18 +100,18 @@ public class SettingsView {
 		});
 		comboBox_1.setToolTipText("This field is the maximum size a backup file can reach before the user is warned. ");
 		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Select Value", "10 MB", "50 MB", "100 MB", "512 MB", "1 GB", "2 GB", "3 GB", "4 GB", "5 GB"}));
-		comboBox_1.setBounds(48, 174, 113, 22);
+		comboBox_1.setBounds(58, 160, 113, 22);
 		frmSettings.getContentPane().add(comboBox_1);
 		
 		JLabel lblFileSizeLimit = new JLabel("File Size Limit Warning ");
-		lblFileSizeLimit.setBounds(173, 176, 190, 16);
+		lblFileSizeLimit.setBounds(183, 163, 190, 16);
 		lblFileSizeLimit.setToolTipText("This field is the maximum size a backup file can reach before the user is warned. ");
 
 
 		frmSettings.getContentPane().add(lblFileSizeLimit);
 		
 		//Will eventually contain an action listener that saves preferences to User
-		JButton btnOk = new JButton("Ok");
+		JButton btnOk = new JButton("Save");
 		btnOk.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				if(e.getActionCommand().equalsIgnoreCase("Ok")) {
@@ -123,7 +122,7 @@ public class SettingsView {
 			
 		
 		});
-		btnOk.setBounds(129, 233, 97, 25);
+		btnOk.setBounds(48, 276, 97, 25);
 		frmSettings.getContentPane().add(btnOk);
 		
 		//closes window
@@ -135,7 +134,7 @@ public class SettingsView {
 				}
 			}
 		});
-		btnCancel.setBounds(250, 233, 97, 25);
+		btnCancel.setBounds(219, 276, 97, 25);
 		frmSettings.getContentPane().add(btnCancel);
 		
 		JCheckBox chckbxD = new JCheckBox("Turn on account wipe after 5 failed login attemps");
@@ -148,6 +147,27 @@ public class SettingsView {
 		chckbxD.setToolTipText("Toggling this setting will enable wiping of all data after a specific number of failed login attempts.");
 		chckbxD.setBounds(48, 92, 367, 25);
 		frmSettings.getContentPane().add(chckbxD);
+		
+		JButton btnChangePassword = new JButton("Change Password");
+		btnChangePassword.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				PasswordChangeView k = new PasswordChangeView(currentUser);
+			}
+		});
+		btnChangePassword.setBounds(48, 220, 139, 25);
+		frmSettings.getContentPane().add(btnChangePassword);
+		
+		JButton btnDeleteAccount = new JButton("Delete Account"); //Delete Account Button
+		btnDeleteAccount.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(JOptionPane.showConfirmDialog(null, "Are You Sure?", "Sign Out",JOptionPane.YES_NO_OPTION, JOptionPane.DEFAULT_OPTION) == 0) {
+					//This is for the user answering yes.
+					//TODO Actually delete stuff, close windows, etc.
+				}
+			}
+		});
+		btnDeleteAccount.setBounds(219, 220, 129, 25);
+		frmSettings.getContentPane().add(btnDeleteAccount);
 		
 	}
 }

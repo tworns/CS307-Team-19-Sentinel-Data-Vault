@@ -1,4 +1,5 @@
 package userInterface;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*; 
@@ -6,11 +7,8 @@ import sun.security.provider.MD2;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import org.eclipse.wb.swing.FocusTraversalOnArray;
-
 import controllers.DatabaseManager;
 import cryptography.SaltGenerator;
-
-
 
 public class LoginView {
 
@@ -24,9 +22,6 @@ public class LoginView {
 
 	/**
 	 * Launch the application.
-	 *  
-	 *   
-	 *    
 	 *    
 	 * APIs
 	 *    
@@ -83,12 +78,8 @@ public class LoginView {
 				username = textField.getText();
 				String password = String.valueOf(passwordField.getPassword()); // getText() is deprecated; changed to getPassword()
 				
-				/** 
+				/*
 				 * SHA implementation to validate password
-				 * 
-				 * TODO implement hash(hash(password + pepper), salt)	NOTE: pepper must be system-wide
-				 * 		current: hash(password + salt)
-				 * 
 				 */
 				try {
 					// Generate some tasty salt

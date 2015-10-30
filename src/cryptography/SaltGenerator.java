@@ -8,13 +8,14 @@ import java.security.NoSuchAlgorithmException;
  * Class for generating secure, random salts (and pepper) for password hashing
  */
 public class SaltGenerator {
-	SecureRandom prng;
+	
+	private SecureRandom prng;
 	
 	public SaltGenerator() throws NoSuchAlgorithmException {
 		prng = SecureRandom.getInstance("SHA1PRNG");
 	}
 	
-	static private String hexEncode(byte[] aInput){
+	private static String hexEncode(byte[] aInput){
 	    StringBuilder hexResult = new StringBuilder();
 	    char[] hexDigits = {'0', '1', '2', '3', '4','5','6','7','8','9','a','b','c','d','e','f'};
 	    for (int i = 0; i < aInput.length; ++i) {
@@ -36,4 +37,5 @@ public class SaltGenerator {
 	    // Return the hex salt as a String
 	    return hexEncode(byteResult);
 	}
+	
 }

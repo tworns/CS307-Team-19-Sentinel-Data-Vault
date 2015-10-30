@@ -125,8 +125,8 @@ public class MainView {
 		JButton btnSetting = new JButton("Setting");
 		btnSetting.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				SettingsView frmSettings = new SettingsView(username);
-				frmSettings.username = username;
+				SettingsView frmSettings = new SettingsView(currentUser);
+				frmSettings.currentUser = currentUser;
 				frmSettings.frmSettings.setVisible(true);
 			}
 		});
