@@ -102,6 +102,7 @@ public class MainView {
 						null, options, options[1]);
 				if (result == 0) {
 					System.out.println("Delete Entry");
+					//TODO: Delete Entry from database
 				}
 			}
 		});
