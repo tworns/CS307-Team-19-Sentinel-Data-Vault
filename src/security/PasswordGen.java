@@ -69,7 +69,7 @@ public class PasswordGen {
 //		CharacterRule digitRule;
 //		CharacterRule specialRule;
 		
-		List<CharacterRule> passRules = Arrays.asList();
+		List<CharacterRule> passRules = new ArrayList<CharacterRule>();
 		
 		// TODO Implement method of adding rules to list if they are true
 		
@@ -92,6 +92,8 @@ public class PasswordGen {
 			CharacterRule specialRule = new CharacterRule(EnglishCharacterData.Special, 1);
 			//passRules.add(new CharacterRule(EnglishCharacterData.Special, 1));
 			passRules.add(specialRule);
+			CharacterRule specials = new CharacterRule(EnglishCharacterData.Special);
+			System.out.println(specials.getValidCharacters());
 		}
 		
 		//List<CharacterRule> passRules = Arrays.asList(upperRule, lowerRule, digitRule, specialRule);
@@ -102,7 +104,7 @@ public class PasswordGen {
 	
 	public static void main(String args[]) {
 		PasswordGen pg = new PasswordGen();
-		String password = pg.generatePassword(true, true, true, true, 20);
+		String password = pg.generatePassword(true, true, true, false, 20);
 		System.out.println(password);
 	}
 }
