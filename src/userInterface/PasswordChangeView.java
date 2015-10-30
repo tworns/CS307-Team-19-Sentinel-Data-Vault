@@ -5,17 +5,21 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.JTextPane;
 import dataManagement.User;
 import java.awt.event.ActionListener;
+import java.security.NoSuchAlgorithmException;
 import java.awt.event.ActionEvent;
+import cryptography.PasswordHasher;
+import cryptography.SaltGenerator;
+import security.PasswordValidation;
+import javax.swing.JPasswordField;
+
 public class PasswordChangeView {
 
 	private JFrame frmChangePassword;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
 	private JTextField textField_3;
 	
 	
@@ -23,16 +27,23 @@ public class PasswordChangeView {
 	private String newPass1;
 	private String newPass2;
 	private String answer;
+	private boolean passCheck; 
 	/**
 	 * Launch the application.
 	 */
 	public User currentUser;
+	private JPasswordField passwordField;
+	private JPasswordField passwordField_1;
+	private JPasswordField passwordField_2;
 	public static void main(String[] args) { //Main for testing
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					//Make a null user for testing
-					User u = new User("Ben", "Password Hash", "Password Salt", "This is my data key", "This is my sec question", "This is my answer", null);
+					//Make a  user for testing
+					PasswordHasher l = new PasswordHasher();
+					SaltGenerator twitchChat = new SaltGenerator();
+					String salt = twitchChat.generateSalt();
+					User u = new User("Ben", l.hashPassword("password", salt), salt, "This is my data key", "This is my sec question", "answer", null);
 					PasswordChangeView window = new PasswordChangeView(u);
 					window.frmChangePassword.setVisible(true);
 				} catch (Exception e) {
@@ -62,40 +73,6 @@ public class PasswordChangeView {
 		frmChangePassword.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frmChangePassword.getContentPane().setLayout(null);
 		
-		textField = new JTextField(); //Text field for old password entry
-		textField.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//TODO HASH HERE
-				oldPass = textField.getText(); //will eventually hash the old password for direct comparison later
-			}
-		});
-		textField.setBounds(35, 37, 116, 22);
-		frmChangePassword.getContentPane().add(textField);
-		textField.setColumns(10);
-		
-		textField_1 = new JTextField();
-		textField_1.addActionListener(new ActionListener() { //1st new password entry
-			public void actionPerformed(ActionEvent e) {
-				//TODO Hash here
-				newPass1 = textField_1.getText();				
-			}
-		});
-		textField_1.setBounds(35, 77, 116, 22);
-		frmChangePassword.getContentPane().add(textField_1);
-		textField_1.setColumns(10);
-		
-		textField_2 = new JTextField();//2nd new password entry
-		textField_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				newPass2 = textField_2.getText();
-				//TODO HASH HERE
-				
-			}
-		});
-		textField_2.setBounds(35, 111, 116, 22);
-		frmChangePassword.getContentPane().add(textField_2);
-		textField_2.setColumns(10);
-		
 		JLabel lblOldPassword = new JLabel("Old Password");
 		lblOldPassword.setBounds(163, 40, 86, 16);
 		frmChangePassword.getContentPane().add(lblOldPassword);
@@ -113,26 +90,59 @@ public class PasswordChangeView {
 		frmChangePassword.getContentPane().add(lblAnswerToSecurity);
 		
 		textField_3 = new JTextField(); //Answer to security question
-		textField_3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				answer = textField_3.getText();
-			}
-		});
 		textField_3.setBounds(35, 172, 116, 22);
 		frmChangePassword.getContentPane().add(textField_3);
 		textField_3.setColumns(10);
 		
 		JButton btnNewButton = new JButton("Change");//Confirm (change) button
+		
 		btnNewButton.addActionListener(new ActionListener() {
+			
 			public void actionPerformed(ActionEvent e) {
-				if(newPass1.equals(newPass2) && oldPass.equals(currentUser.getPasswordHash()) && answer.equals(currentUser.getSecurityAnswer())){ //TODO make sure oldPass is hashed
+				oldPass = String.valueOf(passwordField.getPassword());
+				newPass1 = String.valueOf(passwordField_1.getPassword());
+				newPass2 = String.valueOf(passwordField_2.getPassword());
+				answer = textField_3.getText();
+				//Old password validation
+				PasswordValidation a = new PasswordValidation(oldPass);
+				try{  
+					if(a.isValidPassword(currentUser, oldPass) == true) { 
+						passCheck = true;
+					}
+					else { 
+						passCheck = false;
+					}
+				}
+				catch ( NoSuchAlgorithmException k){ 
+					k.printStackTrace();
+				}
+				//Making sure the user puts stuff in.
+				if(newPass1 == null || newPass2 == null || answer == null){
+					JOptionPane.showMessageDialog(null, "One or more fields left empty", "Change Password", 0);
+				}
+				//Makes sure the new passwords match each other, the old password and security q answer is correct
+				else if(newPass1.equals(newPass2) && passCheck ==true && a.minStandard(newPass2) == true && answer.equals(currentUser.getSecurityAnswer())){
+				
+					PasswordHasher p = null; // might have issues with the null initializations here.
+					try {
+						p = new PasswordHasher();
+					} catch (NoSuchAlgorithmException e1) {
+							e1.printStackTrace();
+					}
+					String newPass1 = p.hashPassword(newPass2, currentUser.getPasswordSalt() );
 					currentUser.setPasswordHash(newPass1);
 					frmChangePassword.dispose();
 				}
+				//Yells at user if the above if has a false in it
 				else{ 
-					
+					JOptionPane.showMessageDialog(null, "New passwords do not match. Check your security question answer.", "Change Password", 0);
+					System.out.println(newPass1 + "\n" + newPass2 + "\n" + answer + "\n");
+					if(passCheck == true) { 
+						System.out.println("Old pass correct");
+					}
+					else{ System.out.println("Old pass wrong"); }
 				}
-			}
+				}
 		});
 		btnNewButton.setBounds(54, 220, 97, 25);
 		frmChangePassword.getContentPane().add(btnNewButton);
@@ -147,8 +157,21 @@ public class PasswordChangeView {
 		frmChangePassword.getContentPane().add(btnCancel);
 		
 		JTextPane txtpnThisIsWhere = new JTextPane(); //Field that displays currentUser's security question.
+		txtpnThisIsWhere.setEditable(false);
 		txtpnThisIsWhere.setText(currentUser.getSecurityQuestion());
 		txtpnThisIsWhere.setBounds(35, 140, 309, 22);
 		frmChangePassword.getContentPane().add(txtpnThisIsWhere);
+		
+		passwordField = new JPasswordField();
+		passwordField.setBounds(35, 34, 116, 22);
+		frmChangePassword.getContentPane().add(passwordField);
+		
+		passwordField_1 = new JPasswordField();
+		passwordField_1.setBounds(35, 77, 116, 22);
+		frmChangePassword.getContentPane().add(passwordField_1);
+		
+		passwordField_2 = new JPasswordField();
+		passwordField_2.setBounds(35, 111, 116, 22);
+		frmChangePassword.getContentPane().add(passwordField_2);
 	}
 }

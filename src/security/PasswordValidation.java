@@ -9,11 +9,11 @@ public class PasswordValidation {
 	public PasswordValidation(String password) { 
 	}
 
-	public int minStandard(String password){ 
+	public boolean minStandard(String password){ // little b booelan is the primitave, big B boolean is the object
 	
 	//TODO Check for length >12, at least one digit & special char, upper & lower case letters.
 	
-		return 0; //Fix to actually be a return;
+		return true; //Fix to actually be a return;
 	}
 	
 	public Boolean isValidPassword(User user, String password) throws NoSuchAlgorithmException {
