@@ -42,7 +42,7 @@ public class DatabaseManager {
 		    
 			// TODO Need to verify SQL syntax for values of each type (i.e. TEXT, NUMERIC, BLOB, etc.)
 			String sql =
-		    		"INSERT INTO users (user_email, password_hash, security_question, security_answer, "
+		    		"INSERT INTO users (user_email, password_hash, password_salt, data_key, security_question, security_answer, "
 		    		+ "last_login, high_security, account_wipe_set, backup_frequency, max_backup_size) "
 		    		+ "VALUES ("
 		    			+ "'" + newUser.getUsername() + "', "
