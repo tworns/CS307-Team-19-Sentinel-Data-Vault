@@ -65,39 +65,33 @@ public class PasswordGen {
 	}
 	
 	public String generatePassword(Boolean containsUpper, Boolean containsLower, Boolean containsDigit, Boolean containsSpecial, int length) {
-		CharacterRule upperRule;
-		CharacterRule lowerRule;
-		CharacterRule digitRule;
-		CharacterRule specialRule;
+//		CharacterRule upperRule;
+//		CharacterRule lowerRule;
+//		CharacterRule digitRule;
+//		CharacterRule specialRule;
 		
-		// TODO Implement M of N rules
+		List<CharacterRule> passRules = Arrays.asList();
+		
+		// TODO Implement method of adding rules to list if they are true
 		
 		if (containsUpper) {
-			upperRule = new CharacterRule(EnglishCharacterData.UpperCase, 1);
-		}
-		else {
-			upperRule = new CharacterRule(EnglishCharacterData.UpperCase, 0);
+			//upperRule = new CharacterRule(EnglishCharacterData.UpperCase, 1);
+			passRules.add(new CharacterRule(EnglishCharacterData.UpperCase, 1));
 		}
 		if (containsLower) {
-			lowerRule = new CharacterRule(EnglishCharacterData.LowerCase, 1);
-		}
-		else {
-			lowerRule = new CharacterRule(EnglishCharacterData.LowerCase, 0);
+			//lowerRule = new CharacterRule(EnglishCharacterData.LowerCase, 1);
+			passRules.add(new CharacterRule(EnglishCharacterData.LowerCase, 1));
 		}
 		if (containsDigit) {
-			digitRule = new CharacterRule(EnglishCharacterData.Digit, 1);
-		}
-		else {
-			digitRule = new CharacterRule(EnglishCharacterData.Digit, 0);
+			//digitRule = new CharacterRule(EnglishCharacterData.Digit, 1);
+			passRules.add(new CharacterRule(EnglishCharacterData.Digit, 1));
 		}
 		if (containsSpecial) {
-			specialRule = new CharacterRule(EnglishCharacterData.Special, 1);
-		}
-		else {
-			specialRule = new CharacterRule(EnglishCharacterData.Special, 0);
+			//specialRule = new CharacterRule(EnglishCharacterData.Special, 1);
+			passRules.add(new CharacterRule(EnglishCharacterData.Special, 1));
 		}
 		
-		List<CharacterRule> passRules = Arrays.asList(upperRule, lowerRule, digitRule, specialRule);
+		//List<CharacterRule> passRules = Arrays.asList(upperRule, lowerRule, digitRule, specialRule);
 		PasswordGenerator generator = new PasswordGenerator();
 		
 		return generator.generatePassword(length, passRules);
@@ -105,7 +99,7 @@ public class PasswordGen {
 	
 	public static void main(String args[]) {
 		PasswordGen pg = new PasswordGen();
-		String password = pg.generatePassword(true, false, false, false, 20);
+		String password = pg.generatePassword(true, true, true, true, 20);
 		System.out.println(password);
 	}
 }

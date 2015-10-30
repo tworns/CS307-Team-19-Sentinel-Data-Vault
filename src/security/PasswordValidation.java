@@ -16,7 +16,7 @@ public class PasswordValidation {
 		return 0; //Fix to actually be a return;
 	}
 	
-	public static Boolean isValidPassword(User user, String password) throws NoSuchAlgorithmException {
+	public Boolean isValidPassword(User user, String password) throws NoSuchAlgorithmException {
 		// Hash the given password
 		PasswordHasher ph = new PasswordHasher();
 		String givenHash = ph.hashPassword(password, user.getPasswordSalt());
