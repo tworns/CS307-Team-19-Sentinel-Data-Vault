@@ -4,6 +4,7 @@ import java.security.NoSuchAlgorithmException;
 import java.time.LocalDateTime;
 import javax.swing.JOptionPane;
 import cryptography.SaltGenerator;
+import cryptography.PasswordHasher;
 import dataManagement.User;
 import javax.mail.*;
 import javax.mail.internet.AddressException;
@@ -64,16 +65,23 @@ public class VaultController {
 			return 6;
 		}
 		
+		
+		
 		//send user info to database
 		if (password1.equals(password2) && !password1.equals("") && !username.equals("")
 				&&!answer.equals("")){
+			
+			PasswordHasher ph = new PasswordHasher();
+			
 			SaltGenerator s = new SaltGenerator();
 			String passwordSalt = s.generateSalt();
+			
+			String hashedPassword = ph.hashPassword(password1, passwordSalt);
 			
 			LocalDateTime createdtime = LocalDateTime.now();
 			
 			//TO DO: ********default data key is a place holder*******
-			User newuser =  new User(username, password1, passwordSalt, "default datakey", question, answer, createdtime);
+			User newuser =  new User(username, hashedPassword, passwordSalt, "default datakey", question, answer, createdtime);
 
 			DatabaseManager d = new DatabaseManager();
 			
