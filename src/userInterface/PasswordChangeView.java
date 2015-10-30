@@ -16,7 +16,7 @@ import cryptography.PasswordHasher;
 import cryptography.SaltGenerator;
 import security.PasswordValidation;
 import javax.swing.JPasswordField;
-
+import controllers.VaultController;
 public class PasswordChangeView {
 
 	private JFrame frmChangePassword;
@@ -43,7 +43,7 @@ public class PasswordChangeView {
 					PasswordHasher l = new PasswordHasher();
 					SaltGenerator twitchChat = new SaltGenerator();
 					String salt = twitchChat.generateSalt();
-					User u = new User("Ben", l.hashPassword("password", salt), salt, "This is my data key", "This is my sec question", "answer", null);
+					User u = new User("ben@purdue.edu", l.hashPassword("password", salt), salt, "This is my data key", "This is my sec question", "answer", null);
 					PasswordChangeView window = new PasswordChangeView(u);
 					window.frmChangePassword.setVisible(true);
 				} catch (Exception e) {
@@ -103,8 +103,15 @@ public class PasswordChangeView {
 				newPass1 = String.valueOf(passwordField_1.getPassword());
 				newPass2 = String.valueOf(passwordField_2.getPassword());
 				answer = textField_3.getText();
+				VaultController fallout = new VaultController();
+				try {
+					fallout.createAccountCheck(oldPass, newPass1, currentUser.getUsername(), currentUser.getSecurityQuestion(), answer);
+				} catch (NoSuchAlgorithmException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				//Old password validation
-				PasswordValidation a = new PasswordValidation(oldPass);
+				/*PasswordValidation a = new PasswordValidation(oldPass);
 				try{  
 					if(a.isValidPassword(currentUser, oldPass) == true) { 
 						passCheck = true;
@@ -138,16 +145,14 @@ public class PasswordChangeView {
 					String newPass1 = p.hashPassword(newPass2, currentUser.getPasswordSalt() );
 					currentUser.setPasswordHash(newPass1);
 					frmChangePassword.dispose();
+					
+					//TODO Get the updated user to the database!
+					
 				}
 				//Yells at user if the above if has a false in it
 				else{ 
 					JOptionPane.showMessageDialog(null, "Ensure your security question answer is correct.", "Change Password", 0);
-					System.out.println(newPass1 + "\n" + newPass2 + "\n" + answer + "\n");
-					if(passCheck == true) { 
-						System.out.println("Old pass correct");
-					}
-					else{ System.out.println("Old pass wrong"); }
-				}
+				}*/
 				}
 		});
 		btnNewButton.setBounds(54, 220, 97, 25);
