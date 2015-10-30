@@ -120,6 +120,12 @@ public class PasswordChangeView {
 				if(newPass1 == null || newPass2 == null || answer == null){
 					JOptionPane.showMessageDialog(null, "One or more fields left empty", "Change Password", 0);
 				}
+				else if ( newPass1.equals(newPass2) && newPass2.equals(oldPass)) { 
+					JOptionPane.showMessageDialog(null, "New password cannot match the old password.", "Change Password", 0);
+				}
+				else if (newPass1.equals(newPass2) == false) { 
+					JOptionPane.showMessageDialog(null, "Check to make sure the new passwords match.", "Change Password", 0);
+				}
 				//Makes sure the new passwords match each other, the old password and security q answer is correct
 				else if(newPass1.equals(newPass2) && passCheck ==true && a.minStandard(newPass2) == true && answer.equals(currentUser.getSecurityAnswer())){
 				
@@ -135,7 +141,7 @@ public class PasswordChangeView {
 				}
 				//Yells at user if the above if has a false in it
 				else{ 
-					JOptionPane.showMessageDialog(null, "New passwords do not match. Check your security question answer.", "Change Password", 0);
+					JOptionPane.showMessageDialog(null, "Ensure your security question answer is correct.", "Change Password", 0);
 					System.out.println(newPass1 + "\n" + newPass2 + "\n" + answer + "\n");
 					if(passCheck == true) { 
 						System.out.println("Old pass correct");
