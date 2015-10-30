@@ -79,6 +79,11 @@ public class DatabaseManager {
 		}
 	}
 	
+	public int deleteUserFromDatabase(User doomedUser) {
+		
+		return 1;
+	}
+	
 	public String retrievePassword(String userEmail) {
 		if (userEmail.equals(username)) {
 			return userPassword;
