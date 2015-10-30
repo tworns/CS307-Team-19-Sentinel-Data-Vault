@@ -80,6 +80,7 @@ public class DatabaseManager {
 	}
 	
 	public int deleteUserFromDatabase(User doomedUser) {
+		Connection DBconnection = connectToDatabase();
 		
 		return 1;
 	}

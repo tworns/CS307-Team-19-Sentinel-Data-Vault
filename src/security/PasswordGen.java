@@ -1,7 +1,6 @@
 package security;
 
 import java.util.*;
-
 import org.passay.CharacterRule;
 import org.passay.EnglishCharacterData;
 import org.passay.PasswordGenerator;

@@ -1,6 +1,6 @@
 package userInterface;
-import java.awt.EventQueue;
 
+import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
@@ -14,9 +14,7 @@ import javax.swing.JProgressBar;
 import javax.swing.JTree;
 import javax.swing.JDesktopPane;
 import javax.swing.tree.DefaultTreeModel;
-
 import dataManagement.User;
-
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.JLabel;
 import net.miginfocom.swing.MigLayout;
