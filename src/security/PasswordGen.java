@@ -75,20 +75,24 @@ public class PasswordGen {
 		// TODO Implement method of adding rules to list if they are true
 		
 		if (containsUpper) {
-			//upperRule = new CharacterRule(EnglishCharacterData.UpperCase, 1);
-			passRules.add(new CharacterRule(EnglishCharacterData.UpperCase, 1));
+			CharacterRule upperRule = new CharacterRule(EnglishCharacterData.UpperCase, 1);
+			//passRules.add(new CharacterRule(EnglishCharacterData.UpperCase, 1));
+			passRules.add(upperRule);
 		}
 		if (containsLower) {
-			//lowerRule = new CharacterRule(EnglishCharacterData.LowerCase, 1);
-			passRules.add(new CharacterRule(EnglishCharacterData.LowerCase, 1));
+			CharacterRule lowerRule = new CharacterRule(EnglishCharacterData.LowerCase, 1);
+			//passRules.add(new CharacterRule(EnglishCharacterData.LowerCase, 1));
+			passRules.add(lowerRule);
 		}
 		if (containsDigit) {
-			//digitRule = new CharacterRule(EnglishCharacterData.Digit, 1);
-			passRules.add(new CharacterRule(EnglishCharacterData.Digit, 1));
+			CharacterRule digitRule = new CharacterRule(EnglishCharacterData.Digit, 1);
+			//passRules.add(new CharacterRule(EnglishCharacterData.Digit, 1));
+			passRules.add(digitRule);
 		}
 		if (containsSpecial) {
-			//specialRule = new CharacterRule(EnglishCharacterData.Special, 1);
-			passRules.add(new CharacterRule(EnglishCharacterData.Special, 1));
+			CharacterRule specialRule = new CharacterRule(EnglishCharacterData.Special, 1);
+			//passRules.add(new CharacterRule(EnglishCharacterData.Special, 1));
+			passRules.add(specialRule);
 		}
 		
 		//List<CharacterRule> passRules = Arrays.asList(upperRule, lowerRule, digitRule, specialRule);

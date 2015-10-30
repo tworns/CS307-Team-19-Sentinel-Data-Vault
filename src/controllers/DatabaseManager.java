@@ -58,6 +58,7 @@ public class DatabaseManager {
 		    			+ newUser.getMaxBackupSize()
 		    		+ ");"
 		    		;
+			System.out.println(sql);
 			// Execute and commit database changes
 		    stmt.executeUpdate(sql);
 		    DBconnection.commit();
