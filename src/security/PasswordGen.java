@@ -2,20 +2,26 @@ package security;
 
 import java.util.*;
 
+import org.passay.CharacterRule;
+import org.passay.EnglishCharacterData;
+import org.passay.PasswordGenerator;
+
 public class PasswordGen {
 	
 	/*
 	 * APIs
 	 * PasswordGenerator API Class
 	 * 		http://javadoc.iaik.tugraz.at/iaik_jce/current/iaik/utils/PasswordGenerator.html
-	 * 
-	 * 
 	 * */
 	
 	public int length;
 	public int specials;
 	public int num;
 	public int upper;
+	
+	public PasswordGen() {
+		
+	}
 	
 	public PasswordGen(int length, int specials, int num, int upper) { 
 		this.length = length;
@@ -56,6 +62,51 @@ public class PasswordGen {
 		}
 
 		return s.toString();
+	}
+	
+	public String generatePassword(Boolean containsUpper, Boolean containsLower, Boolean containsDigit, Boolean containsSpecial, int length) {
+		CharacterRule upperRule;
+		CharacterRule lowerRule;
+		CharacterRule digitRule;
+		CharacterRule specialRule;
+		
+		// TODO Implement M of N rules
+		
+		if (containsUpper) {
+			upperRule = new CharacterRule(EnglishCharacterData.UpperCase, 1);
+		}
+		else {
+			upperRule = new CharacterRule(EnglishCharacterData.UpperCase, 0);
+		}
+		if (containsLower) {
+			lowerRule = new CharacterRule(EnglishCharacterData.LowerCase, 1);
+		}
+		else {
+			lowerRule = new CharacterRule(EnglishCharacterData.LowerCase, 0);
+		}
+		if (containsDigit) {
+			digitRule = new CharacterRule(EnglishCharacterData.Digit, 1);
+		}
+		else {
+			digitRule = new CharacterRule(EnglishCharacterData.Digit, 0);
+		}
+		if (containsSpecial) {
+			specialRule = new CharacterRule(EnglishCharacterData.Special, 1);
+		}
+		else {
+			specialRule = new CharacterRule(EnglishCharacterData.Special, 0);
+		}
+		
+		List<CharacterRule> passRules = Arrays.asList(upperRule, lowerRule, digitRule, specialRule);
+		PasswordGenerator generator = new PasswordGenerator();
+		
+		return generator.generatePassword(length, passRules);
+	}
+	
+	public static void main(String args[]) {
+		PasswordGen pg = new PasswordGen();
+		String password = pg.generatePassword(true, false, false, false, 20);
+		System.out.println(password);
 	}
 }
 
