@@ -110,7 +110,9 @@ public class PasswordChangeView {
 				newPass1 = String.valueOf(passwordField_1.getPassword());
 				newPass2 = String.valueOf(passwordField_2.getPassword());
 				oldAnswer = textField_3.getText();
-				if(question.equals("Please choose a security question below") == true) { 
+				newAnswer = textField.getText();
+				System.out.println(newAnswer);
+				if( question == null || question.equals("Please choose a security question below") == true) { 
 					question =  null;
 				}
 
@@ -140,7 +142,8 @@ public class PasswordChangeView {
 				else if (newPass1.equals(newPass2) == false) { 
 					JOptionPane.showMessageDialog(null, "Check to make sure the new passwords match.", "Change Password", 0);
 				}
-				else if (question != null && newAnswer != null && passCheck == true && (newPass1.equals("")== true && newPass2.equals("") == true && oldAnswer.equals("") == true ) ) { 
+				else if (question != null && newAnswer != null && passCheck == true && ((newPass1 == null && newPass2 == null && oldAnswer == null) ||
+						(newPass1.equals("")== true && newPass2.equals("") == true && oldAnswer.equals("") == true ))) { 
 					currentUser.setSecurityQuestion(question);
 					currentUser.setSecurityAnswer(newAnswer);
 					System.out.println("Security Q&A would be changed!");
@@ -207,7 +210,7 @@ public class PasswordChangeView {
 		lblChangeSecurityQuestion.setBounds(101, 218, 194, 16);
 		frmChangePassword.getContentPane().add(lblChangeSecurityQuestion);
 		
-		textField = new JTextField();
+		textField = new JTextField(); //NEW SECURITY QUESTION ANSWER BOX
 		textField.setBounds(37, 276, 116, 22);
 		frmChangePassword.getContentPane().add(textField);
 		textField.setColumns(10);
