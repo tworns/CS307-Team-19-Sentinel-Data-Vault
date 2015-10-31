@@ -33,13 +33,13 @@ public class VaultController {
 			JOptionPane.showMessageDialog(null,"You need to enter all the fields!");
 			password1 = "";
 			password2 = "";
-			return 1;
+			return 0;
 		}
 		
 		//check is valid email address
 		if(isValidEmailAddress(username)== false){
 			JOptionPane.showMessageDialog(null,"You need to enter a valid email address!");
-			return 2;
+			return 0;
 		}
 		
 		//check password consistency
@@ -47,7 +47,7 @@ public class VaultController {
 			JOptionPane.showMessageDialog(null,"Your password doesn't match");
 			password1 = "";
 			password2 = "";
-			return 7;
+			return 0;
 		}
 		
 		//minimum password length check
@@ -56,13 +56,13 @@ public class VaultController {
 			JOptionPane.showMessageDialog(null,"Your password needs to contain at least 8 characters!");
 			password1 = "";
 			password2 = "";
-			return 3;
+			return 0;
 		}
 		
 		//security question check
 		if(question.equals("")||question.equals("Please choose a security question below")){
 			JOptionPane.showMessageDialog(null,"Please choose one security question!");
-			return 6;
+			return 0;
 		}
 		
 		
@@ -86,10 +86,15 @@ public class VaultController {
 			DatabaseManager d = new DatabaseManager();
 			
 			//TO DO: *******This method will have a return value,need to change accordingly*******
-			d.addUserToDatabase(newuser);
-			JOptionPane.showMessageDialog(null,"You have successfully created your account!");
-			return 4;
+			if(d.addUserToDatabase(newuser) == -1) {
+				JOptionPane.showMessageDialog(null,"The account has already existed! Please Try another email!");
+				return 0;
+			}
+			else{
+				JOptionPane.showMessageDialog(null,"You have successfully created your account!");
+				return 1;
+			}
 		}
-		return 5;
+		return 0;
 	}
 }

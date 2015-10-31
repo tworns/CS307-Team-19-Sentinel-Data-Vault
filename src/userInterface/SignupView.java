@@ -88,7 +88,7 @@ public class SignupView extends JFrame {
 				int result;
 				try {
 					result = v.createAccountCheck(password1, password2, username,question, answer);
-					if (result == 4){
+					if (result == 1){
 							dispose();
 					}
 				} catch (NoSuchAlgorithmException e1) {
