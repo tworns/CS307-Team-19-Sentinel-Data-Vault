@@ -1,5 +1,6 @@
 package security;
 
+import java.security.SecureRandom;
 import java.util.*;
 import org.passay.CharacterRule;
 import org.passay.EnglishCharacterData;
@@ -63,49 +64,54 @@ public class PasswordGen {
 		return s.toString();
 	}
 	
-	public String generatePassword(Boolean containsUpper, Boolean containsLower, Boolean containsDigit, Boolean containsSpecial, int length) {
-//		CharacterRule upperRule;
-//		CharacterRule lowerRule;
-//		CharacterRule digitRule;
-//		CharacterRule specialRule;
-		
+	public String generatePassword(Boolean containsUpper, Boolean containsLower, Boolean containsDigit, Boolean containsSpecial, int passwordLength) {
+		PasswordGenerator generator = new PasswordGenerator();
 		List<CharacterRule> passRules = new ArrayList<CharacterRule>();
-		
-		// TODO Implement method of adding rules to list if they are true
 		
 		if (containsUpper) {
 			CharacterRule upperRule = new CharacterRule(EnglishCharacterData.UpperCase, 1);
-			//passRules.add(new CharacterRule(EnglishCharacterData.UpperCase, 1));
 			passRules.add(upperRule);
 		}
 		if (containsLower) {
 			CharacterRule lowerRule = new CharacterRule(EnglishCharacterData.LowerCase, 1);
-			//passRules.add(new CharacterRule(EnglishCharacterData.LowerCase, 1));
 			passRules.add(lowerRule);
 		}
 		if (containsDigit) {
 			CharacterRule digitRule = new CharacterRule(EnglishCharacterData.Digit, 1);
-			//passRules.add(new CharacterRule(EnglishCharacterData.Digit, 1));
 			passRules.add(digitRule);
 		}
 		if (containsSpecial) {
-			CharacterRule specialRule = new CharacterRule(EnglishCharacterData.Special, 1);
-			//passRules.add(new CharacterRule(EnglishCharacterData.Special, 1));
-			passRules.add(specialRule);
-			CharacterRule specials = new CharacterRule(EnglishCharacterData.Special);
-			System.out.println(specials.getValidCharacters());
+			char[] specialCharacters = "!@#$%^&*()-=_+[]{}|\'\"\\/?:.~".toCharArray();
+			int numSpecChars = specialCharacters.length;
+			SecureRandom sr = new SecureRandom();
+			
+			if (!containsUpper && !containsLower && !containsDigit) {
+				// Password will contain ONLY special characters, randomly selected
+				char[] specOnlyPassword = new char[passwordLength];
+				for (int i = 0; i < passwordLength; i++) {
+					specOnlyPassword[i] = specialCharacters[sr.nextInt(numSpecChars)];
+				}
+				
+				String finalPassword = new String(specOnlyPassword);
+				return finalPassword;
+			}
+			else {
+				// Password will contain AT LEAST ONE special characters
+				String tempPassword = generator.generatePassword(passwordLength, passRules);
+				char[] tempPassArray = tempPassword.toCharArray();
+				// Replace a random amount of letters with special characters
+				int numReplacements = sr.nextInt(passwordLength / 2);
+				int i = 0;
+				do {
+					tempPassArray[sr.nextInt(passwordLength)] = specialCharacters[sr.nextInt(numSpecChars)];
+				} while (++i < numReplacements);
+				
+				String finalPassword = new String(tempPassArray);
+				return finalPassword;
+			}
 		}
 		
-		//List<CharacterRule> passRules = Arrays.asList(upperRule, lowerRule, digitRule, specialRule);
-		PasswordGenerator generator = new PasswordGenerator();
-		
-		return generator.generatePassword(length, passRules);
-	}
-	
-	public static void main(String args[]) {
-		PasswordGen pg = new PasswordGen();
-		String password = pg.generatePassword(true, true, true, false, 20);
-		System.out.println(password);
+		return generator.generatePassword(passwordLength, passRules);
 	}
 }
 
