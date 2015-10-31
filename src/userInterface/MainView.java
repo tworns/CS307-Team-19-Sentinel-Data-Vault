@@ -91,7 +91,7 @@ public class MainView {
 		JButton btnNewDataEntry = new JButton("New Data Entry");
 		btnNewDataEntry.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				NewDataEntry newDataEntry = new NewDataEntry();
+				NewDataEntryView newDataEntry = new NewDataEntryView();
 				newDataEntry.getJframe().setVisible(true);
 			}
 		});
