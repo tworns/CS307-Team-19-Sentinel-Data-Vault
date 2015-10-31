@@ -131,8 +131,8 @@ public class SecurityView {
 		btnGenerate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent clickGenerate) {
 				if(clickGenerate.getActionCommand().equalsIgnoreCase("Generate")) { 
-					PasswordGen k = new PasswordGen(spinLength,0,0,0); //TODO use user set values instead of hard coding. Hardcoded for test purpose only.
-					String password = k.generator(spinLength,0,0,0);
+					PasswordGen passGen = new PasswordGen();
+					String password = passGen.generatePassword(true, true, true, true, true, 16);
 					JTextArea displayPass = new JTextArea(1,1);
 					displayPass.setText(password);
 					displayPass.setEditable(false);
