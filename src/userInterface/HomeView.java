@@ -77,7 +77,7 @@ public class HomeView {
 		});
 		
 		JButton btnAddData = new JButton("Add Data");
-		btnAddData.setFont(new Font("Lucida Grande", Font.PLAIN, 12));
+		btnAddData.setFont(new Font("Lucida Grande", Font.PLAIN, 11));
 		
 		JButton btnSecurity = new JButton("Security");
 		btnSecurity.addActionListener(new ActionListener() {
@@ -86,7 +86,7 @@ public class HomeView {
 		});
 		
 		JButton btnDeleteData = new JButton("Delete Data");
-		btnDeleteData.setFont(new Font("Lucida Grande", Font.PLAIN, 12));
+		btnDeleteData.setFont(new Font("Lucida Grande", Font.PLAIN, 11));
 		
 		JLabel lblEmpty_1 = new JLabel("     ");
 		
@@ -95,19 +95,19 @@ public class HomeView {
 		gl_panel_north.setHorizontalGroup(
 			gl_panel_north.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_north.createSequentialGroup()
-					.addComponent(btnSignOut, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+					.addComponent(btnSignOut, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
 					.addGap(6)
-					.addComponent(btnSetting, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+					.addComponent(btnSetting, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(lblEmpty_1, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+					.addComponent(lblEmpty_1, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnAddData, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+					.addComponent(btnAddData, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnDeleteData, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+					.addComponent(btnDeleteData, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(lblEmpty_2, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+					.addComponent(lblEmpty_2, GroupLayout.PREFERRED_SIZE, 90, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnSecurity, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+					.addComponent(btnSecurity, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
 					.addGap(326))
 		);
 		gl_panel_north.setVerticalGroup(
