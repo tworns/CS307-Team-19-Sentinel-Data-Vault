@@ -23,6 +23,7 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JList;
 import java.awt.Color;
+import java.awt.Font;
 
 public class HomeView {
 
@@ -63,7 +64,7 @@ public class HomeView {
 			
 //		anel_south		
 		JPanel panel_north = new JPanel();
-		panel_north.setBounds(0, 6, 700, 50);			// margins between object 8 
+		panel_north.setBounds(6, 6, 688, 50);			// margins between object 8 
 		panel_north.setOpaque(false); // to set transparent panel
 		frmSentinelDataVault.getContentPane().add(panel_north);
 		
@@ -76,6 +77,7 @@ public class HomeView {
 		});
 		
 		JButton btnAddData = new JButton("Add Data");
+		btnAddData.setFont(new Font("Lucida Grande", Font.PLAIN, 12));
 		
 		JButton btnSecurity = new JButton("Security");
 		btnSecurity.addActionListener(new ActionListener() {
@@ -83,11 +85,12 @@ public class HomeView {
 			}
 		});
 		
-		JButton btnDeleteData = new JButton("Delete");
+		JButton btnDeleteData = new JButton("Delete Data");
+		btnDeleteData.setFont(new Font("Lucida Grande", Font.PLAIN, 12));
 		
-		JLabel lblEmpty = new JLabel("     ");
+		JLabel lblEmpty_1 = new JLabel("     ");
 		
-		JLabel label = new JLabel("     ");
+		JLabel lblEmpty_2 = new JLabel("     ");
 		GroupLayout gl_panel_north = new GroupLayout(panel_north);
 		gl_panel_north.setHorizontalGroup(
 			gl_panel_north.createParallelGroup(Alignment.LEADING)
@@ -96,13 +99,13 @@ public class HomeView {
 					.addGap(6)
 					.addComponent(btnSetting, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(lblEmpty, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+					.addComponent(lblEmpty_1, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(btnAddData, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(btnDeleteData, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(label, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+					.addComponent(lblEmpty_2, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(btnSecurity, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
 					.addGap(326))
@@ -117,11 +120,46 @@ public class HomeView {
 							.addComponent(btnAddData, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
 							.addComponent(btnDeleteData, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
 							.addComponent(btnSecurity, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-							.addComponent(lblEmpty)
-							.addComponent(label)))
+							.addComponent(lblEmpty_1)
+							.addComponent(lblEmpty_2)))
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		panel_north.setLayout(gl_panel_north);
+		
+		JPanel panel_south = new JPanel();
+		panel_south.setBounds(0, 55, 700, 395);
+		frmSentinelDataVault.getContentPane().add(panel_south);
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(Color.GRAY);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(Color.WHITE);
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(Color.WHITE);
+		GroupLayout gl_panel_south = new GroupLayout(panel_south);
+		gl_panel_south.setHorizontalGroup(
+			gl_panel_south.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_south.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 225, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap())
+		);
+		gl_panel_south.setVerticalGroup(
+			gl_panel_south.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_south.createSequentialGroup()
+					.addGroup(gl_panel_south.createParallelGroup(Alignment.LEADING)
+						.addComponent(panel, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE)
+						.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 394, GroupLayout.PREFERRED_SIZE)
+						.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 395, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap())
+		);
+		panel_south.setLayout(gl_panel_south);
 		
 
 		
