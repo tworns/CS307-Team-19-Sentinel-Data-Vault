@@ -11,8 +11,8 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 
 public class VaultController {
-	
-	public static boolean isValidEmailAddress(String email) {
+	//helper function to check email address validity
+	private static boolean isValidEmailAddress(String email) {
 		   boolean result = true;
 		   try {
 		      InternetAddress emailAddr = new InternetAddress(email);
@@ -24,9 +24,8 @@ public class VaultController {
 	}
 	
 	
-	
+	//function called by signupview
 	public int createAccountCheck(String password1, String password2, String username,String question, String answer) throws NoSuchAlgorithmException{
-		//ToDo: **********Need to add valid email address check***********
 		
 		//check user enter all fields
 		if (password1.equals("") || password2.equals("")||username.equals("")||answer.equals("")){
@@ -85,7 +84,6 @@ public class VaultController {
 
 			DatabaseManager d = new DatabaseManager();
 			
-			//TO DO: *******This method will have a return value,need to change accordingly*******
 			if(d.addUserToDatabase(newuser) == -1) {
 				JOptionPane.showMessageDialog(null,"The account has already existed! Please Try another email!");
 				return 0;
