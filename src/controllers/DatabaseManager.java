@@ -125,7 +125,7 @@ public class DatabaseManager {
 		         //String id = userInfoSet.getString("user_email");
 		         String  passwordhash = userInfoSet.getString("password_hash");
 		         String salt  = userInfoSet.getString("password_salt");
-		         String  datakey = userInfoSet.getString("datakey");
+		         String  datakey = userInfoSet.getString("data_key");
 		         String  question = userInfoSet.getString("security_question");
 		         String  answer = userInfoSet.getString("security_answer");
 		         String  lastlogin = userInfoSet.getString("last_login");

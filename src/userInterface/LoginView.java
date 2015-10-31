@@ -84,10 +84,19 @@ public class LoginView {
 				 */
 				
 				VaultController v = new VaultController();
-				int result = v.loginCheck(username, password);
+				int result = 0;
+				try {
+					result = v.loginCheck(username, password);
+				} catch (NoSuchAlgorithmException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				if (result == 1){
+					//MainView window = new MainView(username);
+					//window.frmSentinelDataVault.setVisible(true);
 					frame.dispose();
 				}
+		
 				
 			}
 		});
