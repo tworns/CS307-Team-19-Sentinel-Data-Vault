@@ -19,8 +19,8 @@ public class SecurityView {
 	private boolean numbers;
 	private boolean uppercase;
 	private boolean lowercase;
+	private boolean specials;
 	private boolean repeated;
-	
 	
 	/*
 	 * Launch the application.
@@ -81,6 +81,11 @@ public class SecurityView {
 		
 		//toggle for special characters
 		JCheckBox chckbxNoSpecialCharacters = new JCheckBox("At Least 1 Special Character");
+		chckbxNoSpecialCharacters.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				specials = chckbxNoSpecialCharacters.isSelected();
+			}
+		});
 		chckbxNoSpecialCharacters.setBounds(47, 126, 215, 25);
 
 		chckbxNoSpecialCharacters.setToolTipText("Toggling this option will generate a password with at least 1 special character (!,@,#,$, etc.).");
@@ -88,6 +93,11 @@ public class SecurityView {
 		
 		//toggle for uppercase letters
 		JCheckBox chckbxNoUppercase = new JCheckBox("At Least 1 Uppercase Letter");
+		chckbxNoUppercase.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				uppercase = chckbxNoUppercase.isSelected();
+			}
+		});
 		chckbxNoUppercase.setBounds(47, 36, 208, 25);
 
 		chckbxNoUppercase.setToolTipText("Toggling this option will generate a password with at least 1 uppercase letter.");
@@ -96,6 +106,11 @@ public class SecurityView {
 		
 		//toggle for numbers
 		JCheckBox chckbxNoNumbers = new JCheckBox("At Least 1 Number");
+		chckbxNoNumbers.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				numbers = chckbxNoNumbers.isSelected();
+			}
+		});
 		chckbxNoNumbers.setBounds(47, 96, 227, 25);
 
 		chckbxNoNumbers.setToolTipText("Toggling this option will generate a password with at least 1 number.");
@@ -127,14 +142,16 @@ public class SecurityView {
 		panel.add(btnGenerate);
 		btnGenerate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent clickGenerate) {
-				if(clickGenerate.getActionCommand().equalsIgnoreCase("Generate")) { 
+				if(numbers == false && specials == false && lowercase == false && uppercase == false && repeated == false ) { 
+					JOptionPane.showMessageDialog(null, "One or more boxes must be ticked.", "Change Password", 0);
+				}
 					PasswordGen passGen = new PasswordGen();
 					String password = passGen.generatePassword(true, true, true, true, true, 16);
 					JTextArea displayPass = new JTextArea(1,1);
 					displayPass.setText(password);
 					displayPass.setEditable(false);
 					JOptionPane.showMessageDialog(null, new JScrollPane(displayPass), "Password", JOptionPane.INFORMATION_MESSAGE);
-				}
+				
 			}
 		});
 		
@@ -144,11 +161,21 @@ public class SecurityView {
 		panel.add(btnCancel);
 		
 		JCheckBox chckbxAvoidRepeatedCharacters = new JCheckBox("Avoid Repeated Letters/Numbers");
+		chckbxAvoidRepeatedCharacters.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				repeated = chckbxAvoidRepeatedCharacters.isSelected();
+			}
+		});
 		chckbxAvoidRepeatedCharacters.setToolTipText("Toggling this option will generate a password that avoids repeating characters (aa, bb, 11, @@, etc.) as much as possible.");
-		chckbxAvoidRepeatedCharacters.setBounds(47, 159, 183, 25);
+		chckbxAvoidRepeatedCharacters.setBounds(47, 159, 240, 25);
 		panel.add(chckbxAvoidRepeatedCharacters);
 		
 		JCheckBox chckbxAtLeast = new JCheckBox("At least 1 Lowercase Charcter");
+		chckbxAtLeast.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				lowercase = chckbxAtLeast.isSelected();
+			}
+		});
 		chckbxAtLeast.setToolTipText("Toggling this option will generate a password with at least 1 lowercase letter.");
 		chckbxAtLeast.setBounds(47, 66, 215, 25);
 		panel.add(chckbxAtLeast);
@@ -159,7 +186,7 @@ public class SecurityView {
 				}
 			}
 		});
-		
+		//TODO MAKE SURE THAT AT LEAST 1 CHECK BOX IS SELECTED
 		//Strength checker
 		JPanel panel_1 = new JPanel();
 		tabbedPane.addTab("Password Strength Checker", null, panel_1, null);
