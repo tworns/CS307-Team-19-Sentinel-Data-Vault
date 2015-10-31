@@ -130,35 +130,56 @@ public class HomeView {
 		panel_south.setBounds(0, 55, 700, 395);
 		frmSentinelDataVault.getContentPane().add(panel_south);
 		
-		JPanel panel = new JPanel();
-		panel.setBackground(Color.GRAY);
+		JPanel panel_west = new JPanel();
+		panel_west.setBackground(Color.WHITE);
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(Color.WHITE);
+		JPanel panel_center = new JPanel();
+		panel_center.setBackground(Color.WHITE);
 		
-		JPanel panel_2 = new JPanel();
-		panel_2.setBackground(Color.WHITE);
+		JPanel panel_east = new JPanel();
+		panel_east.setBackground(Color.WHITE);
 		GroupLayout gl_panel_south = new GroupLayout(panel_south);
 		gl_panel_south.setHorizontalGroup(
 			gl_panel_south.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_south.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE)
+					.addComponent(panel_west, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
-					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 225, GroupLayout.PREFERRED_SIZE)
+					.addComponent(panel_center, GroupLayout.PREFERRED_SIZE, 225, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
+					.addComponent(panel_east, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap())
 		);
 		gl_panel_south.setVerticalGroup(
 			gl_panel_south.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_south.createSequentialGroup()
 					.addGroup(gl_panel_south.createParallelGroup(Alignment.LEADING)
-						.addComponent(panel, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE)
-						.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 394, GroupLayout.PREFERRED_SIZE)
-						.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 395, GroupLayout.PREFERRED_SIZE))
+						.addComponent(panel_west, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE)
+						.addComponent(panel_east, GroupLayout.PREFERRED_SIZE, 394, GroupLayout.PREFERRED_SIZE)
+						.addComponent(panel_center, GroupLayout.PREFERRED_SIZE, 395, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap())
 		);
+		
+		JList list = new JList();
+		panel_center.add(list);
+		
+		JLabel lblUserLogin = new JLabel("User Login");
+		GroupLayout gl_panel_west = new GroupLayout(panel_west);
+		gl_panel_west.setHorizontalGroup(
+			gl_panel_west.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_west.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(lblUserLogin)
+					.addContainerGap(133, Short.MAX_VALUE))
+		);
+		gl_panel_west.setVerticalGroup(
+			gl_panel_west.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_west.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(lblUserLogin)
+					.addContainerGap(373, Short.MAX_VALUE))
+		);
+		panel_west.setLayout(gl_panel_west);
 		panel_south.setLayout(gl_panel_south);
 		
 
