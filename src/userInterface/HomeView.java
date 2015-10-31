@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import java.awt.GridLayout;
+import javax.swing.JTree;
 
 public class HomeView {
 
@@ -50,43 +51,26 @@ public class HomeView {
 		frmSentinelDataVault.setBounds(100, 100, 700, 500);
 		frmSentinelDataVault.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmSentinelDataVault.getContentPane().setLayout(null);
-//	panel_west
-		JPanel panel_west = new JPanel();
-		panel_west.setBounds(8, 8, 335, 352); // margins between object 8 
-		frmSentinelDataVault.getContentPane().add(panel_west);
-		panel_west.setLayout(null);
-		
-		JLabel background_west = new JLabel("New label");
-		background_west.setBounds(0, 0, 335, 352);
-		panel_west.add(background_west);
-		background_west.setIcon(new ImageIcon("/Users/Jiho/Desktop/사진/modified 6790918-free-background-wallpaper.png"));
-
-		//	panel_east		
-		JPanel panel_east = new JPanel();
-		panel_east.setBounds(348, 8, 346, 352);
-		frmSentinelDataVault.getContentPane().add(panel_east);
-		panel_east.setLayout(null);
-		
-		JLabel background_east = new JLabel("");
-		background_east.setIcon(new ImageIcon("/Users/Jiho/Desktop/사진/modified 6790918-free-background-wallpaper.png"));
-		background_east.setBounds(0, 0, 346, 352);
-		panel_east.add(background_east);
 			
 //		anel_south		
-		JPanel panel_south = new JPanel();
-		panel_south.setBounds(8, 368, 684, 78);			// margins between object 8 
-		panel_south.setOpaque(false); // to set transparent panel
-		frmSentinelDataVault.getContentPane().add(panel_south);
-		panel_south.setLayout(new GridLayout(0, 3, 0, 0));
+		JPanel panel_north = new JPanel();
+		panel_north.setBounds(0, 0, 700, 48);			// margins between object 8 
+		panel_north.setOpaque(false); // to set transparent panel
+		frmSentinelDataVault.getContentPane().add(panel_north);
+		panel_north.setLayout(new GridLayout(0, 3, 0, 0));
 	
 		JButton btnSignOut = new JButton("Sign Out");
-		panel_south.add(btnSignOut);
+		panel_north.add(btnSignOut);
 		
 		JButton btnSetting = new JButton("Setting");
-		panel_south.add(btnSetting);
+		panel_north.add(btnSetting);
 		
 		JButton btnSecurity = new JButton("Security");
-		panel_south.add(btnSecurity);
+		panel_north.add(btnSecurity);
+		
+		JPanel panel_south = new JPanel();
+		panel_south.setBounds(0, 48, 700, 408);
+		frmSentinelDataVault.getContentPane().add(panel_south);
 		
 
 		
