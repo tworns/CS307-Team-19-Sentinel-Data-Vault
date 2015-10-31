@@ -50,7 +50,7 @@ public class NewDataEntryView {
 	/**
 	 * Create the application.
 	 */
-	public NewDataEntry() {
+	public NewDataEntryView() {
 		initialize();
 	}
 	
