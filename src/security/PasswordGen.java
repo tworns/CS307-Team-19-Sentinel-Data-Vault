@@ -1,12 +1,32 @@
 package security;
 
 import java.security.SecureRandom;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import org.passay.CharacterRule;
 import org.passay.EnglishCharacterData;
 import org.passay.PasswordGenerator;
 
 public class PasswordGen {
+	
+	private static String removeRepeatChars(String password) {
+		char[] replacementChars = "abcdefghijklmnopqrstuvwxyxABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".toCharArray();
+		
+		Pattern repeatCharPattern = Pattern.compile("([a-zA-Z0-9])\\1+");
+		Matcher matcher = repeatCharPattern.matcher(password);
+		
+		while (matcher.find()) {
+			int dupePosition = matcher.start();
+			char duplicate = password.charAt(dupePosition);
+			while (duplicate != 'e') {
+				
+			}
+		}
+		
+		return "hoobastank";
+	}
 	
 	public String generatePassword(Boolean containsUpper, Boolean containsLower, Boolean containsDigit, Boolean containsSpecial, Boolean avoidRepetition, int passwordLength) {
 		PasswordGenerator generator = new PasswordGenerator();
@@ -58,5 +78,3 @@ public class PasswordGen {
 		return generator.generatePassword(passwordLength, passRules);
 	}
 }
-
-
