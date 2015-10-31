@@ -80,8 +80,8 @@ public class PasswordChangeView {
 		frmChangePassword.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frmChangePassword.getContentPane().setLayout(null);
 		
-		JLabel lblOldPassword = new JLabel("Old Password");
-		lblOldPassword.setBounds(165, 54, 86, 16);
+		JLabel lblOldPassword = new JLabel("Current Password");
+		lblOldPassword.setBounds(167, 33, 114, 16);
 		frmChangePassword.getContentPane().add(lblOldPassword);
 		
 		JLabel lblNewPassword = new JLabel("New Password");
@@ -110,11 +110,8 @@ public class PasswordChangeView {
 				newPass1 = String.valueOf(passwordField_1.getPassword());
 				newPass2 = String.valueOf(passwordField_2.getPassword());
 				oldAnswer = textField_3.getText();
-				if(question == null) { 
-					question = currentUser.getSecurityQuestion();
-				}
-				if(newAnswer == null) { 
-					newAnswer = oldAnswer;
+				if(question.equals("Please choose a security question below") == true) { 
+					question =  null;
 				}
 
 				//Old password validation
@@ -143,9 +140,10 @@ public class PasswordChangeView {
 				else if (newPass1.equals(newPass2) == false) { 
 					JOptionPane.showMessageDialog(null, "Check to make sure the new passwords match.", "Change Password", 0);
 				}
-				else if (question != null && oldAnswer != null) { 
+				else if (question != null && newAnswer != null && passCheck == true && (newPass1.equals("")== true && newPass2.equals("") == true && oldAnswer.equals("") == true ) ) { 
 					currentUser.setSecurityQuestion(question);
 					currentUser.setSecurityAnswer(newAnswer);
+					System.out.println("Security Q&A would be changed!");
 					frmChangePassword.dispose();
 				}
 				//Makes sure the new passwords match each other, the old password and security q answer is correct
@@ -159,14 +157,15 @@ public class PasswordChangeView {
 					}
 					String newPass1 = p.hashPassword(newPass2, currentUser.getPasswordSalt() );
 					currentUser.setPasswordHash(newPass1);
-					frmChangePassword.dispose();
+					System.out.println("Password would be changed!");
+					//frmChangePassword.dispose();
 					
 					//TODO Get the updated user to the database!
 					
 				}
 				//Yells at user if the above if has a false in it
 				else{ 
-					JOptionPane.showMessageDialog(null, "Ensure your security question answer is correct.", "Change Password", 0);
+					JOptionPane.showMessageDialog(null, "Ensure your current security question answer is correct and \n that all fields for the subcatagory you are changing are filled in.", "Change Password", 0);
 				}
 				}
 		});
@@ -189,14 +188,17 @@ public class PasswordChangeView {
 		frmChangePassword.getContentPane().add(txtpnThisIsWhere);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(37, 48, 116, 22);
+		passwordField.setToolTipText("Current user password must be entered to change passwords or security question/answer");
+		passwordField.setBounds(39, 27, 116, 22);
 		frmChangePassword.getContentPane().add(passwordField);
 		
 		passwordField_1 = new JPasswordField();
+		passwordField_1.setToolTipText("Password that you want to change to.");
 		passwordField_1.setBounds(37, 91, 116, 22);
 		frmChangePassword.getContentPane().add(passwordField_1);
 		
 		passwordField_2 = new JPasswordField();
+		passwordField_2.setToolTipText("Confirmation of the new password.");
 		passwordField_2.setBounds(37, 125, 116, 22);
 		frmChangePassword.getContentPane().add(passwordField_2);
 		
@@ -211,9 +213,11 @@ public class PasswordChangeView {
 		textField.setColumns(10);
 		
 		JComboBox comboBox = new JComboBox();
+		comboBox.setToolTipText("Current password and a new security question and answer are REQUIRED to change security questions.");
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				question = (String) comboBox.getSelectedItem();
+				System.out.println(question);
 			}
 		});
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Please choose a security question below", "What is the maiden name of your mother?", "What is name of your pet", "Where is your favorite city?"}));
@@ -226,7 +230,7 @@ public class PasswordChangeView {
 		
 		JLabel lblNewPassword_1 = new JLabel("New Password");
 		lblNewPassword_1.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblNewPassword_1.setBounds(137, 23, 114, 16);
+		lblNewPassword_1.setBounds(117, 62, 114, 16);
 		frmChangePassword.getContentPane().add(lblNewPassword_1);
 	}
 }

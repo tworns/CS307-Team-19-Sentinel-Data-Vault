@@ -63,6 +63,7 @@ public class SecurityView {
 	private void initialize() {
 		//displays window
 		frame = new JFrame();
+		frame.setResizable(false);
 		frame.setBounds(100, 100, 372, 384);
 		frame.setTitle("Security View");
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -70,7 +71,7 @@ public class SecurityView {
 		
 		//display code for the tabs
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setBounds(0, 0, 354, 337);
+		tabbedPane.setBounds(0, 0, 366, 349);
 		frame.getContentPane().add(tabbedPane);
 		
 		//label for password generator section
@@ -142,7 +143,7 @@ public class SecurityView {
 		btnCancel.setBounds(154, 242, 85, 25);
 		panel.add(btnCancel);
 		
-		JCheckBox chckbxAvoidRepeatedCharacters = new JCheckBox("Avoid Repeated Characters");
+		JCheckBox chckbxAvoidRepeatedCharacters = new JCheckBox("Avoid Repeated Letters/Numbers");
 		chckbxAvoidRepeatedCharacters.setToolTipText("Toggling this option will generate a password that avoids repeating characters (aa, bb, 11, @@, etc.) as much as possible.");
 		chckbxAvoidRepeatedCharacters.setBounds(47, 159, 183, 25);
 		panel.add(chckbxAvoidRepeatedCharacters);
