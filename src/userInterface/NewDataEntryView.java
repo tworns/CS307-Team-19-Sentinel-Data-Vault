@@ -369,7 +369,7 @@ public class NewDataEntryView {
 						JButton btnSave = new JButton("Save");
 						btnSave.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
-								//TODO: Add Entry to data base
+								//TODO: Add Entry to database
 							}
 						});
 						btnSave.setBounds(85, 307, 117, 29);
@@ -430,7 +430,7 @@ public class NewDataEntryView {
 						JButton btnSave = new JButton("Save");
 						btnSave.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
-								//TODO: Add Entry to data base
+								//TODO: Add Entry to database
 							}
 						});
 						btnSave.setBounds(85, 307, 117, 29);
