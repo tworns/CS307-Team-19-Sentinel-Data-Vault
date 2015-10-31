@@ -29,8 +29,10 @@ public class PasswordChangeView {
 	private String oldPass;
 	private String newPass1;
 	private String newPass2;
-	private String answer;
+	private String oldAnswer;
 	private boolean passCheck; 
+	private String question;
+	private String newAnswer;
 	/**
 	 * Launch the application.
 	 */
@@ -107,16 +109,16 @@ public class PasswordChangeView {
 				oldPass = String.valueOf(passwordField.getPassword());
 				newPass1 = String.valueOf(passwordField_1.getPassword());
 				newPass2 = String.valueOf(passwordField_2.getPassword());
-				answer = textField_3.getText();
-				VaultController fallout = new VaultController();
-				try {
-					fallout.createAccountCheck(oldPass, newPass1, currentUser.getUsername(), currentUser.getSecurityQuestion(), answer);
-				} catch (NoSuchAlgorithmException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+				oldAnswer = textField_3.getText();
+				if(question == null) { 
+					question = currentUser.getSecurityQuestion();
 				}
+				if(newAnswer == null) { 
+					newAnswer = oldAnswer;
+				}
+
 				//Old password validation
-				/*PasswordValidation a = new PasswordValidation(oldPass);
+				PasswordValidation a = new PasswordValidation(oldPass);
 				try{  
 					if(a.isValidPassword(currentUser, oldPass) == true) { 
 						passCheck = true;
@@ -129,8 +131,11 @@ public class PasswordChangeView {
 					k.printStackTrace();
 				}
 				//Making sure the user puts stuff in.
-				if(newPass1 == null || newPass2 == null || answer == null){
+				if(newPass1 == null || newPass2 == null || oldAnswer == null && (question == null || newAnswer == null)){
 					JOptionPane.showMessageDialog(null, "One or more fields left empty", "Change Password", 0);
+				}
+				else if ( passCheck == false) { 
+					JOptionPane.showMessageDialog(null, "Current password is incorrect.", "Change Password", 0);
 				}
 				else if ( newPass1.equals(newPass2) && newPass2.equals(oldPass)) { 
 					JOptionPane.showMessageDialog(null, "New password cannot match the old password.", "Change Password", 0);
@@ -138,8 +143,13 @@ public class PasswordChangeView {
 				else if (newPass1.equals(newPass2) == false) { 
 					JOptionPane.showMessageDialog(null, "Check to make sure the new passwords match.", "Change Password", 0);
 				}
+				else if (question != null && oldAnswer != null) { 
+					currentUser.setSecurityQuestion(question);
+					currentUser.setSecurityAnswer(newAnswer);
+					frmChangePassword.dispose();
+				}
 				//Makes sure the new passwords match each other, the old password and security q answer is correct
-				else if(newPass1.equals(newPass2) && passCheck ==true && a.minStandard(newPass2) == true && answer.equals(currentUser.getSecurityAnswer())){
+				else if(newPass1.equals(newPass2) && passCheck ==true && a.minStandard(newPass2) == true && oldAnswer.equals(currentUser.getSecurityAnswer())){
 				
 					PasswordHasher p = null; // might have issues with the null initializations here.
 					try {
@@ -157,7 +167,7 @@ public class PasswordChangeView {
 				//Yells at user if the above if has a false in it
 				else{ 
 					JOptionPane.showMessageDialog(null, "Ensure your security question answer is correct.", "Change Password", 0);
-				}*/
+				}
 				}
 		});
 		btnNewButton.setBounds(63, 320, 97, 25);
@@ -200,14 +210,19 @@ public class PasswordChangeView {
 		frmChangePassword.getContentPane().add(textField);
 		textField.setColumns(10);
 		
-		JLabel lblNewLabel = new JLabel("New Security Question Answer");
-		lblNewLabel.setBounds(165, 279, 189, 16);
-		frmChangePassword.getContentPane().add(lblNewLabel);
-		
 		JComboBox comboBox = new JComboBox();
+		comboBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				question = (String) comboBox.getSelectedItem();
+			}
+		});
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Please choose a security question below", "What is the maiden name of your mother?", "What is name of your pet", "Where is your favorite city?"}));
 		comboBox.setBounds(37, 241, 309, 22);
 		frmChangePassword.getContentPane().add(comboBox);
+		
+		JLabel lblNewLabel = new JLabel("New Security Question Answer");
+		lblNewLabel.setBounds(165, 279, 189, 16);
+		frmChangePassword.getContentPane().add(lblNewLabel);
 		
 		JLabel lblNewPassword_1 = new JLabel("New Password");
 		lblNewPassword_1.setFont(new Font("Tahoma", Font.BOLD, 14));
