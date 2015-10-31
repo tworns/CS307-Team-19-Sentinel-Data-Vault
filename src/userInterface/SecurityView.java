@@ -16,6 +16,11 @@ public class SecurityView {
 	private JPasswordField passwordField;
 	public Object frmSentinelDataVault;
 	private int spinLength;
+	private boolean numbers;
+	private boolean uppercase;
+	private boolean lowercase;
+	private boolean repeated;
+	
 	
 	/*
 	 * Launch the application.
@@ -58,15 +63,14 @@ public class SecurityView {
 	private void initialize() {
 		//displays window
 		frame = new JFrame();
-		frame.setResizable(false);
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(100, 100, 372, 384);
 		frame.setTitle("Security View");
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		//display code for the tabs
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setBounds(0, 0, 432, 255);
+		tabbedPane.setBounds(0, 0, 354, 337);
 		frame.getContentPane().add(tabbedPane);
 		
 		//label for password generator section
@@ -75,58 +79,50 @@ public class SecurityView {
 		panel.setLayout(null);
 		
 		//toggle for special characters
-		JCheckBox chckbxNoSpecialCharacters = new JCheckBox("No Special Characters");
+		JCheckBox chckbxNoSpecialCharacters = new JCheckBox("At Least 1 Special Character");
+		chckbxNoSpecialCharacters.setBounds(47, 126, 215, 25);
 
-		chckbxNoSpecialCharacters.setToolTipText("Toggling this option will generate a password with no special characters (!,@,#,$, etc.).");
-
-		chckbxNoSpecialCharacters.setBounds(28, 94, 170, 25);
+		chckbxNoSpecialCharacters.setToolTipText("Toggling this option will generate a password with at least 1 special character (!,@,#,$, etc.).");
 		panel.add(chckbxNoSpecialCharacters);
 		
 		//toggle for uppercase letters
-		JCheckBox chckbxNoUppercase = new JCheckBox("No Uppercase");
+		JCheckBox chckbxNoUppercase = new JCheckBox("At Least 1 Uppercase Letter");
+		chckbxNoUppercase.setBounds(47, 36, 208, 25);
 
-		chckbxNoUppercase.setToolTipText("Toggling this option will generate a password with no uppercase letters.");
-		chckbxNoUppercase.setBounds(28, 34, 117, 25);
-
-		chckbxNoUppercase.setBounds(28, 34, 227, 25);
+		chckbxNoUppercase.setToolTipText("Toggling this option will generate a password with at least 1 uppercase letter.");
 
 		panel.add(chckbxNoUppercase);
 		
 		//toggle for numbers
-		JCheckBox chckbxNoNumbers = new JCheckBox("No Numbers");
+		JCheckBox chckbxNoNumbers = new JCheckBox("At Least 1 Number");
+		chckbxNoNumbers.setBounds(47, 96, 227, 25);
 
-		chckbxNoNumbers.setToolTipText("Toggling this option will generate a password with no numbers.");
-		chckbxNoNumbers.setBounds(28, 64, 107, 25);
-
-		chckbxNoNumbers.setBounds(28, 64, 227, 25);
+		chckbxNoNumbers.setToolTipText("Toggling this option will generate a password with at least 1 number.");
 
 		panel.add(chckbxNoNumbers);
 		
 		//length of password to be input
 		JLabel lblLengthOfPassword = new JLabel("Password Length");
+		lblLengthOfPassword.setBounds(104, 200, 118, 16);
 		lblLengthOfPassword.setToolTipText("This field specifies the length of password to be generated");
-		lblLengthOfPassword.setBounds(88, 136, 118, 16);
 		panel.add(lblLengthOfPassword);
 		
 		
 		JSpinner spinner = new JSpinner();
+		spinner.setBounds(47, 198, 45, 19);
 		spinner.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				spinLength = (Integer)spinner.getValue();
-				if(spinLength == 0) { 
-					spinLength += 8;
-				}
 			}
 		});
 		spinner.setToolTipText("This field specifies the length of the password to be generated.");
-		spinner.setModel(new SpinnerNumberModel(8, 8, 32, 1));
-		spinner.setBounds(31, 134, 45, 19);
+		spinner.setModel(new SpinnerNumberModel(4, 4, 32, 1));
 		panel.add(spinner);
 		spinner.setAutoscrolls(true);
 		
 		//Displays the password that has been generated, values are currently hard coded because Password generator hasn't been finished.
 		JButton btnGenerate = new JButton("Generate");
-		btnGenerate.setBounds(14, 187, 95, 25);
+		btnGenerate.setBounds(47, 242, 95, 25);
 		panel.add(btnGenerate);
 		btnGenerate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent clickGenerate) {
@@ -143,8 +139,18 @@ public class SecurityView {
 		
 		//Action listener for the cancel button
 		JButton btnCancel = new JButton("Cancel");
-		btnCancel.setBounds(121, 187, 85, 25);
+		btnCancel.setBounds(154, 242, 85, 25);
 		panel.add(btnCancel);
+		
+		JCheckBox chckbxAvoidRepeatedCharacters = new JCheckBox("Avoid Repeated Characters");
+		chckbxAvoidRepeatedCharacters.setToolTipText("Toggling this option will generate a password that avoids repeating characters (aa, bb, 11, @@, etc.) as much as possible.");
+		chckbxAvoidRepeatedCharacters.setBounds(47, 159, 183, 25);
+		panel.add(chckbxAvoidRepeatedCharacters);
+		
+		JCheckBox chckbxAtLeast = new JCheckBox("At least 1 Lowercase Charcter");
+		chckbxAtLeast.setToolTipText("Toggling this option will generate a password with at least 1 lowercase letter.");
+		chckbxAtLeast.setBounds(47, 66, 215, 25);
+		panel.add(chckbxAtLeast);
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent clickCancel) {
 				if(clickCancel.getActionCommand().equalsIgnoreCase("Cancel")) {

@@ -3,6 +3,7 @@ package userInterface;
 import java.awt.EventQueue;
 import javax.swing.*;
 
+import controllers.VaultController;
 import dataManagement.User;
 
 import java.awt.Font;
@@ -48,18 +49,21 @@ public class SettingsView {
 	 */
 	private void initialize() {
 		frmSettings = new JFrame();
-		frmSettings.setResizable(false);
 		frmSettings.setTitle("Settings");
-		frmSettings.setBounds(100, 100, 456, 360);
+		frmSettings.setBounds(100, 100, 439, 360);
 		frmSettings.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frmSettings.getContentPane().setLayout(null);
 		
 		//High security toggle & tool tip
 		JCheckBox chckbxHighSecurityLevel = new JCheckBox("High Security Level ");
-		chckbxHighSecurityLevel.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent arg0) {
-				Boolean b = chckbxHighSecurityLevel.isSelected();
-				//TODO Add setting value to User Class
+		chckbxHighSecurityLevel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				int secLvl;
+				if(chckbxHighSecurityLevel.isSelected() ==true ) { 
+					secLvl = 1;
+				}
+				else { secLvl = 0; } 
+				currentUser.setDefaultHighSecurity(secLvl);  //Sets security level in current User.
 			}
 		});
 		chckbxHighSecurityLevel.setToolTipText("Toggling this setting will change ALL user encryptions to the strongest possible.");
@@ -71,7 +75,7 @@ public class SettingsView {
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) { //GETS VALUE FROM COMBO BOX
 				String s  = (String) comboBox.getSelectedItem();
-				System.out.println(s); //TODO Add this value to user instead of printing.
+				currentUser.setBackupFrequency(s); //Adds this value to user
 			}
 		});
 		comboBox.setToolTipText("This field sets how often all user data is backed up on disk.");
@@ -94,8 +98,36 @@ public class SettingsView {
 		JComboBox comboBox_1 = new JComboBox();
 		comboBox_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String size = (String) comboBox_1.getSelectedItem();
-				System.out.println(size); //TODO Add this to user instead of printing.
+				String s = (String) comboBox_1.getSelectedItem();
+				int size = 0;
+				if(s.equals("10 MB")) { 
+					size = 10;
+				}
+				else if (s.equals("50 MB")) { 
+					size = 50;
+				}
+				else if (s.equals("100 MB")){
+					size = 100;
+				}
+				else if (s.equals("512 MB")) { 
+					size = 512;
+				}
+				else if ( s.equals("1 GB")){ 
+					size = 1024;
+				}
+				else if (s.equals("2 GB")) {
+					size = 2048;
+				}
+				else if (s.equals("3 GB")) { 
+					size = 3072;
+				}
+				else if(s.equals("4 GB")) { 
+					size = 4096;
+				}
+				else if (s.equals("5 GB")){ 
+					size = 5120;
+				}
+				currentUser.setMaxBackupSize(size);//Adds max back up size to current user.
 			}
 		});
 		comboBox_1.setToolTipText("This field is the maximum size a backup file can reach before the user is warned. ");
@@ -115,7 +147,8 @@ public class SettingsView {
 		btnOk.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				if(e.getActionCommand().equalsIgnoreCase("Ok")) {
-			//TODO SAVE SETTINGS TO USER CLASS
+					VaultController newVegas =  new VaultController();
+					//TODO Call VaultController's method to update existing user.
 					frmSettings.dispose();
 		}
 			}
@@ -140,8 +173,13 @@ public class SettingsView {
 		JCheckBox chckbxD = new JCheckBox("Turn on account wipe after 5 failed login attemps");
 		chckbxD.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
-				Boolean wipe = chckbxD.isSelected();
-				//TODO Update User class with this value
+				Boolean b = chckbxD.isSelected();
+				int wipe;
+				if(b == true) { 
+					wipe = 1;
+				}
+				else { wipe = 0; } 
+				currentUser.setAccountWipe(wipe);
 			}
 		});
 		chckbxD.setToolTipText("Toggling this setting will enable wiping of all data after a specific number of failed login attempts.");
@@ -152,6 +190,7 @@ public class SettingsView {
 		btnChangePassword.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				PasswordChangeView k = new PasswordChangeView(currentUser);
+				k.frmChangePassword.setVisible(true); 
 			}
 		});
 		btnChangePassword.setBounds(48, 220, 139, 25);

@@ -19,7 +19,7 @@ import javax.swing.JPasswordField;
 import controllers.VaultController;
 public class PasswordChangeView {
 
-	private JFrame frmChangePassword;
+	public JFrame frmChangePassword;
 	private JTextField textField_3;
 	
 	
@@ -68,8 +68,9 @@ public class PasswordChangeView {
 		
 		
 		frmChangePassword = new JFrame();
+		frmChangePassword.setResizable(false);
 		frmChangePassword.setTitle("Change Password");
-		frmChangePassword.setBounds(100, 100, 450, 300);
+		frmChangePassword.setBounds(100, 100, 409, 300);
 		frmChangePassword.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frmChangePassword.getContentPane().setLayout(null);
 		
