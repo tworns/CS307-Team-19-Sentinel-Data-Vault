@@ -63,7 +63,7 @@ public class HomeView {
 			
 //		anel_south		
 		JPanel panel_north = new JPanel();
-		panel_north.setBounds(0, 0, 700, 50);			// margins between object 8 
+		panel_north.setBounds(0, 6, 700, 50);			// margins between object 8 
 		panel_north.setOpaque(false); // to set transparent panel
 		frmSentinelDataVault.getContentPane().add(panel_north);
 		
@@ -84,32 +84,42 @@ public class HomeView {
 		});
 		
 		JButton btnDeleteData = new JButton("Delete");
+		
+		JLabel lblEmpty = new JLabel("     ");
+		
+		JLabel label = new JLabel("     ");
 		GroupLayout gl_panel_north = new GroupLayout(panel_north);
 		gl_panel_north.setHorizontalGroup(
-			gl_panel_north.createParallelGroup(Alignment.TRAILING)
+			gl_panel_north.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_north.createSequentialGroup()
-					.addGap(0, 0, Short.MAX_VALUE)
-					.addComponent(btnSignOut, GroupLayout.PREFERRED_SIZE, 90, GroupLayout.PREFERRED_SIZE)
+					.addComponent(btnSignOut, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+					.addGap(6)
+					.addComponent(btnSetting, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnSetting, GroupLayout.PREFERRED_SIZE, 90, GroupLayout.PREFERRED_SIZE)
+					.addComponent(lblEmpty, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnAddData, GroupLayout.PREFERRED_SIZE, 90, GroupLayout.PREFERRED_SIZE)
+					.addComponent(btnAddData, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnDeleteData, GroupLayout.PREFERRED_SIZE, 90, GroupLayout.PREFERRED_SIZE)
+					.addComponent(btnDeleteData, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnSecurity, GroupLayout.PREFERRED_SIZE, 90, GroupLayout.PREFERRED_SIZE)
-					.addGap(462))
+					.addComponent(label, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnSecurity, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+					.addGap(326))
 		);
 		gl_panel_north.setVerticalGroup(
 			gl_panel_north.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_north.createSequentialGroup()
-					.addGroup(gl_panel_north.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnSignOut, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-						.addComponent(btnAddData, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-						.addComponent(btnSetting, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-						.addComponent(btnDeleteData, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-						.addComponent(btnSecurity, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
-					.addGap(0))
+					.addGroup(gl_panel_north.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnSignOut, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+						.addGroup(gl_panel_north.createParallelGroup(Alignment.BASELINE)
+							.addComponent(btnSetting, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+							.addComponent(btnAddData, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+							.addComponent(btnDeleteData, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+							.addComponent(btnSecurity, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+							.addComponent(lblEmpty)
+							.addComponent(label)))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		panel_north.setLayout(gl_panel_north);
 		
