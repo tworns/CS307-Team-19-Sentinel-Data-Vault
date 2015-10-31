@@ -89,6 +89,12 @@ public class MainView {
 		panel_1.add(btnLock);
 		
 		JButton btnNewDataEntry = new JButton("New Data Entry");
+		btnNewDataEntry.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				NewDataEntry newDataEntry = new NewDataEntry();
+				newDataEntry.getJframe().setVisible(true);
+			}
+		});
 		panel_1.add(btnNewDataEntry);
 		
 		JButton btnNewData = new JButton("Delete Entry");

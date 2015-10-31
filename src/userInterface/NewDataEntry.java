@@ -15,6 +15,8 @@ import javax.swing.JRadioButton;
 
 import java.awt.Button;
 import java.awt.TextField;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.event.ItemEvent;
@@ -51,14 +53,18 @@ public class NewDataEntry {
 	public NewDataEntry() {
 		initialize();
 	}
+	
+	public JFrame getJframe() {
+		return this.frame;
+	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame = new JFrame("Choose New Date Entry Type");
+		frame.setBounds(150, 150, 300, 200);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		JPanel panel = new JPanel();
 		frame.getContentPane().add(panel, BorderLayout.NORTH);
@@ -81,12 +87,14 @@ public class NewDataEntry {
 				if (e.getStateChange() == ItemEvent.SELECTED) {
 					int index = choice.getSelectedIndex();
 					if (index == 0) {
+						frame.setTitle("New SSN");
+						
 						frame.getContentPane().removeAll();
 						
 						frame.revalidate();
 						frame.repaint();
-						frame.setBounds(100, 100, 450, 300);
-						frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+						frame.setBounds(150, 150, 550, 400);
+						frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 						
 						JLabel label, label_1;
 						JTextField textField, textField_1;
@@ -111,14 +119,35 @@ public class NewDataEntry {
 						frame.getContentPane().add(label_1);
 						frame.getContentPane().add(textField);
 						frame.getContentPane().add(textField_1);
+						
+						JButton btnSave = new JButton("Save");
+						btnSave.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								//TODO: Add Entry to data base
+							}
+						});
+						btnSave.setBounds(85, 307, 117, 29);
+						frame.getContentPane().add(btnSave);
+						
+						JButton btnCancel = new JButton("Cancel");
+						btnCancel.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								
+								frame.dispose();
+							
+							}
+						});
+						btnCancel.setBounds(305, 307, 117, 29);
+						frame.getContentPane().add(btnCancel);
 					}
 					if (index == 1) {
+						frame.setTitle("New Credit/Debit Card");
 						frame.getContentPane().removeAll();
 						
 						frame.revalidate();
 						frame.repaint();
-						frame.setBounds(100, 100, 450, 300);
-						frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+						frame.setBounds(150, 150, 550, 400);
+						frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 						
 						JLabel label, label_1, label_2, label_3;
 						JTextField textField, textField_1, textField_2, textField_3;
@@ -160,14 +189,35 @@ public class NewDataEntry {
 						frame.getContentPane().add(textField_1);
 						frame.getContentPane().add(textField_2);
 						frame.getContentPane().add(textField_3);
+						
+						JButton btnSave = new JButton("Save");
+						btnSave.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								//TODO: Add Entry to data base
+							}
+						});
+						btnSave.setBounds(85, 307, 117, 29);
+						frame.getContentPane().add(btnSave);
+						
+						JButton btnCancel = new JButton("Cancel");
+						btnCancel.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								
+								frame.dispose();
+							
+							}
+						});
+						btnCancel.setBounds(305, 307, 117, 29);
+						frame.getContentPane().add(btnCancel);
 					}
 					if (index == 2) {
+						frame.setTitle("New Passport");
 						frame.getContentPane().removeAll();
 						
 						frame.revalidate();
 						frame.repaint();
-						frame.setBounds(100, 100, 450, 300);
-						frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+						frame.setBounds(150, 150, 550, 400);
+						frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 						
 						JLabel label, label_1, label_2, label_3, label_4, label_5, label_6, label_7;
 						JTextField textField, textField_1, textField_2, textField_3, textField_4, textField_5, textField_6, textField_7;
@@ -245,14 +295,35 @@ public class NewDataEntry {
 						frame.getContentPane().add(textField_5);
 						frame.getContentPane().add(textField_6);
 						frame.getContentPane().add(textField_7);
+						
+						JButton btnSave = new JButton("Save");
+						btnSave.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								//TODO: Add Entry to data base
+							}
+						});
+						btnSave.setBounds(85, 307, 117, 29);
+						frame.getContentPane().add(btnSave);
+						
+						JButton btnCancel = new JButton("Cancel");
+						btnCancel.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								
+								frame.dispose();
+							
+							}
+						});
+						btnCancel.setBounds(305, 307, 117, 29);
+						frame.getContentPane().add(btnCancel);
 					}
 					if (index == 3) {
+						frame.setTitle("New Driver License");
 						frame.getContentPane().removeAll();
 						
 						frame.revalidate();
 						frame.repaint();
-						frame.setBounds(100, 100, 450, 300);
-						frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+						frame.setBounds(150, 150, 550, 400);
+						frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 						
 						JLabel label, label_1, label_2, label_3;
 						JTextField textField, textField_1, textField_2, textField_3;
@@ -293,15 +364,34 @@ public class NewDataEntry {
 						frame.getContentPane().add(textField);
 						frame.getContentPane().add(textField_1);
 						frame.getContentPane().add(textField_2);
-						frame.getContentPane().add(textField_3);						
+						frame.getContentPane().add(textField_3);
+						
+						JButton btnSave = new JButton("Save");
+						btnSave.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								//TODO: Add Entry to data base
+							}
+						});
+						
+						JButton btnCancel = new JButton("Cancel");
+						btnCancel.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								
+								frame.dispose();
+							
+							}
+						});
+						btnCancel.setBounds(305, 307, 117, 29);
+						frame.getContentPane().add(btnCancel);
 					}
 					if (index == 4) {
+						frame.setTitle("New Website Login");
 						frame.getContentPane().removeAll();
 						
 						frame.revalidate();
 						frame.repaint();
-						frame.setBounds(100, 100, 450, 300);
-						frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+						frame.setBounds(150, 150, 550, 400);
+						frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 						
 						JLabel label, label_1, label_2;
 						JTextField textField, textField_1, textField_2;
@@ -333,25 +423,46 @@ public class NewDataEntry {
 						frame.getContentPane().add(label_2);
 						frame.getContentPane().add(textField);
 						frame.getContentPane().add(textField_1);
-						frame.getContentPane().add(textField_2);						
+						frame.getContentPane().add(textField_2);	
+						
+						JButton btnSave = new JButton("Save");
+						btnSave.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								//TODO: Add Entry to data base
+							}
+						});
+						btnSave.setBounds(85, 307, 117, 29);
+						frame.getContentPane().add(btnSave);
+						
+						JButton btnCancel = new JButton("Cancel");
+						btnCancel.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								
+								frame.dispose();
+							
+							}
+						});
+						btnCancel.setBounds(305, 307, 117, 29);
+						frame.getContentPane().add(btnCancel);
 					}					
 					if (index == 5) {
+						frame.setTitle("New Wifi Network");
 						frame.getContentPane().removeAll();
 						
 						frame.revalidate();
 						frame.repaint();
-						frame.setBounds(100, 100, 450, 300);
-						frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+						frame.setBounds(150, 150, 550, 400);
+						frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 						
 						JLabel label, label_1, label_2;
 						JTextField textField, textField_1, textField_2;
-						label = new JLabel("Wifi Network Name");
+						label = new JLabel("Network Name(SSID)");
 						label.setBounds(40, 10, 150, 18);
 						
 						label_1 = new JLabel("Password");
 						label_1.setBounds(40, 40, 150, 18);
 						
-						label_2 = new JLabel("Security");
+						label_2 = new JLabel("Security Mode");
 						label_2.setBounds(40, 70, 150, 18);
 						
 																
@@ -373,16 +484,37 @@ public class NewDataEntry {
 						frame.getContentPane().add(label_2);
 						frame.getContentPane().add(textField);
 						frame.getContentPane().add(textField_1);
-						frame.getContentPane().add(textField_2);						
+						frame.getContentPane().add(textField_2);
+						
+						JButton btnSave = new JButton("Save");
+						btnSave.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								//TODO: Add Entry to data base
+							}
+						});
+						btnSave.setBounds(85, 307, 117, 29);
+						frame.getContentPane().add(btnSave);
+						
+						JButton btnCancel = new JButton("Cancel");
+						btnCancel.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								
+								frame.dispose();
+							
+							}
+						});
+						btnCancel.setBounds(305, 307, 117, 29);
+						frame.getContentPane().add(btnCancel);
 					}
 			           
 					if (index == 6) {
+						frame.setTitle("New Phone Number");
 						frame.getContentPane().removeAll();
 						
 						frame.revalidate();
 						frame.repaint();
 						frame.setBounds(100, 100, 450, 300);
-						frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+						frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 						
 						JLabel label, label_1, label_2;
 						JTextField textField, textField_1, textField_2;
@@ -414,7 +546,27 @@ public class NewDataEntry {
 						frame.getContentPane().add(label_2);
 						frame.getContentPane().add(textField);
 						frame.getContentPane().add(textField_1);
-						frame.getContentPane().add(textField_2);						
+						frame.getContentPane().add(textField_2);
+						
+						JButton btnSave = new JButton("Save");
+						btnSave.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								//TODO: Add Entry to data base
+							}
+						});
+						btnSave.setBounds(85, 207, 117, 29);
+						frame.getContentPane().add(btnSave);
+						
+						JButton btnCancel = new JButton("Cancel");
+						btnCancel.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								
+								frame.dispose();
+							
+							}
+						});
+						btnCancel.setBounds(305, 207, 117, 29);
+						frame.getContentPane().add(btnCancel);
 					}
 			        } else {
 			        	
