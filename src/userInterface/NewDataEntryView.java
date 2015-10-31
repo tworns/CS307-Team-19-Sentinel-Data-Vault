@@ -73,7 +73,7 @@ public class NewDataEntryView {
 		choice.addItem("SSN");
 		choice.addItem("Credit/Debit Card");
 		choice.addItem("Passport");
-		choice.addItem("Drive License");
+		choice.addItem("Driver's License");
 		choice.addItem("Website Logins");
 		choice.addItem("Wifi Network");
 		choice.addItem("Phone Number");
@@ -317,7 +317,7 @@ public class NewDataEntryView {
 						frame.getContentPane().add(btnCancel);
 					}
 					if (index == 3) {
-						frame.setTitle("New Driver License");
+						frame.setTitle("New Driver's License");
 						frame.getContentPane().removeAll();
 						
 						frame.revalidate();
@@ -372,6 +372,8 @@ public class NewDataEntryView {
 								//TODO: Add Entry to data base
 							}
 						});
+						btnSave.setBounds(85, 307, 117, 29);
+						frame.getContentPane().add(btnSave);
 						
 						JButton btnCancel = new JButton("Cancel");
 						btnCancel.addActionListener(new ActionListener() {
