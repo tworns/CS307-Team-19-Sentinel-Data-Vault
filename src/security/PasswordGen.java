@@ -12,20 +12,24 @@ import org.passay.PasswordGenerator;
 public class PasswordGen {
 	
 	private static String removeRepeatChars(String password) {
-		char[] replacementChars = "abcdefghijklmnopqrstuvwxyxABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".toCharArray();
-		
+		char[] replacementCharSet = "abcdefghijklmnopqrstuvwxyxABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".toCharArray();
+		char[] newPassword = password.toCharArray();
+		SecureRandom sr = new SecureRandom();
 		Pattern repeatCharPattern = Pattern.compile("([a-zA-Z0-9])\\1+");
 		Matcher matcher = repeatCharPattern.matcher(password);
 		
 		while (matcher.find()) {
 			int dupePosition = matcher.start();
-			char duplicate = password.charAt(dupePosition);
-			while (duplicate != 'e') {
-				
+			char duplicateChar = password.charAt(dupePosition);
+			char replacementChar = replacementCharSet[sr.nextInt()];
+			while (duplicateChar == replacementChar) {
+				replacementChar = replacementCharSet[sr.nextInt()];
 			}
+			newPassword[dupePosition] = replacementChar;
 		}
 		
-		return "hoobastank";
+		String finalPassword = new String(newPassword);
+		return finalPassword;
 	}
 	
 	public String generatePassword(Boolean containsUpper, Boolean containsLower, Boolean containsDigit, Boolean containsSpecial, Boolean avoidRepetition, int passwordLength) {
@@ -57,7 +61,13 @@ public class PasswordGen {
 				}
 				
 				String finalPassword = new String(specOnlyPassword);
-				return finalPassword;
+				
+				if (avoidRepetition) {
+					return removeRepeatChars(finalPassword);
+				}
+				else {
+					return finalPassword;
+				}
 			}
 			else {
 				// Password will contain AT LEAST ONE special characters
@@ -71,10 +81,23 @@ public class PasswordGen {
 				} while (++i < numReplacements);
 				
 				String finalPassword = new String(tempPassArray);
-				return finalPassword;
+				
+				if (avoidRepetition) {
+					return removeRepeatChars(finalPassword);
+				}
+				else {
+					return finalPassword;
+				}
 			}
 		}
 		
-		return generator.generatePassword(passwordLength, passRules);
+		String finalPassword = generator.generatePassword(passwordLength, passRules);
+		
+		if (avoidRepetition) {
+			return removeRepeatChars(finalPassword);
+		}
+		else {
+			return finalPassword;
+		}
 	}
 }
