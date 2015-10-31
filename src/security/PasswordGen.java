@@ -100,10 +100,4 @@ public class PasswordGen {
 			return finalPassword;
 		}
 	}
-	
-	public static void main(String args[]) {
-		PasswordGen pg = new PasswordGen();
-		String poopword = pg.generatePassword(false, false, false, true, true, 16);
-		System.out.println(poopword);
-	}
 }
