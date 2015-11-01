@@ -150,7 +150,6 @@ public class PasswordChangeView {
 					//if there is something in for the new question and new answer, the current password is right, and all the password change fields are blank
 					currentUser.setSecurityQuestion(question);
 					currentUser.setSecurityAnswer(newAnswer);
-					System.out.println("Security Q&A would be changed!");
 					//TODO GET TO THE DATABASE!
 					frmChangePassword.dispose();
 				}
@@ -240,7 +239,6 @@ public class PasswordChangeView {
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				question = (String) comboBox.getSelectedItem();
-				System.out.println(question);
 			}
 		});
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Please choose a security question below", "What is the maiden name of your mother?", "What is name of your pet", "Where is your favorite city?"}));
