@@ -11,6 +11,12 @@ import org.passay.PasswordGenerator;
 
 public class PasswordGen {
 	
+	/**
+	 * Removes all instances of duplicate letters or digits from a given password.
+	 * 
+	 * @param password	password to remove duplicate letters or digits from
+	 * @return			new form of password absent of any duplicate letters or digits
+	 */
 	private static String removeRepeatChars(String password) {
 		char[] replacementCharSet = "abcdefghijklmnopqrstuvwxyxABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".toCharArray();
 		char[] newPassword = password.toCharArray();
@@ -32,6 +38,17 @@ public class PasswordGen {
 		return finalPassword;
 	}
 	
+	/**
+	 * Generates a securely random, strong password given user-entered criteria.
+	 * 
+	 * @param containsUpper		Determines if password will contain uppercase letters
+	 * @param containsLower		Determines if password will contain lowercase letters
+	 * @param containsDigit		Determines if password will contain digits
+	 * @param containsSpecial	Determines if password will contain special characters
+	 * @param avoidRepetition	Determines if password will contain letter or digit repetitions
+	 * @param passwordLength	Determines length of the password
+	 * @return					Generated password based on user criteria
+	 */
 	public String generatePassword(Boolean containsUpper, Boolean containsLower, Boolean containsDigit, Boolean containsSpecial, Boolean avoidRepetition, int passwordLength) {
 		PasswordGenerator generator = new PasswordGenerator();
 		List<CharacterRule> passRules = new ArrayList<CharacterRule>();

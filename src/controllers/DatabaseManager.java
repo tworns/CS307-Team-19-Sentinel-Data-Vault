@@ -9,6 +9,11 @@ public class DatabaseManager {
 	private String username = "cs307@purdue.edu";
 	private String userPassword = "12345678";
 	
+	/**
+	 * Connects to the vault database and returns a Connection for two-way communication
+	 * 
+	 * @return active Connection to vault_database
+	 */
 	private static Connection connectToDatabase() {
 		Connection connection = null;
 		// Establish connection to the existing database
@@ -23,6 +28,12 @@ public class DatabaseManager {
 		return connection;
 	}
 	
+	/**
+	 * Adds a given user (account) to the vault database.
+	 * 
+	 * @param newUser	user object to add to the vault database
+	 * @return			positive integer if user successfully added; negative if user already exists in the database
+	 */
 	public int addUserToDatabase(User newUser) {
 		// Connect to the database
 		Connection DBconnection = connectToDatabase();
@@ -76,6 +87,12 @@ public class DatabaseManager {
 		}
 	}
 	
+	/**
+	 * Deletes a given user from the vault database.
+	 * 
+	 * @param doomedUser	user object to delete from the vault database
+	 * @return				positive integer if user successfully deleted; negative if unsuccessful
+	 */
 	public int deleteUserFromDatabase(User doomedUser) {
 		// Connect to the database
 		Connection DBconnection = connectToDatabase();
@@ -106,11 +123,16 @@ public class DatabaseManager {
 		}
 	}
 	
-	public User retrieveUser(String userEmail) {
-
+	/**
+	 * Retrieves a stored user from the vault database
+	 * 
+	 * @param userEmail	username (email) of user to be retrieved from the vault database
+	 * @return			User object containing that user's stored data
+	 */
+	public User retrieveUserFromDatabase(String userEmail) {
 		// Connect to the database
 		Connection DBconnection = connectToDatabase();
-		try {
+		try {	
 			// Initialize a statement to execute
 			Statement stmt = DBconnection.createStatement();
 			// Construct the SQL DELETE statement
@@ -120,28 +142,28 @@ public class DatabaseManager {
 			
 			// Execute the statement and commit database changes
 		    ResultSet userInfoSet = stmt.executeQuery(sql);
-		    //DBconnection.commit();
-		    //while ( userInfoSet.next() ) {
-		         //String id = userInfoSet.getString("user_email");
-		         String  passwordhash = userInfoSet.getString("password_hash");
-		         String salt  = userInfoSet.getString("password_salt");
-		         String  datakey = userInfoSet.getString("data_key");
-		         String  question = userInfoSet.getString("security_question");
-		         String  answer = userInfoSet.getString("security_answer");
-		         String  lastlogin = userInfoSet.getString("last_login");
-		         LocalDateTime l = LocalDateTime.parse(lastlogin);
-		         
-		         int  ishigh = userInfoSet.getInt("high_security");
-		         int wipeset = userInfoSet.getInt("account_wipe_set");
-		         String  backupfreq = userInfoSet.getString("backup_frequency");
-		         int size = userInfoSet.getInt("max_backup_size");
-		         //reconstruct user
-		         User user = new User(userEmail, passwordhash, salt, 
-		        		 datakey, question, answer, l);
-		         user.setDefaultHighSecurity(ishigh);
-		         user.setAccountWipe(wipeset);
-		         user.setBackupFrequency(backupfreq);
-		         user.setMaxBackupSize(size);
+		    // DBconnection.commit();
+		    // while ( userInfoSet.next() ) {
+	        // String id = userInfoSet.getString("user_email");
+	        String passwordHash = userInfoSet.getString("password_hash");
+	        String salt  = userInfoSet.getString("password_salt");
+	        String datakey = userInfoSet.getString("data_key");
+	        String question = userInfoSet.getString("security_question");
+	        String answer = userInfoSet.getString("security_answer");
+	        String lastLogin = userInfoSet.getString("last_login");
+	        LocalDateTime l = LocalDateTime.parse(lastLogin);
+	         
+	        int isHigh = userInfoSet.getInt("high_security");
+	        int wipeSet = userInfoSet.getInt("account_wipe_set");
+	        String  backupFreq = userInfoSet.getString("backup_frequency");
+	        int size = userInfoSet.getInt("max_backup_size");
+	        // Reconstruct user
+	        User user = new User(userEmail, passwordHash, salt, 
+	        		 datakey, question, answer, l);
+	        user.setDefaultHighSecurity(isHigh);
+	        user.setAccountWipe(wipeSet);
+	        user.setBackupFrequency(backupFreq);
+	        user.setMaxBackupSize(size);
 		         
 		    // Disconnect from database
 		    stmt.close();
