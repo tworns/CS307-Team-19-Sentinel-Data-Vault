@@ -1,5 +1,6 @@
 package dataManagement;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DataEntry {
@@ -19,6 +20,7 @@ public class DataEntry {
 		this.entryType = entryType;
 		this.encryptionKey = encryptionKey;
 		this.owner = owner;
+		this.fieldDataList = new ArrayList<String>();
 		this.highSecurity = highSecurity;
 		this.lastModified = lastModified;
 	}
@@ -27,6 +29,12 @@ public class DataEntry {
 		return this.fieldDataList;
 	}
 
+	public List<String> getValidUser() {
+		return this.validUsers;
+	}
+	public void addDataField(String field) {
+		this.fieldDataList.add(field);
+	}
 	public String getEntryName() {
 		return this.entryName;
 	}

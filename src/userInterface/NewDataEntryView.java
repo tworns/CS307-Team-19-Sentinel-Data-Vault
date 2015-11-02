@@ -25,6 +25,9 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import javax.swing.JTextField;
 
+import controllers.DatabaseManager;
+import dataManagement.DataEntry;
+
 public class NewDataEntryView {
 
 	private JFrame frame;
@@ -98,14 +101,16 @@ public class NewDataEntryView {
 						frame.setBounds(150, 150, 550, 400);
 						frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 						
-						JLabel label, label_1;
-						JTextField textField, textField_1;
-						label = new JLabel("Name");
+						JLabel label, label_1, label_2;
+						JTextField textField, textField_1, textField_2;
+						label = new JLabel("NickName");
 						label.setBounds(40, 10, 150, 18);
 						
-						label_1 = new JLabel("SSN");
+						label_1 = new JLabel("Name");
 						label_1.setBounds(40, 40, 150, 18);
 						
+						label_2 = new JLabel("SSN");
+						label_2.setBounds(40, 70, 150, 18);
 																
 						textField = new JTextField();
 						textField.setBounds(110, 10, 200, 18);
@@ -115,17 +120,28 @@ public class NewDataEntryView {
 						textField_1.setBounds(110, 40, 200, 18);
 						textField_1.setColumns(10);
 						
+						textField_2 = new JTextField();
+						textField_2.setBounds(110, 70, 200, 18);
+						textField_2.setColumns(10);
+						
 
 						frame.getContentPane().setLayout(null);
 						frame.getContentPane().add(label);
 						frame.getContentPane().add(label_1);
+						frame.getContentPane().add(label_2);
 						frame.getContentPane().add(textField);
 						frame.getContentPane().add(textField_1);
+						frame.getContentPane().add(textField_2);
 						
 						JButton btnSave = new JButton("Save");
 						btnSave.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
 								//TODO: Add Entry to data base
+								DataEntry newEntry = new DataEntry(textField.getText(),"SSN",null,null,0,null);
+								newEntry.addDataField(textField_1.getText());
+								newEntry.addDataField(textField_2.getText());
+								DatabaseManager m = new DatabaseManager();
+								m.addEntryToDataBase(newEntry);
 							}
 						});
 						btnSave.setBounds(85, 307, 117, 29);
