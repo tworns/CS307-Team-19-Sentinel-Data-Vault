@@ -32,9 +32,14 @@ public class DataEntry {
 	public List<String> getValidUser() {
 		return this.validUsers;
 	}
+	public void setDataFields( List<String> fields) {
+		fieldDataList = fields;
+	}
 	public void addDataField(String field) {
 		this.fieldDataList.add(field);
 	}
+	
+	
 	public String getEntryName() {
 		return this.entryName;
 	}
