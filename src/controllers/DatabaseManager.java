@@ -143,6 +143,7 @@ public class DatabaseManager {
 					+ "'" + userEmail + "';"
 					;
 */
+
 			
 
 			String sql = "SELECT * FROM users WHERE user_email = " + "'" + userEmail + "';";
@@ -186,6 +187,7 @@ public class DatabaseManager {
 			return null;
 		}
 	}
+
 
 	
 	/*
@@ -275,6 +277,7 @@ public class DatabaseManager {
 	
 	
 
+
 	/**
 	 * Modifies a TEXT (String) user field in the 'users' table of the vault
 	 * database
@@ -295,19 +298,24 @@ public class DatabaseManager {
 			Statement stmt = DBconnection.createStatement();
 			// Construct the SQL UPDATE statement
 
+
 /*
 =======
 
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
 			String sql = "UPDATE users "
 					+ "SET " + fieldName + " = '" + newTextData + "' "
 					+ "WHERE user_email = '" + user.getUsername() + "';"
 					;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			//System.out.println("THIS IS THE SQL STATEMENT THAT'S BEING MADE: " + sql);
 */
 			String sql = "UPDATE users" + "SET " + fieldName + " = '" + newTextData + "' " + "WHERE user_email = '"
 					+ user.getUsername() + "';";
+
 
 
 
@@ -348,6 +356,7 @@ public class DatabaseManager {
 					+ "SET " + fieldName + " = " + String.valueOf(newIntData) + " "
 					+ "WHERE user_email = '" + user.getUsername() + "';"
 					;
+
 
 /*
 			String sql = "UPDATE users" + "SET " + fieldName + " = '" + String.valueOf(newIntData) + "' "
