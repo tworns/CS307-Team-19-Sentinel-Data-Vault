@@ -69,8 +69,10 @@ public class HomeView {
 		frmSentinelDataVault.getContentPane().add(panel_north);
 		
 			JButton btnSignOut = new JButton("Sign Out");
+			btnSignOut.setFont(new Font("Lucida Grande", Font.PLAIN, 11));
 		
 		JButton btnSetting = new JButton("Setting");
+		btnSetting.setFont(new Font("Lucida Grande", Font.PLAIN, 11));
 		btnSetting.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -80,6 +82,7 @@ public class HomeView {
 		btnAddData.setFont(new Font("Lucida Grande", Font.PLAIN, 11));
 		
 		JButton btnSecurity = new JButton("Security");
+		btnSecurity.setFont(new Font("Lucida Grande", Font.PLAIN, 11));
 		btnSecurity.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -105,7 +108,7 @@ public class HomeView {
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(btnDeleteData, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(lblEmpty_2, GroupLayout.PREFERRED_SIZE, 90, GroupLayout.PREFERRED_SIZE)
+					.addComponent(lblEmpty_2, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(btnSecurity, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
 					.addGap(326))
