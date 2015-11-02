@@ -1,6 +1,7 @@
 package controllers;
 
 import dataManagement.User;
+import dataManagement.DataEntry;
 import java.sql.*;
 import java.time.LocalDateTime;
 
@@ -250,4 +251,7 @@ public class DatabaseManager {
 		return username;
 	}
 
+	public int addEntryToDataBase() {
+		return 1;
+	}
 }
