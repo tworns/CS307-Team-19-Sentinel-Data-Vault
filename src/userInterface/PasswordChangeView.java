@@ -63,6 +63,14 @@ public class PasswordChangeView {
 					
 					PasswordChangeView window = new PasswordChangeView(u);
 					window.frmChangePassword.setVisible(true);
+					
+					
+					System.out.println("This is ben's old password hash " +u.getPasswordHash());
+					System.out.println("This is ben's new password hash " +ben.getPasswordHash());
+					System.out.println("This is ben's old security question " + u.getSecurityQuestion());
+					System.out.println("This is ben's new security question "+ben.getSecurityQuestion());
+					System.out.println("This is ben's old security answer "+ u.getSecurityAnswer());
+					System.out.println("This is ben's new security answer "+ ben.getSecurityAnswer());
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
