@@ -16,7 +16,9 @@ import cryptography.PasswordHasher;
 import cryptography.SaltGenerator;
 import security.PasswordValidation;
 import javax.swing.JPasswordField;
-import controllers.VaultController;
+
+import controllers.DatabaseManager;
+
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.Font;
@@ -150,7 +152,10 @@ public class PasswordChangeView {
 					//if there is something in for the new question and new answer, the current password is right, and all the password change fields are blank
 					currentUser.setSecurityQuestion(question);
 					currentUser.setSecurityAnswer(newAnswer);
-					//TODO GET TO THE DATABASE!
+					// GET TO THE DATABASE!
+					DatabaseManager brian = new DatabaseManager();
+					brian.modifyUserField(currentUser, "security_question", currentUser.getSecurityQuestion());
+					brian.modifyUserField(currentUser, "security_answer", currentUser.getSecurityAnswer());
 					frmChangePassword.dispose();
 				}
 				//Makes sure the new passwords match each other, the old password and security q answer is correct
@@ -165,14 +170,17 @@ public class PasswordChangeView {
 					}
 					String newPass1 = p.hashPassword(newPass2, currentUser.getPasswordSalt() );
 					currentUser.setPasswordHash(newPass1);
-					//TODO Get the updated user to the database!
+					
+					DatabaseManager dave = new DatabaseManager();
+					dave.modifyUserField(currentUser, "password_hash", currentUser.getPasswordHash());
+					// Get the updated user to the database!
+					
 					frmChangePassword.dispose();
 				}
 				else if (question != null && newAnswer != null && oldAnswer.equals(currentUser.getSecurityAnswer()) && a.minStandard(newPass2) 
 							&& newPass1.equals(newPass2) && passCheck == true) {
 					//If ALL fields are true and valid
-					currentUser.setSecurityQuestion(question);
-					currentUser.setSecurityAnswer(newAnswer);
+				
 					PasswordHasher p = null; // might have issues with the null initializations here.
 					try {
 						p = new PasswordHasher();
@@ -181,7 +189,13 @@ public class PasswordChangeView {
 					}
 					String newPass1 = p.hashPassword(newPass2, currentUser.getPasswordSalt() );
 					currentUser.setPasswordHash(newPass1);
-					//TODO Get the updated user to the database!
+					currentUser.setSecurityQuestion(question);
+					currentUser.setSecurityAnswer(newAnswer);
+					// Get the updated user to the database!
+					DatabaseManager jim = new DatabaseManager();
+					jim.modifyUserField(currentUser, "security_question", currentUser.getSecurityQuestion());
+					jim.modifyUserField(currentUser, "security_answer", currentUser.getSecurityAnswer());
+					jim.modifyUserField(currentUser, "password_hash", currentUser.getPasswordHash());
 					frmChangePassword.dispose();
 					}
 				
