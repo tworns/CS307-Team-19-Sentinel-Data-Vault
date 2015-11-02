@@ -94,7 +94,7 @@ public class DatabaseManager {
 	 * @param doomedUser	user object to delete from the vault database
 	 * @return				positive integer if user successfully deleted; negative if unsuccessful
 	 */
-	public int deleteUserFromDatabase(User doomedUser) {
+	public int deleteUserFromDatabase(User doomedUser) { // TODO Check for success/failure unnecessary
 		// Connect to the database
 		Connection DBconnection = connectToDatabase();
 		

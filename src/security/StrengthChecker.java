@@ -12,8 +12,14 @@ public class StrengthChecker {
 	 * 		Num Chars		n*4
 	 * 		Uppercase		n*2
 	 * 		Lowercase		n*2
+	 * 		Digits			n*4
+	 * 		
 	 * 
 	 * Deduct Points:
+	 * 		Letters only	n (each letter; essentially length)
+	 * 		Digits only		n (each digit; essentially length)
+	 * 		Specials only	n (each digit; essentially length)
+	 * 		Consec chars	n*2
 	 * 		
 	 * 		
 	 * 
