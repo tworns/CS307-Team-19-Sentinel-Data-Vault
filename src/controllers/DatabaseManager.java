@@ -2,8 +2,12 @@ package controllers;
 
 import dataManagement.User;
 import dataManagement.DataEntry;
+
 import java.sql.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class DatabaseManager {
 
@@ -133,15 +137,17 @@ public class DatabaseManager {
 			// Initialize a statement to execute
 			Statement stmt = DBconnection.createStatement();
 			// Construct the SQL DELETE statement
-<<<<<<< Updated upstream
+
+/*
 			String sql = "SELECT * FROM users WHERE  = "
 					+ "'" + userEmail + "';"
 					;
+*/
 			
-=======
+
 			String sql = "SELECT * FROM users WHERE user_email = " + "'" + userEmail + "';";
 
->>>>>>> Stashed changes
+
 			// Execute the statement and commit database changes
 			ResultSet userInfoSet = stmt.executeQuery(sql);
 			// DBconnection.commit();
@@ -180,8 +186,7 @@ public class DatabaseManager {
 			return null;
 		}
 	}
-<<<<<<< Updated upstream
-	
+
 	
 	/*
 	 * public DataEntry retrieveDataEntryFromDatabase(String userEmail)
@@ -211,22 +216,46 @@ public class DatabaseManager {
 	        String encryptionKey = dataEntryInfoSet.getString("encryption_key");
 	        String owner = dataEntryInfoSet.getString("owner");
 	    //  String validUsers = 
-	        String highSecurity = dataEntryInfoSet.getString("secure_entry");
+	        int highSecurity = dataEntryInfoSet.getInt("secure_entry");
+	        
 	        String lastModified = dataEntryInfoSet.getString("last_modified");
-	        //LocalDateTime l = LocalDateTime.parse(lastModified);
-	         
+			LocalDateTime l = LocalDateTime.parse(lastModified);
+	        
 	        int isHigh = dataEntryInfoSet.getInt("high_security");
 	        int wipeSet = dataEntryInfoSet.getInt("account_wipe_set");
 	        String  backupFreq = dataEntryInfoSet.getString("backup_frequency");
 	        int size = dataEntryInfoSet.getInt("max_backup_size");
 	       
-	        // Reconstruct DataEntry
-	        DataEntry dataEntry = new DataEntry(entryName, entryType, encryptionKey, owner, highSecurity,lastModified);
+	        
 
-	        /*
-	        dataEntry.setsetDefaultHighSecurity(isHigh);
-	        dataEntry.setAccountWipe(wipeSet);
-	        */
+	        String datafield_1 = dataEntryInfoSet.getString("data_field_1");
+	        String datafield_2 = dataEntryInfoSet.getString("data_field_2");
+	        String datafield_3 = dataEntryInfoSet.getString("data_field_3");
+	        String datafield_4 = dataEntryInfoSet.getString("data_field_4");
+	        String datafield_5 = dataEntryInfoSet.getString("data_field_5");
+	        String datafield_6 = dataEntryInfoSet.getString("data_field_6");
+	        String datafield_7 = dataEntryInfoSet.getString("data_field_7");
+	        String datafield_8 = dataEntryInfoSet.getString("data_field_8");
+	        String datafield_9 = dataEntryInfoSet.getString("data_field_9");
+	        String datafield_10 = dataEntryInfoSet.getString("data_field_10");
+	        
+	        List<String> fields = new ArrayList<String>();
+	        fields.add(datafield_1);
+	        fields.add(datafield_2);
+	        fields.add(datafield_3);
+	        fields.add(datafield_4);
+	        fields.add(datafield_5);
+	        fields.add(datafield_6);
+	        fields.add(datafield_7);
+	        fields.add(datafield_8);
+	        fields.add(datafield_9);
+	        fields.add(datafield_10);
+	        
+	     // Reconstruct DataEntry
+	        
+	        DataEntry dataEntry = new DataEntry(entryName, entryType, encryptionKey, owner, highSecurity, l);
+	        dataEntry.setDataFields(fields);
+	        
 	        
 		    // Disconnect from database
 	        dataEntryInfoSet.close();
@@ -245,9 +274,7 @@ public class DatabaseManager {
 	
 	
 	
-=======
 
->>>>>>> Stashed changes
 	/**
 	 * Modifies a TEXT (String) user field in the 'users' table of the vault
 	 * database
@@ -267,17 +294,23 @@ public class DatabaseManager {
 			// Initialize a statement to execute
 			Statement stmt = DBconnection.createStatement();
 			// Construct the SQL UPDATE statement
-<<<<<<< Updated upstream
+
+/*
+=======
+
+>>>>>>> origin/master
 			String sql = "UPDATE users "
 					+ "SET " + fieldName + " = '" + newTextData + "' "
 					+ "WHERE user_email = '" + user.getUsername() + "';"
 					;
+<<<<<<< HEAD
 			//System.out.println("THIS IS THE SQL STATEMENT THAT'S BEING MADE: " + sql);
-=======
+*/
 			String sql = "UPDATE users" + "SET " + fieldName + " = '" + newTextData + "' " + "WHERE user_email = '"
 					+ user.getUsername() + "';";
 
->>>>>>> Stashed changes
+
+
 			// Execute the statement and commit database changes
 			stmt.executeUpdate(sql);
 			DBconnection.commit();
@@ -310,17 +343,18 @@ public class DatabaseManager {
 			// Initialize a statement to execute
 			Statement stmt = DBconnection.createStatement();
 			// Construct the SQL UPDATE statement
-<<<<<<< Updated upstream
+
 			String sql = "UPDATE users "
 					+ "SET " + fieldName + " = " + String.valueOf(newIntData) + " "
 					+ "WHERE user_email = '" + user.getUsername() + "';"
 					;
-			
-=======
+
+/*
 			String sql = "UPDATE users" + "SET " + fieldName + " = '" + String.valueOf(newIntData) + "' "
 					+ "WHERE user_email = '" + user.getUsername() + "';";
 
->>>>>>> Stashed changes
+*/
+
 			// Execute the statement and commit database changes
 			stmt.executeUpdate(sql);
 			DBconnection.commit();
