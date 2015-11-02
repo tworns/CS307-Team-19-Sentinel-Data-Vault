@@ -120,7 +120,7 @@ public class PasswordGen {
 	
 	public static void main(String args[]) {
 		PasswordGen pg = new PasswordGen();
-		String password = pg.generatePassword(true, true, true, true, true, 8);
+		String password = pg.generatePassword(true, true, true, true, false, 8);
 		System.out.println(password);
 	}
 }

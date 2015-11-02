@@ -2,7 +2,7 @@ package dataManagement;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public abstract class DataEntry {
+public class DataEntry {
 
 	private String entryName;
 	private String entryType;
@@ -10,6 +10,7 @@ public abstract class DataEntry {
 	private String owner;
 	private List<String> validUsers;
 	private int highSecurity;
+	private List<String> fieldDataList;
 	private LocalDateTime lastModified;
 
 	public DataEntry(String entryName, String entryType, String encryptionKey, String owner, int highSecurity,
@@ -20,6 +21,10 @@ public abstract class DataEntry {
 		this.owner = owner;
 		this.highSecurity = highSecurity;
 		this.lastModified = lastModified;
+	}
+
+	public List<String> getFieldDataList() {
+		return this.fieldDataList;
 	}
 
 	public String getEntryName() {

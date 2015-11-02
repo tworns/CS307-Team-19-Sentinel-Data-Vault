@@ -2,7 +2,9 @@ package userInterface;
 
 import java.awt.EventQueue;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -149,35 +151,42 @@ public class NewDataEntryView {
 						frame.setBounds(150, 150, 550, 400);
 						frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 						
-						JLabel label, label_1, label_2, label_3;
+						JLabel label, label_1, label_2, label_3, label_4;
+						JComboBox cardType;
 						JTextField textField, textField_1, textField_2, textField_3;
 						label = new JLabel("Card holder name");
 						label.setBounds(40, 10, 150, 18);
 						
-						label_1 = new JLabel("Card Number");
+						label_1 = new JLabel("Card Type");
 						label_1.setBounds(40, 40, 150, 18);
 						
-						label_2 = new JLabel("Expired Date");
+						label_2 = new JLabel("Card Number");
 						label_2.setBounds(40, 70, 150, 18);
 						
-						label_3 = new JLabel("CSV");
+						label_3 = new JLabel("Expired Date");
 						label_3.setBounds(40, 100, 150, 18);
 						
+						label_4 = new JLabel("CSV");
+						label_4.setBounds(40, 130, 150, 18);
+						
+						cardType = new JComboBox();
+						cardType.setModel(new DefaultComboBoxModel(new String[] {"VISA", "MasterCard", "American Express", "Diners Club", "Carte Blanche", "Discover", "JCB"}));
+						cardType.setBounds(170, 40, 200, 18);
 																
 						textField = new JTextField();
 						textField.setBounds(170, 10, 200, 18);
 						textField.setColumns(10);
 						
 						textField_1 = new JTextField();
-						textField_1.setBounds(170, 40, 200, 18);
+						textField_1.setBounds(170, 70, 200, 18);
 						textField_1.setColumns(10);
 						
 						textField_2 = new JTextField();
-						textField_2.setBounds(170, 70, 200, 18);
+						textField_2.setBounds(170, 100, 200, 18);
 						textField_2.setColumns(10);
 						
 						textField_3 = new JTextField();
-						textField_3.setBounds(170, 100, 200, 18);
+						textField_3.setBounds(170, 130, 200, 18);
 						textField_3.setColumns(10);
 						
 						frame.getContentPane().setLayout(null);
@@ -189,6 +198,7 @@ public class NewDataEntryView {
 						frame.getContentPane().add(textField_1);
 						frame.getContentPane().add(textField_2);
 						frame.getContentPane().add(textField_3);
+						frame.getContentPane().add(cardType);
 						
 						JButton btnSave = new JButton("Save");
 						btnSave.addActionListener(new ActionListener() {
