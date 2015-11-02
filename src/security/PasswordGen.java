@@ -117,4 +117,10 @@ public class PasswordGen {
 			return finalPassword;
 		}
 	}
+	
+	public static void main(String args[]) {
+		PasswordGen pg = new PasswordGen();
+		String password = pg.generatePassword(true, true, true, true, true, 8);
+		System.out.println(password);
+	}
 }
