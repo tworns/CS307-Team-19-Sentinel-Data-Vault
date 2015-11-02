@@ -94,6 +94,10 @@ public class HomeView {
 		JLabel lblEmpty_1 = new JLabel("     ");
 		
 		JLabel lblEmpty_2 = new JLabel("     ");
+		
+		JButton btnEditData = new JButton("Edit Data");
+		btnEditData.setFont(new Font("Lucida Grande", Font.PLAIN, 11));
+		
 		GroupLayout gl_panel_north = new GroupLayout(panel_north);
 		gl_panel_north.setHorizontalGroup(
 			gl_panel_north.createParallelGroup(Alignment.LEADING)
@@ -110,6 +114,8 @@ public class HomeView {
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(lblEmpty_2, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnEditData, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(btnSecurity, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
 					.addGap(326))
 		);
@@ -124,7 +130,8 @@ public class HomeView {
 							.addComponent(btnDeleteData, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
 							.addComponent(btnSecurity, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
 							.addComponent(lblEmpty_1)
-							.addComponent(lblEmpty_2)))
+							.addComponent(lblEmpty_2)
+							.addComponent(btnEditData, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)))
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		panel_north.setLayout(gl_panel_north);
