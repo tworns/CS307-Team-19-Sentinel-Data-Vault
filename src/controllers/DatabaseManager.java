@@ -2,7 +2,6 @@ package controllers;
 
 import dataManagement.User;
 import dataManagement.DataEntry;
-
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -15,8 +14,7 @@ public class DatabaseManager {
 	private String userPassword = "12345678";
 
 	/**
-	 * Connects to the vault database and returns a Connection for two-way
-	 * communication
+	 * Connects to the vault database and returns a Connection for two-way communication
 	 * 
 	 * @return active Connection to vault_database
 	 */
@@ -37,10 +35,8 @@ public class DatabaseManager {
 	/**
 	 * Adds a given user (account) to the vault database.
 	 * 
-	 * @param newUser
-	 *            user object to add to the vault database
-	 * @return positive integer if user successfully added; negative if user
-	 *         already exists in the database
+	 * @param newUser 	user object to add to the vault database
+	 * @return 			positive integer if user successfully added; negative if user already exists in the database
 	 */
 	public int addUserToDatabase(User newUser) {
 		// Connect to the database
@@ -89,10 +85,8 @@ public class DatabaseManager {
 	/**
 	 * Deletes a given user from the vault database.
 	 * 
-	 * @param doomedUser
-	 *            user object to delete from the vault database
-	 * @return positive integer if user successfully deleted; negative if
-	 *         unsuccessful
+	 * @param doomedUser	user object to delete from the vault database
+	 * @return 				positive integer if user successfully deleted; negative if unsuccessful
 	 */
 	public int deleteUserFromDatabase(User doomedUser) { // TODO Check for success/failure unnecessary
 		// Connect to the database
@@ -125,10 +119,8 @@ public class DatabaseManager {
 	/**
 	 * Retrieves a stored user from the vault database
 	 * 
-	 * @param userEmail
-	 *            username (email) of user to be retrieved from the vault
-	 *            database
-	 * @return User object containing that user's stored data
+	 * @param userEmail	username (email) of user to be retrieved from the vault database
+	 * @return 			User object containing that user's stored data
 	 */
 	public User retrieveUserFromDatabase(String userEmail) {
 		// Connect to the database
@@ -144,10 +136,7 @@ public class DatabaseManager {
 					;
 */
 
-			
-
 			String sql = "SELECT * FROM users WHERE user_email = " + "'" + userEmail + "';";
-
 
 			// Execute the statement and commit database changes
 			ResultSet userInfoSet = stmt.executeQuery(sql);
@@ -160,14 +149,15 @@ public class DatabaseManager {
 			String question = userInfoSet.getString("security_question");
 			String answer = userInfoSet.getString("security_answer");
 			String lastLogin = userInfoSet.getString("last_login");
-			LocalDateTime l = LocalDateTime.parse(lastLogin);
+			LocalDateTime loginLDT = LocalDateTime.parse(lastLogin);
 
 			int isHigh = userInfoSet.getInt("high_security");
 			int wipeSet = userInfoSet.getInt("account_wipe_set");
 			String backupFreq = userInfoSet.getString("backup_frequency");
 			int size = userInfoSet.getInt("max_backup_size");
+			
 			// Reconstruct user
-			User user = new User(userEmail, passwordHash, salt, datakey, question, answer, l);
+			User user = new User(userEmail, passwordHash, salt, datakey, question, answer, loginLDT);
 			user.setDefaultHighSecurity(isHigh);
 			user.setAccountWipe(wipeSet);
 			user.setBackupFrequency(backupFreq);
@@ -221,15 +211,13 @@ public class DatabaseManager {
 	        int highSecurity = dataEntryInfoSet.getInt("secure_entry");
 	        
 	        String lastModified = dataEntryInfoSet.getString("last_modified");
-			LocalDateTime l = LocalDateTime.parse(lastModified);
+			LocalDateTime modifiedLDT = LocalDateTime.parse(lastModified);
 	        
 	        int isHigh = dataEntryInfoSet.getInt("high_security");
 	        int wipeSet = dataEntryInfoSet.getInt("account_wipe_set");
-	        String  backupFreq = dataEntryInfoSet.getString("backup_frequency");
+	        String backupFreq = dataEntryInfoSet.getString("backup_frequency");
 	        int size = dataEntryInfoSet.getInt("max_backup_size");
 	       
-	        
-
 	        String datafield_1 = dataEntryInfoSet.getString("data_field_1");
 	        String datafield_2 = dataEntryInfoSet.getString("data_field_2");
 	        String datafield_3 = dataEntryInfoSet.getString("data_field_3");
@@ -253,11 +241,9 @@ public class DatabaseManager {
 	        fields.add(datafield_9);
 	        fields.add(datafield_10);
 	        
-	     // Reconstruct DataEntry
-	        
-	        DataEntry dataEntry = new DataEntry(entryName, entryType, encryptionKey, owner, highSecurity, l);
+	        // Reconstruct DataEntry
+	        DataEntry dataEntry = new DataEntry(entryName, entryType, encryptionKey, owner, highSecurity, modifiedLDT);
 	        dataEntry.setDataFields(fields);
-	        
 	        
 		    // Disconnect from database
 	        dataEntryInfoSet.close();
@@ -273,10 +259,6 @@ public class DatabaseManager {
 			return null;
 		}
 	}
-	
-	
-	
-
 
 	/**
 	 * Modifies a TEXT (String) user field in the 'users' table of the vault
@@ -298,7 +280,6 @@ public class DatabaseManager {
 			Statement stmt = DBconnection.createStatement();
 			// Construct the SQL UPDATE statement
 
-
 /*
 =======
 
@@ -315,9 +296,6 @@ public class DatabaseManager {
 */
 			String sql = "UPDATE users" + "SET " + fieldName + " = '" + newTextData + "' " + "WHERE user_email = '"
 					+ user.getUsername() + "';";
-
-
-
 
 			// Execute the statement and commit database changes
 			stmt.executeUpdate(sql);
