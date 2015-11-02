@@ -196,7 +196,7 @@ public class DatabaseManager {
 			// Initialize a statement to execute
 			Statement stmt = DBconnection.createStatement();
 			// Construct the SQL UPDATE statement
-			String sql = "UPDATE users"
+			String sql = "UPDATE users "
 					+ "SET " + fieldName + " = '" + newTextData + "' "
 					+ "WHERE user_email = '" + user.getUsername() + "';"
 					;
@@ -229,8 +229,8 @@ public class DatabaseManager {
 			// Initialize a statement to execute
 			Statement stmt = DBconnection.createStatement();
 			// Construct the SQL UPDATE statement
-			String sql = "UPDATE users"
-					+ "SET " + fieldName + " = '" + String.valueOf(newIntData) + "' "
+			String sql = "UPDATE users "
+					+ "SET " + fieldName + " = " + String.valueOf(newIntData) + " "
 					+ "WHERE user_email = '" + user.getUsername() + "';"
 					;
 			
