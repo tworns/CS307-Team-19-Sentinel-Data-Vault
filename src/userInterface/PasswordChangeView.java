@@ -11,6 +11,7 @@ import javax.swing.JTextPane;
 import dataManagement.User;
 import java.awt.event.ActionListener;
 import java.security.NoSuchAlgorithmException;
+import java.time.LocalDateTime;
 import java.awt.event.ActionEvent;
 import cryptography.PasswordHasher;
 import cryptography.SaltGenerator;
@@ -50,10 +51,26 @@ public class PasswordChangeView {
 					//Make a  user for testing
 					PasswordHasher l = new PasswordHasher();
 					SaltGenerator twitchChat = new SaltGenerator();
+					DatabaseManager d = new DatabaseManager();
 					String salt = twitchChat.generateSalt();
-					User u = new User("ben@purdue.edu", l.hashPassword("password", salt), salt, "This is my data key", "This is my sec question", "answer", null);
+					LocalDateTime k = LocalDateTime.now();
+					User u = new User("ben@purdue.edu", l.hashPassword("password", salt), salt, "This is my data key", "This is my sec question", "answer",k );
+					d.addUserToDatabase(u);
+					User ben =d.retrieveUserFromDatabase("ben@purdue.edu");
+					if(ben != null) { 
+						System.out.println("USER ADD SUCCESSFUL.");
+					}
+					
 					PasswordChangeView window = new PasswordChangeView(u);
 					window.frmChangePassword.setVisible(true);
+					
+					
+					System.out.println("This is ben's old password hash " +u.getPasswordHash());
+					System.out.println("This is ben's new password hash " +ben.getPasswordHash());
+					System.out.println("This is ben's old security question " + u.getSecurityQuestion());
+					System.out.println("This is ben's new security question "+ben.getSecurityQuestion());
+					System.out.println("This is ben's old security answer "+ u.getSecurityAnswer());
+					System.out.println("This is ben's new security answer "+ ben.getSecurityAnswer());
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

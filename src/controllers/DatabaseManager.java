@@ -199,7 +199,7 @@ public class DatabaseManager {
 					+ "SET " + fieldName + " = '" + newTextData + "' "
 					+ "WHERE user_email = '" + user.getUsername() + "';"
 					;
-			
+			//System.out.println("THIS IS THE SQL STATEMENT THAT'S BEING MADE: " + sql);
 			// Execute the statement and commit database changes
 		    stmt.executeUpdate(sql);
 		    DBconnection.commit();
