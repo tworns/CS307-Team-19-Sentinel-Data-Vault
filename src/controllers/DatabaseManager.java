@@ -166,6 +166,7 @@ public class DatabaseManager {
 	        user.setMaxBackupSize(size);
 		         
 		    // Disconnect from database
+	        userInfoSet.close();
 		    stmt.close();
 		    DBconnection.close();
 			
@@ -176,6 +177,72 @@ public class DatabaseManager {
 			e.printStackTrace();
 			// return a failure value
 			return null;
+		}
+	}
+	
+	/**
+	 * Modifies a TEXT (String) user field in the 'users' table of the vault database
+	 * 
+	 * @param user			user whose field is to be updated
+	 * @param fieldName		name of user field to modify ('users' table column identifier)
+	 * @param newTextData	new TEXT data to put into user field
+	 */
+	public void modifyUserField(User user, String fieldName, String newTextData) {
+		// Connect to the database
+		Connection DBconnection = connectToDatabase();
+		
+		try {
+			// Initialize a statement to execute
+			Statement stmt = DBconnection.createStatement();
+			// Construct the SQL UPDATE statement
+			String sql = "UPDATE users"
+					+ "SET " + fieldName + " = '" + newTextData + "' "
+					+ "WHERE user_email = '" + user.getUsername() + "';"
+					;
+			
+			// Execute the statement and commit database changes
+		    stmt.executeUpdate(sql);
+		    DBconnection.commit();
+		    
+		    // Disconnect from database
+		    stmt.close();
+		    DBconnection.close();
+		} catch (SQLException e) {
+			System.err.println( e.getClass().getName() + ": " + e.getMessage());
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Modifies a INTEGER (int) user field in the 'users' table of the vault database
+	 * 
+	 * @param user			user whose field is to be updated
+	 * @param fieldName		name of user field to modify ('users' table column identifier)
+	 * @param newIntData	new INTEGER data to put into user field
+	 */
+	public void modifyUserField(User user, String fieldName, int newIntData) {
+		// Connect to the database
+		Connection DBconnection = connectToDatabase();
+		
+		try {
+			// Initialize a statement to execute
+			Statement stmt = DBconnection.createStatement();
+			// Construct the SQL UPDATE statement
+			String sql = "UPDATE users"
+					+ "SET " + fieldName + " = '" + String.valueOf(newIntData) + "' "
+					+ "WHERE user_email = '" + user.getUsername() + "';"
+					;
+			
+			// Execute the statement and commit database changes
+		    stmt.executeUpdate(sql);
+		    DBconnection.commit();
+		    
+		    // Disconnect from database
+		    stmt.close();
+		    DBconnection.close();
+		} catch (SQLException e) {
+			System.err.println( e.getClass().getName() + ": " + e.getMessage());
+			e.printStackTrace();
 		}
 	}
 	
