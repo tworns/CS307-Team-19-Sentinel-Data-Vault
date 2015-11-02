@@ -133,15 +133,11 @@ public class DatabaseManager {
 			// Initialize a statement to execute
 			Statement stmt = DBconnection.createStatement();
 			// Construct the SQL DELETE statement
-<<<<<<< Updated upstream
-			String sql = "SELECT * FROM users WHERE  = "
-					+ "'" + userEmail + "';"
-					;
+
 			
-=======
+
 			String sql = "SELECT * FROM users WHERE user_email = " + "'" + userEmail + "';";
 
->>>>>>> Stashed changes
 			// Execute the statement and commit database changes
 			ResultSet userInfoSet = stmt.executeQuery(sql);
 			// DBconnection.commit();
@@ -180,74 +176,9 @@ public class DatabaseManager {
 			return null;
 		}
 	}
-<<<<<<< Updated upstream
-	
-	
-	/*
-	 * public DataEntry retrieveDataEntryFromDatabase(String userEmail)
-	 * 
-	 * Retrieve DataEntry object from DB
-	 * 
-	 * Jiho Choi
-	 * 
-	 * 
-	 */
-	public DataEntry retrieveDataEntryFromDatabase(String userEmail) {
-		// Connect to the database
-		Connection DBconnection = connectToDatabase();
-		try {	
-			// Initialize a statement to execute
-			Statement stmt = DBconnection.createStatement();
-			// Construct the SQL DELETE statement
-			String sql = "SELECT * FROM data_entries WHERE owner = "
-					+ "'" + userEmail + "';"
-					;
-			
-			// Execute the statement and commit database changes
-		    ResultSet dataEntryInfoSet = stmt.executeQuery(sql);
-		    
-	        String entryName = dataEntryInfoSet.getString("entry_name");
-	        String entryType  = dataEntryInfoSet.getString("entry_type");
-	        String encryptionKey = dataEntryInfoSet.getString("encryption_key");
-	        String owner = dataEntryInfoSet.getString("owner");
-	    //  String validUsers = 
-	        String highSecurity = dataEntryInfoSet.getString("secure_entry");
-	        String lastModified = dataEntryInfoSet.getString("last_modified");
-	        //LocalDateTime l = LocalDateTime.parse(lastModified);
-	         
-	        int isHigh = dataEntryInfoSet.getInt("high_security");
-	        int wipeSet = dataEntryInfoSet.getInt("account_wipe_set");
-	        String  backupFreq = dataEntryInfoSet.getString("backup_frequency");
-	        int size = dataEntryInfoSet.getInt("max_backup_size");
-	       
-	        // Reconstruct DataEntry
-	        DataEntry dataEntry = new DataEntry(entryName, entryType, encryptionKey, owner, highSecurity,lastModified);
 
-	        /*
-	        dataEntry.setsetDefaultHighSecurity(isHigh);
-	        dataEntry.setAccountWipe(wipeSet);
-	        */
-	        
-		    // Disconnect from database
-	        dataEntryInfoSet.close();
-		    stmt.close();
-		    DBconnection.close();
-			
-			// return a success value
-			return dataEntry;
-		} catch (SQLException e) {
-			System.err.println( e.getClass().getName() + ": " + e.getMessage());
-			e.printStackTrace();
-			// return a failure value
-			return null;
-		}
-	}
-	
-	
-	
-=======
 
->>>>>>> Stashed changes
+
 	/**
 	 * Modifies a TEXT (String) user field in the 'users' table of the vault
 	 * database
@@ -267,17 +198,14 @@ public class DatabaseManager {
 			// Initialize a statement to execute
 			Statement stmt = DBconnection.createStatement();
 			// Construct the SQL UPDATE statement
-<<<<<<< Updated upstream
+
 			String sql = "UPDATE users "
 					+ "SET " + fieldName + " = '" + newTextData + "' "
 					+ "WHERE user_email = '" + user.getUsername() + "';"
 					;
-			//System.out.println("THIS IS THE SQL STATEMENT THAT'S BEING MADE: " + sql);
-=======
-			String sql = "UPDATE users" + "SET " + fieldName + " = '" + newTextData + "' " + "WHERE user_email = '"
-					+ user.getUsername() + "';";
 
->>>>>>> Stashed changes
+
+
 			// Execute the statement and commit database changes
 			stmt.executeUpdate(sql);
 			DBconnection.commit();
@@ -310,17 +238,13 @@ public class DatabaseManager {
 			// Initialize a statement to execute
 			Statement stmt = DBconnection.createStatement();
 			// Construct the SQL UPDATE statement
-<<<<<<< Updated upstream
+
 			String sql = "UPDATE users "
 					+ "SET " + fieldName + " = " + String.valueOf(newIntData) + " "
 					+ "WHERE user_email = '" + user.getUsername() + "';"
 					;
 			
-=======
-			String sql = "UPDATE users" + "SET " + fieldName + " = '" + String.valueOf(newIntData) + "' "
-					+ "WHERE user_email = '" + user.getUsername() + "';";
 
->>>>>>> Stashed changes
 			// Execute the statement and commit database changes
 			stmt.executeUpdate(sql);
 			DBconnection.commit();
