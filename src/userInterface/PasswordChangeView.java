@@ -176,7 +176,9 @@ public class PasswordChangeView {
 					frmChangePassword.dispose();
 				}
 				//Makes sure the new passwords match each other, the old password and security q answer is correct
-				else if(newPass1.equals(newPass2) && passCheck ==true && a.minStandard(newPass2) == true && oldAnswer.equals(currentUser.getSecurityAnswer())){
+				else if(newPass1.equals(newPass2) && passCheck ==true && a.minStandard(newPass2) == true 
+						&& oldAnswer.equals(currentUser.getSecurityAnswer()) &&(question == null ||question.equals("")) 
+						&& (newAnswer == null || newAnswer.equals(""))){
 				 //if the new password stuff is right (newPass1 == newPass2) the new password passes the min security level,
 					//and the security answer that was input is correct
 					PasswordHasher p = null; // might have issues with the null initializations here.
@@ -190,6 +192,7 @@ public class PasswordChangeView {
 					
 					DatabaseManager dave = new DatabaseManager();
 					dave.modifyUserField(currentUser, "password_hash", currentUser.getPasswordHash());
+					
 					// Get the updated user to the database!
 					
 					frmChangePassword.dispose();
