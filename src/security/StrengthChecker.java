@@ -1,6 +1,8 @@
 package security;
 
 import java.util.Arrays;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import org.passay.CharacterCharacteristicsRule;
 import org.passay.CharacterRule;
 import org.passay.EnglishCharacterData;
@@ -125,8 +127,45 @@ public class StrengthChecker {
 	}
 	
 	private int findPointBonuses(String password) {
+		int totalPointBonuses = 0;
 		
-		return 0;
+		// Find uppercase instances
+		int numUppercases = 0;
+		Pattern uppercaseCharPattern = Pattern.compile("[A-Z]");
+		Matcher uppercaseMatcher = uppercaseCharPattern.matcher(password);
+		while (uppercaseMatcher.find()) {
+			numUppercases++;
+		}
+		totalPointBonuses += (UPPERCASE_MULTIPLIER * numUppercases);
+		
+		// Find lowercase instances
+		int numLowercases = 0;
+		Pattern lowercaseCharPattern = Pattern.compile("[a-z]");
+		Matcher lowercaseMatcher = lowercaseCharPattern.matcher(password);
+		while (lowercaseMatcher.find()) {
+			numLowercases++;
+		}
+		totalPointBonuses += (LOWERCASE_MULTIPLIER * numLowercases);
+		
+		// Find digit instances
+		int numDigits = 0;
+		Pattern digitCharPattern = Pattern.compile("[0-9]");
+		Matcher digitMatcher = digitCharPattern.matcher(password);
+		while (digitMatcher.find()) {
+			numDigits++;
+		}
+		totalPointBonuses += (DIGITS_MULTIPLIER * numDigits);
+		
+		// Find symbol instances
+		int numSymbols = 0;
+		Pattern symbolCharPattern = Pattern.compile("[^a-zA-Z0-9]");
+		Matcher symbolMatcher = symbolCharPattern.matcher(password);
+		while (symbolMatcher.find()) {
+			numSymbols++;
+		}
+		totalPointBonuses += (SYMBOLS_MULTIPLIER * numSymbols);
+		
+		return totalPointBonuses;
 	}
 	
 	private int findPointDeductions(String password) {
