@@ -375,13 +375,21 @@ public class DatabaseManager {
 			}*/
 
 			// Construct the SQL INSERT statement
-			String sql = "INSERT INTO data_entries (entry_name, entry_type, encryption_key, owner, valid_users, secure_entry, "
-					+ "data_field_1, data_field_2) " + "VALUES ('"
-					+ entry.getEntryName() + "', " + "'" + entry.getEntryType()  + "', " + "'"
+			int field_number = entry.getFieldDataList().size();
+			String sql = "INSERT INTO data_entries(entry_name, entry_type, encryption_key, owner, valid_users, secure_entry";
+			for (int i = 0; i < field_number; i++) {
+				sql = sql + ", ";
+				sql = sql + "data_field_" + Integer.toString(i + 1);
+			}
+			sql = sql + ") VALUES ('" + entry.getEntryName() + "', "  + "'" + entry.getEntryType()  + "', " + "'"
 					+ entry.getEncryptionKey()  + "', " + "'" + entry.getOwner()  + "', " + "'"
-					+ entry.getValidUser()  + "', " + entry.isHighSecurity() + ", " + "'"
-					+ entry.getFieldDataList().get(0) + "', '" + entry.getFieldDataList().get(1) + "');";
-
+					+ entry.getValidUser()  + "', " + entry.isHighSecurity() + ", ";
+			for (int j = 0; j < field_number; j++) {
+				sql = sql + "'" + entry.getFieldDataList().get(j) + "'";
+				if (j != field_number -1)
+					sql = sql + ", ";
+			}
+			sql = sql + ")";
 			System.out.println(sql);		
 					
 			// Execute the statement and commit database changes
