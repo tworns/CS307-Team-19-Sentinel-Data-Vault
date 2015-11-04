@@ -70,6 +70,7 @@ public class StrengthChecker {
 		
 		// Password length determines initial strength score
 		int strengthScore = LENGTH_MULTIPLIER * password.length();
+		System.out.println("Length Points:\t\t" + (LENGTH_MULTIPLIER * password.length())); // ***DEBUG***
 		
 		// Check minimum requirements
 		strengthScore += checkMinRequirements(password);
@@ -78,18 +79,21 @@ public class StrengthChecker {
 		strengthScore += findPointBonuses(password);
 		
 		// Check for point deductions
-		strengthScore -= findPointDeductions(password); // TODO
+		strengthScore -= findPointDeductions(password);
 		
 		// TODO Implement common word deductions???
 		
 		// Return password rating based on final strength score
 		if (strengthScore < WEAK_RATING_THRESHOLD) {
+			System.out.println("Strength Score:\t\t" + strengthScore); // ***DEBUG***
 			return "Weak";
 		}
 		else if (strengthScore > STRONG_RATING_THRESHOLD) {
+			System.out.println("Strength Score:\t\t" + strengthScore); // ***DEBUG***
 			return "Strong";
 		}
 		else {
+			System.out.println("Strength Score:\t\t" + strengthScore); // ***DEBUG***
 			return "Adequate";
 		}
 				
@@ -113,14 +117,17 @@ public class StrengthChecker {
 		// Get results of validators and assign points appropriately
 		RuleResult partialResult = partialValidator.validate(new PasswordData(password));
 		if (!partialResult.isValid()) {
+			System.out.println("Min Req Bonus:\t\t0"); // ***DEBUG***
 			return 0;
 		}
 		else {
 			RuleResult fullResult = fullValidator.validate(new PasswordData(password));
 			if (fullResult.isValid()) {
+				System.out.println("Min Req Bonus:\t\t" + FULL_MIN_REQ_BONUS); // ***DEBUG***
 				return FULL_MIN_REQ_BONUS;
 			}
 			else {
+				System.out.println("Min Req Bonus:\t\t" + PARTIAL_MIN_REQ_BONUS); // ***DEBUG***
 				return PARTIAL_MIN_REQ_BONUS;
 			}
 		}
@@ -165,6 +172,14 @@ public class StrengthChecker {
 		}
 		totalPointBonuses += (SYMBOLS_MULTIPLIER * numSymbols);
 		
+		/* DEBUG STATEMENTS */
+		System.out.println("Total Bonuses:\t\t" + totalPointBonuses);
+		System.out.println("\tUppercases:\t\t" + (UPPERCASE_MULTIPLIER * numUppercases));
+		System.out.println("\tLowercases:\t\t" + (LOWERCASE_MULTIPLIER * numLowercases));
+		System.out.println("\tDigits:\t\t\t" + (DIGITS_MULTIPLIER * numDigits));
+		System.out.println("\tSymbols:\t\t" + (SYMBOLS_MULTIPLIER * numSymbols));
+		/* DEBUG STATEMENTS */
+		
 		return totalPointBonuses;
 	}
 	
@@ -201,11 +216,21 @@ public class StrengthChecker {
 		}
 		totalPointDeductions += CONSECUTIVE_MULTIPLIER * numDuplicates; // TODO maybe symbol repeats should be penalized less
 		
+		/* DEBUG STATEMENTS */
+		System.out.println("Total Deductions:\t" + totalPointDeductions);
+		System.out.println("\tLetters Only:\t\t" + password.length());
+		System.out.println("\tDigits Only:\t\t" + password.length());
+		System.out.println("\tSymbols Only:\t\t" + password.length());
+		System.out.println("\tRepeats:\t\t" + (CONSECUTIVE_MULTIPLIER * numDuplicates));
+		/* DEBUG STATEMENTS */
+		
 		return totalPointDeductions;
 	}
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		String password = "password!";
+		StrengthChecker checker = new StrengthChecker();
+		System.out.println("\nFINAL RATING: " + checker.checkStrength(password));
 
 	}
 
