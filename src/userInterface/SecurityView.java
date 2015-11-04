@@ -6,6 +6,7 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import security.PasswordGen;
+import security.StrengthChecker;
 
 
 public class SecurityView {
@@ -15,7 +16,7 @@ public class SecurityView {
 	private SecurityView instance; 
 	private JPasswordField passwordField;
 	public Object frmSentinelDataVault;
-	private int spinLength;
+	private int spinLength = 0;
 	private boolean numbers;
 	private boolean uppercase;
 	private boolean lowercase;
@@ -145,8 +146,11 @@ public class SecurityView {
 				if(numbers == false && specials == false && lowercase == false && uppercase == false && repeated == false ) { 
 					JOptionPane.showMessageDialog(null, "Password must include at least one of the character types.", "Change Password", 0);
 				}
+				if(spinLength == 0) { 
+					spinLength =4;
+				}
 					PasswordGen passGen = new PasswordGen();
-					String password = passGen.generatePassword(true, true, true, true, true, 16);
+					String password = passGen.generatePassword(uppercase, lowercase, numbers, specials, repeated, spinLength);
 					JTextArea displayPass = new JTextArea(1,1);
 					displayPass.setText(password);
 					displayPass.setEditable(false);
@@ -186,7 +190,7 @@ public class SecurityView {
 				}
 			}
 		});
-		//TODO MAKE SURE THAT AT LEAST 1 CHECK BOX IS SELECTED
+		
 		//Strength checker
 		JPanel panel_1 = new JPanel();
 		tabbedPane.addTab("Password Strength Checker", null, panel_1, null);
@@ -201,9 +205,12 @@ public class SecurityView {
 		JButton btnCheck = new JButton("Check");
 		btnCheck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(e.getActionCommand().equalsIgnoreCase("Check")){
-					String strength = "Your password is";
-					String output = strength;
+				StrengthChecker check = new StrengthChecker();
+				String input = new String(passwordField.getPassword());
+				String output = check.checkStrength(input);
+					String strength = "Your password is ";
+					strength += output +"\n";
+					/*
 					char[] input = passwordField.getPassword();
 					StringBuilder s = new StringBuilder();
 					s.append(input);
@@ -221,10 +228,10 @@ public class SecurityView {
 					else { 
 						//Anything else is adequate.
 						 output += " adequate. \n";
-					}
-					JOptionPane.showMessageDialog(null, output, "Password", JOptionPane.INFORMATION_MESSAGE);
+					}*/
+					JOptionPane.showMessageDialog(null, strength, "Password", JOptionPane.INFORMATION_MESSAGE);
 					
-				}
+				
 			}
 		});
 		btnCheck.setBounds(21, 104, 97, 25);
@@ -234,9 +241,7 @@ public class SecurityView {
 		JButton btnCancel_1 = new JButton("Cancel");
 		btnCancel_1.addActionListener(new ActionListener() {
 			 public void actionPerformed(ActionEvent clickCancel) {
-				 if(clickCancel.getActionCommand().equalsIgnoreCase("Cancel")) {
-						frame.dispose();
-					}
+						frame.dispose();	
 			}
 		});
 		btnCancel_1.setBounds(142, 104, 97, 25);
