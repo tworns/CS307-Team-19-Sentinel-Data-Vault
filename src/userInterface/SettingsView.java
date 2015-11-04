@@ -70,7 +70,7 @@ public class SettingsView {
 			}
 		});
 		chckbxHighSecurityLevel.setToolTipText("Toggling this setting will change ALL user encryptions to the strongest possible.");
-		chckbxHighSecurityLevel.setBounds(48, 50, 222, 25);
+		chckbxHighSecurityLevel.setBounds(58, 62, 222, 25);
 		frmSettings.getContentPane().add(chckbxHighSecurityLevel);
 		
 		//box lets user decide when to back up & tooltip
@@ -145,20 +145,23 @@ public class SettingsView {
 
 		frmSettings.getContentPane().add(lblFileSizeLimit);
 		
-		//Will eventually contain an action listener that saves preferences to User
 		JButton btnOk = new JButton("Save");
 		btnOk.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				if(e.getActionCommand().equalsIgnoreCase("Ok")) {
 					DatabaseManager newVegas =  new DatabaseManager();
-					//TODO Call VaultController's method to update existing user.
+					//TODO Test this. A lot. 
+					newVegas.modifyUserField(currentUser, "high_security", currentUser.isHighSecurity());
+					newVegas.modifyUserField(currentUser, "backup_frequency", currentUser.getBackupFrequency());
+					newVegas.modifyUserField(currentUser, "account_wipe_set", currentUser.isAccountWipeSet());
+					newVegas.modifyUserField(currentUser, "max_backup_size", currentUser.getMaxBackupSize());
 					frmSettings.dispose();
 		}
 			}
 			
 		
 		});
-		btnOk.setBounds(48, 276, 97, 25);
+		btnOk.setBounds(58, 276, 97, 25);
 		frmSettings.getContentPane().add(btnOk);
 		
 		//closes window
@@ -170,7 +173,7 @@ public class SettingsView {
 				}
 			}
 		});
-		btnCancel.setBounds(219, 276, 97, 25);
+		btnCancel.setBounds(244, 276, 97, 25);
 		frmSettings.getContentPane().add(btnCancel);
 		
 		JCheckBox chckbxD = new JCheckBox("Turn on account wipe after 5 failed login attemps");
@@ -186,7 +189,7 @@ public class SettingsView {
 			}
 		});
 		chckbxD.setToolTipText("Toggling this setting will enable wiping of all data after a specific number of failed login attempts.");
-		chckbxD.setBounds(48, 92, 367, 25);
+		chckbxD.setBounds(58, 92, 367, 25);
 		frmSettings.getContentPane().add(chckbxD);
 		
 		JButton btnChangePassword = new JButton("Change Password");
@@ -196,7 +199,7 @@ public class SettingsView {
 				k.frmChangePassword.setVisible(true); 
 			}
 		});
-		btnChangePassword.setBounds(48, 220, 139, 25);
+		btnChangePassword.setBounds(58, 220, 139, 25);
 		frmSettings.getContentPane().add(btnChangePassword);
 		
 		JButton btnDeleteAccount = new JButton("Delete Account"); //Delete Account Button
@@ -221,7 +224,7 @@ public class SettingsView {
 				}
 			}
 		});
-		btnDeleteAccount.setBounds(219, 220, 129, 25);
+		btnDeleteAccount.setBounds(244, 220, 129, 25);
 		frmSettings.getContentPane().add(btnDeleteAccount);
 		
 	}
