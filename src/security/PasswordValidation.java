@@ -8,12 +8,21 @@ public class PasswordValidation {
 
 	public PasswordValidation(String password) { 
 	}
-
-	public boolean minStandard(String password){ // little b booelan is the primitave, big B boolean is the object
+	/**
+	* @param password 		password in need of checking
+	*/
+	public boolean minStandard(String password){ // little b boolean is the primitive, big B boolean is the object
 	
 	//TODO Check for length >12, at least one digit & special char, upper & lower case letters.
-	
-		return true; //Fix to actually be a return;
+	if(password.length() < 12) {
+		return false;
+	}
+	if(password.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*([!@#$%&*,.])).+$") == false) { 
+		return false;
+	}
+	else { 
+		return true;
+	}
 	}
 	
 	/**
