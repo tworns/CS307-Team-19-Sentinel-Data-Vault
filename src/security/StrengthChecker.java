@@ -75,10 +75,10 @@ public class StrengthChecker {
 		strengthScore += checkMinRequirements(password);
 		
 		// Check for point bonuses
-		strengthScore += findPointBonuses(password); // TODO
+		strengthScore += findPointBonuses(password);
 		
 		// Check for point deductions
-		strengthScore += findPointDeductions(password); // TODO
+		strengthScore -= findPointDeductions(password); // TODO
 		
 		// TODO Implement common word deductions???
 		
@@ -169,6 +169,32 @@ public class StrengthChecker {
 	}
 	
 	private int findPointDeductions(String password) {
+		int totalPointDeductions = 0;
+		
+		// letters only
+		Pattern letterOnlyPattern = Pattern.compile("[^a-zA-Z]");
+		Matcher letterOnlyMatcher = letterOnlyPattern.matcher(password);
+		if (!letterOnlyMatcher.find()) {
+			totalPointDeductions += password.length();
+		}
+		
+		// digits only
+		Pattern digitsOnlyPattern = Pattern.compile("[^0-9]");
+		Matcher digitsOnlyMatcher = digitsOnlyPattern.matcher(password);
+		if (!digitsOnlyMatcher.find()) {
+			totalPointDeductions += password.length();
+		}
+		
+		// symbols only
+		Pattern symbolsOnlyPattern = Pattern.compile("[a-zA-Z0-9]");
+		Matcher symbolsOnlyMatcher = symbolsOnlyPattern.matcher(password);
+		if (symbolsOnlyMatcher.find()) {
+			totalPointDeductions += password.length();
+		}
+		
+		// consecutive characters
+		
+		// dictionary words????????????
 		
 		return 0;
 	}
