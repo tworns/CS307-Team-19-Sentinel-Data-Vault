@@ -189,13 +189,13 @@ public class DatabaseManager {
 	 * 
 	 * 
 	 */
-	public List retrieveDataEntryFromDatabase(String userEmail) {
+	public List<DataEntry> retrieveDataEntryFromDatabase(String userEmail) {
 		// Connect to the database
 		Connection DBconnection = connectToDatabase();
 		try {
 			/*this is the list we are returning contains all dataentries belong
 			 to certain user*/
-			List dataentries = new ArrayList();
+			List<DataEntry> dataentries = new ArrayList<DataEntry>();
 			
 			// Initialize a statement to execute
 			Statement stmt = DBconnection.createStatement();
@@ -212,7 +212,8 @@ public class DatabaseManager {
 		    	
 		    }
 	        
-		    //
+		    /*Basically just move the codes below to the loop and 
+		    ad the entry to the list*/
 		    
 		    /*String entryName = dataEntryInfoSet.getString("entry_name");
 	        String entryType  = dataEntryInfoSet.getString("entry_type");
