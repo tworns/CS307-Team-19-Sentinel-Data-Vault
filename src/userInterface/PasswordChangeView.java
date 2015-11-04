@@ -54,13 +54,9 @@ public class PasswordChangeView {
 					DatabaseManager d = new DatabaseManager();
 					String salt = twitchChat.generateSalt();
 					LocalDateTime k = LocalDateTime.now();
-					User u = new User("ben@purdue.edu", l.hashPassword("password", salt), salt, "This is my data key", "This is my sec question", "answer",k );
+					User u = new User("ben@purdue.edu", l.hashPassword("Password1!", salt), salt, "This is my data key", "This is my sec question", "answer",k );
 					d.addUserToDatabase(u);
 					User ben =d.retrieveUserFromDatabase("ben@purdue.edu");
-					if(ben != null) { 
-						System.out.println("USER ADD SUCCESSFUL.");
-					}
-					
 					PasswordChangeView window = new PasswordChangeView(u);
 					window.frmChangePassword.setVisible(true);
 				} catch (Exception e) {
@@ -131,10 +127,6 @@ public class PasswordChangeView {
 
 				//Old password validation
 				PasswordValidation a = new PasswordValidation(oldPass);
-				if(a.minStandard(newPass2) == false) { 
-					JOptionPane.showMessageDialog(null, "Passwords must be at least 12 characters and contain"
-							+ "the following: uppercase and lowercase letters, a number, and a special character ", "Change Password", 0);
-				}
 				try{  
 					if(a.isValidPassword(currentUser, oldPass) == true) { 
 						passCheck = true;
@@ -150,6 +142,10 @@ public class PasswordChangeView {
 				if(newPass1 == null || newPass2 == null || oldAnswer == null && (question == null || newAnswer == null)){
 					JOptionPane.showMessageDialog(null, "One or more fields left empty", "Change Password", 0);
 					//If all fields are empty
+				}
+				else if(a.minStandard(newPass2) == false) { 
+					JOptionPane.showMessageDialog(null, "Passwords must be at least 12 characters and contain"
+							+ "the following: uppercase and lowercase letters, a number, and a special character ", "Change Password", 0);
 				}
 				else if ( passCheck == false) {  //if current password is wrong
 					JOptionPane.showMessageDialog(null, "Current password is incorrect.", "Change Password", 0);

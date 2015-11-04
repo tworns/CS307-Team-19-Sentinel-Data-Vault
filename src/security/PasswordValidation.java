@@ -17,7 +17,7 @@ public class PasswordValidation {
 	if(password.length() < 12) {
 		return false;
 	}
-	if(password.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*([!@#$%&*,.])).+$") == false) { 
+	if(password.matches("(?=.*[a-z])(?=.*[A-Z])(?=.*([0-9]))(?=.*([!@#$%&*,.])).*") == false) { 
 		return false;
 	}
 	else { 

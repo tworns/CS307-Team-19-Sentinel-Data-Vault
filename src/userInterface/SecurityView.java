@@ -209,7 +209,7 @@ public class SecurityView {
 					s.append(input);
 					String password = s.toString();
 					//Checks for one of each character type and length > 10
-					if(password.length() >10 && password.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*([!@#$%&*,.])).+$") == true){
+					if(password.length() >10 && password.matches("(?=.*[a-z])(?=.*[A-Z])(?=.*([0-9]))(?=.*([!@#$%&*,.])).*") == true){
 						 output += " strong. \n";
 					}
 					//checks if password is less than length 9, only contains capital, lowercase, numbers, or special characters, and checks for repeated characters.
