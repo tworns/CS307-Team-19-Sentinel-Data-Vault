@@ -171,32 +171,37 @@ public class StrengthChecker {
 	private int findPointDeductions(String password) {
 		int totalPointDeductions = 0;
 		
-		// letters only
+		// Deductions for letters-only passwords
 		Pattern letterOnlyPattern = Pattern.compile("[^a-zA-Z]");
 		Matcher letterOnlyMatcher = letterOnlyPattern.matcher(password);
 		if (!letterOnlyMatcher.find()) {
 			totalPointDeductions += password.length();
 		}
 		
-		// digits only
+		// Deductions for digits-only passwords
 		Pattern digitsOnlyPattern = Pattern.compile("[^0-9]");
 		Matcher digitsOnlyMatcher = digitsOnlyPattern.matcher(password);
 		if (!digitsOnlyMatcher.find()) {
 			totalPointDeductions += password.length();
 		}
 		
-		// symbols only
+		// Deductions for symbols-only passwords
 		Pattern symbolsOnlyPattern = Pattern.compile("[a-zA-Z0-9]");
 		Matcher symbolsOnlyMatcher = symbolsOnlyPattern.matcher(password);
 		if (symbolsOnlyMatcher.find()) {
-			totalPointDeductions += password.length();
+			totalPointDeductions += password.length(); // TODO Maybe this should deduct less than letters/digits-only
 		}
 		
-		// consecutive characters
+		// Deductions for repeated characters
+		Pattern repeatCharPattern = Pattern.compile("([.])\\1+");
+		Matcher repeatCharMatcher = repeatCharPattern.matcher(password);
+		int numDuplicates = 0;
+		while (repeatCharMatcher.find()) {
+			numDuplicates++;
+		}
+		totalPointDeductions += CONSECUTIVE_MULTIPLIER * numDuplicates; // TODO maybe symbol repeats should be penalized less
 		
-		// dictionary words????????????
-		
-		return 0;
+		return totalPointDeductions;
 	}
 
 	public static void main(String[] args) {
