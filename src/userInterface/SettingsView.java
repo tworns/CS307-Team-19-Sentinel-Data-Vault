@@ -4,9 +4,7 @@ import java.awt.EventQueue;
 import javax.swing.*;
 
 import controllers.DatabaseManager;
-import controllers.VaultController;
 import dataManagement.User;
-
 import java.awt.Font;
 import java.awt.Window;
 import java.awt.event.*;
@@ -23,7 +21,7 @@ public class SettingsView {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					User s = new User(null, null, null, null, null, null, null);
+					User s = new User(null, null, null, null, null, null, null); //If anything tries to run on this user it's going to throw NullPointerExceptions
 					SettingsView window = new SettingsView(s);
 					window.frmSettings.setVisible(true);
 				} catch (Exception e) {

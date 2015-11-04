@@ -122,7 +122,7 @@ public class PasswordChangeView {
 				//</Field initializations>
 				if( question == null || question.equals("Please choose a security question below") == true) { 
 					question =  null;
-					//this if statement makes sure the question is null if the user has not chosen a vaild new question
+					//this if statement makes sure the question is null if the user has not chosen a valid new question
 				}
 
 				//Old password validation
@@ -143,7 +143,7 @@ public class PasswordChangeView {
 					JOptionPane.showMessageDialog(null, "One or more fields left empty", "Change Password", 0);
 					//If all fields are empty
 				}
-				else if(a.minStandard(newPass2) == false) { 
+				else if(a.minStandard(newPass2) == false) { //If the user password isn't at the minimum standard
 					JOptionPane.showMessageDialog(null, "Passwords must be at least 12 characters and contain"
 							+ "the following: uppercase and lowercase letters, a number, and a special character ", "Change Password", 0);
 				}
