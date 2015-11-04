@@ -103,6 +103,7 @@ public class VaultController {
 	public int loginCheck(String username, String password) throws NoSuchAlgorithmException {
 		DatabaseManager d = new DatabaseManager();
 		User user = d.retrieveUserFromDatabase(username);
+		/******TODO: MainView should take in user OBJECT!**********/
 		PasswordValidation p = new PasswordValidation(password);
 		if(p.isValidPassword(user, password)){
 			MainView window = new MainView(username);
