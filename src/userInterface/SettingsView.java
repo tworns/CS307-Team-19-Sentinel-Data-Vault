@@ -3,10 +3,12 @@ package userInterface;
 import java.awt.EventQueue;
 import javax.swing.*;
 
+import controllers.DatabaseManager;
 import controllers.VaultController;
 import dataManagement.User;
 
 import java.awt.Font;
+import java.awt.Window;
 import java.awt.event.*;
 
 public class SettingsView {
@@ -203,6 +205,19 @@ public class SettingsView {
 				if(JOptionPane.showConfirmDialog(null, "Are You Sure?", "Sign Out",JOptionPane.YES_NO_OPTION, JOptionPane.DEFAULT_OPTION) == 0) {
 					//This is for the user answering yes.
 					//TODO Actually delete stuff, close windows, etc.
+					DatabaseManager d = new DatabaseManager();
+					if (d.deleteUserFromDatabase(currentUser) == 1) {
+						JOptionPane.showMessageDialog(null,"You have successfully deleted your account!");
+						System.gc(); 
+						for (Window window : Window.getWindows()){
+					    	window.dispose();
+						}
+						LoginView l = new LoginView();
+						l.frame.setVisible(true);
+					}
+					else {
+						JOptionPane.showMessageDialog(null,"Oops! Something went wrong!");
+					}
 				}
 			}
 		});
