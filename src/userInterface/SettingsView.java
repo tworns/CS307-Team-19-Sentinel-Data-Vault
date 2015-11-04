@@ -150,7 +150,7 @@ public class SettingsView {
 		btnOk.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				if(e.getActionCommand().equalsIgnoreCase("Ok")) {
-					VaultController newVegas =  new VaultController();
+					DatabaseManager newVegas =  new DatabaseManager();
 					//TODO Call VaultController's method to update existing user.
 					frmSettings.dispose();
 		}
