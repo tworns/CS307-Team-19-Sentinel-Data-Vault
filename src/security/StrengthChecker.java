@@ -17,47 +17,25 @@ public class StrengthChecker {
 	private static final int LENGTH_MULTIPLIER = 4;
 	private static final int UPPERCASE_MULTIPLIER = 2;
 	private static final int LOWERCASE_MULTIPLIER = 2;
-	private static final int DIGITS_MULTIPLIER = 4;
-	private static final int SYMBOLS_MULTIPLIER = 6;
-	private static final int CONSECUTIVE_MULTIPLIER = 2;
+	private static final int DIGITS_MULTIPLIER = 3;
+	private static final int SYMBOLS_MULTIPLIER = 5;
+	private static final int LETTERS_ONLY_MULTIPLIER = 2;
+	private static final int DIGITS_ONLY_MULTIPLIER = 2;
+	private static final int SYMBOLS_ONLY_MULTIPLIER = 2;
+	private static final int SEQUENTIAL_MULTIPLIER = 2;
+	private static final int DUPLICATE_MULTIPLIER = 3;
 	
 	// Minimum Requirement Constants
 	private static final int PARTIAL_MIN_REQ_BONUS = 8;
 	private static final int FULL_MIN_REQ_BONUS = 10;
-	private static final int MIN_PASSWORD_LENGTH = 8;
+	private static final int MIN_PASSWORD_LENGTH = 10;
 	
 	// Rating Thresholds
 	private static final int WEAK_RATING_THRESHOLD = 40;
-	private static final int STRONG_RATING_THRESHOLD = 60;
+	private static final int STRONG_RATING_THRESHOLD = 70;
 	
 	/**
-	 * Strength Scores:
-	 * 		Weak 	 = < 40 pts.
-	 * 		Adequate = 
-	 * 		Strong 	 = > 60 pts.
-	 * 
-	 * Minimum Requirements (Suggested):
-	 * 		8 characters long
-	 * 		3 or more:
-	 * 			Uppercase
-	 * 			Lowercase
-	 * 			Digits
-	 * 			Symbols
-	 * 
-	 * Add Points:
-	 * 		Num Chars		n*4
-	 * 		Uppercase		n*2
-	 * 		Lowercase		n*2
-	 * 		Digits			n*4
-	 * 		Symbols			n*6
-	 * 		Min Reqs		+8 if 3/4; +10 if 4/4
-	 * 		
-	 * 
-	 * Deduct Points:
-	 * 		Letters only	n (each letter; essentially length)
-	 * 		Digits only		n (each digit; essentially length)
-	 * 		Specials only	n (each digit; essentially length)
-	 * 		Consec chars	n*2
+	 * Checks the strength of a given password.
 	 * 
 	 * @param password	password to check the strength rating of
 	 * @return			strength rating: "weak", "adequate", or "strong"
@@ -186,49 +164,71 @@ public class StrengthChecker {
 	private int findPointDeductions(String password) {
 		int totalPointDeductions = 0;
 		
+		// ***DEBUG VARIABLES*** //
+		boolean letters = false;
+		boolean digits = false;
+		boolean symbols = false;
+		// ***DEBUG VARIABLES*** //
+		
 		// Deductions for letters-only passwords
 		Pattern letterOnlyPattern = Pattern.compile("[^a-zA-Z]");
 		Matcher letterOnlyMatcher = letterOnlyPattern.matcher(password);
 		if (!letterOnlyMatcher.find()) {
-			totalPointDeductions += password.length();
+			totalPointDeductions += (LETTERS_ONLY_MULTIPLIER * password.length());
+			letters = true; // ***DEBUG VARIABLES*** //
 		}
 		
 		// Deductions for digits-only passwords
 		Pattern digitsOnlyPattern = Pattern.compile("[^0-9]");
 		Matcher digitsOnlyMatcher = digitsOnlyPattern.matcher(password);
 		if (!digitsOnlyMatcher.find()) {
-			totalPointDeductions += password.length();
+			totalPointDeductions += (DIGITS_ONLY_MULTIPLIER * password.length());
+			digits = true; // ***DEBUG VARIABLES*** //
 		}
 		
 		// Deductions for symbols-only passwords
 		Pattern symbolsOnlyPattern = Pattern.compile("[a-zA-Z0-9]");
 		Matcher symbolsOnlyMatcher = symbolsOnlyPattern.matcher(password);
-		if (symbolsOnlyMatcher.find()) {
-			totalPointDeductions += password.length(); // TODO Maybe this should deduct less than letters/digits-only
+		if (!symbolsOnlyMatcher.find()) {
+			totalPointDeductions += (SYMBOLS_ONLY_MULTIPLIER * password.length()); // TODO Maybe this should deduct less than letters/digits-only
+			symbols = true; // ***DEBUG VARIABLES*** //
 		}
 		
-		// Deductions for repeated characters
-		Pattern repeatCharPattern = Pattern.compile("([.])\\1+");
-		Matcher repeatCharMatcher = repeatCharPattern.matcher(password);
-		int numDuplicates = 0;
-		while (repeatCharMatcher.find()) {
-			numDuplicates++;
+		// Deductions for sequential characters
+		Pattern sequentialCharPattern = Pattern.compile("(.)\\1");
+		Matcher sequentialCharMatcher = sequentialCharPattern.matcher(password);
+		int numSequentials = 0;
+		while (sequentialCharMatcher.find()) {
+			numSequentials++;
 		}
-		totalPointDeductions += CONSECUTIVE_MULTIPLIER * numDuplicates; // TODO maybe symbol repeats should be penalized less
+		totalPointDeductions += SEQUENTIAL_MULTIPLIER * numSequentials;
+		
+		// Deductions for repeated characters
+		Pattern duplicateCharPattern = Pattern.compile("(.).+\\1");
+		Matcher duplicateCharMatcher = duplicateCharPattern.matcher(password);
+		
+		int nextIndex = 0;
+		int numDuplicates = 0;
+		while (duplicateCharMatcher.find(nextIndex)) {
+			numDuplicates++;
+			nextIndex = duplicateCharMatcher.start() + 1;
+		}
+		totalPointDeductions += DUPLICATE_MULTIPLIER * numDuplicates;
 		
 		/* DEBUG STATEMENTS */
 		System.out.println("Total Deductions:\t" + totalPointDeductions);
-		System.out.println("\tLetters Only:\t\t" + password.length());
-		System.out.println("\tDigits Only:\t\t" + password.length());
-		System.out.println("\tSymbols Only:\t\t" + password.length());
-		System.out.println("\tRepeats:\t\t" + (CONSECUTIVE_MULTIPLIER * numDuplicates));
+		System.out.println("\tLetters Only:\t\t" + ((letters) ? (LETTERS_ONLY_MULTIPLIER * password.length()) : 0));
+		System.out.println("\tDigits Only:\t\t" + ((digits) ? (DIGITS_ONLY_MULTIPLIER * password.length()) : 0));
+		System.out.println("\tSymbols Only:\t\t" + ((symbols) ? (SYMBOLS_ONLY_MULTIPLIER * password.length()) : 0));
+		System.out.println("\tSequentials:\t\t" + (SEQUENTIAL_MULTIPLIER * numSequentials));
+		System.out.println("\tDuplicates:\t\t" + (DUPLICATE_MULTIPLIER * numDuplicates));
 		/* DEBUG STATEMENTS */
 		
 		return totalPointDeductions;
 	}
 
 	public static void main(String[] args) {
-		String password = "password!";
+		String password = "password";
 		StrengthChecker checker = new StrengthChecker();
 		System.out.println("\nFINAL RATING: " + checker.checkStrength(password));
 
