@@ -25,6 +25,8 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.time.LocalDateTime;
+
 import javax.swing.JTextField;
 
 import controllers.DatabaseManager;
@@ -143,8 +145,8 @@ public class NewDataEntryView {
 						JButton btnSave = new JButton("Save");
 						btnSave.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
-								// TODO: Add Entry to data base
-								DataEntry newEntry = new DataEntry(textField.getText(), "SSN", null, userName, 0, null);
+								LocalDateTime createdtime = LocalDateTime.now();
+								DataEntry newEntry = new DataEntry(textField.getText(), "SSN", null, userName, 0, createdtime);
 								newEntry.addDataField(textField_1.getText());
 								newEntry.addDataField(textField_2.getText());
 								DatabaseManager m = new DatabaseManager();
@@ -245,8 +247,9 @@ public class NewDataEntryView {
 						JButton btnSave = new JButton("Save");
 						btnSave.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
+								LocalDateTime createdtime = LocalDateTime.now();
 								DataEntry newEntry = new DataEntry(textField.getText(), "Credit/Debit Card", null, null,
-										0, null);
+										0, createdtime);
 								newEntry.addDataField(textField_1.getText());
 								newEntry.addDataField((String) cardType.getSelectedItem());
 								newEntry.addDataField(textField_2.getText());
@@ -376,9 +379,9 @@ public class NewDataEntryView {
 						JButton btnSave = new JButton("Save");
 						btnSave.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
-								// TODO: Add Entry to data base
+								LocalDateTime createdtime = LocalDateTime.now();
 								DataEntry newEntry = new DataEntry(textField.getText(), "PassPort", null, null, 0,
-										null);
+										createdtime);
 								newEntry.addDataField(textField_1.getText());
 								newEntry.addDataField(textField_2.getText());
 								newEntry.addDataField(textField_3.getText());
@@ -455,7 +458,7 @@ public class NewDataEntryView {
 						textField_3.setColumns(10);
 
 						textField_4 = new JTextField();
-						textField_4.setBounds(170, 100, 200, 18);
+						textField_4.setBounds(170, 130, 200, 18);
 						textField_4.setColumns(10);
 
 						frame.getContentPane().setLayout(null);
@@ -473,8 +476,9 @@ public class NewDataEntryView {
 						JButton btnSave = new JButton("Save");
 						btnSave.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
+								LocalDateTime createdtime = LocalDateTime.now();
 								DataEntry newEntry = new DataEntry(textField.getText(), "Driver's license", null, null,
-										0, null);
+										0, createdtime);
 								newEntry.addDataField(textField_1.getText());
 								newEntry.addDataField(textField_2.getText());
 								newEntry.addDataField(textField_3.getText());
@@ -556,8 +560,9 @@ public class NewDataEntryView {
 						JButton btnSave = new JButton("Save");
 						btnSave.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
+								LocalDateTime createdtime = LocalDateTime.now();
 								DataEntry newEntry = new DataEntry(textField.getText(), "Website Login", null, null, 0,
-										null);
+										createdtime);
 								newEntry.addDataField(textField_1.getText());
 								newEntry.addDataField(textField_2.getText());
 								newEntry.addDataField(textField_3.getText());
@@ -638,9 +643,9 @@ public class NewDataEntryView {
 						JButton btnSave = new JButton("Save");
 						btnSave.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
-								// TODO: Add Entry to data base
+								LocalDateTime createdtime = LocalDateTime.now();
 								DataEntry newEntry = new DataEntry(textField.getText(), "Wifi Network", null, null, 0,
-										null);
+										createdtime);
 								newEntry.addDataField(textField_1.getText());
 								newEntry.addDataField(textField_2.getText());
 								newEntry.addDataField(textField_3.getText());
@@ -722,8 +727,9 @@ public class NewDataEntryView {
 						JButton btnSave = new JButton("Save");
 						btnSave.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
+								LocalDateTime createdtime = LocalDateTime.now();
 								DataEntry newEntry = new DataEntry(textField.getText(), "Phone Number", null, null, 0,
-										null);
+										createdtime);
 								newEntry.addDataField(textField_1.getText());
 								newEntry.addDataField(textField_2.getText());
 								newEntry.addDataField(textField_3.getText());

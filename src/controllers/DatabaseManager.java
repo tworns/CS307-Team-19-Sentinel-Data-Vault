@@ -428,14 +428,14 @@ public class DatabaseManager {
 
 			// Construct the SQL INSERT statement
 			int field_number = entry.getFieldDataList().size();
-			String sql = "INSERT INTO data_entries(entry_name, entry_type, encryption_key, owner, valid_users, secure_entry";
+			String sql = "INSERT INTO data_entries(entry_name, entry_type, encryption_key, owner, valid_users, secure_entry, last_modified";
 			for (int i = 0; i < field_number; i++) {
 				sql = sql + ", ";
 				sql = sql + "data_field_" + Integer.toString(i + 1);
 			}
 			sql = sql + ") VALUES ('" + entry.getEntryName() + "', "  + "'" + entry.getEntryType()  + "', " + "'"
 					+ entry.getEncryptionKey()  + "', " + "'" + entry.getOwner()  + "', " + "'"
-					+ entry.getValidUser()  + "', " + entry.isHighSecurity() + ", ";
+					+ entry.getValidUser()  + "', " + entry.isHighSecurity() + ", '" + entry.getLastModified().toString() + "', ";
 			for (int j = 0; j < field_number; j++) {
 				sql = sql + "'" + entry.getFieldDataList().get(j) + "'";
 				if (j != field_number -1)
