@@ -42,6 +42,7 @@ import javax.swing.event.TreeSelectionEvent;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.AbstractListModel;
+import javax.swing.event.TreeSelectionListener;
 
 public class HomeView {
 
@@ -197,7 +198,7 @@ public class HomeView {
 						.addContainerGap())
 				);
 
-//panel_west		
+		//panel_west		
 		textField = new JTextField();
 		textField.setText("<dynamic>");
 		textField.setColumns(10);
@@ -241,19 +242,58 @@ public class HomeView {
 
 
 
-//panel_center	> Category(JTree) + List(JList) 
-		
+		//panel_center	> Category(JTree) + List(JList) 
+
 		//Tree		
 		JTree tree = new JTree();
-		TreeSelectionEvent tse = null;
-		String selectedNode = tse.getNewLeadSelectionPath().getLastPathComponent().toString();
+		String selectedNode = null;
+
+		tree.addTreeSelectionListener(new TreeSelectionListener() {
+
+
+			public void valueChanged(TreeSelectionEvent e) {
+				JTree tree = (JTree) e.getSource();
+				DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) tree
+						.getLastSelectedPathComponent();
+				String selectedNodeName = selectedNode.toString();
+				
+				
+				System.out.println(selectedNodeName);
+/*				
+				// if the data object is Account Login 
+				if (selectedNodeName.equals("Account Login")) {
+				panel = dataPanel.getAccountLoginPanel(currentdata);
+				 panelName = "Account Login";
+				}
+			
+
+				// if the data object is Credit Card
+				if (selectedNodeName.equals("Credit Card")) {
+					panel = dataPanel.getCreditCardPanel(currentdata);
+					panelName = "Credit Card";
+				}
+*/				
+				// if the data object is License  
+				//	panel = dataPanel.getDriversLicensePanel(data);
+				//	panelName = "Driver's License  ";
+				
+				if (selectedNode.isLeaf()) {
+
+					System.out.println(selectedNodeName);
+
+				}
+				
+				return;
+
+			}
+		});
 
 		tree.setModel(new DefaultTreeModel(
 				new DefaultMutableTreeNode("User") {
 					{
 						DefaultMutableTreeNode node_1;
 						node_1 = new DefaultMutableTreeNode("Account Login");
-						
+
 						node_1.add(new DefaultMutableTreeNode("Google"));
 						node_1.add(new DefaultMutableTreeNode("Apple"));
 						node_1.add(new DefaultMutableTreeNode("Purdue"));
@@ -262,33 +302,20 @@ public class HomeView {
 						node_1.add(new DefaultMutableTreeNode("Visa"));
 						node_1.add(new DefaultMutableTreeNode("Master"));
 						add(node_1);
-						node_1 = new DefaultMutableTreeNode("Lisence");
+						node_1 = new DefaultMutableTreeNode("Driver's License");
 						node_1.add(new DefaultMutableTreeNode("Driver's Lisence"));
 						add(node_1);
 					}
 				}
 				));
+		
+		
+		
 		panel_center.addTab("Category", null, tree, null);
 
 
-		JPanel panel_1 = new JPanel();
-		panel_center.addTab("List", null, panel_1, null);
-/*
-		JList list = new JList();
-		list.setModel(new AbstractListModel() {
-			String[] values = new String[] {"VISA", "Master", "", "Google", "Apple"};
-			public int getSize() {
-				return values.length;
-			}
-			public Object getElementAt(int index) {
-				return values[index];
-			}
-		});
-		panel_1.add(list);
-*/
-		
 
-//panel_east		
+		//panel_east		
 		//Where to pass the all the data
 		// Credit Card Panel
 		/*update to pass DataEntry Object*/
@@ -298,18 +325,17 @@ public class HomeView {
 		DataEntry currentdata = new DataEntry(null, null, null, null, 0, null);
 		String panelName = null;
 
-		
-		
-		
+
+
+
 		// if the data object is Account Login 
 		// panel = dataPanel.getAccountLoginPanel(currentdata);
 		// panelName = "Account Login";
 
 		// if the data object is Credit Card
-		if( selectedNode.equals("Credit Card") ) {
-			panel = dataPanel.getCreditCardPanel(currentdata);
-			panelName = "Credit Card";
-		}
+		//	panel = dataPanel.getCreditCardPanel(currentdata);
+		//	panelName = "Credit Card";
+		
 		// if the data object is License  
 		//	panel = dataPanel.getDriversLicensePanel(data);
 		//	panelName = "Driver's License  ";
@@ -323,7 +349,7 @@ public class HomeView {
 
 
 
-// MenuBar
+		// MenuBar
 		JMenuBar menuBar = new JMenuBar();
 		frmSentinelDataVault.setJMenuBar(menuBar);
 
@@ -363,9 +389,9 @@ public class HomeView {
 		JMenuItem mntmAbout = new JMenuItem("About");
 		mnHelp.add(mntmAbout);
 
-		
-		
-		
+
+
+
 	}
 
 
