@@ -147,7 +147,7 @@ public class SecurityView {
 				if(spinLength == 0) { 
 					spinLength =4;
 				}
-				if(numbers == false && specials == false && lowercase == false && uppercase == false && repeated == false ) { 
+				if(numbers == false && specials == false && lowercase == false && uppercase == false) { 
 					JOptionPane.showMessageDialog(null, "Password must include at least one of the character types.", "Change Password", 0);
 				}
 				else { 
@@ -157,7 +157,18 @@ public class SecurityView {
 					displayPass.setText(password);
 					displayPass.setEditable(false);
 					displayPass.setFont(new Font("Courier New",Font.PLAIN ,14)); 
-					JOptionPane.showMessageDialog(null, new JScrollPane(displayPass), "Password", JOptionPane.INFORMATION_MESSAGE);
+					JScrollPane scroll = new JScrollPane(displayPass);
+					Object[] arr = { 
+							new JLabel("Password"),
+							scroll,
+					};
+					JOptionPane displayMessage = new JOptionPane(arr, JOptionPane.INFORMATION_MESSAGE);
+					JDialog dialog = displayMessage.createDialog(null, "Password");
+					dialog.setResizable(false);
+					dialog.setSize(500, 150);
+					dialog.setVisible(true);
+					dialog.dispose();
+					
 				}
 				
 			}
