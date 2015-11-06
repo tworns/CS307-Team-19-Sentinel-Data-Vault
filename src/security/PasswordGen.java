@@ -12,33 +12,6 @@ import org.passay.PasswordGenerator;
 public class PasswordGen {
 	
 	/**
-	 * Removes all instances of duplicate letters or digits from a given password.
-	 * 
-	 * @param password	password to remove duplicate letters or digits from
-	 * @return			new form of password absent of any duplicate letters or digits
-	 */
-	private static String removeRepeatChars(String password) {
-		char[] replacementCharSet = "abcdefghijklmnopqrstuvwxyxABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".toCharArray();
-		char[] newPassword = password.toCharArray();
-		SecureRandom sr = new SecureRandom();
-		Pattern repeatCharPattern = Pattern.compile("([a-zA-Z0-9])\\1+");
-		Matcher matcher = repeatCharPattern.matcher(password);
-		
-		while (matcher.find()) {
-			int dupePosition = matcher.start();
-			char duplicateChar = password.charAt(dupePosition);
-			char replacementChar = replacementCharSet[sr.nextInt()];
-			while (duplicateChar == replacementChar) {
-				replacementChar = replacementCharSet[sr.nextInt()];
-			}
-			newPassword[dupePosition] = replacementChar;
-		}
-		
-		String finalPassword = new String(newPassword);
-		return finalPassword;
-	}
-	
-	/**
 	 * Generates a securely random, strong password given user-entered criteria.
 	 * 
 	 * @param containsUpper		Determines if password will contain uppercase letters
@@ -116,6 +89,33 @@ public class PasswordGen {
 		else {
 			return finalPassword;
 		}
+	}
+	
+	/**
+	 * Removes all instances of duplicate letters or digits from a given password.
+	 * 
+	 * @param password	password to remove duplicate letters or digits from
+	 * @return			new form of password absent of any duplicate letters or digits
+	 */
+	private static String removeRepeatChars(String password) {
+		char[] replacementCharSet = "abcdefghijklmnopqrstuvwxyxABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".toCharArray();
+		char[] newPassword = password.toCharArray();
+		SecureRandom sr = new SecureRandom();
+		Pattern repeatCharPattern = Pattern.compile("([a-zA-Z0-9])\\1+");
+		Matcher matcher = repeatCharPattern.matcher(password);
+		
+		while (matcher.find()) {
+			int dupePosition = matcher.start();
+			char duplicateChar = password.charAt(dupePosition);
+			char replacementChar = replacementCharSet[sr.nextInt()];
+			while (duplicateChar == replacementChar) {
+				replacementChar = replacementCharSet[sr.nextInt()];
+			}
+			newPassword[dupePosition] = replacementChar;
+		}
+		
+		String finalPassword = new String(newPassword);
+		return finalPassword;
 	}
 	
 	public static void main(String args[]) {

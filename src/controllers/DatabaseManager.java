@@ -189,10 +189,14 @@ public class DatabaseManager {
 	 * 
 	 * 
 	 */
-	public DataEntry retrieveDataEntryFromDatabase(String userEmail) {
+	public List<DataEntry> retrieveDataEntryFromDatabase(String userEmail) {
 		// Connect to the database
 		Connection DBconnection = connectToDatabase();
-		try {	
+		try {
+			/*this is the list we are returning contains all dataentries belong
+			 to certain user*/
+			List<DataEntry> dataentries = new ArrayList<DataEntry>();
+			
 			// Initialize a statement to execute
 			Statement stmt = DBconnection.createStatement();
 			// Construct the SQL DELETE statement
@@ -202,12 +206,19 @@ public class DatabaseManager {
 			
 			// Execute the statement and commit database changes
 		    ResultSet dataEntryInfoSet = stmt.executeQuery(sql);
+		    while(dataEntryInfoSet.next()){
+		    	/*TODO construct Dataentry object and add each one 
+		    	 to the List in the while loop here */
+		    	
+		    }
+	        
+		    /*Basically just move the codes below to the loop and 
+		    ad the entry to the list*/
 		    
-	        String entryName = dataEntryInfoSet.getString("entry_name");
+		    /*String entryName = dataEntryInfoSet.getString("entry_name");
 	        String entryType  = dataEntryInfoSet.getString("entry_type");
 	        String encryptionKey = dataEntryInfoSet.getString("encryption_key");
-	        String owner = dataEntryInfoSet.getString("owner");
-	    //  String validUsers = 
+	        String owner = dataEntryInfoSet.getString("owner"); 
 	        int highSecurity = dataEntryInfoSet.getInt("secure_entry");
 	        
 	        String lastModified = dataEntryInfoSet.getString("last_modified");
@@ -244,14 +255,16 @@ public class DatabaseManager {
 	        // Reconstruct DataEntry
 	        DataEntry dataEntry = new DataEntry(entryName, entryType, encryptionKey, owner, highSecurity, modifiedLDT);
 	        dataEntry.setDataFields(fields);
-	        
+	        */
+		    
+		    
 		    // Disconnect from database
 	        dataEntryInfoSet.close();
 		    stmt.close();
 		    DBconnection.close();
 			
 			// return a success value
-			return dataEntry;
+			return dataentries;
 		} catch (SQLException e) {
 			System.err.println( e.getClass().getName() + ": " + e.getMessage());
 			e.printStackTrace();
