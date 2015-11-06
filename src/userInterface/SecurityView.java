@@ -156,7 +156,7 @@ public class SecurityView {
 					JTextArea displayPass = new JTextArea(1,1);
 					displayPass.setText(password);
 					displayPass.setEditable(false);
-					displayPass.setFont(new Font("Courier New",Font.PLAIN ,12)); //TODO
+					displayPass.setFont(new Font("Courier New",Font.PLAIN ,14)); 
 					JOptionPane.showMessageDialog(null, new JScrollPane(displayPass), "Password", JOptionPane.INFORMATION_MESSAGE);
 				}
 				
