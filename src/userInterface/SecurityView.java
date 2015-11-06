@@ -150,12 +150,15 @@ public class SecurityView {
 				if(spinLength == 0) { 
 					spinLength =4;
 				}
+				else { 
 					PasswordGen passGen = new PasswordGen();
 					String password = passGen.generatePassword(uppercase, lowercase, numbers, specials, repeated, spinLength);
 					JTextArea displayPass = new JTextArea(1,1);
 					displayPass.setText(password);
 					displayPass.setEditable(false);
+					displayPass.setFont(new Font("Courier New",Font.ITALIC ,12)); //TODO
 					JOptionPane.showMessageDialog(null, new JScrollPane(displayPass), "Password", JOptionPane.INFORMATION_MESSAGE);
+				}
 				
 			}
 		});
