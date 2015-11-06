@@ -14,6 +14,9 @@ import javax.swing.JProgressBar;
 import javax.swing.JTree;
 import javax.swing.JDesktopPane;
 import javax.swing.tree.DefaultTreeModel;
+
+import controllers.DatabaseManager;
+import dataManagement.DataEntry;
 import dataManagement.User;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.JLabel;
@@ -40,6 +43,7 @@ public class MainView {
 	private JTextField txtPm;
 	public String username;
 	public User currentUser;
+	public DataEntry currentEntry;
 	
 	
 	public static void main(String[] args) {
@@ -106,6 +110,8 @@ public class MainView {
 						null, options, options[1]);
 				if (result == 0) {
 					System.out.println("Delete Entry");
+					DatabaseManager m = new DatabaseManager();
+					m.deleteEntryFromDatabase(currentEntry);
 					//TODO: Delete Entry from database
 				}
 			}
