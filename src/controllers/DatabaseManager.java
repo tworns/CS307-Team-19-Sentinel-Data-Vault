@@ -366,11 +366,12 @@ public class DatabaseManager {
 			// Initialize a statement to execute
 			Statement stmt = DBconnection.createStatement();
 
-			/* Check that entry_name does not already exist
-			ResultSet results = stmt.executeQuery(
-					"SELECT * FROM data_entries WHERE entry_name = " + "'" + entry.getEntryName() + "';");
+			//Check that entry_name does not already exist
+			/*ResultSet results = stmt.executeQuery(
+					"SELECT COUNT(*) FROM data_entries WHERE entry_name = " + "'" + entry.getEntryName() + "';");
 			if (results.getInt(1) != 0) {
 				// entry_name exists, return failure value
+				System.out.println("Entry Name exist");
 				return -1;
 			}*/
 
