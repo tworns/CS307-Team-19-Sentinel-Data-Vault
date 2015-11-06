@@ -1,9 +1,12 @@
 package cryptography;
+
 import dataManagement.*;
 
 public class Crypto {
- public User user;
- public DataEntry data;
+	
+	public User user;
+	public DataEntry data;
+	
 	public Crypto (User user, DataEntry data){ 
 		this.user = user;
 		this.data = data;
