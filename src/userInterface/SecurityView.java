@@ -7,6 +7,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import security.PasswordGen;
 import security.StrengthChecker;
+import java.awt.Font;
 
 
 public class SecurityView {
@@ -198,7 +199,8 @@ public class SecurityView {
 		
 		//password entry field
 		JLabel lblEnterPassword = new JLabel("Enter Password");
-		lblEnterPassword.setBounds(22, 13, 106, 16);
+		lblEnterPassword.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblEnterPassword.setBounds(21, 13, 164, 17);
 		panel_1.add(lblEnterPassword);
 		
 		//button that actually sets off the checking of the password.
@@ -210,6 +212,7 @@ public class SecurityView {
 				String output = check.checkStrength(input);
 					String strength = "Your password is ";
 					strength += output +"\n";
+					JOptionPane.showMessageDialog(null, strength, "Password", JOptionPane.INFORMATION_MESSAGE);
 					/*
 					char[] input = passwordField.getPassword();
 					StringBuilder s = new StringBuilder();
@@ -229,9 +232,6 @@ public class SecurityView {
 						//Anything else is adequate.
 						 output += " adequate. \n";
 					}*/
-					JOptionPane.showMessageDialog(null, strength, "Password", JOptionPane.INFORMATION_MESSAGE);
-					
-				
 			}
 		});
 		btnCheck.setBounds(21, 104, 97, 25);
@@ -248,7 +248,7 @@ public class SecurityView {
 		panel_1.add(btnCancel_1);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(32, 41, 117, 19);
+		passwordField.setBounds(21, 58, 230, 19);
 		panel_1.add(passwordField);
 
 	}
