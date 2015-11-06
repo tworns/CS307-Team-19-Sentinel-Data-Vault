@@ -107,9 +107,9 @@ public class PasswordGen {
 		while (matcher.find()) {
 			int dupePosition = matcher.start();
 			char duplicateChar = password.charAt(dupePosition);
-			char replacementChar = replacementCharSet[sr.nextInt()];
+			char replacementChar = replacementCharSet[sr.nextInt(replacementCharSet.length)];
 			while (duplicateChar == replacementChar) {
-				replacementChar = replacementCharSet[sr.nextInt()];
+				replacementChar = replacementCharSet[sr.nextInt(replacementCharSet.length)];
 			}
 			newPassword[dupePosition] = replacementChar;
 		}
