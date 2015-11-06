@@ -153,21 +153,21 @@ public class SecurityView {
 				else { 
 					PasswordGen passGen = new PasswordGen();
 					String password = passGen.generatePassword(uppercase, lowercase, numbers, specials, repeated, spinLength);
-					JTextArea displayPass = new JTextArea(1,1);
-					displayPass.setText(password);
-					displayPass.setEditable(false);
-					displayPass.setFont(new Font("Courier New",Font.PLAIN ,14)); 
-					JScrollPane scroll = new JScrollPane(displayPass);
-					Object[] arr = { 
+					JTextArea displayPass = new JTextArea(1,1); //Make a spot to display the password
+					displayPass.setText(password); //Set the password in the display area
+					displayPass.setEditable(false); //Make it so the user can't mess with stuff now.
+					displayPass.setFont(new Font("Courier New",Font.PLAIN ,14)); //Change font so everything is ledgible
+					JScrollPane scroll = new JScrollPane(displayPass); //make a scoll pane so the text area has something to sit in 
+					Object[] arr = { //Make a label for this scoll pane
 							new JLabel("Password"),
 							scroll,
 					};
-					JOptionPane displayMessage = new JOptionPane(arr, JOptionPane.INFORMATION_MESSAGE);
-					JDialog dialog = displayMessage.createDialog(null, "Password");
-					dialog.setResizable(false);
+					JOptionPane displayMessage = new JOptionPane(arr, JOptionPane.INFORMATION_MESSAGE); //Pack everything into a JOptionPane
+					JDialog dialog = displayMessage.createDialog(null, "Password"); //Make the dialog that displays the JOptionPane
+					dialog.setResizable(false);// Properties of the dialog
 					dialog.setSize(500, 150);
-					dialog.setVisible(true);
-					dialog.dispose();
+					dialog.setVisible(true); //User can see it now
+					dialog.dispose(); //dispose on close
 					
 				}
 				
