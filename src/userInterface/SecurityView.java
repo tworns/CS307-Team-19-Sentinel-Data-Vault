@@ -234,7 +234,7 @@ public class SecurityView {
 					}*/
 			}
 		});
-		btnCheck.setBounds(21, 104, 97, 25);
+		btnCheck.setBounds(21, 73, 97, 25);
 		panel_1.add(btnCheck);
 		
 		//cancel button closes window
@@ -244,11 +244,11 @@ public class SecurityView {
 						frame.dispose();	
 			}
 		});
-		btnCancel_1.setBounds(142, 104, 97, 25);
+		btnCancel_1.setBounds(130, 73, 97, 25);
 		panel_1.add(btnCancel_1);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(21, 58, 230, 19);
+		passwordField.setBounds(19, 42, 211, 19);
 		panel_1.add(passwordField);
 
 	}
