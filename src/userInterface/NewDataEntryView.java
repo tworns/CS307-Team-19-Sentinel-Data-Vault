@@ -148,8 +148,14 @@ public class NewDataEntryView {
 								newEntry.addDataField(textField_1.getText());
 								newEntry.addDataField(textField_2.getText());
 								DatabaseManager m = new DatabaseManager();
-								m.addEntryToDataBase(newEntry);
-								frame.dispose();
+								int result = m.addEntryToDataBase(newEntry);
+								if (result == -1) {
+									JOptionPane.showMessageDialog(null,"The Entry Name has already existed! Please Try another email!");
+									return;
+								}
+								else {
+									frame.dispose();
+								}
 							}
 						});
 						btnSave.setBounds(85, 307, 117, 29);
@@ -247,8 +253,14 @@ public class NewDataEntryView {
 								newEntry.addDataField(textField_3.getText());
 								newEntry.addDataField(textField_4.getText());
 								DatabaseManager m = new DatabaseManager();
-								m.addEntryToDataBase(newEntry);
-								frame.dispose();
+								int result = m.addEntryToDataBase(newEntry);
+								if (result == -1) {
+									JOptionPane.showMessageDialog(null,"The Entry Name has already existed! Please Try another email!");
+									return;
+								}
+								else {
+									frame.dispose();
+								}
 							}
 						});
 						btnSave.setBounds(85, 307, 117, 29);
@@ -376,8 +388,14 @@ public class NewDataEntryView {
 								newEntry.addDataField(textField_7.getText());
 								newEntry.addDataField(textField_8.getText());
 								DatabaseManager m = new DatabaseManager();
-								m.addEntryToDataBase(newEntry);
-								frame.dispose();
+								int result = m.addEntryToDataBase(newEntry);
+								if (result == -1) {
+									JOptionPane.showMessageDialog(null,"The Entry Name has already existed! Please Try another email!");
+									return;
+								}
+								else {
+									frame.dispose();
+								}
 							}
 						});
 						btnSave.setBounds(85, 307, 117, 29);
@@ -462,8 +480,14 @@ public class NewDataEntryView {
 								newEntry.addDataField(textField_3.getText());
 								newEntry.addDataField(textField_4.getText());
 								DatabaseManager m = new DatabaseManager();
-								m.addEntryToDataBase(newEntry);
-								frame.dispose();
+								int result = m.addEntryToDataBase(newEntry);
+								if (result == -1) {
+									JOptionPane.showMessageDialog(null,"The Entry Name has already existed! Please Try another email!");
+									return;
+								}
+								else {
+									frame.dispose();
+								}
 							}
 						});
 						btnSave.setBounds(85, 307, 117, 29);
@@ -538,8 +562,14 @@ public class NewDataEntryView {
 								newEntry.addDataField(textField_2.getText());
 								newEntry.addDataField(textField_3.getText());
 								DatabaseManager m = new DatabaseManager();
-								m.addEntryToDataBase(newEntry);
-								frame.dispose();
+								int result = m.addEntryToDataBase(newEntry);
+								if (result == -1) {
+									JOptionPane.showMessageDialog(null,"The Entry Name has already existed! Please Try another email!");
+									return;
+								}
+								else {
+									frame.dispose();
+								}
 							}
 						});
 						btnSave.setBounds(85, 307, 117, 29);
@@ -615,8 +645,14 @@ public class NewDataEntryView {
 								newEntry.addDataField(textField_2.getText());
 								newEntry.addDataField(textField_3.getText());
 								DatabaseManager m = new DatabaseManager();
-								m.addEntryToDataBase(newEntry);
-								frame.dispose();
+								int result = m.addEntryToDataBase(newEntry);
+								if (result == -1) {
+									JOptionPane.showMessageDialog(null,"The Entry Name has already existed! Please Try another email!");
+									return;
+								}
+								else {
+									frame.dispose();
+								}
 							}
 						});
 						btnSave.setBounds(85, 307, 117, 29);
@@ -692,9 +728,14 @@ public class NewDataEntryView {
 								newEntry.addDataField(textField_2.getText());
 								newEntry.addDataField(textField_3.getText());
 								DatabaseManager m = new DatabaseManager();
-								m.addEntryToDataBase(newEntry);
-								frame.dispose();
-								// TODO: Add Entry to data base
+								int result = m.addEntryToDataBase(newEntry);
+								if (result == -1) {
+									JOptionPane.showMessageDialog(null,"The Entry Name has already existed! Please Try another email!");
+									return;
+								}
+								else {
+									frame.dispose();
+								}
 							}
 						});
 						btnSave.setBounds(85, 207, 117, 29);
