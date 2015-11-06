@@ -165,13 +165,13 @@ public class SecurityView {
 		btnCancel.setBounds(154, 242, 85, 25);
 		panel.add(btnCancel);
 		
-		JCheckBox chckbxAvoidRepeatedCharacters = new JCheckBox("Avoid Repeated Letters and Digits");
+		JCheckBox chckbxAvoidRepeatedCharacters = new JCheckBox("Avoid Sequential Letters and Digits");
 		chckbxAvoidRepeatedCharacters.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				repeated = chckbxAvoidRepeatedCharacters.isSelected();
 			}
 		});
-		chckbxAvoidRepeatedCharacters.setToolTipText("Password will not contain repeated instances of letters or digits.");
+		chckbxAvoidRepeatedCharacters.setToolTipText("Password will not contain sequential instances of letters or digits.");
 		chckbxAvoidRepeatedCharacters.setBounds(47, 159, 250, 25);
 		panel.add(chckbxAvoidRepeatedCharacters);
 		
