@@ -13,22 +13,27 @@ public class Crypto {
 	
 	public Crypto (){ 
 	}
-	byte [] test = {'t', 'e','s', 't', };
+	byte [] test = {'t', 'e','s', 't', }; //TODO Generate a real key
+	public String randomDataKey() { 
+		//TODO make a string of random junk to be put into the user.Datakey field.
+		return null;
+	}
 	// We're using AES encryption. It's symmetric (same key for encrypt/decrypt).
-	public Key keyGen () throws NoSuchAlgorithmException, NoSuchPaddingException { //TODO Figure out a return, need to return 2 keys, high security and lower security. Both genned here
+	public Key keyGen (User user) throws NoSuchAlgorithmException, NoSuchPaddingException { //TODO Figure out a return, need to return 2 keys, high security and lower security. Both genned here
 		//DataEntries created by the User will be given the key that the user has. 
 		int lowKey = 128;
 		int secKey = 256;
-		 
-		Key key = new SecretKeySpec(test, "AES");
-		return key;
+		 //USER KEY GOSE INTO THE SECRET KEY SPEC!
+		Key key = new SecretKeySpec(user.getDataKey().getBytes(), "AES");
 		
+		return key;
 	}
 	public DataEntry encrypt(User user, DataEntry data) throws NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException { //Return type is temporary
 		Cipher c = Cipher.getInstance("AES/ECB/PKCS5Padding");
-		Key key = keyGen(); //TODO GET THIS KEY IN A USER
+		 //TODO GET THIS KEY IN A USER
 		List<String> dataList = new ArrayList<String>();
 		try {
+			Key key = keyGen(user); // makes a key from the user's data key.
 			c.init(Cipher.ENCRYPT_MODE, key);
 			for(String entry : data.getFieldDataList()){	
 				byte[] encrypted = c.doFinal(entry.getBytes());
