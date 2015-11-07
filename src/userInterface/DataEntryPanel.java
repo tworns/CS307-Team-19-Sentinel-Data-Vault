@@ -1,11 +1,9 @@
 package userInterface;
 
-import java.awt.Panel;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.event.TreeSelectionEvent;
@@ -16,7 +14,7 @@ import net.miginfocom.swing.MigLayout;
 
 
 
-public class DataEntryPanel extends Panel {
+public class DataEntryPanel extends JPanel{
 	private JPanel panel = new JPanel();
 	private JLabel info = new JLabel("Select Data Entry");
 

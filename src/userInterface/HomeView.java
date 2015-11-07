@@ -3,41 +3,28 @@ package userInterface;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 import java.util.Locale;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFormattedTextField;
 import javax.swing.JPanel;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
-import java.awt.GridLayout;
 import javax.swing.JTree;
-import net.miginfocom.swing.MigLayout;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
 
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import dataManagement.*;
 import controllers.DatabaseManager;
-import dataManagement.DataEntry;
-import dataManagement.User;
-import userInterface.DataEntryPanel;
 
-
-import javax.swing.JList;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Font;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
@@ -45,7 +32,6 @@ import javax.swing.UIManager;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.AbstractListModel;
 import javax.swing.event.TreeSelectionListener;
 
 public class HomeView {
@@ -58,6 +44,11 @@ public class HomeView {
 	public String username;
 	public User currentUser;
 	public DataEntry currentEntry;
+	public List<DataEntry> currentAllDataEntries;
+	public List<String> currentDataEntryNameList;
+	public List<String> currentDataEntryTypeList;
+
+	
 	
 	/**
 	 * Launch the application.
@@ -70,7 +61,7 @@ public class HomeView {
 			public void run() {
 				try {
 					String s = "username";
-					HomeView window = new HomeView();
+					HomeView window = new HomeView(s);
 					window.frmSentinelDataVault.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -82,16 +73,19 @@ public class HomeView {
 	/**
 	 * Create the application.
 	 */
-	public HomeView() {
-		initialize();
-		
 
-	}
-	
 	public HomeView(String username) {
 		this.username = username;
-		initialize();
 		
+		DatabaseManager dbmanger = new DatabaseManager();
+		currentUser = dbmanger.retrieveUserFromDatabase(username);
+		
+		currentAllDataEntries = dbmanger.retrieveAllDataEntries(username);
+		currentDataEntryNameList = dbmanger.retrieveDataEntryNameList(username);
+		currentDataEntryTypeList = dbmanger.retrieveDataEntryTypeList(username);
+		
+		
+		initialize();	
 	}
 
 
@@ -335,9 +329,12 @@ public class HomeView {
 
 		//panel_center	> Category(JTree) + List(JList) 
 
+		
+		
+		
 		//Tree		
 		JTree tree = new JTree();
-		String selectedNode = null;
+		//String selectedNode = null;
 
 		tree.addTreeSelectionListener(new TreeSelectionListener() {
 
@@ -391,8 +388,9 @@ public class HomeView {
 		});
 
 		tree.setModel(new DefaultTreeModel(
-				new DefaultMutableTreeNode("User") {
+				new DefaultMutableTreeNode(username) {
 					{
+						
 						DefaultMutableTreeNode node_1;
 						node_1 = new DefaultMutableTreeNode("Account Login");
 
