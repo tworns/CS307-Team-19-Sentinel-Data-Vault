@@ -199,7 +199,6 @@ public class DatabaseManager {
 		    while(dataEntryInfoSet.next()){
 		    	/*TODO construct Dataentry object and add each one 
 		    	 to the List in the while loop here */
-		    	
 		    }
 	        
 		    /*Basically just move the codes below to the loop and 
@@ -291,16 +290,13 @@ public class DatabaseManager {
 	        String entryType  = dataEntryInfoSet.getString("entry_type");
 	        String encryptionKey = dataEntryInfoSet.getString("encryption_key");
 	        String owner = dataEntryInfoSet.getString("owner"); 
+	        
 	        int highSecurity = dataEntryInfoSet.getInt("secure_entry");
 	        
 	        String lastModified = dataEntryInfoSet.getString("last_modified");
 			LocalDateTime modifiedLDT = LocalDateTime.parse(lastModified);
-	        
-	        int isHigh = dataEntryInfoSet.getInt("high_security");
-	        int wipeSet = dataEntryInfoSet.getInt("account_wipe_set");
-	        String backupFreq = dataEntryInfoSet.getString("backup_frequency");
-	        int size = dataEntryInfoSet.getInt("max_backup_size");
-	       
+	     
+			
 	        String datafield_1 = dataEntryInfoSet.getString("data_field_1");
 	        String datafield_2 = dataEntryInfoSet.getString("data_field_2");
 	        String datafield_3 = dataEntryInfoSet.getString("data_field_3");
@@ -326,6 +322,8 @@ public class DatabaseManager {
 	        
 	        // Reconstruct DataEntry
 	        DataEntry dataEntry = new DataEntry(entryName, entryType, encryptionKey, owner, highSecurity, modifiedLDT);
+	        
+	        dataEntry.setHighSecurity(highSecurity);
 	        dataEntry.setDataFields(fields);
 	        
 		    // Disconnect from database
