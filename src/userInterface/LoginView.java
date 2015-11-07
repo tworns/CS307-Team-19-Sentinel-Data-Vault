@@ -2,6 +2,9 @@ package userInterface;
 
 import java.awt.*;
 import java.awt.event.*;
+
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
 import javax.swing.*; 
 import sun.security.provider.MD2;
 import java.security.MessageDigest;
@@ -96,18 +99,32 @@ public class LoginView {
 				if (result == 1){
 					//MainView window = new MainView(username);
 					//window.frmSentinelDataVault.setVisible(true);
+					failedattempt = 0;
 					frame.dispose();
+					
 				}
 				else{
 					failedattempt++;
 				}
-				if(failedattempt == 2){
-					v.sendEmail(username);
+				
+				if(failedattempt >= 2){
+					try {
+						VaultController.Send("sentineldatavault", "SENTINELDATA", username, 
+								"Security Warning", "Dear user,\nYou have multiple failed login attempts for your account\n"
+										+ "If it is not you, please change your password immediatelly");
+					} catch (AddressException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (MessagingException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				}
 				if(failedattempt == 5){
 					DatabaseManager d = new DatabaseManager();
 					User u = d.retrieveUserFromDatabase(username);
 					d.deleteAllEntryFromDatabase(u);
+					JOptionPane.showMessageDialog(null,"Your account data has been deleted due to multiple failed login attempts");
 				}
 			}
 		});

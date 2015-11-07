@@ -2,10 +2,15 @@ package controllers;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.security.Security;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.Properties;
 
 import javax.swing.JOptionPane;
+
+import com.sun.mail.smtp.SMTPTransport;
+
 import cryptography.SaltGenerator;
 import cryptography.PasswordHasher;
 import dataManagement.User;
@@ -118,47 +123,66 @@ public class VaultController {
 		}
 	}
 	 
-	public void sendEmail(String email){    
-	      // Recipient's email ID needs to be mentioned.
-	      String to = email;
+    public static void Send(final String username, final String password, String recipientEmail, String title, String message) throws AddressException, MessagingException {
+        Send(username, password, recipientEmail, "", title, message);
+    }
 
-	      // Sender's email ID needs to be mentioned
-	      String from = "sentineldatavault@gmail.com";
+    /**
+     * Send email using GMail SMTP server.
+     *
+     * @param username GMail username
+     * @param password GMail password
+     * @param recipientEmail TO recipient
+     * @param ccEmail CC recipient. Can be empty if there is no CC recipient
+     * @param title title of the message
+     * @param message message to be sent
+     * @throws AddressException if the email address parse failed
+     * @throws MessagingException if the connection is dead or not in the connected state or if the message is not a MimeMessage
+     */
+    public static void Send(final String username, final String password, String recipientEmail, String ccEmail, String title, String message) throws AddressException, MessagingException {
+        Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
+        final String SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
 
-	      // Assuming you are sending email from localhost
-	      String host = "localhost";
+        // Get a Properties object
+        Properties props = System.getProperties();
+        props.setProperty("mail.smtps.host", "smtp.gmail.com");
+        props.setProperty("mail.smtp.socketFactory.class", SSL_FACTORY);
+        props.setProperty("mail.smtp.socketFactory.fallback", "false");
+        props.setProperty("mail.smtp.port", "465");
+        props.setProperty("mail.smtp.socketFactory.port", "465");
+        props.setProperty("mail.smtps.auth", "true");
 
-	      // Get system properties
-	      Properties properties = System.getProperties();
+        /*
+        If set to false, the QUIT command is sent and the connection is immediately closed. If set 
+        to true (the default), causes the transport to wait for the response to the QUIT command.
 
-	      // Setup mail server
-	      properties.setProperty("mail.smtp.host", host);
+        ref :   http://java.sun.com/products/javamail/javadocs/com/sun/mail/smtp/package-summary.html
+                http://forum.java.sun.com/thread.jspa?threadID=5205249
+                smtpsend.java - demo program from javamail
+        */
+        props.put("mail.smtps.quitwait", "false");
 
-	      // Get the default Session object.
-	      Session session = Session.getDefaultInstance(properties);
+        Session session = Session.getInstance(props, null);
 
-	      try{
-	         // Create a default MimeMessage object.
-	         MimeMessage message = new MimeMessage(session);
+        // -- Create a new message --
+        final MimeMessage msg = new MimeMessage(session);
 
-	         // Set From: header field of the header.
-	         message.setFrom(new InternetAddress(from));
+        // -- Set the FROM and TO fields --
+        msg.setFrom(new InternetAddress(username + "@gmail.com"));
+        msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipientEmail, false));
 
-	         // Set To: header field of the header.
-	         message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+        if (ccEmail.length() > 0) {
+            msg.setRecipients(Message.RecipientType.CC, InternetAddress.parse(ccEmail, false));
+        }
 
-	         // Set Subject: header field
-	         message.setSubject("This is the Subject Line!");
+        msg.setSubject(title);
+        msg.setText(message, "utf-8");
+        msg.setSentDate(new Date());
 
-	         // Now set the actual message
-	         message.setText("This is actual message");
+        SMTPTransport t = (SMTPTransport)session.getTransport("smtps");
 
-	         // Send message
-	         Transport.send(message);
-	         System.out.println("Sent message successfully....");
-	      }catch (MessagingException mex) {
-	         mex.printStackTrace();
-	      }
-	   }
-
+        t.connect("smtp.gmail.com", username, password);
+        t.sendMessage(msg, msg.getAllRecipients());      
+        t.close();
+    }
 }
