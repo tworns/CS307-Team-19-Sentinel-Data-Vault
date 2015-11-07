@@ -3,6 +3,7 @@ package userInterface;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Locale;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -14,6 +15,8 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JPanel;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+
 import java.awt.GridLayout;
 import javax.swing.JTree;
 import net.miginfocom.swing.MigLayout;
@@ -28,6 +31,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 import controllers.DatabaseManager;
 import dataManagement.DataEntry;
+import dataManagement.User;
 import userInterface.DataEntryPanel;
 
 
@@ -50,6 +54,11 @@ public class HomeView {
 	private JTextField textField;
 	private JTextField textField_1;
 
+
+	public String username;
+	public User currentUser;
+	public DataEntry currentEntry;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -93,34 +102,71 @@ public class HomeView {
 		frmSentinelDataVault.getContentPane().add(panel_north);
 
 		JButton btnSignOut = new JButton("Sign Out");
-		btnSignOut.setFont(new Font("Lucida Grande", Font.PLAIN, 11));
+		btnSignOut.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
+		
+		btnSignOut.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Locale locale = new Locale("EN", "US");
+				JOptionPane.setDefaultLocale(locale);
+				if(JOptionPane.showConfirmDialog(null, "Are You Sure?", "Sign Out",JOptionPane.YES_NO_OPTION, JOptionPane.DEFAULT_OPTION) == 0) {
+					currentUser = null;
+					LoginView frmLog = new LoginView();
+					frmLog.frame.setVisible(true);
+					frmSentinelDataVault.dispose();
+				}
+				
+			}
+		});
+		
 
 		JButton btnSetting = new JButton("Setting");
-		btnSetting.setFont(new Font("Lucida Grande", Font.PLAIN, 11));
+		btnSetting.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
+		
 		btnSetting.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				SettingsView frmSettings = new SettingsView(currentUser);
+				frmSettings.currentUser = currentUser;
+				frmSettings.frmSettings.setVisible(true);
 			}
 		});
 
 		JButton btnAddData = new JButton("Add Data");
-		btnAddData.setFont(new Font("Lucida Grande", Font.PLAIN, 11));
+		btnAddData.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
 
+		btnAddData.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			NewDataEntryView newDataEntry = new NewDataEntryView(username);
+			newDataEntry.getJframe().setVisible(true);
+			}
+		});
+		
+		
 		JButton btnSecurity = new JButton("Security");
-		btnSecurity.setFont(new Font("Lucida Grande", Font.PLAIN, 11));
+		btnSecurity.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
+		
+		btnSecurity.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				SecurityView regFace =new SecurityView();
+				regFace.frame.setVisible(true);
+				// frmSentinelDataVault.dispose();
+			}
+			
+		});
+		
 		btnSecurity.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
 
 		JButton btnDeleteData = new JButton("Delete Data");
-		btnDeleteData.setFont(new Font("Lucida Grande", Font.PLAIN, 11));
+		btnDeleteData.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
 
 		JLabel lblEmpty_1 = new JLabel("     ");
 
 		JLabel lblEmpty_2 = new JLabel("     ");
 
 		JButton btnEditData = new JButton("Edit Data");
-		btnEditData.setFont(new Font("Lucida Grande", Font.PLAIN, 11));
+		btnEditData.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
 
 		GroupLayout gl_panel_north = new GroupLayout(panel_north);
 		gl_panel_north.setHorizontalGroup(
@@ -200,7 +246,7 @@ public class HomeView {
 
 		//panel_west		
 		textField = new JTextField();
-		textField.setText("<dynamic>");
+		textField.setText(username);
 		textField.setColumns(10);
 
 		JLabel lblLastLogin = new JLabel("Last Login");
@@ -279,13 +325,17 @@ public class HomeView {
 
 		tree.addTreeSelectionListener(new TreeSelectionListener() {
 
-
+			
 			public void valueChanged(TreeSelectionEvent e) {
+				
 				JTree tree = (JTree) e.getSource();
-				DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) tree
-						.getLastSelectedPathComponent();
+				
+				DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
+				
 				String selectedNodeName = selectedNode.toString();
 
+				panel_east.removeAll();
+				
 				JPanel panel = new JPanel();
 				DataEntryPanel dataPanel = new DataEntryPanel();
 				DataEntry currentdata = new DataEntry(null, null, null, null, 0, null);
@@ -297,40 +347,25 @@ public class HomeView {
 					panel_east.addTab(panelName, null, panel, null);
 				}
 				if (selectedNodeName.equals("Credit Card")) {
+					
 					panel = dataPanel.getCreditCardPanel(currentdata);
 					panelName = "Credit Card";
 					panel_east.addTab(panelName, null, panel, null);
 				}
+				if (selectedNodeName.equals("Driver's License")) {
+					
+					panel = dataPanel.getDriversLicensePanel(currentdata);
+					panelName = "Driver's License";
+					panel_east.addTab(panelName, null, panel, null);
 				
-				
+				}
 				
 				System.out.println(selectedNodeName);
-				
-				panel.disable();
-				
-				/*				
-				// if the data object is Account Login 
-				if (selectedNodeName.equals("Account Login")) {
-				panel = dataPanel.getAccountLoginPanel(currentdata);
-				 panelName = "Account Login";
-				}
-
-
-				// if the data object is Credit Card
-				if (selectedNodeName.equals("Credit Card")) {
-					panel = dataPanel.getCreditCardPanel(currentdata);
-					panelName = "Credit Card";
-				}
-				 */				
-				// if the data object is License  
-				//	panel = dataPanel.getDriversLicensePanel(data);
-				//	panelName = "Driver's License  ";
-
-
+			
 				//if data item
 				if (selectedNode.isLeaf()) {
 
-					System.out.println(selectedNodeName);
+					System.out.println("Leaf: " + selectedNodeName);
 
 				}
 

@@ -1,5 +1,7 @@
 package userInterface;
 
+import java.awt.Panel;
+
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
@@ -14,7 +16,7 @@ import net.miginfocom.swing.MigLayout;
 
 
 
-public class DataEntryPanel {
+public class DataEntryPanel extends Panel {
 	private JPanel panel = new JPanel();
 	private JLabel info = new JLabel("Select Data Entry");
 
@@ -61,7 +63,7 @@ public class DataEntryPanel {
 		formattedTextField_1.setText("password");
 		panel.add(formattedTextField_1, "cell 0 6,growx");
 		
-		
+
 		
 		
 		
@@ -117,14 +119,14 @@ public class DataEntryPanel {
 		panel.add(comboBox_2, "cell 0 10,growx");
 		
 		
-		
 		return panel;
 		
 	}
 	
 	
 	public JPanel getDriversLicensePanel(DataEntry data){
-		panel.removeAll();	
+		panel.removeAll();
+		panel.disable();
 		panel.setLayout(new MigLayout("", "[grow]", "[][][][][][][][][][][][]"));
 		
 		String title = "Driver's License";
@@ -136,10 +138,10 @@ public class DataEntryPanel {
 		panel.add(label_1, "cell 0 1");
 		
 		JFormattedTextField formattedTextField = new JFormattedTextField();
-		formattedTextField.setText("Name");
+		formattedTextField.setText("Name on License");
 		panel.add(formattedTextField, "cell 0 2,growx");
 		
-		JLabel label_2 = new JLabel("Licnese Number");
+		JLabel label_2 = new JLabel("License Number");
 		panel.add(label_2, "cell 0 3");
 		
 		JFormattedTextField formattedTextField1 = new JFormattedTextField();
@@ -149,18 +151,23 @@ public class DataEntryPanel {
 		JLabel label_3 = new JLabel("Date of Birth");
 		panel.add(label_3, "cell 0 5");
 		
-		JLabel label_4 = new JLabel("Date of Birth");
-		panel.add(label_4, "cell 0 7");
-		
-		JLabel label_5 = new JLabel("Date of Birth");
-		panel.add(label_5, "cell 0 9");
-		
 		JFormattedTextField formattedTextField_1 = new JFormattedTextField();
-		formattedTextField_1.setText("password");
+		formattedTextField_1.setText("MM / DD / YYYY");
 		panel.add(formattedTextField_1, "cell 0 6,growx");
 		
+		JLabel label_4 = new JLabel("Issued Date");
+		panel.add(label_4, "cell 0 7");
+
+		JFormattedTextField formattedTextField_2 = new JFormattedTextField();
+		formattedTextField_2.setText("MM / DD / YYYY");
+		panel.add(formattedTextField_2, "cell 0 8,growx");
+			
+		JLabel label_5 = new JLabel("Expiration Date");
+		panel.add(label_5, "cell 0 9");
 		
-		
+		JFormattedTextField formattedTextField_3 = new JFormattedTextField();
+		formattedTextField_3.setText("MM / DD / YYYY");
+		panel.add(formattedTextField_3, "cell 0 10,growx");
 		
 		
 		return panel;
