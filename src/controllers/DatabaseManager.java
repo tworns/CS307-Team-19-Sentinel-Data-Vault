@@ -7,7 +7,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class DatabaseManager {
 
 	private String username = "cs307@purdue.edu";
@@ -293,20 +292,6 @@ public class DatabaseManager {
 			Statement stmt = DBconnection.createStatement();
 			// Construct the SQL UPDATE statement
 
-/*
-=======
-
->>>>>>> origin/master
-=======
->>>>>>> origin/master
-			String sql = "UPDATE users "
-					+ "SET " + fieldName + " = '" + newTextData + "' "
-					+ "WHERE user_email = '" + user.getUsername() + "';"
-					;
-<<<<<<< HEAD
-<<<<<<< HEAD
-			//System.out.println("THIS IS THE SQL STATEMENT THAT'S BEING MADE: " + sql);
-*/
 			String sql = "UPDATE users" + "SET " + fieldName + " = '" + newTextData + "' " + "WHERE user_email = '"
 					+ user.getUsername() + "';";
 
