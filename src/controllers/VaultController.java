@@ -1,6 +1,6 @@
 package controllers;
 
-import java.security.MessageDigest;
+
 import java.security.NoSuchAlgorithmException;
 import java.security.Security;
 import java.time.LocalDateTime;
@@ -19,7 +19,6 @@ import userInterface.MainView;
 
 import javax.mail.*;
 import javax.mail.internet.*;
-import javax.activation.*;
 
 public class VaultController {
 	//helper function to check email address validity

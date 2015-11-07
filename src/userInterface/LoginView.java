@@ -6,13 +6,12 @@ import java.awt.event.*;
 import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
 import javax.swing.*; 
-import sun.security.provider.MD2;
-import java.security.MessageDigest;
+
 import java.security.NoSuchAlgorithmException;
 import org.eclipse.wb.swing.FocusTraversalOnArray;
 import controllers.DatabaseManager;
 import controllers.VaultController;
-import cryptography.SaltGenerator;
+
 import dataManagement.User;
 
 public class LoginView {
@@ -107,7 +106,7 @@ public class LoginView {
 					failedattempt++;
 				}
 				
-				if(failedattempt >= 2){
+				if(failedattempt > 1 && failedattempt <5){
 					try {
 						VaultController.Send("sentineldatavault", "SENTINELDATA", username, 
 								"Security Warning", "Dear user,\nYou have multiple failed login attempts for your account\n"
