@@ -322,6 +322,43 @@ public class DatabaseManager {
 		
 		return entryTypeList;
 	}
+	
+	public List<String> retrieveSharedEntryList(String user_email) {
+		List<String> shareEntryList = new ArrayList<String>();
+		
+		// Connect to the database
+		Connection DBconnection = connectToDatabase();
+		try {
+			// Initialize a statement to execute
+			Statement stmt = DBconnection.createStatement();
+			
+			// Construct the SQL select statement (gets ALL data entries)
+			String sql = "SELECT entry_name FROM data_entries;";
+			
+			// Execute SQL statement and retrieve result set
+			ResultSet allEntries = stmt.executeQuery(sql);
+			
+			// Construct list of available shared entries from result set of ALL entries
+			while (allEntries.next()) {
+				// TODO parse the valid_users STRING to get resulting LIST of valid users. Delimiter = ' '
+				String valid_users = allEntries.getString("valid_users");
+				String[] parsed_valid_users = valid_users.split(" ");
+				// search the String array for user_email
+				// 		if found, add that entry's name to the shareEntryList
+			}
+			
+			// Disconnect and close database
+			allEntries.close();
+			stmt.close();
+			DBconnection.close();
+			
+		} catch (SQLException e) {
+			System.err.println( e.getClass().getName() + ": " + e.getMessage());
+			e.printStackTrace();
+		}
+		
+		return shareEntryList;
+	}
 
 	public DataEntry retrieveOneDataEntry(String entryname, String email, String type) {
 		// Connect to the database
