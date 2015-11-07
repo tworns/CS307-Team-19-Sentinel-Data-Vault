@@ -111,7 +111,6 @@ public class DatabaseManager {
 			return -1;
 		}
 	}
-	
 
 	/**
 	 * Retrieves a stored user from the vault database
@@ -248,7 +247,6 @@ public class DatabaseManager {
 	        dataEntry.setDataFields(fields);
 	        */
 		    
-		    
 		    // Disconnect from database
 	        dataEntryInfoSet.close();
 		    stmt.close();
@@ -330,8 +328,6 @@ public class DatabaseManager {
 	        DataEntry dataEntry = new DataEntry(entryName, entryType, encryptionKey, owner, highSecurity, modifiedLDT);
 	        dataEntry.setDataFields(fields);
 	        
-		    
-		    
 		    // Disconnect from database
 	        dataEntryInfoSet.close();
 		    stmt.close();
