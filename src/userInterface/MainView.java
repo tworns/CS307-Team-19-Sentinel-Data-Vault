@@ -95,8 +95,8 @@ public class MainView {
 		JButton btnNewDataEntry = new JButton("New Data Entry");
 		btnNewDataEntry.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-//			NewDataEntryView newDataEntry = new NewDataEntryView(username);
-//				newDataEntry.getJframe().setVisible(true);
+			NewDataEntryView newDataEntry = new NewDataEntryView(username);
+			newDataEntry.getJframe().setVisible(true);
 			}
 		});
 		panel_1.add(btnNewDataEntry);
