@@ -238,6 +238,35 @@ public class HomeView {
 		panel_west.setLayout(gl_panel_west);
 		panel_south.setLayout(gl_panel_south);
 
+		//panel_east		
+		//Where to pass the all the data
+		// 
+		/*update to pass DataEntry Object*/
+
+		/*
+		JPanel panel = new JPanel();
+		DataEntryPanel dataPanel = new DataEntryPanel();
+		DataEntry currentdata = new DataEntry(null, null, null, null, 0, null);
+		String panelName = null;
+*/
+
+
+
+		// if the data object is Account Login 
+		// panel = dataPanel.getAccountLoginPanel(currentdata);
+		// panelName = "Account Login";
+
+		// if the data object is Credit Card
+		//	panel = dataPanel.getCreditCardPanel(currentdata);
+		//	panelName = "Credit Card";
+
+		// if the data object is License  
+		//	panel = dataPanel.getDriversLicensePanel(data);
+		//	panelName = "Driver's License  ";
+
+
+
+	//	panel_east.addTab(panelName, null, panel, null);
 
 
 
@@ -256,33 +285,55 @@ public class HomeView {
 				DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) tree
 						.getLastSelectedPathComponent();
 				String selectedNodeName = selectedNode.toString();
+
+				JPanel panel = new JPanel();
+				DataEntryPanel dataPanel = new DataEntryPanel();
+				DataEntry currentdata = new DataEntry(null, null, null, null, 0, null);
+				String panelName = null;
+				
+				if (selectedNodeName.equals("Account Login")) {
+					panel = dataPanel.getAccountLoginPanel(currentdata);
+					panelName = "Account Login";
+					panel_east.addTab(panelName, null, panel, null);
+				}
+				if (selectedNodeName.equals("Credit Card")) {
+					panel = dataPanel.getCreditCardPanel(currentdata);
+					panelName = "Credit Card";
+					panel_east.addTab(panelName, null, panel, null);
+				}
+				
 				
 				
 				System.out.println(selectedNodeName);
-/*				
+				
+				panel.disable();
+				
+				/*				
 				// if the data object is Account Login 
 				if (selectedNodeName.equals("Account Login")) {
 				panel = dataPanel.getAccountLoginPanel(currentdata);
 				 panelName = "Account Login";
 				}
-			
+
 
 				// if the data object is Credit Card
 				if (selectedNodeName.equals("Credit Card")) {
 					panel = dataPanel.getCreditCardPanel(currentdata);
 					panelName = "Credit Card";
 				}
-*/				
+				 */				
 				// if the data object is License  
 				//	panel = dataPanel.getDriversLicensePanel(data);
 				//	panelName = "Driver's License  ";
-				
+
+
+				//if data item
 				if (selectedNode.isLeaf()) {
 
 					System.out.println(selectedNodeName);
 
 				}
-				
+
 				return;
 
 			}
@@ -308,41 +359,13 @@ public class HomeView {
 					}
 				}
 				));
-		
-		
-		
+
+
+
 		panel_center.addTab("Category", null, tree, null);
 
 
 
-		//panel_east		
-		//Where to pass the all the data
-		// Credit Card Panel
-		/*update to pass DataEntry Object*/
-
-		JPanel panel = new JPanel();
-		DataEntryPanel dataPanel = new DataEntryPanel();
-		DataEntry currentdata = new DataEntry(null, null, null, null, 0, null);
-		String panelName = null;
-
-
-
-
-		// if the data object is Account Login 
-		// panel = dataPanel.getAccountLoginPanel(currentdata);
-		// panelName = "Account Login";
-
-		// if the data object is Credit Card
-		//	panel = dataPanel.getCreditCardPanel(currentdata);
-		//	panelName = "Credit Card";
-		
-		// if the data object is License  
-		//	panel = dataPanel.getDriversLicensePanel(data);
-		//	panelName = "Driver's License  ";
-
-
-
-		panel_east.addTab(panelName, null, panel, null);
 
 
 
