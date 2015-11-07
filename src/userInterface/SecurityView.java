@@ -227,25 +227,6 @@ public class SecurityView {
 					String strength = "Your password is ";
 					strength += output +"\n";
 					JOptionPane.showMessageDialog(null, strength, "Password", JOptionPane.INFORMATION_MESSAGE);
-					/*
-					char[] input = passwordField.getPassword();
-					StringBuilder s = new StringBuilder();
-					s.append(input);
-					String password = s.toString();
-					//Checks for one of each character type and length > 10
-					if(password.length() >10 && password.matches("(?=.*[a-z])(?=.*[A-Z])(?=.*([0-9]))(?=.*([!@#$%&*,.])).*") == true){
-						 output += " strong. \n";
-					}
-					//checks if password is less than length 9, only contains capital, lowercase, numbers, or special characters, and checks for repeated characters.
-					else if(password.length() < 9 || ((password.matches("([a-z]+)") == true || password.matches("([A-Z]+)") == true 
-							|| password.matches("([0-9]+)") == true || password.matches("([^a-zA-Z0-9]+)")) ==true || 
-							password.matches("([^a-zA-Z0-9 ])\\1+")) == true || password.matches("([A-Za-z0-9])\\1+") == true) { 
-						 output += " weak. \n";
-					}
-					else { 
-						//Anything else is adequate.
-						 output += " adequate. \n";
-					}*/
 			}
 		});
 		btnCheck.setBounds(21, 73, 97, 25);

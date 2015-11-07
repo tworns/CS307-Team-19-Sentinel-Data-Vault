@@ -13,11 +13,13 @@ public class Crypto {
 	}
 	
 	
-	public int encrypt(User user, DataEntry data) { //Return type is temporary
-		return 0;
+	public DataEntry encrypt(User user, DataEntry data) { //Return type is temporary
+		
+		return data;
 	}
-	public int decrypt(User user, DataEntry data) { //Return type is temporary
-		return 0;
+	public DataEntry decrypt(User user, DataEntry data) { //Return type is temporary
+		
+		return data;
 	}
 	
 	
