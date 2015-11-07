@@ -390,10 +390,10 @@ public class HomeView {
 		tree.setModel(new DefaultTreeModel(
 				new DefaultMutableTreeNode(username) {
 					{
-						
-						DefaultMutableTreeNode node_1;
-						node_1 = new DefaultMutableTreeNode("Account Login");
 
+						DefaultMutableTreeNode node_1;
+						
+						node_1 = new DefaultMutableTreeNode("Account Login");
 						node_1.add(new DefaultMutableTreeNode("Google"));
 						node_1.add(new DefaultMutableTreeNode("Apple"));
 						node_1.add(new DefaultMutableTreeNode("Purdue"));
