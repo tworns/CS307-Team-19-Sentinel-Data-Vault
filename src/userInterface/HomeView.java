@@ -50,7 +50,7 @@ import javax.swing.event.TreeSelectionListener;
 
 public class HomeView {
 
-	private JFrame frmSentinelDataVault;
+	public JFrame frmSentinelDataVault;
 	private JTextField textField;
 	private JTextField textField_1;
 
@@ -62,10 +62,14 @@ public class HomeView {
 	/**
 	 * Launch the application.
 	 */
+
+	
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					String s = "username";
 					HomeView window = new HomeView();
 					window.frmSentinelDataVault.setVisible(true);
 				} catch (Exception e) {
@@ -80,6 +84,14 @@ public class HomeView {
 	 */
 	public HomeView() {
 		initialize();
+		
+
+	}
+	
+	public HomeView(String username) {
+		this.username = username;
+		initialize();
+		
 	}
 
 
