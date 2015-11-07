@@ -42,6 +42,7 @@ public class HomeView {
 
 
 	public String username;
+	public String lastLogin;
 	public User currentUser;
 	public DataEntry currentEntry;
 	public List<DataEntry> currentAllDataEntries;
@@ -76,15 +77,15 @@ public class HomeView {
 
 	public HomeView(String username) {
 		this.username = username;
-		
-		DatabaseManager dbmanger = new DatabaseManager();
-		currentUser = dbmanger.retrieveUserFromDatabase(username);
-		
-		currentAllDataEntries = dbmanger.retrieveAllDataEntries(username);
-		currentDataEntryNameList = dbmanger.retrieveDataEntryNameList(username);
-		currentDataEntryTypeList = dbmanger.retrieveDataEntryTypeList(username);
-		
-		
+		DatabaseManager dbm = new DatabaseManager();
+		currentUser = dbm.retrieveUserFromDatabase(username);
+		if (currentUser != null) {
+			this.lastLogin = currentUser.getLastLogin().toString();	
+			currentAllDataEntries = dbm.retrieveAllDataEntries(username);
+			currentDataEntryNameList = dbm.retrieveDataEntryNameList(username);
+			currentDataEntryTypeList = dbm.retrieveDataEntryTypeList(username);
+			
+		}
 		initialize();	
 	}
 
@@ -264,7 +265,7 @@ public class HomeView {
 		JLabel lblUserEmail = new JLabel("User Email");
 
 		textField_1 = new JTextField();
-		textField_1.setText("2015.10.15 PM 7:30");
+		textField_1.setText(lastLogin);
 		textField_1.setColumns(10);
 		GroupLayout gl_panel_west = new GroupLayout(panel_west);
 		gl_panel_west.setHorizontalGroup(
@@ -386,10 +387,17 @@ public class HomeView {
 
 			}
 		});
-
+		
+		
 		tree.setModel(new DefaultTreeModel(
+				
+			//	currentAllDataEntries = dbm.retrieveAllDataEntries(username);
+		//		currentDataEntryNameList = dbm.retrieveDataEntryNameList(username);
+	//			currentDataEntryTypeList = dbm.retrieveDataEntryTypeList(username);
+				
 				new DefaultMutableTreeNode(username) {
 					{
+						//currentDataEntryTypeList.size();
 						
 						DefaultMutableTreeNode node_1;
 						node_1 = new DefaultMutableTreeNode("Account Login");
