@@ -101,7 +101,9 @@ public class LoginView {
 				else{
 					failedattempt++;
 				}
-		
+				if(failedattempt == 2){
+					v.sendEmail(username);
+				}
 				if(failedattempt == 5){
 					DatabaseManager d = new DatabaseManager();
 					User u = d.retrieveUserFromDatabase(username);
