@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 import com.sun.mail.smtp.SMTPTransport;
 
 import cryptography.SaltGenerator;
+import cryptography.Crypto;
 import cryptography.PasswordHasher;
 import dataManagement.User;
 import security.PasswordValidation;
@@ -91,7 +92,9 @@ public class VaultController {
 			LocalDateTime createdtime = LocalDateTime.now();
 			
 			//TODO: ********default data key is a place holder*******
-			User newuser =  new User(username, hashedPassword, passwordSalt, "default datakey", question, answer, createdtime);
+			Crypto c = new Crypto();
+			String datakey = c.randomDataKey();
+			User newuser =  new User(username, hashedPassword, passwordSalt, datakey, question, answer, createdtime);
 
 			DatabaseManager d = new DatabaseManager();
 			
