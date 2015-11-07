@@ -124,14 +124,8 @@ public class DatabaseManager {
 		try {
 			// Initialize a statement to execute
 			Statement stmt = DBconnection.createStatement();
+			
 			// Construct the SQL DELETE statement
-
-/*
-			String sql = "SELECT * FROM users WHERE  = "
-					+ "'" + userEmail + "';"
-					;
-*/
-
 			String sql = "SELECT * FROM users WHERE user_email = " + "'" + userEmail + "';";
 
 			// Execute the statement and commit database changes
