@@ -207,6 +207,7 @@ public class SettingsView {
 					//This is for the user answering yes.
 					//TODO Actually delete stuff, close windows, etc.
 					DatabaseManager d = new DatabaseManager();
+					d.deleteAllEntryFromDatabase(currentUser);
 					if (d.deleteUserFromDatabase(currentUser) == 1) {
 						JOptionPane.showMessageDialog(null,"You have successfully deleted your account!");
 						System.gc(); 
