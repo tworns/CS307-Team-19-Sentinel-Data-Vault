@@ -522,7 +522,7 @@ public class NewDataEntryView {
 						label = new JLabel("Entry Name");
 						label.setBounds(40, 10, 150, 18);
 
-						label_1 = new JLabel("Login AccountPassword");
+						label_1 = new JLabel("Login Account");
 						label_1.setBounds(40, 40, 150, 18);
 
 						label_2 = new JLabel("Password");
