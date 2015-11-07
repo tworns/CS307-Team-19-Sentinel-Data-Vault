@@ -105,7 +105,7 @@ public class LoginView {
 				else{
 					failedattempt++;
 				}
-				
+				//TODO migrate failcheck to Vault controller!
 				if(failedattempt > 1 && failedattempt <5){
 					try {
 						VaultController.Send("sentineldatavault", "SENTINELDATA", username, 
