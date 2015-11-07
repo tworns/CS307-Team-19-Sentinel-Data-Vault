@@ -16,13 +16,17 @@ public class Crypto {
 	byte [] test = {'t', 'e','s', 't', }; //TODO Generate a real key
 	public String randomDataKey() { 
 		//TODO make a string of random junk to be put into the user.Datakey field.
-		return null;
+		byte[] dataKey = new byte [16]; 
+		SecureRandom r = new SecureRandom();
+		r.nextBytes(dataKey);
+		String output = new String(dataKey);
+		return output;
 	}
 	// We're using AES encryption. It's symmetric (same key for encrypt/decrypt).
 	public Key keyGen (User user) throws NoSuchAlgorithmException, NoSuchPaddingException { //TODO Figure out a return, need to return 2 keys, high security and lower security. Both genned here
 		//DataEntries created by the User will be given the key that the user has. 
-		int lowKey = 128;
-		int secKey = 256;
+
+		
 		 //USER KEY GOSE INTO THE SECRET KEY SPEC!
 		Key key = new SecretKeySpec(user.getDataKey().getBytes(), "AES");
 		
