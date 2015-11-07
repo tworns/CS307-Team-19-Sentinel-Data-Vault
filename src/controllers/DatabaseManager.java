@@ -114,6 +114,8 @@ public class DatabaseManager {
 			return -1;
 		}
 	}
+	
+	
 
 	/**
 	 * Retrieves a stored user from the vault database
@@ -457,6 +459,38 @@ public class DatabaseManager {
 
 					// Construct the SQL INSERT statement
 					String sql = "DELETE FROM data_entries WHERE entry_name='" + entry.getEntryName() + "'";
+					System.out.println(sql);		
+							
+					// Execute the statement and commit database changes
+					stmt.executeUpdate(sql);
+					DBconnection.commit();
+
+					// Disconnect from database
+					stmt.close();
+					DBconnection.close();
+
+					// return a success value
+					return 1;
+
+				} catch (SQLException e) {
+					System.err.println(e.getClass().getName() + ": " + e.getMessage());
+					e.printStackTrace();
+					// return a failure value
+					return -1;
+				}
+	}
+	
+	//******This method should always be called BEFORE we delete a user account*****
+	//TODO 
+	public int deleteAllEntryFromDatabase(User doomeduser) {
+		// Connect to the database
+				Connection DBconnection = connectToDatabase();
+				try {
+					// Initialize a statement to execute
+					Statement stmt = DBconnection.createStatement();
+
+					// Construct the SQL INSERT statement
+					String sql = "DELETE FROM data_entries WHERE owner='" + doomeduser.getUsername() + "'";
 					System.out.println(sql);		
 							
 					// Execute the statement and commit database changes
