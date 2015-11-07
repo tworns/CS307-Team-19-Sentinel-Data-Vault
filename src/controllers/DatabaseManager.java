@@ -352,10 +352,6 @@ public class DatabaseManager {
 		}
 	}
 
-	public String retrieveUsername() {
-		return username;
-	}
-
 	public void updateEntry(DataEntry oldEntry, DataEntry newEntry) {
 		// Connect to the database
 				Connection DBconnection = connectToDatabase();
