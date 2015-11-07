@@ -95,8 +95,8 @@ public class MainView {
 		JButton btnNewDataEntry = new JButton("New Data Entry");
 		btnNewDataEntry.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				NewDataEntryView newDataEntry = new NewDataEntryView(username);
-				newDataEntry.getJframe().setVisible(true);
+//			NewDataEntryView newDataEntry = new NewDataEntryView(username);
+//				newDataEntry.getJframe().setVisible(true);
 			}
 		});
 		panel_1.add(btnNewDataEntry);
@@ -111,7 +111,7 @@ public class MainView {
 				if (result == 0) {
 					System.out.println("Delete Entry");
 					DatabaseManager m = new DatabaseManager();
-					m.deleteEntryFromDatabase(currentEntry);
+//					m.deleteEntryFromDatabase(currentEntry);
 					//TODO: Delete Entry from database
 				}
 			}
