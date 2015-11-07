@@ -97,7 +97,7 @@ public class HomeView {
 
 		//		anel_south		
 		JPanel panel_north = new JPanel();
-		panel_north.setBounds(6, 6, 688, 50);			// margins between object 8 
+		panel_north.setBounds(6, 6, 688, 65);			// margins between object 8 
 		panel_north.setOpaque(false); // to set transparent panel
 		frmSentinelDataVault.getContentPane().add(panel_north);
 
@@ -170,44 +170,44 @@ public class HomeView {
 
 		GroupLayout gl_panel_north = new GroupLayout(panel_north);
 		gl_panel_north.setHorizontalGroup(
-				gl_panel_north.createParallelGroup(Alignment.LEADING)
+			gl_panel_north.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_north.createSequentialGroup()
-						.addComponent(btnSignOut, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
-						.addGap(6)
-						.addComponent(btnSetting, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(lblEmpty_1, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(btnAddData, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(btnDeleteData, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(lblEmpty_2, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(btnEditData, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(btnSecurity, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
-						.addGap(326))
-				);
+					.addComponent(btnSignOut, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnSetting, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(lblEmpty_1, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnAddData, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnDeleteData, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(lblEmpty_2, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnEditData, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnSecurity, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
+					.addGap(326))
+		);
 		gl_panel_north.setVerticalGroup(
-				gl_panel_north.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_north.createSequentialGroup()
-						.addGroup(gl_panel_north.createParallelGroup(Alignment.LEADING)
-								.addComponent(btnSignOut, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-								.addGroup(gl_panel_north.createParallelGroup(Alignment.BASELINE)
-										.addComponent(btnSetting, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-										.addComponent(btnAddData, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-										.addComponent(btnDeleteData, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-										.addComponent(btnSecurity, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-										.addComponent(lblEmpty_1)
-										.addComponent(lblEmpty_2)
-										.addComponent(btnEditData, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)))
-						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-				);
+			gl_panel_north.createParallelGroup(Alignment.LEADING)
+				.addGroup(Alignment.TRAILING, gl_panel_north.createSequentialGroup()
+					.addGroup(gl_panel_north.createParallelGroup(Alignment.TRAILING)
+						.addComponent(btnSignOut, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
+						.addGroup(gl_panel_north.createParallelGroup(Alignment.BASELINE)
+							.addComponent(btnSetting, GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+							.addComponent(btnAddData, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
+							.addComponent(btnDeleteData, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
+							.addComponent(btnSecurity, GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+							.addComponent(lblEmpty_1)
+							.addComponent(lblEmpty_2)
+							.addComponent(btnEditData, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)))
+					.addGap(15))
+		);
 		panel_north.setLayout(gl_panel_north);
 
 		JPanel panel_south = new JPanel();
-		panel_south.setBounds(0, 55, 700, 395);
+		panel_south.setBounds(0, 69, 700, 375);
 		frmSentinelDataVault.getContentPane().add(panel_south);
 
 		JPanel panel_west = new JPanel();
