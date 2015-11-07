@@ -261,12 +261,72 @@ public class DatabaseManager {
 		}
 	}
 	
-	public List<String> retrieveDataEntryList(User user) {
+	public List<String> retrieveDataEntryNameList(String user_email) {
+		List<String> entryNameList = new ArrayList<String>();
 		
-		List<String> dataEntryList = new ArrayList<String>();
+		// Connect to the database
+		Connection DBconnection = connectToDatabase();
+		try {
+			// Initialize a statement to execute
+			Statement stmt = DBconnection.createStatement();
+			
+			// Construct the SQL select statement
+			String sql = "SELECT entry_name FROM data_entries WHERE owner = '" + user_email + "';";
+			
+			// Execute SQL statement and retrieve result set
+			ResultSet entryNameSet = stmt.executeQuery(sql);
+			
+			// Construct list from result set
+			while (entryNameSet.next()) {
+				String entryName = entryNameSet.getString("entry_name");
+				entryNameList.add(entryName);
+			}
+			
+			// Disconnect and close database
+			entryNameSet.close();
+			stmt.close();
+			DBconnection.close();
+			
+		} catch (SQLException e) {
+			System.err.println( e.getClass().getName() + ": " + e.getMessage());
+			e.printStackTrace();
+		}
 		
+		return entryNameList;
+	}
+	
+	public List<String> retrieveDataEntryTypeList(String user_email) {
+		List<String> entryTypeList = new ArrayList<String>();
 		
-		return dataEntryList;
+		// Connect to the database
+		Connection DBconnection = connectToDatabase();
+		try {
+			// Initialize a statement to execute
+			Statement stmt = DBconnection.createStatement();
+			
+			// Construct the SQL select statement
+			String sql = "SELECT entry_type FROM data_entries WHERE owner = '" + user_email + "';";
+			
+			// Execute SQL statement and retrieve result set
+			ResultSet entryTypeSet = stmt.executeQuery(sql);
+			
+			// Construct list from result set
+			while (entryTypeSet.next()) {
+				String entryType = entryTypeSet.getString("entry_name");
+				entryTypeList.add(entryType);
+			}
+			
+			// Disconnect and close database
+			entryTypeSet.close();
+			stmt.close();
+			DBconnection.close();
+			
+		} catch (SQLException e) {
+			System.err.println( e.getClass().getName() + ": " + e.getMessage());
+			e.printStackTrace();
+		}
+		
+		return entryTypeList;
 	}
 
 	public DataEntry retrieveOneDataEntry(String entryname, String email, String type) {
