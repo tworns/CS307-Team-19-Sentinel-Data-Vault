@@ -16,7 +16,6 @@ import cryptography.PasswordHasher;
 import dataManagement.User;
 import security.PasswordValidation;
 import userInterface.MainView;
-import userInterface.HomeView;
 
 import javax.mail.*;
 import javax.mail.internet.*;
@@ -114,8 +113,7 @@ public class VaultController {
 		/******TODO: MainView should take in user OBJECT!**********/
 		PasswordValidation p = new PasswordValidation(password);
 		if(p.isValidPassword(user, password)){
-			//MainView window = new MainView(username);
-			HomeView window = new HomeView(username);
+			MainView window = new MainView(username);
 			window.frmSentinelDataVault.setVisible(true);
 			return 1;
 		}
