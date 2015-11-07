@@ -9,9 +9,6 @@ import java.util.List;
 
 public class DatabaseManager {
 
-	private String username = "cs307@purdue.edu";
-	private String userPassword = "12345678";
-
 	/**
 	 * Connects to the vault database and returns a Connection for two-way communication
 	 * 
