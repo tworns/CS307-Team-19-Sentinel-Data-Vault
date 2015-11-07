@@ -272,6 +272,81 @@ public class DatabaseManager {
 		return dataEntryList;
 	}
 
+	public DataEntry retrieveOneDataEntry(String entryname, String email, String type) {
+		// Connect to the database
+		Connection DBconnection = connectToDatabase();
+		try {
+			// Initialize a statement to execute
+			Statement stmt = DBconnection.createStatement();
+			// Construct the SQL select statement
+			String sql = "SELECT * FROM data_entries WHERE owner = "
+					+ "'" + email + "'" + " AND " + "entry_name = " +
+					"'" + entryname + "'" +" AND " + "entry_type = " +
+					"'" + type + "';"
+					;
+			
+			// Execute the statement and commit database changes
+		    ResultSet dataEntryInfoSet = stmt.executeQuery(sql);
+		    
+		    //reconstruct entry
+		    String entryName = dataEntryInfoSet.getString("entry_name");
+	        String entryType  = dataEntryInfoSet.getString("entry_type");
+	        String encryptionKey = dataEntryInfoSet.getString("encryption_key");
+	        String owner = dataEntryInfoSet.getString("owner"); 
+	        int highSecurity = dataEntryInfoSet.getInt("secure_entry");
+	        
+	        String lastModified = dataEntryInfoSet.getString("last_modified");
+			LocalDateTime modifiedLDT = LocalDateTime.parse(lastModified);
+	        
+	        int isHigh = dataEntryInfoSet.getInt("high_security");
+	        int wipeSet = dataEntryInfoSet.getInt("account_wipe_set");
+	        String backupFreq = dataEntryInfoSet.getString("backup_frequency");
+	        int size = dataEntryInfoSet.getInt("max_backup_size");
+	       
+	        String datafield_1 = dataEntryInfoSet.getString("data_field_1");
+	        String datafield_2 = dataEntryInfoSet.getString("data_field_2");
+	        String datafield_3 = dataEntryInfoSet.getString("data_field_3");
+	        String datafield_4 = dataEntryInfoSet.getString("data_field_4");
+	        String datafield_5 = dataEntryInfoSet.getString("data_field_5");
+	        String datafield_6 = dataEntryInfoSet.getString("data_field_6");
+	        String datafield_7 = dataEntryInfoSet.getString("data_field_7");
+	        String datafield_8 = dataEntryInfoSet.getString("data_field_8");
+	        String datafield_9 = dataEntryInfoSet.getString("data_field_9");
+	        String datafield_10 = dataEntryInfoSet.getString("data_field_10");
+	        
+	        List<String> fields = new ArrayList<String>();
+	        fields.add(datafield_1);
+	        fields.add(datafield_2);
+	        fields.add(datafield_3);
+	        fields.add(datafield_4);
+	        fields.add(datafield_5);
+	        fields.add(datafield_6);
+	        fields.add(datafield_7);
+	        fields.add(datafield_8);
+	        fields.add(datafield_9);
+	        fields.add(datafield_10);
+	        
+	        // Reconstruct DataEntry
+	        DataEntry dataEntry = new DataEntry(entryName, entryType, encryptionKey, owner, highSecurity, modifiedLDT);
+	        dataEntry.setDataFields(fields);
+	        
+		    
+		    
+		    // Disconnect from database
+	        dataEntryInfoSet.close();
+		    stmt.close();
+		    DBconnection.close();
+			
+			// return a success value
+			return dataEntry;
+		} catch (SQLException e) {
+			System.err.println( e.getClass().getName() + ": " + e.getMessage());
+			e.printStackTrace();
+			// return a failure value
+			return null;
+		}
+	}	
+	
 	/**
 	 * Modifies a TEXT (String) user field in the 'users' table of the vault
 	 * database
