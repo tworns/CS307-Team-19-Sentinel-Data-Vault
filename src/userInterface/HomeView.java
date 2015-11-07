@@ -158,7 +158,7 @@ public class HomeView {
 			}
 		});
 
-		JButton btnDeleteData = new JButton("Delete Data");
+		JButton btnDeleteData = new JButton("Remove");
 		btnDeleteData.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
 
 		JLabel lblEmpty_1 = new JLabel("     ");
@@ -184,9 +184,9 @@ public class HomeView {
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(btnAddData, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnDeleteData, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+					.addComponent(btnDeleteData, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(lblEmpty_2, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addComponent(lblEmpty_2, GroupLayout.PREFERRED_SIZE, 55, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(btnEditData, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
@@ -228,25 +228,25 @@ public class HomeView {
 
 		GroupLayout gl_panel_south = new GroupLayout(panel_south);
 		gl_panel_south.setHorizontalGroup(
-				gl_panel_south.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_south.createSequentialGroup()
-						.addContainerGap()
-						.addComponent(panel_west, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
-						.addComponent(panel_center, GroupLayout.PREFERRED_SIZE, 225, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(panel_east, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
-						.addContainerGap())
-				);
+			gl_panel_south.createParallelGroup(Alignment.LEADING)
+				.addGroup(Alignment.TRAILING, gl_panel_south.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(panel_west, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+					.addComponent(panel_center, GroupLayout.PREFERRED_SIZE, 225, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(panel_east, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap())
+		);
 		gl_panel_south.setVerticalGroup(
-				gl_panel_south.createParallelGroup(Alignment.LEADING)
+			gl_panel_south.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_south.createSequentialGroup()
-						.addGroup(gl_panel_south.createParallelGroup(Alignment.LEADING)
-								.addComponent(panel_west, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE)
-								.addComponent(panel_east, GroupLayout.PREFERRED_SIZE, 394, GroupLayout.PREFERRED_SIZE)
-								.addComponent(panel_center, GroupLayout.PREFERRED_SIZE, 395, GroupLayout.PREFERRED_SIZE))
-						.addContainerGap())
-				);
+					.addGroup(gl_panel_south.createParallelGroup(Alignment.LEADING)
+						.addComponent(panel_east, GroupLayout.PREFERRED_SIZE, 375, GroupLayout.PREFERRED_SIZE)
+						.addComponent(panel_center, GroupLayout.PREFERRED_SIZE, 375, GroupLayout.PREFERRED_SIZE)
+						.addComponent(panel_west, GroupLayout.PREFERRED_SIZE, 375, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap())
+		);
 
 		//panel_west		
 		textField = new JTextField();
