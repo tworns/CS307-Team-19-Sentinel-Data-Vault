@@ -112,7 +112,6 @@ public class DatabaseManager {
 		}
 	}
 	
-	
 
 	/**
 	 * Retrieves a stored user from the vault database
@@ -175,17 +174,11 @@ public class DatabaseManager {
 			return null;
 		}
 	}
-
-
 	
 	/*
-	 * public DataEntry retrieveDataEntryFromDatabase(String userEmail)
-	 * 
 	 * Retrieve DataEntry object from DB
 	 * 
 	 * Jiho Choi
-	 * 
-	 * 
 	 */
 	public List<DataEntry> retrieveAllDataEntries(String userEmail) {
 		// Connect to the database
@@ -269,6 +262,14 @@ public class DatabaseManager {
 			// return a failure value
 			return null;
 		}
+	}
+	
+	public List<String> retrieveDataEntryList(User user) {
+		
+		List<String> dataEntryList = new ArrayList<String>();
+		
+		
+		return dataEntryList;
 	}
 
 	/**
@@ -354,39 +355,39 @@ public class DatabaseManager {
 
 	public void updateEntry(DataEntry oldEntry, DataEntry newEntry) {
 		// Connect to the database
-				Connection DBconnection = connectToDatabase();
-				try {
-					// Initialize a statement to execute
-					Statement stmt = DBconnection.createStatement();
+		Connection DBconnection = connectToDatabase();
+		try {
+			// Initialize a statement to execute
+			Statement stmt = DBconnection.createStatement();
 
-					// Construct the SQL INSERT statement
-					int size_of_datafield = newEntry.getFieldDataList().size();
-					String sql = "UPDATE data_entries SET entry_name='" + newEntry.getEntryName() + "', ";
-					for (int i = 0; i < size_of_datafield; i++) {
-						sql += "data_field_" + Integer.toString(i + 1) + "='" + newEntry.getFieldDataList().get(i) + "'";
-						if (i != size_of_datafield - 1)
-							sql+= ", ";
-					}
-					sql += "WHERE entry_name='" + oldEntry.getEntryName();
-					System.out.println(sql);		
-							
-					// Execute the statement and commit database changes
-					stmt.executeUpdate(sql);
-					DBconnection.commit();
+			// Construct the SQL INSERT statement
+			int size_of_datafield = newEntry.getFieldDataList().size();
+			String sql = "UPDATE data_entries SET entry_name='" + newEntry.getEntryName() + "', ";
+			for (int i = 0; i < size_of_datafield; i++) {
+				sql += "data_field_" + Integer.toString(i + 1) + "='" + newEntry.getFieldDataList().get(i) + "'";
+				if (i != size_of_datafield - 1)
+					sql+= ", ";
+			}
+			sql += "WHERE entry_name='" + oldEntry.getEntryName();
+			System.out.println(sql);		
+					
+			// Execute the statement and commit database changes
+			stmt.executeUpdate(sql);
+			DBconnection.commit();
 
-					// Disconnect from database
-					stmt.close();
-					DBconnection.close();
+			// Disconnect from database
+			stmt.close();
+			DBconnection.close();
 
-					// return a success value
-					return;
+			// return a success value
+			return;
 
-				} catch (SQLException e) {
-					System.err.println(e.getClass().getName() + ": " + e.getMessage());
-					e.printStackTrace();
-					// return a failure value
-					return;
-				}
+		} catch (SQLException e) {
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			e.printStackTrace();
+			// return a failure value
+			return;
+		}
 	}
 	
 	
