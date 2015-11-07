@@ -187,7 +187,7 @@ public class DatabaseManager {
 	 * 
 	 * 
 	 */
-	public List<DataEntry> retrieveDataEntryFromDatabase(String userEmail) {
+	public List<DataEntry> retrieveAllDataEntries(String userEmail) {
 		// Connect to the database
 		Connection DBconnection = connectToDatabase();
 		try {
