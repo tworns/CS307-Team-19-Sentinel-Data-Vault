@@ -10,6 +10,7 @@ import org.eclipse.wb.swing.FocusTraversalOnArray;
 import controllers.DatabaseManager;
 import controllers.VaultController;
 import cryptography.SaltGenerator;
+import dataManagement.User;
 
 public class LoginView {
 
@@ -20,6 +21,7 @@ public class LoginView {
 	private JButton btnForgotPassword;
 	public String username = "";
 	private JLabel lblSentinelDataVault;
+	private int failedattempt = 0;
 
 	/**
 	 * Launch the application.
@@ -96,8 +98,15 @@ public class LoginView {
 					//window.frmSentinelDataVault.setVisible(true);
 					frame.dispose();
 				}
+				else{
+					failedattempt++;
+				}
 		
-				
+				if(failedattempt == 5){
+					DatabaseManager d = new DatabaseManager();
+					User u = d.retrieveUserFromDatabase(username);
+					d.deleteAllEntryFromDatabase(u);
+				}
 			}
 		});
 		frame.getContentPane().setLayout(null);
