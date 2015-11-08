@@ -40,7 +40,7 @@ public class Crypto {
 			Cipher c = Cipher.getInstance("AES/ECB/PKCS5Padding");
 			Key key = keyGen(user); // makes a key from the user's data key.
 			c.init(Cipher.ENCRYPT_MODE, key);
-			for(String entry : data.getFieldDataList()){	
+			for(String entry : data.getFieldDataList()){	//NOTE: If there is a null entry in this list, you WILL get a NullPointerException
 				byte[] encrypted = c.doFinal(entry.getBytes());
 				BASE64Encoder k = new BASE64Encoder();
 				String encryptedData = k.encode(encrypted);
@@ -59,7 +59,7 @@ public class Crypto {
 			List<String> dataList = new ArrayList<String>();
 			Cipher c = Cipher.getInstance("AES/ECB/PKCS5Padding");
 			c.init(Cipher.DECRYPT_MODE, key);
-			for(String entry : data.getFieldDataList()){	
+			for(String entry : data.getFieldDataList()){	//NOTE: If there is a null entry in this list, you WILL get a NullPointerException
 				BASE64Decoder k = new BASE64Decoder();
 				byte[] decryptedBytes = k.decodeBuffer(entry);
 				byte[] decryptedData = c.doFinal(decryptedBytes);
