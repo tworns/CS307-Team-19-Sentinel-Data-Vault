@@ -93,7 +93,8 @@ public class VaultController {
 			
 			
 			Crypto c = new Crypto();
-			String datakey = c.randomDataKey(); //generates a random data key from the Crypto class.
+			int defaultSecLvl = 0; // This is the default security level. Needed because of the way key gen works.
+			String datakey = c.randomDataKey(defaultSecLvl); //generates a random data key from the Crypto class.
 			User newuser =  new User(username, hashedPassword, passwordSalt, datakey, question, answer, createdtime);
 
 			DatabaseManager d = new DatabaseManager();

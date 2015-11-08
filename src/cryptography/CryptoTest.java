@@ -3,9 +3,6 @@ package cryptography;
 import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
@@ -33,7 +30,7 @@ public class CryptoTest {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		} 
- 		u.setDataKey(test.randomDataKey());
+ 		u.setDataKey(test.randomDataKey(u.isHighSecurity()));
 		testData.setEncryptionKey(u.getDataKey());		
 		System.out.println(u.getDataKey()+ "\n");
 		testData.addDataField("This is a test string.");
