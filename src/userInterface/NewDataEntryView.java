@@ -191,31 +191,33 @@ public class NewDataEntryView {
 						label.setBounds(40, 10, 150, 18);
 
 						label_1 = new JLabel("Card holder name");
-						label_1.setBounds(40, 40, 150, 18);
+						label_1.setBounds(40, 100, 150, 18);
 
 						label_2 = new JLabel("Card Type");
-						label_2.setBounds(40, 70, 150, 18);
+						label_2.setBounds(40, 40, 150, 18);
 
 						label_3 = new JLabel("Card Number");
-						label_3.setBounds(40, 100, 150, 18);
+						label_3.setBounds(40, 70, 150, 18);
 
 						label_4 = new JLabel("Expired Date");
-						label_4.setBounds(40, 130, 150, 18);
+						label_4.setBounds(40, 160, 150, 18);
 
-						label_5 = new JLabel("CSV");
-						label_5.setBounds(40, 160, 150, 18);
+						label_5 = new JLabel("CVV");
+						label_5.setBounds(40, 130, 150, 18);
 
 						cardType = new JComboBox();
 						cardType.setModel(new DefaultComboBoxModel(new String[] { "VISA", "MasterCard",
 								"American Express", "Diners Club", "Carte Blanche", "Discover", "JCB" }));
-						cardType.setBounds(170, 70, 200, 18);
+						cardType.setBounds(170, 40, 200, 18);
 
+						
+						
 						textField = new JTextField();
 						textField.setBounds(170, 10, 200, 18);
 						textField.setColumns(10);
 
 						textField_1 = new JTextField();
-						textField_1.setBounds(170, 40, 200, 18);
+						textField_1.setBounds(170, 70, 200, 18);
 						textField_1.setColumns(10);
 
 						textField_2 = new JTextField();
@@ -226,9 +228,13 @@ public class NewDataEntryView {
 						textField_3.setBounds(170, 130, 200, 18);
 						textField_3.setColumns(10);
 
-						textField_4 = new JTextField();
-						textField_4.setBounds(170, 160, 200, 18);
-						textField_4.setColumns(10);
+						JComboBox month = new JComboBox();
+						month.setModel(new DefaultComboBoxModel(new String[] {"01 ", "02 ", "03 ", "04 ", "05", "06 ", "07 ", "08 ", "09 ", "10", "11 ", "12"}));
+						month.setBounds(170, 160, 90, 18);;
+						
+						JComboBox year = new JComboBox();
+						year.setModel(new DefaultComboBoxModel(new String[] {"15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30"}));
+						year.setBounds(270, 160, 90, 18);
 
 						frame.getContentPane().setLayout(null);
 						frame.getContentPane().add(label);
@@ -241,8 +247,10 @@ public class NewDataEntryView {
 						frame.getContentPane().add(textField_1);
 						frame.getContentPane().add(textField_2);
 						frame.getContentPane().add(textField_3);
-						frame.getContentPane().add(textField_4);
+						
 						frame.getContentPane().add(cardType);
+						frame.getContentPane().add(month);
+						frame.getContentPane().add(year);
 
 						JButton btnSave = new JButton("Save");
 						btnSave.addActionListener(new ActionListener() {
@@ -250,11 +258,11 @@ public class NewDataEntryView {
 								LocalDateTime createdtime = LocalDateTime.now();
 								DataEntry newEntry = new DataEntry(textField.getText(), "Credit/Debit Card", null, null,
 										0, createdtime);
-								newEntry.addDataField(textField_1.getText());
 								newEntry.addDataField((String) cardType.getSelectedItem());
+								newEntry.addDataField(textField_1.getText());
 								newEntry.addDataField(textField_2.getText());
 								newEntry.addDataField(textField_3.getText());
-								newEntry.addDataField(textField_4.getText());
+								newEntry.addDataField(((String)month.getSelectedItem()) + "/" + ((String)year.getSelectedItem()));
 								DatabaseManager m = new DatabaseManager();
 								int result = m.addEntryToDatabase(newEntry);
 								if (result == -1) {
