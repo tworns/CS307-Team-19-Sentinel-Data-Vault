@@ -325,6 +325,13 @@ public class DatabaseManager {
 		return entryTypeList;
 	}
 	
+	/**
+	 * Generates an alphabetical List of all a given user’s viewable shared data entries.
+	 * NOTE: Requires that valid_users field in database contains a SORTED String of user_emails separated by " " (space)
+	 * 
+	 * @param user_email	User to find viewable shared entries for
+	 * @return				Alphabetically-sorted List of all shared data entries a user has permission to view.
+	 */
 	public List<String> retrieveSharedEntryList(String user_email) {
 		List<String> sharedEntryList = new ArrayList<String>();
 		
