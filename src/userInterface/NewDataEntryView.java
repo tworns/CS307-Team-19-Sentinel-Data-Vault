@@ -152,7 +152,7 @@ public class NewDataEntryView {
 								DatabaseManager m = new DatabaseManager();
 								int result = m.addEntryToDataBase(newEntry);
 								if (result == -1) {
-									JOptionPane.showMessageDialog(null,"The Entry Name has already existed! Please Try another email!");
+									JOptionPane.showMessageDialog(null,"The Entry Name has already existed! Please Try another Entry Name!");
 									return;
 								}
 								else {
@@ -258,7 +258,7 @@ public class NewDataEntryView {
 								DatabaseManager m = new DatabaseManager();
 								int result = m.addEntryToDataBase(newEntry);
 								if (result == -1) {
-									JOptionPane.showMessageDialog(null,"The Entry Name has already existed! Please Try another email!");
+									JOptionPane.showMessageDialog(null,"The Entry Name has already existed! Please Try another Entry Name!");
 									return;
 								}
 								else {
@@ -393,7 +393,7 @@ public class NewDataEntryView {
 								DatabaseManager m = new DatabaseManager();
 								int result = m.addEntryToDataBase(newEntry);
 								if (result == -1) {
-									JOptionPane.showMessageDialog(null,"The Entry Name has already existed! Please Try another email!");
+									JOptionPane.showMessageDialog(null,"The Entry Name has already existed! Please Try another Entry Name!");
 									return;
 								}
 								else {
@@ -486,7 +486,7 @@ public class NewDataEntryView {
 								DatabaseManager m = new DatabaseManager();
 								int result = m.addEntryToDataBase(newEntry);
 								if (result == -1) {
-									JOptionPane.showMessageDialog(null,"The Entry Name has already existed! Please Try another email!");
+									JOptionPane.showMessageDialog(null,"The Entry Name has already existed! Please Try another Entry Name!");
 									return;
 								}
 								else {
@@ -569,7 +569,7 @@ public class NewDataEntryView {
 								DatabaseManager m = new DatabaseManager();
 								int result = m.addEntryToDataBase(newEntry);
 								if (result == -1) {
-									JOptionPane.showMessageDialog(null,"The Entry Name has already existed! Please Try another email!");
+									JOptionPane.showMessageDialog(null,"The Entry Name has already existed! Please Try another Entry Name!");
 									return;
 								}
 								else {
@@ -652,7 +652,7 @@ public class NewDataEntryView {
 								DatabaseManager m = new DatabaseManager();
 								int result = m.addEntryToDataBase(newEntry);
 								if (result == -1) {
-									JOptionPane.showMessageDialog(null,"The Entry Name has already existed! Please Try another email!");
+									JOptionPane.showMessageDialog(null,"The Entry Name has already existed! Please Try another Entry Name!");
 									return;
 								}
 								else {
@@ -736,7 +736,7 @@ public class NewDataEntryView {
 								DatabaseManager m = new DatabaseManager();
 								int result = m.addEntryToDataBase(newEntry);
 								if (result == -1) {
-									JOptionPane.showMessageDialog(null,"The Entry Name has already existed! Please Try another EntryName!");
+									JOptionPane.showMessageDialog(null,"The Entry Name has already existed! Please Try another Entry Name!");
 									return;
 								}
 								else {
