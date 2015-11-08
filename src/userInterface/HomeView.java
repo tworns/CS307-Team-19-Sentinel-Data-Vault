@@ -42,6 +42,7 @@ public class HomeView {
 
 
 	public String username;
+	public String lastlogin;
 	public User currentUser;
 	public DataEntry currentEntry;
 	public List<DataEntry> currentAllDataEntries;
@@ -76,6 +77,7 @@ public class HomeView {
 
 	public HomeView(String username) {
 		this.username = username;
+		lastlogin = "last login time";
 		
 		DatabaseManager dbmanger = new DatabaseManager();
 		currentUser = dbmanger.retrieveUserFromDatabase(username);
@@ -264,7 +266,7 @@ public class HomeView {
 		JLabel lblUserEmail = new JLabel("User Email");
 
 		textField_1 = new JTextField();
-		textField_1.setText("Last Login");
+		textField_1.setText(lastlogin);
 		if(currentUser != null){
 			if (currentUser.getLastLogin().toString() != null){
 				textField_1.setText(currentUser.getLastLogin().toString());
@@ -401,27 +403,74 @@ public class HomeView {
 		tree.setModel(new DefaultTreeModel(
 				new DefaultMutableTreeNode(username) {
 					{
-
+/*
 						DefaultMutableTreeNode node_1;
 						
 						node_1 = new DefaultMutableTreeNode("Account Login");
 						node_1.add(new DefaultMutableTreeNode("Google"));
-						node_1.add(new DefaultMutableTreeNode("Apple"));
-						node_1.add(new DefaultMutableTreeNode("Purdue"));
+						//node_1.add(new DefaultMutableTreeNode("Apple"));
+						//node_1.add(new DefaultMutableTreeNode("Purdue"));
 						add(node_1);
 						node_1 = new DefaultMutableTreeNode("Credit Card");
 						node_1.add(new DefaultMutableTreeNode("Visa"));
-						node_1.add(new DefaultMutableTreeNode("Master"));
+						//node_1.add(new DefaultMutableTreeNode("Master"));
 						add(node_1);
 						node_1 = new DefaultMutableTreeNode("Driver's License");
-						node_1.add(new DefaultMutableTreeNode("Driver's Lisence"));
+						//node_1.add(new DefaultMutableTreeNode("Driver's Lisence"));
 						add(node_1);
+*/
 					}
 				}
 				));
+		
+		/*
+		JTree jt = new JTree();
+		
+		DefaultMutableTreeNode root = (DefaultMutableTreeNode) tree.getRoot();
+		tree.insertNodeInto(new DefaultMutableTreeNode("another_child"), root, root.getChildCount());
+		 */
+		
+		DatabaseManager dbmanger = new DatabaseManager();
+		currentUser = dbmanger.retrieveUserFromDatabase(username);
+		
+		currentAllDataEntries = dbmanger.retrieveAllDataEntries(username);
+		currentDataEntryNameList = dbmanger.retrieveDataEntryNameList(username);
+		currentDataEntryTypeList = dbmanger.retrieveDataEntryTypeList(username);
+		
+		DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
+		DefaultMutableTreeNode root = (DefaultMutableTreeNode) model.getRoot();
 
+		DefaultMutableTreeNode node_1;
+		
+		node_1 = new DefaultMutableTreeNode("Account Login");
+		node_1.add(new DefaultMutableTreeNode("Google"));
+		//node_1.add(new DefaultMutableTreeNode("Apple"));
+		//node_1.add(new DefaultMutableTreeNode("Purdue"));
+		model.reload(node_1);
+		
+		
+		//System.out.println (root.getChildCount());
 
-
+		root.add(new DefaultMutableTreeNode("here"));
+		//DefaultMutableTreeNode root = new DefaultMutableTreeNode("saad");
+		model.reload(root);
+		System.out.println(currentDataEntryTypeList.size());
+		
+		for (int i=0; i < currentDataEntryTypeList.size(); i++) {
+			root = (DefaultMutableTreeNode)model.getRoot();
+			root.add(new DefaultMutableTreeNode(currentDataEntryTypeList.get(i)));
+			model.reload(root);
+			
+		}
+		
+		
+		/*
+		DefaultTreeModel model = (DefaultTreeModel)tree.getModel();
+		DefaultMutableTreeNode root = (DefaultMutableTreeNode)model.getRoot();
+		root.add(new DefaultMutableTreeNode("another_child"));
+		model.reload(root);
+		 */
+		
 		panel_center.addTab("Category", null, tree, null);
 
 
