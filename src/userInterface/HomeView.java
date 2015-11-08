@@ -448,10 +448,13 @@ public class HomeView {
 		root.add(new DefaultMutableTreeNode("here"));
 		//DefaultMutableTreeNode root = new DefaultMutableTreeNode("saad");
 		model.reload(root);
+		System.out.println(currentAllDataEntries.size());
+		System.out.println(currentDataEntryNameList.size());
 		System.out.println(currentDataEntryTypeList.size());
 		
 		for (int i=0; i < currentDataEntryTypeList.size(); i++) {
 			root = (DefaultMutableTreeNode)model.getRoot();
+			//if (currentDataEntryTypeList.get(i));
 			root.add(new DefaultMutableTreeNode(currentDataEntryTypeList.get(i)));
 			model.reload(root);
 			
