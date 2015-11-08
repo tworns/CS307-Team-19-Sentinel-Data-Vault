@@ -423,12 +423,6 @@ public class HomeView {
 				}
 				));
 		
-		/*
-		JTree jt = new JTree();
-		
-		DefaultMutableTreeNode root = (DefaultMutableTreeNode) tree.getRoot();
-		tree.insertNodeInto(new DefaultMutableTreeNode("another_child"), root, root.getChildCount());
-		 */
 		
 		DatabaseManager dbmanger = new DatabaseManager();
 		currentUser = dbmanger.retrieveUserFromDatabase(username);
@@ -446,7 +440,7 @@ public class HomeView {
 		node_1.add(new DefaultMutableTreeNode("Google"));
 		//node_1.add(new DefaultMutableTreeNode("Apple"));
 		//node_1.add(new DefaultMutableTreeNode("Purdue"));
-		model.reload(node_1);
+		root.add(node_1);
 		
 		
 		//System.out.println (root.getChildCount());
