@@ -58,7 +58,7 @@ public class Crypto {
 			Key key = keyGen(user);
 			List<String> dataList = new ArrayList<String>();
 			Cipher c = Cipher.getInstance("AES/ECB/PKCS5Padding");
-			c.init(Cipher.ENCRYPT_MODE, key);
+			c.init(Cipher.DECRYPT_MODE, key);
 			for(String entry : data.getFieldDataList()){	
 				BASE64Decoder k = new BASE64Decoder();
 				byte[] decryptedBytes = k.decodeBuffer(entry);
@@ -66,6 +66,7 @@ public class Crypto {
 				String output = new String(decryptedData);
 				dataList.add(output);
 			}
+			data.setDataFields(dataList);
 		} catch (NoSuchAlgorithmException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -73,7 +74,7 @@ public class Crypto {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+	
 		return data;
 	}
 	
