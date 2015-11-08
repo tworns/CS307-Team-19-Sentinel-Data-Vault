@@ -146,7 +146,7 @@ public class NewDataEntryView {
 						btnSave.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
 								LocalDateTime createdtime = LocalDateTime.now();
-								DataEntry newEntry = new DataEntry(textField.getText(), "SSN", null, userName, 0, createdtime);
+								DataEntry newEntry = new DataEntry(textField.getText(), "SSN", "key", userName, 0, createdtime);
 								newEntry.addDataField(textField_1.getText());
 								newEntry.addDataField(textField_2.getText());
 								DatabaseManager m = new DatabaseManager();
@@ -256,7 +256,7 @@ public class NewDataEntryView {
 						btnSave.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
 								LocalDateTime createdtime = LocalDateTime.now();
-								DataEntry newEntry = new DataEntry(textField.getText(), "Credit/Debit Card", null, null,
+								DataEntry newEntry = new DataEntry(textField.getText(), "Credit/Debit Card", "key", userName,
 										0, createdtime);
 								newEntry.addDataField((String) cardType.getSelectedItem());
 								newEntry.addDataField(textField_1.getText());
@@ -388,7 +388,7 @@ public class NewDataEntryView {
 						btnSave.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
 								LocalDateTime createdtime = LocalDateTime.now();
-								DataEntry newEntry = new DataEntry(textField.getText(), "PassPort", null, null, 0,
+								DataEntry newEntry = new DataEntry(textField.getText(), "PassPort", "key", userName, 0,
 										createdtime);
 								newEntry.addDataField(textField_1.getText());
 								newEntry.addDataField(textField_2.getText());
@@ -485,7 +485,7 @@ public class NewDataEntryView {
 						btnSave.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
 								LocalDateTime createdtime = LocalDateTime.now();
-								DataEntry newEntry = new DataEntry(textField.getText(), "Driver's license", null, null,
+								DataEntry newEntry = new DataEntry(textField.getText(), "Driver's license", "key", userName,
 										0, createdtime);
 								newEntry.addDataField(textField_1.getText());
 								newEntry.addDataField(textField_2.getText());
@@ -569,7 +569,7 @@ public class NewDataEntryView {
 						btnSave.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
 								LocalDateTime createdtime = LocalDateTime.now();
-								DataEntry newEntry = new DataEntry(textField.getText(), "Website Login", null, null, 0,
+								DataEntry newEntry = new DataEntry(textField.getText(), "Website Login", "key", userName, 0,
 										createdtime);
 								newEntry.addDataField(textField_1.getText());
 								newEntry.addDataField(textField_2.getText());
@@ -652,7 +652,7 @@ public class NewDataEntryView {
 						btnSave.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
 								LocalDateTime createdtime = LocalDateTime.now();
-								DataEntry newEntry = new DataEntry(textField.getText(), "Wifi Network", null, null, 0,
+								DataEntry newEntry = new DataEntry(textField.getText(), "Wifi Network", "key", userName, 0,
 										createdtime);
 								newEntry.addDataField(textField_1.getText());
 								newEntry.addDataField(textField_2.getText());
@@ -736,7 +736,7 @@ public class NewDataEntryView {
 						btnSave.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
 								LocalDateTime createdtime = LocalDateTime.now();
-								DataEntry newEntry = new DataEntry(textField.getText(), "Phone Number", null, null, 0,
+								DataEntry newEntry = new DataEntry(textField.getText(), "Phone Number", "key", userName, 0,
 										createdtime);
 								newEntry.addDataField(textField_1.getText());
 								newEntry.addDataField(textField_2.getText());
