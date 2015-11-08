@@ -572,11 +572,11 @@ public class DatabaseManager {
 
 			//Check that entry_name does not already exist
 			ResultSet results = stmt.executeQuery(
-					"SELECT COUNT(*) FROM data_entries WHERE entry_name = " + "'" + entry.getEntryName() + "' AND owner = '"
-					+ entry.getOwner() + "'");
+					"SELECT COUNT(*) FROM data_entries WHERE entry_name = " + "'" + entry.getEntryName() + "' "
+					+ "AND owner = '" + entry.getOwner() + "';");
 			if (results.getInt(1) != 0) {
 				// entry_name exists, return failure value
-				System.out.println("Entry Name exist");
+				System.out.println("Entry name already exists!");
 				return -1;
 			}
 
