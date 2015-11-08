@@ -15,67 +15,69 @@ public class Crypto {
 	
 	public Crypto (){ 
 	}
-	public String randomDataKey(int security) { //TODO Figure out what we're doing regarding security levels. 
+	public String randomDataKey(int security) {// generates the key that's stored in the user 
 		String output;
-		byte[] dataKey = new byte [24]; 
-		byte[] secureDataKey = new byte[16]; //foundation for 256 bit data key in place as secureDataKey
 		SecureRandom r = new SecureRandom();
-		r.nextBytes(dataKey);
-		r.nextBytes(secureDataKey); //gens the 256 bit data key
-		
-		String secureOutput = new String(secureDataKey);  //is the 256 bit data key.
-		String normalOutput = new String(dataKey);
-		if( security == 1) { 
+
+		if( security == 1) { //AES key gen
+			byte[] secureDataKey = new byte[16]; //AES data key
+			r.nextBytes(secureDataKey); 
+			String secureOutput = new String(secureDataKey);  
 			output = secureOutput;
 		}
-		else { 
+		else {  //3DES key gen
+			byte[] dataKey = new byte [24]; //3DES data key
+			r.nextBytes(dataKey); // 
+			String normalOutput = new String(dataKey);
 			output = normalOutput;
 		}
 		return output;
 	}
-	// We're using AES encryption. It's symmetric (same key for encrypt/decrypt).
-	public Key keyGen (User user) throws NoSuchAlgorithmException, NoSuchPaddingException { 
+	// We're using AES & 3DES encryption. They're symmetric (same key for encrypt/decrypt).
+	public Key keyGen (User user) throws NoSuchAlgorithmException, NoSuchPaddingException {  
+		//generates the key the algorithm uses from the one stored in the user.
 		//DataEntries created by the User will be given the key that the user has. 
 		 //USER KEY GOES INTO THE SECRET KEY SPEC!
 		Key key;
-		if(user.isHighSecurity() == 1) { 
+		if(user.isHighSecurity() == 1) { //AES key gen
 		 key = new SecretKeySpec(user.getDataKey().getBytes(), "AES");
 		}
-		else{ 
+		else{ //3DES key gen
 			key = new SecretKeySpec(user.getDataKey().getBytes(), "DESede");
 		}
 		return key;
 	}
-	public byte[] ivGen(User user) { //Encryption was insecure, needed salt..
+	public byte[] ivGen(User user) { //Encryption was insecure, needed salt.
 		String iv = user.getPasswordSalt();
 		if(user.isHighSecurity() == 1) { //AES
-		char[] salt16 = new char[16];
-		iv.getChars(0, 16, salt16, 0);
-		return new String(salt16).getBytes();
+			char[] salt16 = new char[16];
+			iv.getChars(0, 16, salt16, 0);
+			return new String(salt16).getBytes();
 		}
 		
 		else { //3DES
-		 char[] salt8 = new char[8];
-		 iv.getChars(0, 8, salt8, 0);
-		 return new String(salt8).getBytes();		
+			char[] salt8 = new char[8];
+			iv.getChars(0, 8, salt8, 0);
+			return new String(salt8).getBytes();		
 		 }
 	}
 	public DataEntry encrypt(User user, DataEntry data) throws NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException { //Return type is temporary
-				
+				//Method that does encryption, pardon the unholy amount of exception throwing.
 		try {
 			Cipher c;
 			IvParameterSpec iv = new IvParameterSpec(ivGen(user));
 			List<String> dataList = new ArrayList<String>();
 			Key key = keyGen(user); // makes a key from the user's data key.
-			if(user.isHighSecurity() == 1) { 
+			
+			if(user.isHighSecurity() == 1) { //AES encryption
 				 c = Cipher.getInstance("AES/CBC/PKCS5Padding");
 				c.init(Cipher.ENCRYPT_MODE, key, iv); //make a cipher.
-				System.out.println("More secure\n");
 			}
-			else { 
+			
+			else { //3DES encryption
 				 c = Cipher.getInstance("DESede/CBC/PKCS5Padding");
 				c.init(Cipher.ENCRYPT_MODE, key, iv);
-				System.out.println("Low security\n");
+				
 			}
 			for(String entry : data.getFieldDataList()){	//NOTE: If there is a null entry in this list, you WILL get a NullPointerException
 				byte[] encrypted = c.doFinal(entry.getBytes()); //loops through the list, encrypting as it goes
@@ -99,11 +101,12 @@ public class Crypto {
 			Cipher c;
 			List<String> dataList = new ArrayList<String>();
 			
-			if(user.isHighSecurity()==1) { 
+			if(user.isHighSecurity()==1) { //AES encryption decrypt
 				c = Cipher.getInstance("AES/CBC/PKCS5Padding");
 				c.init(Cipher.DECRYPT_MODE, key, new IvParameterSpec(ivGen(user)));
 			}
-			else { 
+			
+			else { //3DES encryption decrypt
 				 c = Cipher.getInstance("DESede/CBC/PKCS5Padding");
 				c.init(Cipher.DECRYPT_MODE, key,new IvParameterSpec(ivGen(user)));
 			}
@@ -116,17 +119,9 @@ public class Crypto {
 			}
 			data.setDataFields(dataList);
 			
-			
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-		} catch (NoSuchPaddingException e) {
-			e.printStackTrace();
-		} catch (InvalidAlgorithmParameterException e) {
+		} catch (NoSuchAlgorithmException  | NoSuchPaddingException  | InvalidAlgorithmParameterException e ) {
 			e.printStackTrace();
 		}
-	
 		return data;
 	}
-	
-	
 }

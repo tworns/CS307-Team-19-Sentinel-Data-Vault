@@ -27,7 +27,7 @@ public class CryptoTest {
 			u.setPasswordSalt(twitch.generateSalt());
 			u.setDefaultHighSecurity(secLvl);
 		} catch (NoSuchAlgorithmException e1) {
-			// TODO Auto-generated catch block
+		
 			e1.printStackTrace();
 		} 
  		u.setDataKey(test.randomDataKey(u.isHighSecurity()));
