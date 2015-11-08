@@ -264,7 +264,12 @@ public class HomeView {
 		JLabel lblUserEmail = new JLabel("User Email");
 
 		textField_1 = new JTextField();
-		textField_1.setText("2015.10.15 PM 7:30");
+		textField_1.setText("Last Login");
+		if(currentUser != null){
+			if (currentUser.getLastLogin().toString() != null){
+				textField_1.setText(currentUser.getLastLogin().toString());
+			}
+		}
 		textField_1.setColumns(10);
 		GroupLayout gl_panel_west = new GroupLayout(panel_west);
 		gl_panel_west.setHorizontalGroup(
@@ -386,7 +391,13 @@ public class HomeView {
 
 			}
 		});
-
+		
+		
+		//public List<DataEntry> currentAllDataEntries;
+		//public List<String> currentDataEntryNameList;
+		//public List<String> currentDataEntryTypeList;
+		
+	
 		tree.setModel(new DefaultTreeModel(
 				new DefaultMutableTreeNode(username) {
 					{
