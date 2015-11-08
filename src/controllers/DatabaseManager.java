@@ -395,7 +395,16 @@ public class DatabaseManager {
 		    String entryName = dataEntryInfoSet.getString("entry_name");
 	        String entryType  = dataEntryInfoSet.getString("entry_type");
 	        String encryptionKey = dataEntryInfoSet.getString("encryption_key");
-	        String owner = dataEntryInfoSet.getString("owner"); 
+	        String owner = dataEntryInfoSet.getString("owner");
+	        
+	        // Parse the valid_users String and convert to List<String> to assign to validUsers field of DataEntry
+	        List<String> validUsers = new ArrayList<String>();
+	        String validUsersString = dataEntryInfoSet.getString("valid_usres");
+	        String[] parsedValidUsers = validUsersString.split(" ");
+	        for (int i = 0; i < parsedValidUsers.length; i++) {
+	        	validUsers.add(parsedValidUsers[i]);
+	        }
+	        
 	        int highSecurity = dataEntryInfoSet.getInt("secure_entry");
 	        String lastModified = dataEntryInfoSet.getString("last_modified");
 			LocalDateTime modifiedLDT = LocalDateTime.parse(lastModified);
@@ -425,9 +434,9 @@ public class DatabaseManager {
 	        
 	        // Reconstruct DataEntry
 	        DataEntry dataEntry = new DataEntry(entryName, entryType, encryptionKey, owner, highSecurity, modifiedLDT);
-	        
 	        dataEntry.setHighSecurity(highSecurity);
 	        dataEntry.setDataFields(fields);
+	        dataEntry.setValidUsers(validUsers);
 	        
 		    // Disconnect from database
 	        dataEntryInfoSet.close();

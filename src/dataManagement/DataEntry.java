@@ -38,10 +38,10 @@ public class DataEntry {
 	public void setDataFields( List<String> fields) {
 		fieldDataList = fields;
 	}
+	
 	public void addDataField(String field) {
 		this.fieldDataList.add(field);
 	}
-	
 	
 	public String getEntryName() {
 		return this.entryName;
@@ -81,6 +81,10 @@ public class DataEntry {
 
 	public void setOwner(String owner) {
 		this.owner = owner;
+	}
+	
+	public void setValidUsers(List<String> validUsers) {
+		this.validUsers = validUsers;
 	}
 	
 	public void setHighSecurity(int highSecurity) {
