@@ -595,7 +595,7 @@ public class DatabaseManager {
 				if (j != field_number -1)
 					sql = sql + ", ";
 			}
-			sql = sql + ")";
+			sql = sql + ");";
 			System.out.println(sql);		
 					
 			// Execute the statement and commit database changes
