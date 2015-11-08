@@ -16,11 +16,11 @@ public class Crypto {
 	}
 	public String randomDataKey() { //TODO Figure out what we're doing regarding security levels. 
 		byte[] dataKey = new byte [16]; 
-		byte[] secureDataKey = new byte[32];
+		byte[] secureDataKey = new byte[32]; //foundation for 256 bit data key in place as secureDataKey
 		SecureRandom r = new SecureRandom();
 		r.nextBytes(dataKey);
-		r.nextBytes(secureDataKey);
-		String secureOutput = new String(secureDataKey); 
+		r.nextBytes(secureDataKey); //gens the 256 bit data key
+		String secureOutput = new String(secureDataKey);  //is the 256 bit data key.
 		
 		String output = new String(dataKey);
 		return output;
