@@ -101,6 +101,8 @@ public class DataEntry {
 	}
 	
 	public String buildValidUsersString() {
+		if(validUsers == null)
+			return null;
 		String validUsersString = "";
 		
 		// Construct a String of all valid users separated by " " (space) for later parsing
