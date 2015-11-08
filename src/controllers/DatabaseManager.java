@@ -308,7 +308,7 @@ public class DatabaseManager {
 			
 			// Construct list from result set
 			while (entryTypeSet.next()) {
-				String entryType = entryTypeSet.getString("entry_name");
+				String entryType = entryTypeSet.getString("entry_type");
 				entryTypeList.add(entryType);
 			}
 			
