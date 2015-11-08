@@ -5,6 +5,8 @@ import dataManagement.DataEntry;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class DatabaseManager {
@@ -324,7 +326,7 @@ public class DatabaseManager {
 	}
 	
 	public List<String> retrieveSharedEntryList(String user_email) {
-		List<String> shareEntryList = new ArrayList<String>();
+		List<String> sharedEntryList = new ArrayList<String>();
 		
 		// Connect to the database
 		Connection DBconnection = connectToDatabase();
@@ -333,22 +335,24 @@ public class DatabaseManager {
 			Statement stmt = DBconnection.createStatement();
 			
 			// Construct the SQL select statement (gets ALL data entries)
-			String sql = "SELECT entry_name FROM data_entries;";
+			String sql = "SELECT entry_name, valid_users FROM data_entries;";
 			
 			// Execute SQL statement and retrieve result set
-			ResultSet allEntries = stmt.executeQuery(sql);
+			ResultSet allDataEntries = stmt.executeQuery(sql);
 			
 			// Construct list of available shared entries from result set of ALL entries
-			while (allEntries.next()) {
-				// TODO parse the valid_users STRING to get resulting LIST of valid users. Delimiter = ' '
-				String valid_users = allEntries.getString("valid_users");
-				String[] parsed_valid_users = valid_users.split(" ");
-				// search the String array for user_email
-				// 		if found, add that entry's name to the shareEntryList
+			while (allDataEntries.next()) {
+				// parse the valid_users STRING to get resulting LIST of valid users. Delimiter = ' '
+				String validUsers = allDataEntries.getString("valid_users");
+				String[] parsedValidUsers = validUsers.split(" ");
+				// search the String array for user_email; add to SharedEntryList
+				if (Arrays.binarySearch(parsedValidUsers, user_email) >= 0) {
+					sharedEntryList.add(allDataEntries.getString("entry_name"));
+				}
 			}
 			
 			// Disconnect and close database
-			allEntries.close();
+			allDataEntries.close();
 			stmt.close();
 			DBconnection.close();
 			
@@ -357,7 +361,8 @@ public class DatabaseManager {
 			e.printStackTrace();
 		}
 		
-		return shareEntryList;
+		Collections.sort(sharedEntryList);
+		return sharedEntryList;
 	}
 
 	public DataEntry retrieveOneDataEntry(String entryname, String email, String type) {
