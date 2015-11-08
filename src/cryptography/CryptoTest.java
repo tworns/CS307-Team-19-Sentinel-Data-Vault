@@ -21,12 +21,14 @@ public class CryptoTest {
 	}
 	public static void main(String[] args) { 
 		Crypto test = new Crypto();
+		int secLvl = 0;
 		DataEntry testData = new DataEntry(null, null, null, null, 0, null);
 		User u = new User(null, null, null, null, null, null, null);
 		try{
 		SaltGenerator twitch = new SaltGenerator();
 		
 			u.setPasswordSalt(twitch.generateSalt());
+			u.setDefaultHighSecurity(secLvl);
 		} catch (NoSuchAlgorithmException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

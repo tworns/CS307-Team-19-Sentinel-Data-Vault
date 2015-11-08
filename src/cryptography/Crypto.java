@@ -82,7 +82,7 @@ public class Crypto {
 				c = Cipher.getInstance("AES/CBC/PKCS5Padding");
 				c.init(Cipher.DECRYPT_MODE, key, new IvParameterSpec(ivGen(user)));
 			}
-			else { 
+			else { //TODO make this 3DES encryption instead of AES/ECB, because ECB is not secure enough.
 				 c = Cipher.getInstance("AES/ECB/PKCS5Padding");
 				c.init(Cipher.DECRYPT_MODE, key);
 			}
