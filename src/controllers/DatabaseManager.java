@@ -588,7 +588,7 @@ public class DatabaseManager {
 			}
 			sql = sql + ") VALUES ('" + entry.getEntryName() + "', "  + "'" + entry.getEntryType()  + "', " + "'"
 					+ entry.getEncryptionKey()  + "', " + "'" + entry.getOwner()  + "', " + "'"
-					+ entry.getValidUser()  + "', " + entry.isHighSecurity() + ", '" + entry.getLastModified().toString() + "', ";
+					+ entry.buildValidUsersString() + "', " + entry.isHighSecurity() + ", '" + entry.getLastModified().toString() + "', ";
 			for (int j = 0; j < field_number; j++) {
 				sql = sql + "'" + entry.getFieldDataList().get(j) + "'";
 				if (j != field_number -1)

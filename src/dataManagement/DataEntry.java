@@ -31,9 +31,10 @@ public class DataEntry {
 		return this.fieldDataList;
 	}
 
-	public List<String> getValidUser() {
+	public List<String> getValidUsers() {
 		return this.validUsers;
 	}
+	
 	public void setDataFields( List<String> fields) {
 		fieldDataList = fields;
 	}
@@ -88,7 +89,7 @@ public class DataEntry {
 
 	public void addValidUser(String user) {
 		this.validUsers.add(user);
-		Collections.sort(this.validUsers);
+		Collections.sort(validUsers); // validUsers must always be sorted in order to perform binary search
 	}
 
 	public void removeValidUser(String user) {
@@ -97,5 +98,17 @@ public class DataEntry {
 
 	public Boolean checkValidUser(String user) {
 		return this.validUsers.contains(user);
+	}
+	
+	public String buildValidUsersString() {
+		String validUsersString = "";
+		
+		// Construct a String of all valid users separated by " " (space) for later parsing
+		for (String validUser : validUsers) {
+			validUsersString += (validUser + " ");
+		}
+		validUsersString = validUsersString.substring(0, validUsersString.length() - 1);
+		
+		return validUsersString;
 	}
 }
