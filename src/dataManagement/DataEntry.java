@@ -101,15 +101,18 @@ public class DataEntry {
 	}
 	
 	public String buildValidUsersString() {
-		if(validUsers == null)
-			return null;
 		String validUsersString = "";
 		
 		// Construct a String of all valid users separated by " " (space) for later parsing
+		boolean atLeastOneUser = false;
 		for (String validUser : validUsers) {
 			validUsersString += (validUser + " ");
+			atLeastOneUser = true;
 		}
-		validUsersString = validUsersString.substring(0, validUsersString.length() - 1);
+		
+		if (atLeastOneUser) {
+			validUsersString = validUsersString.substring(0, validUsersString.length() - 1);
+		}
 		
 		return validUsersString;
 	}
