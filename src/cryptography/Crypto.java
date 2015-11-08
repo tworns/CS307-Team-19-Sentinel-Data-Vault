@@ -14,21 +14,21 @@ public class Crypto {
 	
 	public Crypto (){ 
 	}
-	byte [] test = {'t', 'e','s', 't', }; //TODO Generate a real key
-	public String randomDataKey() { 
-		//TODO make a string of random junk to be put into the user.Datakey field.
+	public String randomDataKey() { //TODO Figure out what we're doing regarding security levels. 
 		byte[] dataKey = new byte [16]; 
+		byte[] secureDataKey = new byte[32];
 		SecureRandom r = new SecureRandom();
 		r.nextBytes(dataKey);
+		r.nextBytes(secureDataKey);
+		String secureOutput = new String(secureDataKey); 
+		
 		String output = new String(dataKey);
 		return output;
 	}
 	// We're using AES encryption. It's symmetric (same key for encrypt/decrypt).
-	public Key keyGen (User user) throws NoSuchAlgorithmException, NoSuchPaddingException { //TODO Figure out a return, need to return 2 keys, high security and lower security. Both genned here
+	public Key keyGen (User user) throws NoSuchAlgorithmException, NoSuchPaddingException { 
 		//DataEntries created by the User will be given the key that the user has. 
-
-		
-		 //USER KEY GOSE INTO THE SECRET KEY SPEC!
+		 //USER KEY GOES INTO THE SECRET KEY SPEC!
 		Key key = new SecretKeySpec(user.getDataKey().getBytes(), "AES");
 		
 		return key;
@@ -39,20 +39,23 @@ public class Crypto {
 			List<String> dataList = new ArrayList<String>();
 			Cipher c = Cipher.getInstance("AES/ECB/PKCS5Padding");
 			Key key = keyGen(user); // makes a key from the user's data key.
-			c.init(Cipher.ENCRYPT_MODE, key);
+			c.init(Cipher.ENCRYPT_MODE, key); //make a cipher.
 			for(String entry : data.getFieldDataList()){	//NOTE: If there is a null entry in this list, you WILL get a NullPointerException
-				byte[] encrypted = c.doFinal(entry.getBytes());
+				byte[] encrypted = c.doFinal(entry.getBytes()); //loops through the list, encrypting as it goes
 				BASE64Encoder k = new BASE64Encoder();
 				String encryptedData = k.encode(encrypted);
-				dataList.add(encryptedData);
+				dataList.add(encryptedData);//adds the encrypted data to the temp list
 			}
-			data.setDataFields(dataList);
+			data.setDataFields(dataList); //sets temp list into the dataEntry.
+			
+			
 		} catch (InvalidKeyException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return data;
 	}
+	
+	
 	public DataEntry decrypt(User user, DataEntry data) throws IllegalBlockSizeException, BadPaddingException, IOException, InvalidKeyException { //Return type is temporary
 		try {
 			Key key = keyGen(user);
@@ -67,11 +70,11 @@ public class Crypto {
 				dataList.add(output);
 			}
 			data.setDataFields(dataList);
+			
+			
 		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (NoSuchPaddingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	
