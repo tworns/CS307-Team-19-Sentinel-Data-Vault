@@ -150,7 +150,7 @@ public class NewDataEntryView {
 								newEntry.addDataField(textField_1.getText());
 								newEntry.addDataField(textField_2.getText());
 								DatabaseManager m = new DatabaseManager();
-								int result = m.addEntryToDataBase(newEntry);
+								int result = m.addEntryToDatabase(newEntry);
 								if (result == -1) {
 									JOptionPane.showMessageDialog(null,"The Entry Name has already existed! Please Try another Entry Name!");
 									return;
@@ -256,7 +256,7 @@ public class NewDataEntryView {
 								newEntry.addDataField(textField_3.getText());
 								newEntry.addDataField(textField_4.getText());
 								DatabaseManager m = new DatabaseManager();
-								int result = m.addEntryToDataBase(newEntry);
+								int result = m.addEntryToDatabase(newEntry);
 								if (result == -1) {
 									JOptionPane.showMessageDialog(null,"The Entry Name has already existed! Please Try another Entry Name!");
 									return;
@@ -391,7 +391,7 @@ public class NewDataEntryView {
 								newEntry.addDataField(textField_7.getText());
 								newEntry.addDataField(textField_8.getText());
 								DatabaseManager m = new DatabaseManager();
-								int result = m.addEntryToDataBase(newEntry);
+								int result = m.addEntryToDatabase(newEntry);
 								if (result == -1) {
 									JOptionPane.showMessageDialog(null,"The Entry Name has already existed! Please Try another Entry Name!");
 									return;
@@ -484,7 +484,7 @@ public class NewDataEntryView {
 								newEntry.addDataField(textField_3.getText());
 								newEntry.addDataField(textField_4.getText());
 								DatabaseManager m = new DatabaseManager();
-								int result = m.addEntryToDataBase(newEntry);
+								int result = m.addEntryToDatabase(newEntry);
 								if (result == -1) {
 									JOptionPane.showMessageDialog(null,"The Entry Name has already existed! Please Try another Entry Name!");
 									return;
@@ -567,7 +567,7 @@ public class NewDataEntryView {
 								newEntry.addDataField(textField_2.getText());
 								newEntry.addDataField(textField_3.getText());
 								DatabaseManager m = new DatabaseManager();
-								int result = m.addEntryToDataBase(newEntry);
+								int result = m.addEntryToDatabase(newEntry);
 								if (result == -1) {
 									JOptionPane.showMessageDialog(null,"The Entry Name has already existed! Please Try another Entry Name!");
 									return;
@@ -650,7 +650,7 @@ public class NewDataEntryView {
 								newEntry.addDataField(textField_2.getText());
 								newEntry.addDataField(textField_3.getText());
 								DatabaseManager m = new DatabaseManager();
-								int result = m.addEntryToDataBase(newEntry);
+								int result = m.addEntryToDatabase(newEntry);
 								if (result == -1) {
 									JOptionPane.showMessageDialog(null,"The Entry Name has already existed! Please Try another Entry Name!");
 									return;
@@ -734,7 +734,7 @@ public class NewDataEntryView {
 								newEntry.addDataField(textField_2.getText());
 								newEntry.addDataField(textField_3.getText());
 								DatabaseManager m = new DatabaseManager();
-								int result = m.addEntryToDataBase(newEntry);
+								int result = m.addEntryToDatabase(newEntry);
 								if (result == -1) {
 									JOptionPane.showMessageDialog(null,"The Entry Name has already existed! Please Try another Entry Name!");
 									return;

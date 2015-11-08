@@ -563,7 +563,7 @@ public class DatabaseManager {
 	}
 	
 	
-	public int addEntryToDataBase(DataEntry entry) {
+	public int addEntryToDatabase(DataEntry entry) {
 		// Connect to the database
 		Connection DBconnection = connectToDatabase();
 		try {
@@ -648,7 +648,7 @@ public class DatabaseManager {
 	
 	//******This method should always be called BEFORE we delete a user account*****
 	//TODO 
-	public int deleteAllEntryFromDatabase(User doomeduser) {
+	public int deleteAllEntriesFromDatabase(User doomeduser) {
 		// Connect to the database
 				Connection DBconnection = connectToDatabase();
 				try {

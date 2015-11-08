@@ -122,7 +122,7 @@ public class LoginView {
 				if(failedattempt == 5){
 					DatabaseManager d = new DatabaseManager();
 					User u = d.retrieveUserFromDatabase(username);
-					d.deleteAllEntryFromDatabase(u);
+					d.deleteAllEntriesFromDatabase(u);
 					JOptionPane.showMessageDialog(null,"Your account data has been deleted due to multiple failed login attempts");
 				}
 			}
