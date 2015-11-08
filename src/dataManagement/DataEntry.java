@@ -21,6 +21,7 @@ public class DataEntry {
 		this.entryType = entryType;
 		this.encryptionKey = encryptionKey;
 		this.owner = owner;
+		this.validUsers = new ArrayList<String>();
 		this.fieldDataList = new ArrayList<String>();
 		this.highSecurity = highSecurity;
 		this.lastModified = lastModified;
