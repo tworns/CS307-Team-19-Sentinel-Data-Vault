@@ -30,7 +30,6 @@ public class CryptoTest {
 		testData.addDataField("TESTING!");
 		testData.addDataField("ASDFASDLKJFALSDKJF!#@!#!@##@LRKAJSFLIAJ[]);;;''");
 		testData.addDataField("You may have a mild case of... er.. severe brain damage.");
-		testData.addDataField(null);
 		try {
 			test.encrypt(u, testData);
 			System.out.println(testData.getFieldDataList());
