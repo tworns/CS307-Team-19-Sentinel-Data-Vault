@@ -6,6 +6,7 @@ import sun.misc.*;
 import java.io.IOException;
 import java.security.*;
 import javax.crypto.*;
+import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
 import java.util.ArrayList;
@@ -33,13 +34,28 @@ public class Crypto {
 		
 		return key;
 	}
+	public byte[] ivGen(User user) { //Encryption was insecure, needed salt..
+		String iv = user.getPasswordSalt();
+		char[] salt = new char[16];
+		iv.getChars(0, 16, salt, 0);
+		return new String(salt).getBytes();
+	}
 	public DataEntry encrypt(User user, DataEntry data) throws NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException { //Return type is temporary
 				
 		try {
+			Cipher c;
 			List<String> dataList = new ArrayList<String>();
-			Cipher c = Cipher.getInstance("AES/ECB/PKCS5Padding");
 			Key key = keyGen(user); // makes a key from the user's data key.
-			c.init(Cipher.ENCRYPT_MODE, key); //make a cipher.
+			if(user.isHighSecurity() == 1) { 
+				 c = Cipher.getInstance("AES/CBC/PKCS5Padding");
+				c.init(Cipher.ENCRYPT_MODE, key, new IvParameterSpec(ivGen(user))); //make a cipher.
+				System.out.println("More secure\n");
+			}
+			else { 
+				 c = Cipher.getInstance("AES/ECB/PKCS5Padding");
+				c.init(Cipher.ENCRYPT_MODE, key);
+				System.out.println("Dirty & insecure\n");
+			}
 			for(String entry : data.getFieldDataList()){	//NOTE: If there is a null entry in this list, you WILL get a NullPointerException
 				byte[] encrypted = c.doFinal(entry.getBytes()); //loops through the list, encrypting as it goes
 				BASE64Encoder k = new BASE64Encoder();
@@ -49,7 +65,7 @@ public class Crypto {
 			data.setDataFields(dataList); //sets temp list into the dataEntry.
 			
 			
-		} catch (InvalidKeyException e) {
+		} catch (InvalidKeyException | InvalidAlgorithmParameterException e) {
 			e.printStackTrace();
 		}
 		return data;
@@ -59,9 +75,17 @@ public class Crypto {
 	public DataEntry decrypt(User user, DataEntry data) throws IllegalBlockSizeException, BadPaddingException, IOException, InvalidKeyException { //Return type is temporary
 		try {
 			Key key = keyGen(user);
+			Cipher c;
 			List<String> dataList = new ArrayList<String>();
-			Cipher c = Cipher.getInstance("AES/ECB/PKCS5Padding");
-			c.init(Cipher.DECRYPT_MODE, key);
+			
+			if(user.isHighSecurity()==1) { 
+				c = Cipher.getInstance("AES/CBC/PKCS5Padding");
+				c.init(Cipher.DECRYPT_MODE, key, new IvParameterSpec(ivGen(user)));
+			}
+			else { 
+				 c = Cipher.getInstance("AES/ECB/PKCS5Padding");
+				c.init(Cipher.DECRYPT_MODE, key);
+			}
 			for(String entry : data.getFieldDataList()){	//NOTE: If there is a null entry in this list, you WILL get a NullPointerException
 				BASE64Decoder k = new BASE64Decoder();
 				byte[] decryptedBytes = k.decodeBuffer(entry);
@@ -75,6 +99,8 @@ public class Crypto {
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		} catch (NoSuchPaddingException e) {
+			e.printStackTrace();
+		} catch (InvalidAlgorithmParameterException e) {
 			e.printStackTrace();
 		}
 	

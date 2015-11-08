@@ -23,8 +23,16 @@ public class CryptoTest {
 		Crypto test = new Crypto();
 		DataEntry testData = new DataEntry(null, null, null, null, 0, null);
 		User u = new User(null, null, null, null, null, null, null);
-		u.setDataKey(test.randomDataKey());
-		testData.setEncryptionKey(u.getDataKey());
+		try{
+		SaltGenerator twitch = new SaltGenerator();
+		
+			u.setPasswordSalt(twitch.generateSalt());
+		} catch (NoSuchAlgorithmException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} 
+ 		u.setDataKey(test.randomDataKey());
+		testData.setEncryptionKey(u.getDataKey());		
 		System.out.println(u.getDataKey()+ "\n");
 		testData.addDataField("This is a test string.");
 		testData.addDataField("This too is a test.");
