@@ -16,8 +16,7 @@ public class DataEntry {
 	private List<String> fieldDataList;
 	private LocalDateTime lastModified;
 
-	public DataEntry(String entryName, String entryType, String encryptionKey, String owner, int highSecurity,
-			LocalDateTime lastModified) {
+	public DataEntry(String entryName, String entryType, String encryptionKey, String owner, int highSecurity, LocalDateTime lastModified) {
 		this.entryName = entryName;
 		this.entryType = entryType;
 		this.encryptionKey = encryptionKey;
