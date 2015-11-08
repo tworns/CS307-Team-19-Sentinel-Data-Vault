@@ -1,6 +1,8 @@
 package dataManagement;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class DataEntry {
@@ -86,6 +88,7 @@ public class DataEntry {
 
 	public void addValidUser(String user) {
 		this.validUsers.add(user);
+		Collections.sort(this.validUsers);
 	}
 
 	public void removeValidUser(String user) {
