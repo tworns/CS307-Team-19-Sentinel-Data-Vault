@@ -48,6 +48,9 @@ public class DatabaseManager {
 					"SELECT count(*) FROM users WHERE user_email = " + "'" + newUser.getUsername() + "';");
 			if (results.getInt(1) != 0) {
 				// user exists, return failure value
+				results.close();
+				stmt.close();
+				DBconnection.close();
 				return -1;
 			}
 
@@ -574,6 +577,9 @@ public class DatabaseManager {
 			if (results.getInt(1) != 0) {
 				// entry_name exists, return failure value
 				System.out.println("Entry name already exists!");
+				results.close();
+				stmt.close();
+				DBconnection.close();						
 				return -1;
 			}
 
