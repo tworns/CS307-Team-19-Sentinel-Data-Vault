@@ -393,12 +393,9 @@ public class DatabaseManager {
 	        String entryType  = dataEntryInfoSet.getString("entry_type");
 	        String encryptionKey = dataEntryInfoSet.getString("encryption_key");
 	        String owner = dataEntryInfoSet.getString("owner"); 
-	        
 	        int highSecurity = dataEntryInfoSet.getInt("secure_entry");
-	        
 	        String lastModified = dataEntryInfoSet.getString("last_modified");
 			LocalDateTime modifiedLDT = LocalDateTime.parse(lastModified);
-	     
 			
 	        String datafield_1 = dataEntryInfoSet.getString("data_field_1");
 	        String datafield_2 = dataEntryInfoSet.getString("data_field_2");
