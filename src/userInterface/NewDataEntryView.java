@@ -736,7 +736,7 @@ public class NewDataEntryView {
 								DatabaseManager m = new DatabaseManager();
 								int result = m.addEntryToDataBase(newEntry);
 								if (result == -1) {
-									JOptionPane.showMessageDialog(null,"The Entry Name has already existed! Please Try another email!");
+									JOptionPane.showMessageDialog(null,"The Entry Name has already existed! Please Try another EntryName!");
 									return;
 								}
 								else {
