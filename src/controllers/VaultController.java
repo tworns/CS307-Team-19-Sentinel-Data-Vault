@@ -91,15 +91,15 @@ public class VaultController {
 			
 			LocalDateTime createdtime = LocalDateTime.now();
 			
-			//TODO: ********default data key is a place holder*******
+			
 			Crypto c = new Crypto();
-			String datakey = c.randomDataKey();
+			String datakey = c.randomDataKey(); //generates a random data key from the Crypto class.
 			User newuser =  new User(username, hashedPassword, passwordSalt, datakey, question, answer, createdtime);
 
 			DatabaseManager d = new DatabaseManager();
 			
 			if(d.addUserToDatabase(newuser) == -1) {
-				JOptionPane.showMessageDialog(null,"The account has already existed! Please Try another email!");
+				JOptionPane.showMessageDialog(null,"The account already exists! Please Try another email!");
 				return 0;
 			}
 			else{

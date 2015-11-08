@@ -25,6 +25,7 @@ public class CryptoTest {
 		User u = new User(null, null, null, null, null, null, null);
 		u.setDataKey(test.randomDataKey());
 		testData.setEncryptionKey(u.getDataKey());
+		System.out.println(u.getDataKey()+ "\n");
 		testData.addDataField("This is a test string.");
 		testData.addDataField("This too is a test.");
 		testData.addDataField("TESTING!");
