@@ -36,7 +36,7 @@ public class Crypto {
 	}
 	
 	// We're using AES & 3DES encryption. They're symmetric (same key for encrypt/decrypt).
-	public Key keyGen (User user) throws NoSuchAlgorithmException, NoSuchPaddingException {  
+	public Key keyGen (User user, DataEntry data) throws NoSuchAlgorithmException, NoSuchPaddingException {  
 		//generates the key the algorithm uses from the one stored in the user.
 		//DataEntries created by the User will be given the key that the user has. 
 		 //USER KEY GOES INTO THE SECRET KEY SPEC!
@@ -45,7 +45,7 @@ public class Crypto {
 		 key = new SecretKeySpec(user.getDataKey().getBytes(), "AES");
 		}
 		else{ //3DES key gen
-			key = new SecretKeySpec(user.getDataKey().getBytes(), "DESede");
+			key = new SecretKeySpec(data.getEncryptionKey().getBytes(), "DESede");
 		}
 		return key;
 	}
@@ -71,7 +71,7 @@ public class Crypto {
 			Cipher c;
 			IvParameterSpec iv = new IvParameterSpec(ivGen(user));
 			List<String> dataList = new ArrayList<String>();
-			Key key = keyGen(user); // makes a key from the user's data key.
+			Key key = keyGen(user,data); // makes a key from the user's data key.
 			
 			if(user.isHighSecurity() == 1) { //AES encryption
 				 c = Cipher.getInstance("AES/CBC/PKCS5Padding");
@@ -100,7 +100,7 @@ public class Crypto {
 	
 	public DataEntry decrypt(User user, DataEntry data) { //Return type is temporary
 		try {
-			Key key = keyGen(user);
+			Key key = keyGen(user,data);
 			Cipher c;
 			List<String> dataList = new ArrayList<String>();
 			
