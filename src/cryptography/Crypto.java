@@ -41,7 +41,7 @@ public class Crypto {
 		//DataEntries created by the User will be given the key that the user has. 
 		 //USER KEY GOES INTO THE SECRET KEY SPEC!
 		Key key;
-		if(user.isHighSecurity() == 1) { //AES key gen
+		if(user.isHighSecurity() == 1 || data.isHighSecurity() == 1) { //AES key gen
 		 key = new SecretKeySpec(data.getEncryptionKey().getBytes(), "AES");
 		}
 		else{ //3DES key gen
@@ -73,7 +73,7 @@ public class Crypto {
 			List<String> dataList = new ArrayList<String>();
 			Key key = keyGen(user,data); // makes a key from the user's data key.
 			
-			if(user.isHighSecurity() == 1) { //AES encryption
+			if(user.isHighSecurity() == 1 || data.isHighSecurity() == 1) { //AES encryption
 				 c = Cipher.getInstance("AES/CBC/PKCS5Padding");
 				c.init(Cipher.ENCRYPT_MODE, key, iv); //make a cipher.
 			}
