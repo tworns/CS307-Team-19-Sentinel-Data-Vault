@@ -96,8 +96,6 @@ public class LoginView {
 					e1.printStackTrace();
 				}
 				if (result == 1){
-					//MainView window = new MainView(username);
-					//window.frmSentinelDataVault.setVisible(true);
 					failedattempt = 0;
 					frame.dispose();
 					

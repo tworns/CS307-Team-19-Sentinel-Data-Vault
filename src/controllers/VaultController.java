@@ -36,7 +36,6 @@ public class VaultController {
 		   return result;
 	}
 	
-	
 	//function called by signupview
 	public int createAccountCheck(String password1, String password2, String username,String question, String answer) throws NoSuchAlgorithmException{
 		
@@ -136,6 +135,7 @@ public class VaultController {
 		return 0;
 	}
 	
+	//*****TODO: When user successfully login, we need to update the last login time******
 	public int loginCheck(String username, String password) throws NoSuchAlgorithmException {
 		DatabaseManager d = new DatabaseManager();
 		User user = d.retrieveUserFromDatabase(username);
