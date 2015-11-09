@@ -9,7 +9,6 @@ import security.PasswordGen;
 import security.StrengthChecker;
 import java.awt.Font;
 
-
 public class SecurityView {
 
 	public JFrame frame;
@@ -47,7 +46,6 @@ public class SecurityView {
 		initialize();
 	}
 
-	
 	public SecurityView getInstance() { 
 		if(instanceCount != 0) { 
 			return instance;
@@ -168,9 +166,7 @@ public class SecurityView {
 					dialog.setSize(500, 150);
 					dialog.setVisible(true); //User can see it now
 					dialog.dispose(); //dispose on close
-					
 				}
-				
 			}
 		});
 		
@@ -224,9 +220,9 @@ public class SecurityView {
 				StrengthChecker check = new StrengthChecker();
 				String input = new String(passwordField.getPassword());
 				String output = check.checkStrength(input);
-					String strength = "This password is ";
-					strength += output +"\n";
-					JOptionPane.showMessageDialog(null, strength, "Password", JOptionPane.INFORMATION_MESSAGE);
+				String strength = "This password is ";
+				strength += output +"\n";
+				JOptionPane.showMessageDialog(null, strength, "Password", JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
 		btnCheck.setBounds(21, 73, 97, 25);
@@ -236,7 +232,7 @@ public class SecurityView {
 		JButton btnCancel_1 = new JButton("Cancel");
 		btnCancel_1.addActionListener(new ActionListener() {
 			 public void actionPerformed(ActionEvent clickCancel) {
-						frame.dispose();	
+				frame.dispose();	
 			}
 		});
 		btnCancel_1.setBounds(130, 73, 97, 25);
