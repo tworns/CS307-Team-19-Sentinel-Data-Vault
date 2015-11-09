@@ -64,20 +64,20 @@ public class LoginView {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JLabel lblEmail = new JLabel("E-mail:");
-		lblEmail.setBounds(81, 95, 56, 18);
+		lblEmail.setBounds(73, 108, 56, 18);
 		
 		JLabel lblPassword = new JLabel("Password:");
-		lblPassword.setBounds(65, 132, 72, 18);
+		lblPassword.setBounds(57, 145, 72, 18);
 		
 		textField = new JTextField();
-		textField.setBounds(139, 95, 176, 24);
+		textField.setBounds(131, 108, 184, 24);
 		textField.setColumns(10);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(139, 129, 176, 24);
+		passwordField.setBounds(131, 142, 184, 24);
 		
 		JButton btnNewButton = new JButton("Login");
-		btnNewButton.setBounds(327, 95, 72, 58);
+		btnNewButton.setBounds(325, 106, 72, 62);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				username = textField.getText();
@@ -134,7 +134,7 @@ public class LoginView {
 				signup.setVisible(true);
 			}
 		});
-		btnSignUp.setBounds(91, 174, 124, 27);
+		btnSignUp.setBounds(91, 245, 124, 27);
 		frame.getContentPane().add(btnSignUp);
 		frame.getContentPane().add(btnNewButton);
 		frame.getContentPane().add(lblPassword);
@@ -143,7 +143,7 @@ public class LoginView {
 		frame.getContentPane().add(passwordField);
 		
 		btnForgotPassword = new JButton("Forgot Password");
-		btnForgotPassword.setBounds(229, 174, 140, 27);
+		btnForgotPassword.setBounds(229, 245, 140, 27);
 		frame.getContentPane().add(btnForgotPassword);
 		
 		lblSentinelDataVault = new JLabel("Sentinel Data Vault");
