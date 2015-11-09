@@ -453,9 +453,9 @@ public class HomeView {
 		//DefaultMutableTreeNode root = new DefaultMutableTreeNode("saad");
 		
 		model.reload(root);
-		System.out.println(currentAllDataEntries.size());
-		System.out.println(currentDataEntryNameList.size());
-		System.out.println(currentDataEntryTypeList.size());
+		
+		System.out.println("currentDataEntryNameList :" + currentDataEntryNameList.size());
+		System.out.println("currentDataEntryTypeList :" + currentDataEntryTypeList.size());
 		
 		List<String> entryTypeList = new ArrayList<String>();
 		
@@ -468,22 +468,18 @@ public class HomeView {
 					// check if the category exit
 					existFlag = 1;
 					
-					
-					Enumeration<DefaultMutableTreeNode> e = root.depthFirstEnumeration();
-				    while (e.hasMoreElements()) {
-				        DefaultMutableTreeNode node = e.nextElement();
-				        if (node.toString().equals(entryTypeList.get(j))) {
-				        	root = node;
-				        }
-				    }
-					
-				   
-					DefaultMutableTreeNode new_item = new DefaultMutableTreeNode(currentDataEntryNameList.get(i));
-					root2 = (DefaultMutableTreeNode) root.getRoot();
-					root2.add(new DefaultMutableTreeNode(new_item));
-					root.add(root2);
-					
-					
+					DefaultMutableTreeNode node = null; 
+
+				    Enumeration enumeration= root.breadthFirstEnumeration(); 
+				    while(enumeration.hasMoreElements()) {
+
+				        node = (DefaultMutableTreeNode)enumeration.nextElement(); 
+				        if(currentDataEntryTypeList.get(j).equals(node.getUserObject().toString())) {
+				        	DefaultMutableTreeNode new_item = new DefaultMutableTreeNode(currentDataEntryNameList.get(i));
+							node.add(new DefaultMutableTreeNode(new_item));
+							model.reload(node);
+				        } 
+				    } 
 					break;
 				}
 			}
@@ -499,19 +495,13 @@ public class HomeView {
 				root.add(new DefaultMutableTreeNode(new_node));
 				model.reload(root);
 				
+				entryTypeList.add(currentDataEntryTypeList.get(i));
 				
 			}
 				
 			
 		}
 		
-		
-		/*
-		DefaultTreeModel model = (DefaultTreeModel)tree.getModel();
-		DefaultMutableTreeNode root = (DefaultMutableTreeNode)model.getRoot();
-		root.add(new DefaultMutableTreeNode("another_child"));
-		model.reload(root);
-		 */
 		
 		panel_center.addTab("Category", null, tree, null);
 
