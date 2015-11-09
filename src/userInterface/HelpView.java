@@ -1,4 +1,5 @@
 package userInterface;
+
 import java.awt.EventQueue;
 import javax.swing.*;
 import javax.swing.tree.*;
@@ -6,18 +7,8 @@ import net.miginfocom.swing.MigLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-
 public class HelpView {
 
-	/*
-	 * HelpView
-	 * 2015 10 01 ~ 
-	 * 1st Sprint
-	 * Jiho Choi
-	 * 
-	 */
-	
-	
 	public JFrame frmHelp;
 
 	/**
@@ -94,5 +85,4 @@ public class HelpView {
 		tabbedPane.addTab("New tab", null, panel_1, null);
 		frmHelp.getContentPane().add(btnNewButton, "cell 2 1,alignx right,aligny top");
 	}
-
 }
