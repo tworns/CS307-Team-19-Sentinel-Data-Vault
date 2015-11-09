@@ -122,12 +122,12 @@ public class DataEntryPanel extends JPanel{
 	}
 	
 	
-	public JPanel getDriversLicensePanel(DataEntry data){
+	public JPanel getLicensePanel(DataEntry data){
 		panel.removeAll();
 		panel.disable();
 		panel.setLayout(new MigLayout("", "[grow]", "[][][][][][][][][][][][]"));
 		
-		String title = "Driver's License";
+		String title = "License";
 		
 		JLabel label_0 = new JLabel(title);
 		panel.add(label_0, "cell 0 0");
