@@ -1,20 +1,21 @@
 package cryptography;
 
 import dataManagement.*;
-import sun.misc.*;
 
+import sun.misc.*;
 import java.io.IOException;
 import java.security.*;
 import javax.crypto.*;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
-
 import java.util.ArrayList;
 import java.util.List;
 public class Crypto {
 	
-	public Crypto (){ 
+	public Crypto () {
+		
 	}
+	
 	public String randomDataKey(int security) {// generates the key that's stored in the user 
 		String output;
 		SecureRandom r = new SecureRandom();
@@ -33,6 +34,7 @@ public class Crypto {
 		}
 		return output;
 	}
+	
 	// We're using AES & 3DES encryption. They're symmetric (same key for encrypt/decrypt).
 	public Key keyGen (User user) throws NoSuchAlgorithmException, NoSuchPaddingException {  
 		//generates the key the algorithm uses from the one stored in the user.
@@ -47,6 +49,7 @@ public class Crypto {
 		}
 		return key;
 	}
+	
 	public byte[] ivGen(User user) { //Encryption was insecure, needed salt.
 		String iv = user.getPasswordSalt();
 		if(user.isHighSecurity() == 1) { //AES
@@ -61,6 +64,7 @@ public class Crypto {
 			return new String(salt8).getBytes();		
 		 }
 	}
+	
 	public DataEntry encrypt(User user, DataEntry data) throws NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException { //Return type is temporary
 				//Method that does encryption, pardon the unholy amount of exception throwing.
 		try {
@@ -93,7 +97,6 @@ public class Crypto {
 		}
 		return data;
 	}
-	
 	
 	public DataEntry decrypt(User user, DataEntry data) throws IllegalBlockSizeException, BadPaddingException, IOException, InvalidKeyException { //Return type is temporary
 		try {
