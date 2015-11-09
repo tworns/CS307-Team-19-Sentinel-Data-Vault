@@ -65,7 +65,7 @@ public class Crypto {
 		 }
 	}
 	
-	public DataEntry encrypt(User user, DataEntry data) throws NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException { //Return type is temporary
+	public DataEntry encrypt(User user, DataEntry data) { //Return type is temporary
 				//Method that does encryption, pardon the unholy amount of exception throwing.
 		try {
 			Cipher c;
@@ -92,13 +92,13 @@ public class Crypto {
 			data.setDataFields(dataList); //sets temp list into the dataEntry.
 			
 			
-		} catch (InvalidKeyException | InvalidAlgorithmParameterException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return data;
 	}
 	
-	public DataEntry decrypt(User user, DataEntry data) throws IllegalBlockSizeException, BadPaddingException, IOException, InvalidKeyException { //Return type is temporary
+	public DataEntry decrypt(User user, DataEntry data) { //Return type is temporary
 		try {
 			Key key = keyGen(user);
 			Cipher c;
@@ -122,7 +122,7 @@ public class Crypto {
 			}
 			data.setDataFields(dataList);
 			
-		} catch (NoSuchAlgorithmException  | NoSuchPaddingException  | InvalidAlgorithmParameterException e ) {
+		} catch (Exception e ) {
 			e.printStackTrace();
 		}
 		return data;
