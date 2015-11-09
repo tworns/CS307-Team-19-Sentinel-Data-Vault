@@ -36,7 +36,7 @@ public class Crypto {
 	}
 	
 	// We're using AES & 3DES encryption. They're symmetric (same key for encrypt/decrypt).
-	public Key keyGen (User user, DataEntry data) throws NoSuchAlgorithmException, NoSuchPaddingException {  
+	public Key keyGen (User user, DataEntry data) {  
 		//generates the key the algorithm uses from the one stored in the user.
 		//DataEntries created by the User will be given the key that the user has. 
 		 //USER KEY GOES INTO THE SECRET KEY SPEC!
