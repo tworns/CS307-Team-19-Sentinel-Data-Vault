@@ -1,5 +1,6 @@
 package userInterface;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.*;
 import javax.swing.*;
@@ -8,6 +9,7 @@ import javax.swing.event.ChangeListener;
 import security.PasswordGen;
 import security.StrengthChecker;
 import java.awt.Font;
+import java.awt.SystemColor;
 
 public class SecurityView {
 
@@ -22,6 +24,7 @@ public class SecurityView {
 	private boolean lowercase;
 	private boolean specials;
 	private boolean repeated;
+	private JTextField textField;
 	
 	/*
 	 * Launch the application.
@@ -220,9 +223,18 @@ public class SecurityView {
 				StrengthChecker check = new StrengthChecker();
 				String input = new String(passwordField.getPassword());
 				String output = check.checkStrength(input);
-				String strength = "This password is ";
-				strength += output +"\n";
-				JOptionPane.showMessageDialog(null, strength, "Password", JOptionPane.INFORMATION_MESSAGE);
+				//String strength = "This password is ";
+				//strength += output +"\n";
+				textField.setText(output);
+				Color bg = Color.ORANGE;
+				if(output.equals("Strong")) { 
+					bg = Color.GREEN;
+				}
+				if(output.equals("Weak")){ 
+					bg = Color.RED;
+				}
+				textField.setForeground(bg);
+				//JOptionPane.showMessageDialog(null, strength, "Password", JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
 		btnCheck.setBounds(21, 73, 97, 25);
@@ -266,6 +278,17 @@ public class SecurityView {
 		JLabel lblAndAtLeast = new JLabel("And, at least 1 lowercase letter");
 		lblAndAtLeast.setBounds(46, 266, 196, 16);
 		panel_1.add(lblAndAtLeast);
+		
+		textField = new JTextField();
+		textField.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		textField.setBorder(null);
+		textField.setSelectedTextColor(SystemColor.control);
+		textField.setSelectionColor(SystemColor.control);
+		textField.setBackground(SystemColor.control);
+		textField.setEditable(false);
+		textField.setBounds(158, 11, 156, 22);
+		panel_1.add(textField);
+		textField.setColumns(10);
 
 	}
 }
