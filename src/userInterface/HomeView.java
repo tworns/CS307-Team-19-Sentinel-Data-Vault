@@ -343,10 +343,10 @@ public class HomeView {
 					panelName = "Account Login";
 					panel_east.addTab(panelName, null, panel, null);
 				}
-				if (selectedNodeName.equals("Credit Card")) {
+				if (selectedNodeName.equals("Credit/Debit Card")) {
 					
 					panel = dataPanel.getCreditCardPanel(currentdata);
-					panelName = "Credit Card";
+					panelName = "Credit/Debit Card";
 					panel_east.addTab(panelName, null, panel, null);
 				}
 				if (selectedNodeName.equals("License")) {
@@ -360,9 +360,32 @@ public class HomeView {
 			
 				//if data item
 				if (selectedNode.isLeaf()) {
+					DataEntry selectedDataEntry = retrieveOneDataEntry (selectedNodeName, currentUser, selectedNode.getParent().toString());
+					if(selectedNode.getParent().toString() == "Account Login") {
+						panel = dataPanel.getAccountLoginPanelWithData(selectedDataEntry);
+						panelName = "Account Login";
+					}
+					else if(selectedNode.getParent().toString() == "Credit/Debit Card") {
+						panel = dataPanel.getCreditCardPanel(selectedDataEntry);
+						panelName = "Credit/Debit Card";
+					}
+					else if(selectedNode.getParent().toString() == "Credit/Debit Card") {
+						panel = dataPanel.getLicensePanel(selectedDataEntry);
+						panelName = "License";
+					}
+					
+					
+					panel_east.addTab(panelName, null, panel, null);
+					
+					
 					System.out.println("Leaf: " + selectedNodeName);
 				}
 				return;
+			}
+
+			private DataEntry retrieveOneDataEntry(String selectedNodeName, User currentUser, String string) {
+				// TODO Auto-generated method stub
+				return null;
 			}
 		});
 		

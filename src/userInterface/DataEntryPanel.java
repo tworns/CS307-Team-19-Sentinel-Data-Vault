@@ -40,30 +40,63 @@ public class DataEntryPanel extends JPanel{
 		JLabel label_0 = new JLabel(title);
 		panel.add(label_0, "cell 0 0");
 		
-		JLabel label_1 = new JLabel("Web URL");
+		JLabel label_1 = new JLabel("User Name");
 		panel.add(label_1, "cell 0 1");
-		
-		JFormattedTextField formattedTextField = new JFormattedTextField();
-		formattedTextField.setText("https://www.google.com");
-		panel.add(formattedTextField, "cell 0 2,growx");
-		
-		JLabel label_2 = new JLabel("User Name");
-		panel.add(label_2, "cell 0 3");
 		
 		JFormattedTextField formattedTextField1 = new JFormattedTextField();
 		formattedTextField1.setText("username@gmail.com");
-		panel.add(formattedTextField1, "cell 0 4,growx");
+		panel.add(formattedTextField1, "cell 0 2,growx");
 		
-		JLabel label_3 = new JLabel("Password");
-		panel.add(label_3, "cell 0 5");
+		JLabel label_2 = new JLabel("Password");
+		panel.add(label_2, "cell 0 3");
 		
 		JFormattedTextField formattedTextField_1 = new JFormattedTextField();
 		formattedTextField_1.setText("password");
-		panel.add(formattedTextField_1, "cell 0 6,growx");
+		panel.add(formattedTextField_1, "cell 0 4,growx");
 		
-
+		JLabel label_3 = new JLabel("Web URL");
+		panel.add(label_3, "cell 0 5");
+		
+		JFormattedTextField formattedTextField = new JFormattedTextField();
+		formattedTextField.setText("https://www.google.com");
+		panel.add(formattedTextField, "cell 0 6,growx");
 		
 		
+		
+		
+		return panel;
+	}
+	
+	public JPanel getAccountLoginPanelWithData(DataEntry data){
+		
+		panel.removeAll();	
+		panel.setLayout(new MigLayout("", "[grow]", "[][][][][][][][][][][][]"));
+		
+		String title = "Account Login";
+		
+		JLabel label_0 = new JLabel(title);
+		panel.add(label_0, "cell 0 0");
+		
+		JLabel label_1 = new JLabel("User Name");
+		panel.add(label_1, "cell 0 1");
+		
+		JFormattedTextField formattedTextField1 = new JFormattedTextField();
+		formattedTextField1.setText("username@gmail.com");
+		panel.add(formattedTextField1, "cell 0 2,growx");
+		
+		JLabel label_2 = new JLabel("Password");
+		panel.add(label_2, "cell 0 3");
+		
+		JFormattedTextField formattedTextField_1 = new JFormattedTextField();
+		formattedTextField_1.setText("password");
+		panel.add(formattedTextField_1, "cell 0 4,growx");
+		
+		JLabel label_3 = new JLabel("Web URL");
+		panel.add(label_3, "cell 0 5");
+		
+		JFormattedTextField formattedTextField = new JFormattedTextField();
+		formattedTextField.setText("https://www.google.com");
+		panel.add(formattedTextField, "cell 0 6,growx");
 		
 		return panel;
 	}
