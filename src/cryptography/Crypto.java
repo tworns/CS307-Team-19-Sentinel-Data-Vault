@@ -16,7 +16,7 @@ public class Crypto {
 		
 	}
 	
-	public String randomDataKey(int security) {// generates the key that's stored in the user 
+	public String randomDataKey(int security) {// generates the key that's stored in the user || object
 		String output;
 		SecureRandom r = new SecureRandom();
 
@@ -42,7 +42,7 @@ public class Crypto {
 		 //USER KEY GOES INTO THE SECRET KEY SPEC!
 		Key key;
 		if(user.isHighSecurity() == 1) { //AES key gen
-		 key = new SecretKeySpec(user.getDataKey().getBytes(), "AES");
+		 key = new SecretKeySpec(data.getEncryptionKey().getBytes(), "AES");
 		}
 		else{ //3DES key gen
 			key = new SecretKeySpec(data.getEncryptionKey().getBytes(), "DESede");
@@ -65,8 +65,8 @@ public class Crypto {
 		 }
 	}
 	
-	public DataEntry encrypt(User user, DataEntry data) { //Return type is temporary
-				//Method that does encryption, pardon the unholy amount of exception throwing.
+	public DataEntry encrypt(User user, DataEntry data) { 
+				
 		try {
 			Cipher c;
 			IvParameterSpec iv = new IvParameterSpec(ivGen(user));

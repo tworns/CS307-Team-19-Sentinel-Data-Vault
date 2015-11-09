@@ -93,9 +93,9 @@ public class VaultController {
 			LocalDateTime createdtime = LocalDateTime.now();
 			
 			
-			Crypto c = new Crypto();
-			int defaultSecLvl = 0; // This is the default security level. Needed because of the way key gen works.
-			String datakey = c.randomDataKey(defaultSecLvl); //generates a random data key from the Crypto class.
+			//Crypto c = new Crypto();
+			//int defaultSecLvl = 0; // This is the default security level. Needed because of the way key gen works.
+			String datakey = null; // c.randomDataKey(defaultSecLvl); //generates a random data key from the Crypto class.
 			User newuser =  new User(username, hashedPassword, passwordSalt, datakey, question, answer, createdtime);
 
 			DatabaseManager d = new DatabaseManager();
