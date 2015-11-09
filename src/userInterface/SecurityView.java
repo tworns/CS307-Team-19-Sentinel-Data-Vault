@@ -280,12 +280,13 @@ public class SecurityView {
 		panel_1.add(lblAndAtLeast);
 		
 		textField = new JTextField();
+		textField.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		textField.setBorder(null);
 		textField.setSelectedTextColor(SystemColor.control);
 		textField.setSelectionColor(SystemColor.control);
 		textField.setBackground(SystemColor.control);
 		textField.setEditable(false);
-		textField.setBounds(158, 11, 116, 22);
+		textField.setBounds(158, 11, 156, 22);
 		panel_1.add(textField);
 		textField.setColumns(10);
 
