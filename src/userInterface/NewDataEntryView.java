@@ -38,7 +38,7 @@ public class NewDataEntryView {
 	private JFrame frame;
 	private static Choice choice;
 	private static JPanel panel_1;
-	private String userName = "default";
+	private String userName;
 
 	public NewDataEntryView(String userName) {
 		this.userName = userName;
@@ -52,7 +52,7 @@ public class NewDataEntryView {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					NewDataEntryView window = new NewDataEntryView();
+					NewDataEntryView window = new NewDataEntryView("default");
 					window.frame.setVisible(true);
 
 				} catch (Exception e) {
