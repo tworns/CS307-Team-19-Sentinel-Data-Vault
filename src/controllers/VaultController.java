@@ -110,7 +110,7 @@ public class VaultController {
 				 */
 				LocalDateTime time = LocalDateTime.now();
 				//Sample Account Login
-				DataEntry newEntry = new DataEntry(username + "'s Account Login", "Website Login", "key", username, 0, time);
+				DataEntry newEntry = new DataEntry(username + " Account Login", "Website Login", "key", username, 0, time);
 				newEntry.addDataField("johnpurdue");
 				newEntry.addDataField("12345678");
 				newEntry.addDataField("google.com");
@@ -118,7 +118,7 @@ public class VaultController {
 				m.addEntryToDatabase(newEntry);
 				
 				//Sample Credit/Debit Card
-				DataEntry newEntry2 = new DataEntry(username + "'s Sample Card", "Credit/Debit Card", "key", username, 0, time);
+				DataEntry newEntry2 = new DataEntry(username + " Sample Card", "Credit/Debit Card", "key", username, 0, time);
 				newEntry2.addDataField("VISA");
 				newEntry2.addDataField("0000 0000 0000 0000");
 				newEntry2.addDataField("John Purdue");
