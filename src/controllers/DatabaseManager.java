@@ -578,17 +578,19 @@ public class DatabaseManager {
 		Connection DBconnection = connectToDatabase();
 		try {
 			// Initialize a statement to execute
-			Statement stmt = DBconnection.createStatement();
 
+			String count = "SELECT COUNT(*) FROM data_entries WHERE entry_name=? AND owner=?";
+			PreparedStatement preparedStatement =
+			        DBconnection.prepareStatement(count);
+			preparedStatement.setString(1, entry.getEntryName());
+			preparedStatement.setString(2, entry.getOwner());
 			//Check that entry_name does not already exist
-			ResultSet results = stmt.executeQuery(
-					"SELECT COUNT(*) FROM data_entries WHERE entry_name = " + "'" + entry.getEntryName() + "' "
-					+ "AND owner = '" + entry.getOwner() + "';");
+			ResultSet results = preparedStatement.executeQuery();
 			if (results.getInt(1) != 0) {
 				// entry_name exists, return failure value
 				System.out.println("Entry name already exists!");
 				results.close();
-				stmt.close();
+				preparedStatement.close();
 				DBconnection.close();						
 				return -1;
 			}
@@ -600,23 +602,46 @@ public class DatabaseManager {
 				sql = sql + ", ";
 				sql = sql + "data_field_" + Integer.toString(i + 1);
 			}
-			sql = sql + ") VALUES ('" + entry.getEntryName() + "', "  + "'" + entry.getEntryType()  + "', " + "'"
+			sql = sql + ") VALUES (?, ?, ?, ?, ?, ?, ?, ";
+			/*sql = sql + ") VALUES ('" + entry.getEntryName() + "', "  + "'" + entry.getEntryType()  + "', " + "'"
 					+ entry.getEncryptionKey()  + "', " + "'" + entry.getOwner()  + "', " + "'"
-					+ entry.buildValidUsersString() + "', " + entry.isHighSecurity() + ", '" + entry.getLastModified().toString() + "', ";
-			for (int j = 0; j < field_number; j++) {
+					+ entry.buildValidUsersString() + "', " + entry.isHighSecurity() + ", '" + entry.getLastModified().toString() + "', ";*/
+			/*for (int j = 0; j < field_number; j++) {
 				sql = sql + "'" + entry.getFieldDataList().get(j) + "'";
 				if (j != field_number -1)
 					sql = sql + ", ";
+			}*/
+			for (int j = 0; j < field_number; j++) {
+				sql = sql + "?";
+				if (j != field_number -1)
+					sql = sql + ", ";
 			}
-			sql = sql + ");";
-			System.out.println(sql);		
-					
+			sql = sql + ")";
+			System.out.println(sql);
+			
+			preparedStatement =
+			        DBconnection.prepareStatement(sql);
+			
+			preparedStatement.setString(1, entry.getEntryName());
+			preparedStatement.setString(2, entry.getEntryType());
+			preparedStatement.setString(3, entry.getEncryptionKey());
+			preparedStatement.setString(4, entry.getOwner());
+			preparedStatement.setString(5, entry.buildValidUsersString());
+			preparedStatement.setInt(6, entry.isHighSecurity());
+			preparedStatement.setString(7, entry.getLastModified().toString());
+			
+			for (int i = 0; i < field_number; i++) {
+				preparedStatement.setString(8 + i, entry.getFieldDataList().get(i));
+			}
+			
+			preparedStatement.executeUpdate();
+			
 			// Execute the statement and commit database changes
-			stmt.executeUpdate(sql);
+			//stmt.executeUpdate(sql);
 			DBconnection.commit();
 
 			// Disconnect from database
-			stmt.close();
+			preparedStatement.close();
 			DBconnection.close();
 
 			// return a success value
