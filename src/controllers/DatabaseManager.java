@@ -328,6 +328,7 @@ public class DatabaseManager {
 		return entryTypeList;
 	}
 	
+	// TODO May need to be adjusted based on how shared data entries will be retrieved from the database (name & owner?)
 	/**
 	 * Generates an alphabetical List of all a given user’s viewable shared data entries.
 	 * NOTE: Requires that valid_users field in database contains a SORTED String of user_emails separated by " " (space)
