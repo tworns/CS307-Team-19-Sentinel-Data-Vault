@@ -14,6 +14,7 @@ import com.sun.mail.smtp.SMTPTransport;
 import cryptography.SaltGenerator;
 import cryptography.Crypto;
 import cryptography.PasswordHasher;
+import dataManagement.DataEntry;
 import dataManagement.User;
 import security.PasswordValidation;
 import userInterface.*;
@@ -104,7 +105,31 @@ public class VaultController {
 				return 0;
 			}
 			else{
+				/*	Jiho Choi
+				 * Add Sample Data Entry (Account Login, Credit Car)
+				 * 
+				 */
+				LocalDateTime time = LocalDateTime.now();
+				//Sample Account Login
+				DataEntry newEntry = new DataEntry(username + "'s Account Login", "Website Login", "key", username, 0, time);
+				newEntry.addDataField("johnpurdue");
+				newEntry.addDataField("12345678");
+				newEntry.addDataField("google.com");
+				DatabaseManager m = new DatabaseManager();
+				m.addEntryToDatabase(newEntry);
+				
+				//Sample Credit/Debit Card
+				DataEntry newEntry2 = new DataEntry(username + "'s Sample Card", "Credit/Debit Card", "key", username, 0, time);
+				newEntry2.addDataField("VISA");
+				newEntry2.addDataField("0000 0000 0000 0000");
+				newEntry2.addDataField("John Purdue");
+				newEntry2.addDataField("000");
+				newEntry2.addDataField("10/20");
+				m.addEntryToDatabase(newEntry2);
+
+				
 				JOptionPane.showMessageDialog(null,"You have successfully created your account!");
+				
 				return 1;
 			}
 		}

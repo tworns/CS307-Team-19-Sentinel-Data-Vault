@@ -340,7 +340,9 @@ public class HomeView {
 		
 		
 		//Tree		
+		
 		JTree tree = new JTree();
+		
 		//String selectedNode = null;
 
 		tree.addTreeSelectionListener(new TreeSelectionListener() {
@@ -427,17 +429,17 @@ public class HomeView {
 		DatabaseManager dbmanger = new DatabaseManager();
 		currentUser = dbmanger.retrieveUserFromDatabase(username);
 		
-		currentAllDataEntries = dbmanger.retrieveAllDataEntries(username);
-		currentDataEntryNameList = dbmanger.retrieveDataEntryNameList(username);
-		currentDataEntryTypeList = dbmanger.retrieveDataEntryTypeList(username);
+		//currentAllDataEntries = dbmanger.retrieveAllDataEntries(username);
+		//currentDataEntryNameList = dbmanger.retrieveDataEntryNameList(username);
+		//currentDataEntryTypeList = dbmanger.retrieveDataEntryTypeList(username);
 		
 		DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
 		DefaultMutableTreeNode root = (DefaultMutableTreeNode) model.getRoot();
 
 		DefaultMutableTreeNode node_1;
 		
-		node_1 = new DefaultMutableTreeNode("Account Login");
-		node_1.add(new DefaultMutableTreeNode("Google"));
+		//node_1 = new DefaultMutableTreeNode("Account Login");
+		//node_1.add(new DefaultMutableTreeNode("Google"));
 		//node_1.add(new DefaultMutableTreeNode("Apple"));
 		//node_1.add(new DefaultMutableTreeNode("Purdue"));
 		root.add(node_1);
@@ -447,13 +449,17 @@ public class HomeView {
 
 		root.add(new DefaultMutableTreeNode("here"));
 		//DefaultMutableTreeNode root = new DefaultMutableTreeNode("saad");
+		
 		model.reload(root);
 		System.out.println(currentAllDataEntries.size());
 		System.out.println(currentDataEntryNameList.size());
 		System.out.println(currentDataEntryTypeList.size());
 		
 		for (int i=0; i < currentDataEntryTypeList.size(); i++) {
-			root = (DefaultMutableTreeNode)model.getRoot();
+			
+			
+			
+			root = (DefaultMutableTreeNode) model.getRoot();
 			//if (currentDataEntryTypeList.get(i));
 			root.add(new DefaultMutableTreeNode(currentDataEntryTypeList.get(i)));
 			model.reload(root);
