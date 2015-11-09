@@ -38,29 +38,12 @@ public class CryptoTest {
 		testData.addDataField("TESTING!");
 		testData.addDataField("ASDFASDLKJFALSDKJF!#@!#!@##@LRKAJSFLIAJ[]);;;''");
 		testData.addDataField("You may have a mild case of... er.. severe brain damage.");
-		try {
+		
 			test.encrypt(u, testData);
 			System.out.println(testData.getFieldDataList());
 			test.decrypt(u, testData);
 			System.out.println(testData.getFieldDataList());
-		} catch (NoSuchAlgorithmException e) {
 		
-			e.printStackTrace();
-		} catch (NoSuchPaddingException e) {
-			e.printStackTrace();
-		} catch (IllegalBlockSizeException e) {
-			
-			e.printStackTrace();
-		} catch (BadPaddingException e) {
-			
-			e.printStackTrace();
-		} catch (InvalidKeyException e) {
-			
-			e.printStackTrace();
-		} catch (IOException e) {
-		
-			e.printStackTrace();
-		}
 	}
 	
 	
