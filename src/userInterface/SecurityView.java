@@ -64,14 +64,14 @@ public class SecurityView {
 		//displays window
 		frame = new JFrame();
 		frame.setResizable(false);
-		frame.setBounds(100, 100, 372, 384);
+		frame.setBounds(100, 100, 337, 384);
 		frame.setTitle("Security View");
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		//display code for the tabs
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setBounds(0, 0, 366, 349);
+		tabbedPane.setBounds(0, 0, 331, 349);
 		frame.getContentPane().add(tabbedPane);
 		
 		//label for password generator section
@@ -241,6 +241,31 @@ public class SecurityView {
 		passwordField = new JPasswordField();
 		passwordField.setBounds(19, 42, 211, 19);
 		panel_1.add(passwordField);
+		
+		JLabel lblPasswordCreationTips = new JLabel("Password Creation Tips");
+		lblPasswordCreationTips.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblPasswordCreationTips.setBounds(74, 124, 187, 16);
+		panel_1.add(lblPasswordCreationTips);
+		
+		JLabel lblAStrongPassword = new JLabel("A Strong password has: ");
+		lblAStrongPassword.setBounds(21, 149, 164, 16);
+		panel_1.add(lblAStrongPassword);
+		
+		JLabel lblAtLeast = new JLabel("At least 1 special character");
+		lblAtLeast.setBounds(49, 178, 178, 16);
+		panel_1.add(lblAtLeast);
+		
+		JLabel lblAtLeast_1 = new JLabel("At least 1 number");
+		lblAtLeast_1.setBounds(49, 208, 114, 16);
+		panel_1.add(lblAtLeast_1);
+		
+		JLabel lblAtLeast_2 = new JLabel("At least 1 capital letter");
+		lblAtLeast_2.setBounds(49, 235, 156, 17);
+		panel_1.add(lblAtLeast_2);
+		
+		JLabel lblAndAtLeast = new JLabel("And, at least 1 lowercase letter");
+		lblAndAtLeast.setBounds(46, 266, 196, 16);
+		panel_1.add(lblAndAtLeast);
 
 	}
 }
