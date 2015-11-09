@@ -65,7 +65,7 @@ public class Crypto {
 		 }
 	}
 	
-	public DataEntry encrypt(User user, DataEntry data) { 
+	public DataEntry encrypt(User user, DataEntry data) { //TODO figure out where the high security is being retrieved from.
 				
 		try {
 			Cipher c;
@@ -73,7 +73,7 @@ public class Crypto {
 			List<String> dataList = new ArrayList<String>();
 			Key key = keyGen(user,data); // makes a key from the user's data key.
 			
-			if(user.isHighSecurity() == 1 || data.isHighSecurity() == 1) { //AES encryption
+			if(user.isHighSecurity() == 1) { //AES encryption
 				 c = Cipher.getInstance("AES/CBC/PKCS5Padding");
 				c.init(Cipher.ENCRYPT_MODE, key, iv); //make a cipher.
 			}

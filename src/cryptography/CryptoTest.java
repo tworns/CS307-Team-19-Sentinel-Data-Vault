@@ -12,7 +12,7 @@ public class CryptoTest {
 	}
 	public static void main(String[] args) { 
 		Crypto test = new Crypto();
-		int secLvl = 0;
+		int secLvl = 1;
 		DataEntry testData = new DataEntry(null, null, null, null, 0, null);
 		User u = new User(null, null, null, null, null, null, null);
 		try{
