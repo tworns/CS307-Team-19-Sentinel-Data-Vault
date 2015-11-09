@@ -76,7 +76,7 @@ public class LoginView {
 		passwordField = new JPasswordField();
 		passwordField.setBounds(131, 142, 184, 24);
 		
-		JButton btnNewButton = new JButton("Login");
+		JButton btnNewButton = new JButton("Sign in");
 		btnNewButton.setBounds(325, 106, 72, 62);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
