@@ -16,7 +16,7 @@ public class Crypto {
 		
 	}
 	
-	public String randomDataKey(int security) {// generates the key that's stored in the user || object
+	public String randomDataKey(int security) {// USE THE DATAENTRY SECURITY KEY HERE!
 		String output;
 		SecureRandom r = new SecureRandom();
 
@@ -41,7 +41,7 @@ public class Crypto {
 		//DataEntries created by the User will be given the key that the user has. 
 		 //USER KEY GOES INTO THE SECRET KEY SPEC!
 		Key key;
-		if(user.isHighSecurity() == 1 || data.isHighSecurity() == 1) { //AES key gen
+		if( data.isHighSecurity() == 1) { //AES key gen
 		 key = new SecretKeySpec(data.getEncryptionKey().getBytes(), "AES");
 		}
 		else{ //3DES key gen
@@ -50,9 +50,9 @@ public class Crypto {
 		return key;
 	}
 	
-	public byte[] ivGen(User user) { //Encryption was insecure, needed salt.
+	public byte[] ivGen(User user, int security) { //Encryption was insecure, needed salt.
 		String iv = user.getPasswordSalt();
-		if(user.isHighSecurity() == 1) { //AES
+		if(security == 1) { //AES
 			char[] salt16 = new char[16];
 			iv.getChars(0, 16, salt16, 0);
 			return new String(salt16).getBytes();
@@ -69,11 +69,11 @@ public class Crypto {
 				
 		try {
 			Cipher c;
-			IvParameterSpec iv = new IvParameterSpec(ivGen(user));
+			IvParameterSpec iv = new IvParameterSpec(ivGen(user,data.isHighSecurity()));
 			List<String> dataList = new ArrayList<String>();
 			Key key = keyGen(user,data); // makes a key from the user's data key.
 			
-			if(user.isHighSecurity() == 1) { //AES encryption
+			if(data.isHighSecurity() == 1) { //AES encryption
 				 c = Cipher.getInstance("AES/CBC/PKCS5Padding");
 				c.init(Cipher.ENCRYPT_MODE, key, iv); //make a cipher.
 			}
@@ -102,16 +102,17 @@ public class Crypto {
 		try {
 			Key key = keyGen(user,data);
 			Cipher c;
+			IvParameterSpec iv = new IvParameterSpec(ivGen(user,data.isHighSecurity()));
 			List<String> dataList = new ArrayList<String>();
 			
-			if(user.isHighSecurity()==1) { //AES encryption decrypt
+			if(data.isHighSecurity()==1) { //AES encryption decrypt
 				c = Cipher.getInstance("AES/CBC/PKCS5Padding");
-				c.init(Cipher.DECRYPT_MODE, key, new IvParameterSpec(ivGen(user)));
+				c.init(Cipher.DECRYPT_MODE, key, iv);
 			}
 			
 			else { //3DES encryption decrypt
 				 c = Cipher.getInstance("DESede/CBC/PKCS5Padding");
-				c.init(Cipher.DECRYPT_MODE, key,new IvParameterSpec(ivGen(user)));
+				c.init(Cipher.DECRYPT_MODE, key,iv);
 			}
 			for(String entry : data.getFieldDataList()){	//NOTE: If there is a null entry in this list, you WILL get a NullPointerException
 				BASE64Decoder k = new BASE64Decoder();
