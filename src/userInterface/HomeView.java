@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.Locale;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -16,16 +15,12 @@ import javax.swing.JPanel;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
-
 import javax.swing.JTree;
-
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
-
 import dataManagement.*;
 import controllers.DatabaseManager;
-
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JTabbedPane;
@@ -42,8 +37,6 @@ public class HomeView {
 	public JFrame frmSentinelDataVault;
 	private JTextField textField;
 	private JTextField textField_1;
-
-
 	public String username;
 	public String lastlogin;
 	public User currentUser;
@@ -52,14 +45,6 @@ public class HomeView {
 	public List<String> currentDataEntryNameList;
 	public List<String> currentDataEntryTypeList;
 
-	
-	
-	/**
-	 * Launch the application.
-	 */
-
-	
-	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -77,7 +62,6 @@ public class HomeView {
 	/**
 	 * Create the application.
 	 */
-
 	public HomeView(String username) {
 		this.username = username;
 		lastlogin = "last login time";
@@ -88,11 +72,8 @@ public class HomeView {
 		currentDataEntryNameList = dbmanger.retrieveDataEntryNameList(username);
 		currentDataEntryTypeList = dbmanger.retrieveDataEntryTypeList(username);
 		
-		
 		initialize();	
 	}
-
-
 
 	/**
 	 * Initialize the contents of the frame.
@@ -111,7 +92,7 @@ public class HomeView {
 		panel_north.setOpaque(false); // to set transparent panel
 		frmSentinelDataVault.getContentPane().add(panel_north);
 
-		JButton btnSignOut = new JButton("Sign Out");
+		JButton btnSignOut = new JButton("Sign out");
 		btnSignOut.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
 		
 		btnSignOut.addActionListener(new ActionListener() {
@@ -124,12 +105,10 @@ public class HomeView {
 					frmLog.frame.setVisible(true);
 					frmSentinelDataVault.dispose();
 				}
-				
 			}
 		});
 		
-
-		JButton btnSetting = new JButton("Setting");
+		JButton btnSetting = new JButton("Settings");
 		btnSetting.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
 		
 		btnSetting.addActionListener(new ActionListener() {
@@ -140,7 +119,7 @@ public class HomeView {
 			}
 		});
 
-		JButton btnAddData = new JButton("Add Data");
+		JButton btnAddData = new JButton("New Entry");
 		btnAddData.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
 
 		btnAddData.addActionListener(new ActionListener() {
@@ -149,7 +128,6 @@ public class HomeView {
 			newDataEntry.getJframe().setVisible(true);
 			}
 		});
-		
 		
 		JButton btnSecurity = new JButton("Security");
 		btnSecurity.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
@@ -160,7 +138,6 @@ public class HomeView {
 				regFace.frame.setVisible(true);
 				// frmSentinelDataVault.dispose();
 			}
-			
 		});
 		
 		btnSecurity.addActionListener(new ActionListener() {
@@ -168,14 +145,14 @@ public class HomeView {
 			}
 		});
 
-		JButton btnDeleteData = new JButton("Remove");
+		JButton btnDeleteData = new JButton("Delete Entry");
 		btnDeleteData.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
 
 		JLabel lblEmpty_1 = new JLabel("     ");
 
 		JLabel lblEmpty_2 = new JLabel("     ");
 
-		JButton btnEditData = new JButton("Edit Data");
+		JButton btnEditData = new JButton("Edit Entry");
 		btnEditData.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -232,9 +209,6 @@ public class HomeView {
 
 		JTabbedPane panel_east = new JTabbedPane();
 		panel_east.setBackground(Color.WHITE);
-
-
-
 
 		GroupLayout gl_panel_south = new GroupLayout(panel_south);
 		gl_panel_south.setHorizontalGroup(
@@ -349,7 +323,6 @@ public class HomeView {
 
 		tree.addTreeSelectionListener(new TreeSelectionListener() {
 
-			
 			public void valueChanged(TreeSelectionEvent e) {
 				
 				JTree tree = (JTree) e.getSource();
@@ -381,39 +354,38 @@ public class HomeView {
 					panel = dataPanel.getLicensePanel(currentdata);
 					panelName = "License";
 					panel_east.addTab(panelName, null, panel, null);
-				
 				}
 				
 				System.out.println(selectedNodeName);
 			
 				//if data item
 				if (selectedNode.isLeaf()) {
-
 					System.out.println("Leaf: " + selectedNodeName);
-
 				}
-
 				return;
-
 			}
 		});
-		
-		
 		
 		DatabaseManager dbmanger = new DatabaseManager();
 		currentUser = dbmanger.retrieveUserFromDatabase(username);
 		
-	
+		DefaultMutableTreeNode node_0 = new DefaultMutableTreeNode("Account Login");
+		DefaultMutableTreeNode node_1 = new DefaultMutableTreeNode("Credit/Debit Card");
+		DefaultMutableTreeNode node_2 = new DefaultMutableTreeNode("License");
+		DefaultMutableTreeNode node_3 = new DefaultMutableTreeNode("Passport");
+		DefaultMutableTreeNode node_4 = new DefaultMutableTreeNode("SSN");
+		DefaultMutableTreeNode node_5 = new DefaultMutableTreeNode("Wifi Network");
+		
+		
 		tree.setModel(new DefaultTreeModel(
-			new DefaultMutableTreeNode(" ") {
+			new DefaultMutableTreeNode("Data Entry") {
 				{
-					
-					add(new DefaultMutableTreeNode("Account Login"));
-					add(new DefaultMutableTreeNode("Credit Card"));
-					add(new DefaultMutableTreeNode("License"));
-					add(new DefaultMutableTreeNode("Passport"));
-					add(new DefaultMutableTreeNode("SSN"));
-					add(new DefaultMutableTreeNode("Wifi Network"));
+					add(node_0);
+					add(node_1);
+					add(node_2);
+					add(node_3);
+					add(node_4);
+					add(node_5);
 				}
 			}
 		));
@@ -441,63 +413,35 @@ public class HomeView {
 		
 		for (int i=0; i < currentDataEntryTypeList.size(); i++) {
 			DefaultMutableTreeNode child = new DefaultMutableTreeNode(currentDataEntryNameList.get(i));
-			if (currentDataEntryTypeList.get(i).getClass().equals("Account Login")) {
-				
-		//	root.getChildAt(0).getChildAt(0).
-				
-			}
-		}
-/*		
-		for (int i=0; i < currentDataEntryTypeList.size(); i++) {
-			int existFlag = 0;
 			
-			for (int j=0; j < entryTypeList.size(); j++) {
-				
-				if (entryTypeList.get(j).equals(currentDataEntryTypeList.get(i))) {
-					// check if the category exit
-					existFlag = 1;
-					
-					DefaultMutableTreeNode root = (DefaultMutableTreeNode) model.getRoot(); 
-
-				    Enumeration enumeration= root.breadthFirstEnumeration(); 
-				    while(enumeration.hasMoreElements()) {
-
-				        node = (DefaultMutableTreeNode)enumeration.nextElement(); 
-				        if(currentDataEntryTypeList.get(j).equals(node.getUserObject().toString())) {
-				        	DefaultMutableTreeNode new_item = new DefaultMutableTreeNode(currentDataEntryNameList.get(i));
-							node.add(new DefaultMutableTreeNode(new_item));
-							model.reload(node);
-				        } 
-				    } 
-					break;
-				}
+			if (currentDataEntryTypeList.get(i).equals("Account Login")) {
+				System.out.println(currentDataEntryTypeList.get(i));
+				node_0.add(child);
 			}
-			if (existFlag == 0) {
-				//if category doesn't exit
-				DefaultMutableTreeNode new_item = new DefaultMutableTreeNode(currentDataEntryNameList.get(i));
-				
-				child.add(new DefaultMutableTreeNode(new_item));
-				node.add(child);
-				
-				DefaultMutableTreeNode new_node = new DefaultMutableTreeNode(currentDataEntryTypeList.get(i));
-				DefaultMutableTreeNode root = (DefaultMutableTreeNode) model.getRoot();
-				root.add(new DefaultMutableTreeNode(new_node));
-				model.reload(root);
-				
-				entryTypeList.add(currentDataEntryTypeList.get(i));
-				
+			else if (currentDataEntryTypeList.get(i).equals("Credit/Debit Card")) {
+				System.out.println(currentDataEntryTypeList.get(i));
+				node_1.add(child);	
 			}
-				
+			else if (currentDataEntryTypeList.get(i).equals("License")) {
+				System.out.println(currentDataEntryTypeList.get(i));
+				node_2.add(child);	
+			}
+			else if (currentDataEntryTypeList.get(i).equals("Passport")) {
+				System.out.println(currentDataEntryTypeList.get(i));
+				node_3.add(child);	
+			}
+			else if (currentDataEntryTypeList.get(i).equals("SSN")) {
+				System.out.println(currentDataEntryTypeList.get(i));
+				node_4.add(child);	
+			}
+			else if (currentDataEntryTypeList.get(i).equals("Wifi Network")) {
+				System.out.println(currentDataEntryTypeList.get(i));
+				node_5.add(child);	
+			}
 			
 		}
-*/
 		
 		panel_center.addTab("Category", null, tree, null);
-
-
-
-
-
 
 		// MenuBar
 		JMenuBar menuBar = new JMenuBar();
@@ -538,19 +482,5 @@ public class HomeView {
 
 		JMenuItem mntmAbout = new JMenuItem("About");
 		mnHelp.add(mntmAbout);
-
-
-
-
 	}
-
-
-
-
-
-
-
-
-
-
 }
