@@ -376,10 +376,10 @@ public class HomeView {
 					panelName = "Credit Card";
 					panel_east.addTab(panelName, null, panel, null);
 				}
-				if (selectedNodeName.equals("Driver's License")) {
+				if (selectedNodeName.equals("License")) {
 					
 					panel = dataPanel.getLicensePanel(currentdata);
-					panelName = "Driver's License";
+					panelName = "License";
 					panel_east.addTab(panelName, null, panel, null);
 				
 				}
@@ -407,6 +407,7 @@ public class HomeView {
 		tree.setModel(new DefaultTreeModel(
 			new DefaultMutableTreeNode(" ") {
 				{
+					
 					add(new DefaultMutableTreeNode("Account Login"));
 					add(new DefaultMutableTreeNode("Credit Card"));
 					add(new DefaultMutableTreeNode("License"));
@@ -430,10 +431,22 @@ public class HomeView {
 		//node_1.add(new DefaultMutableTreeNode("Apple"));
 		//node_1.add(new DefaultMutableTreeNode("Purdue"));
 		//root.add(node_1);
+		DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
+		DefaultMutableTreeNode root = (DefaultMutableTreeNode) model.getRoot();
 		
 		System.out.println("currentDataEntryNameList :" + currentDataEntryNameList.size());
 		System.out.println("currentDataEntryTypeList :" + currentDataEntryTypeList.size());
+		System.out.println("number of root :" + root.getChildCount());
+
 		
+		for (int i=0; i < currentDataEntryTypeList.size(); i++) {
+			DefaultMutableTreeNode child = new DefaultMutableTreeNode(currentDataEntryNameList.get(i));
+			if (currentDataEntryTypeList.get(i).getClass().equals("Account Login")) {
+				
+		//	root.getChildAt(0).getChildAt(0).
+				
+			}
+		}
 /*		
 		for (int i=0; i < currentDataEntryTypeList.size(); i++) {
 			int existFlag = 0;
