@@ -59,20 +59,20 @@ public class SignupView extends JFrame {
 		contentPane.add(lblNewLabel_1);
 		
 		JLabel lblReenter = new JLabel("Re-enter:");
-		lblReenter.setBounds(83, 113, 72, 18);
+		lblReenter.setBounds(87, 112, 72, 18);
 		contentPane.add(lblReenter);
 		
 		usernameField = new JTextField();
-		usernameField.setBounds(169, 50, 160, 24);
+		usernameField.setBounds(169, 50, 240, 24);
 		contentPane.add(usernameField);
 		usernameField.setColumns(10);
 		
 		passwordField1 = new JPasswordField();
-		passwordField1.setBounds(169, 80, 160, 24);
+		passwordField1.setBounds(169, 80, 240, 24);
 		contentPane.add(passwordField1);
 		
 		passwordField2 = new JPasswordField();
-		passwordField2.setBounds(169, 110, 160, 24);
+		passwordField2.setBounds(169, 110, 240, 24);
 		contentPane.add(passwordField2);
 		
 		JButton btnNewButton = new JButton("Create account!");
@@ -103,7 +103,7 @@ public class SignupView extends JFrame {
 		contentPane.add(btnNewButton);
 		
 		JLabel lblSecurityQuestion = new JLabel("Security Question:");
-		lblSecurityQuestion.setBounds(33, 143, 129, 18);
+		lblSecurityQuestion.setBounds(32, 143, 129, 18);
 		contentPane.add(lblSecurityQuestion);
 		
 		JComboBox comboBox = new JComboBox();
@@ -112,12 +112,12 @@ public class SignupView extends JFrame {
 				question  = (String) comboBox.getSelectedItem();
 			}
 		});
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Please choose a security question below", "What is the maiden name of your mother?", "What is name of your pet", "Where is your favorite city?"}));
-		comboBox.setBounds(169, 140, 253, 27);
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Choose a security question...", "What is the maiden name of your mother?", "What is name of your pet", "Where is your favorite city?"}));
+		comboBox.setBounds(169, 140, 240, 27);
 		contentPane.add(comboBox);
 		
 		JLabel lblAnswer = new JLabel("Answer:");
-		lblAnswer.setBounds(99, 173, 56, 18);
+		lblAnswer.setBounds(97, 173, 56, 18);
 		contentPane.add(lblAnswer);
 		
 		JButton btnCancel = new JButton("Cancel");
@@ -128,11 +128,11 @@ public class SignupView extends JFrame {
 			
 			}
 		});
-		btnCancel.setBounds(305, 207, 117, 29);
+		btnCancel.setBounds(305, 207, 102, 29);
 		contentPane.add(btnCancel);
 		
 		answerField = new JTextField();
-		answerField.setBounds(169, 170, 160, 24);
+		answerField.setBounds(169, 170, 240, 24);
 		contentPane.add(answerField);
 		answerField.setColumns(10);
 	}
