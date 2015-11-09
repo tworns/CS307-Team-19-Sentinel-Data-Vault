@@ -1,7 +1,6 @@
 package cryptography;
 
 import dataManagement.*;
-
 import sun.misc.*;
 import java.io.IOException;
 import java.security.*;
@@ -10,6 +9,7 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 import java.util.ArrayList;
 import java.util.List;
+
 public class Crypto {
 	
 	public Crypto () {
