@@ -38,7 +38,7 @@ public class NewDataEntryView {
 	private JFrame frame;
 	private static Choice choice;
 	private static JPanel panel_1;
-	private String userName;
+	private String userName = "default";
 
 	public NewDataEntryView(String userName) {
 		this.userName = userName;
@@ -85,13 +85,14 @@ public class NewDataEntryView {
 		frame.getContentPane().add(panel, BorderLayout.NORTH);
 
 		choice = new Choice();
-		choice.addItem("SSN");
+		choice.addItem("Account Logins");
 		choice.addItem("Credit/Debit Card");
+		choice.addItem("License");
 		choice.addItem("Passport");
-		choice.addItem("Driver's License");
-		choice.addItem("Website Logins");
-		choice.addItem("Wifi Network");
 		choice.addItem("Phone Number");
+		choice.addItem("SSN");		
+		choice.addItem("Wifi Network");
+		
 		panel.add(choice);
 
 		panel_1 = new JPanel();
@@ -101,7 +102,7 @@ public class NewDataEntryView {
 			public void itemStateChanged(ItemEvent e) {
 				if (e.getStateChange() == ItemEvent.SELECTED) {
 					int index = choice.getSelectedIndex();
-					if (index == 0) {
+					if (index == 5) {
 						frame.setTitle("New SSN");
 
 						frame.getContentPane().removeAll();
@@ -122,7 +123,7 @@ public class NewDataEntryView {
 						label_2 = new JLabel("SSN");
 						label_2.setBounds(40, 70, 150, 18);
 
-						textField = new JTextField("SSN");
+						textField = new JTextField();
 						textField.setBounds(110, 10, 200, 18);
 						textField.setColumns(10);
 
@@ -288,7 +289,7 @@ public class NewDataEntryView {
 						btnCancel.setBounds(305, 307, 117, 29);
 						frame.getContentPane().add(btnCancel);
 					}
-					if (index == 2) {
+					if (index == 3) {
 						frame.setTitle("New Passport");
 						frame.getContentPane().removeAll();
 
@@ -423,8 +424,8 @@ public class NewDataEntryView {
 						btnCancel.setBounds(305, 307, 117, 29);
 						frame.getContentPane().add(btnCancel);
 					}
-					if (index == 3) {
-						frame.setTitle("New Driver's License");
+					if (index == 2) {
+						frame.setTitle("New License");
 						frame.getContentPane().removeAll();
 
 						frame.revalidate();
@@ -485,7 +486,7 @@ public class NewDataEntryView {
 						btnSave.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
 								LocalDateTime createdtime = LocalDateTime.now();
-								DataEntry newEntry = new DataEntry(textField.getText(), "Driver's license", "key", userName,
+								DataEntry newEntry = new DataEntry(textField.getText(), "License", "key", userName,
 										0, createdtime);
 								newEntry.addDataField(textField_1.getText());
 								newEntry.addDataField(textField_2.getText());
@@ -516,8 +517,8 @@ public class NewDataEntryView {
 						btnCancel.setBounds(305, 307, 117, 29);
 						frame.getContentPane().add(btnCancel);
 					}
-					if (index == 4) {
-						frame.setTitle("New Website Login");
+					if (index == 0) {
+						frame.setTitle("New Account Login");
 						frame.getContentPane().removeAll();
 
 						frame.revalidate();
@@ -536,7 +537,7 @@ public class NewDataEntryView {
 						label_2 = new JLabel("Password");
 						label_2.setBounds(40, 70, 150, 18);
 
-						label_3 = new JLabel("Website Address");
+						label_3 = new JLabel("Account Address");
 						label_3.setBounds(40, 100, 150, 18);
 
 						textField = new JTextField();
@@ -569,7 +570,7 @@ public class NewDataEntryView {
 						btnSave.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
 								LocalDateTime createdtime = LocalDateTime.now();
-								DataEntry newEntry = new DataEntry(textField.getText(), "Website Login", "key", userName, 0,
+								DataEntry newEntry = new DataEntry(textField.getText(), "Account Login", "key", userName, 0,
 										createdtime);
 								newEntry.addDataField(textField_1.getText());
 								newEntry.addDataField(textField_2.getText());
@@ -599,7 +600,7 @@ public class NewDataEntryView {
 						btnCancel.setBounds(305, 307, 117, 29);
 						frame.getContentPane().add(btnCancel);
 					}
-					if (index == 5) {
+					if (index == 6) {
 						frame.setTitle("New Wifi Network");
 						frame.getContentPane().removeAll();
 
@@ -683,7 +684,7 @@ public class NewDataEntryView {
 						frame.getContentPane().add(btnCancel);
 					}
 
-					if (index == 6) {
+					if (index == 4) {
 						frame.setTitle("New Phone Number");
 						frame.getContentPane().removeAll();
 
