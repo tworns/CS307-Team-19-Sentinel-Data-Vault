@@ -20,6 +20,8 @@ import controllers.DatabaseManager;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.Font;
+import java.awt.SystemColor;
+import java.awt.Color;
 
 public class PasswordChangeView {
 
@@ -221,6 +223,7 @@ public class PasswordChangeView {
 		frmChangePassword.getContentPane().add(btnCancel);
 		
 		JTextPane txtpnThisIsWhere = new JTextPane(); //Field that displays currentUser's security question.
+		txtpnThisIsWhere.setBackground(Color.WHITE);
 		txtpnThisIsWhere.setEditable(false);
 		txtpnThisIsWhere.setText(currentUser.getSecurityQuestion());
 		txtpnThisIsWhere.setBounds(41, 144, 305, 22);
