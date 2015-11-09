@@ -3,6 +3,8 @@ package userInterface;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
 import java.util.Locale;
 
@@ -31,6 +33,7 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreePath;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.event.TreeSelectionListener;
 
@@ -435,19 +438,18 @@ public class HomeView {
 		
 		DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
 		DefaultMutableTreeNode root = (DefaultMutableTreeNode) model.getRoot();
+		DefaultMutableTreeNode root2 = (DefaultMutableTreeNode) model.getRoot();
 
-		DefaultMutableTreeNode node_1;
-		
 		//node_1 = new DefaultMutableTreeNode("Account Login");
 		//node_1.add(new DefaultMutableTreeNode("Google"));
 		//node_1.add(new DefaultMutableTreeNode("Apple"));
 		//node_1.add(new DefaultMutableTreeNode("Purdue"));
-		root.add(node_1);
+		//root.add(node_1);
 		
 		
 		//System.out.println (root.getChildCount());
 
-		root.add(new DefaultMutableTreeNode("here"));
+		//root.add(new DefaultMutableTreeNode("here"));
 		//DefaultMutableTreeNode root = new DefaultMutableTreeNode("saad");
 		
 		model.reload(root);
@@ -455,14 +457,51 @@ public class HomeView {
 		System.out.println(currentDataEntryNameList.size());
 		System.out.println(currentDataEntryTypeList.size());
 		
+		List<String> entryTypeList = new ArrayList<String>();
+		
 		for (int i=0; i < currentDataEntryTypeList.size(); i++) {
+			int existFlag = 0;
 			
-			
-			
-			root = (DefaultMutableTreeNode) model.getRoot();
-			//if (currentDataEntryTypeList.get(i));
-			root.add(new DefaultMutableTreeNode(currentDataEntryTypeList.get(i)));
-			model.reload(root);
+			for (int j=0; j < entryTypeList.size(); j++) {
+				
+				if (entryTypeList.get(j).equals(currentDataEntryTypeList.get(i))) {
+					// check if the category exit
+					existFlag = 1;
+					
+					
+					Enumeration<DefaultMutableTreeNode> e = root.depthFirstEnumeration();
+				    while (e.hasMoreElements()) {
+				        DefaultMutableTreeNode node = e.nextElement();
+				        if (node.toString().equals(entryTypeList.get(j))) {
+				        	root = node;
+				        }
+				    }
+					
+				   
+					DefaultMutableTreeNode new_item = new DefaultMutableTreeNode(currentDataEntryNameList.get(i));
+					root2 = (DefaultMutableTreeNode) root.getRoot();
+					root2.add(new DefaultMutableTreeNode(new_item));
+					root.add(root2);
+					
+					
+					break;
+				}
+			}
+			if (existFlag == 0) {
+				//if category doesn't exit
+				DefaultMutableTreeNode new_item = new DefaultMutableTreeNode(currentDataEntryNameList.get(i));
+				root2 = (DefaultMutableTreeNode) root.getRoot();
+				root2.add(new DefaultMutableTreeNode(new_item));
+				root.add(root2);
+				
+				DefaultMutableTreeNode new_node = new DefaultMutableTreeNode(currentDataEntryTypeList.get(i));
+				root = (DefaultMutableTreeNode) model.getRoot();
+				root.add(new DefaultMutableTreeNode(new_node));
+				model.reload(root);
+				
+				
+			}
+				
 			
 		}
 		
