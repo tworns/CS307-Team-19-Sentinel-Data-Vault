@@ -224,7 +224,7 @@ public class SecurityView {
 				StrengthChecker check = new StrengthChecker();
 				String input = new String(passwordField.getPassword());
 				String output = check.checkStrength(input);
-					String strength = "Your password is ";
+					String strength = "This password is ";
 					strength += output +"\n";
 					JOptionPane.showMessageDialog(null, strength, "Password", JOptionPane.INFORMATION_MESSAGE);
 			}
