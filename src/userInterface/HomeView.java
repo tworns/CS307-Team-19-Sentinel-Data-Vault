@@ -85,7 +85,6 @@ public class HomeView {
 		DatabaseManager dbmanger = new DatabaseManager();
 		currentUser = dbmanger.retrieveUserFromDatabase(username);
 		
-		currentAllDataEntries = dbmanger.retrieveAllDataEntries(username);
 		currentDataEntryNameList = dbmanger.retrieveDataEntryNameList(username);
 		currentDataEntryTypeList = dbmanger.retrieveDataEntryTypeList(username);
 		
@@ -379,7 +378,7 @@ public class HomeView {
 				}
 				if (selectedNodeName.equals("Driver's License")) {
 					
-					panel = dataPanel.getDriversLicensePanel(currentdata);
+					panel = dataPanel.getLicensePanel(currentdata);
 					panelName = "Driver's License";
 					panel_east.addTab(panelName, null, panel, null);
 				
@@ -400,65 +399,42 @@ public class HomeView {
 		});
 		
 		
-		//public List<DataEntry> currentAllDataEntries;
-		//public List<String> currentDataEntryNameList;
-		//public List<String> currentDataEntryTypeList;
-		
-	
-		tree.setModel(new DefaultTreeModel(
-				new DefaultMutableTreeNode(username) {
-					{
-/*
-						DefaultMutableTreeNode node_1;
-						
-						node_1 = new DefaultMutableTreeNode("Account Login");
-						node_1.add(new DefaultMutableTreeNode("Google"));
-						//node_1.add(new DefaultMutableTreeNode("Apple"));
-						//node_1.add(new DefaultMutableTreeNode("Purdue"));
-						add(node_1);
-						node_1 = new DefaultMutableTreeNode("Credit Card");
-						node_1.add(new DefaultMutableTreeNode("Visa"));
-						//node_1.add(new DefaultMutableTreeNode("Master"));
-						add(node_1);
-						node_1 = new DefaultMutableTreeNode("Driver's License");
-						//node_1.add(new DefaultMutableTreeNode("Driver's Lisence"));
-						add(node_1);
-*/
-					}
-				}
-				));
-		
 		
 		DatabaseManager dbmanger = new DatabaseManager();
 		currentUser = dbmanger.retrieveUserFromDatabase(username);
 		
-		//currentAllDataEntries = dbmanger.retrieveAllDataEntries(username);
-		//currentDataEntryNameList = dbmanger.retrieveDataEntryNameList(username);
-		//currentDataEntryTypeList = dbmanger.retrieveDataEntryTypeList(username);
+	
+		tree.setModel(new DefaultTreeModel(
+			new DefaultMutableTreeNode(" ") {
+				{
+					add(new DefaultMutableTreeNode("Account Login"));
+					add(new DefaultMutableTreeNode("Credit Card"));
+					add(new DefaultMutableTreeNode("License"));
+					add(new DefaultMutableTreeNode("Passport"));
+					add(new DefaultMutableTreeNode("SSN"));
+					add(new DefaultMutableTreeNode("Wifi Network"));
+				}
+			}
+		));
 		
+//	
+/*		
 		DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
-		DefaultMutableTreeNode root = (DefaultMutableTreeNode) model.getRoot();
-		DefaultMutableTreeNode root2 = (DefaultMutableTreeNode) model.getRoot();
-
+		DefaultMutableTreeNode node = (DefaultMutableTreeNode) model.getRoot();
+		DefaultMutableTreeNode child = (DefaultMutableTreeNode) node.getRoot();
+		node.add(child);
+		model.reload(node);
+*/		
 		//node_1 = new DefaultMutableTreeNode("Account Login");
 		//node_1.add(new DefaultMutableTreeNode("Google"));
 		//node_1.add(new DefaultMutableTreeNode("Apple"));
 		//node_1.add(new DefaultMutableTreeNode("Purdue"));
 		//root.add(node_1);
 		
-		
-		//System.out.println (root.getChildCount());
-
-		//root.add(new DefaultMutableTreeNode("here"));
-		//DefaultMutableTreeNode root = new DefaultMutableTreeNode("saad");
-		
-		model.reload(root);
-		
 		System.out.println("currentDataEntryNameList :" + currentDataEntryNameList.size());
 		System.out.println("currentDataEntryTypeList :" + currentDataEntryTypeList.size());
 		
-		List<String> entryTypeList = new ArrayList<String>();
-		
+/*		
 		for (int i=0; i < currentDataEntryTypeList.size(); i++) {
 			int existFlag = 0;
 			
@@ -468,7 +444,7 @@ public class HomeView {
 					// check if the category exit
 					existFlag = 1;
 					
-					DefaultMutableTreeNode node = null; 
+					DefaultMutableTreeNode root = (DefaultMutableTreeNode) model.getRoot(); 
 
 				    Enumeration enumeration= root.breadthFirstEnumeration(); 
 				    while(enumeration.hasMoreElements()) {
@@ -486,12 +462,12 @@ public class HomeView {
 			if (existFlag == 0) {
 				//if category doesn't exit
 				DefaultMutableTreeNode new_item = new DefaultMutableTreeNode(currentDataEntryNameList.get(i));
-				root2 = (DefaultMutableTreeNode) root.getRoot();
-				root2.add(new DefaultMutableTreeNode(new_item));
-				root.add(root2);
+				
+				child.add(new DefaultMutableTreeNode(new_item));
+				node.add(child);
 				
 				DefaultMutableTreeNode new_node = new DefaultMutableTreeNode(currentDataEntryTypeList.get(i));
-				root = (DefaultMutableTreeNode) model.getRoot();
+				DefaultMutableTreeNode root = (DefaultMutableTreeNode) model.getRoot();
 				root.add(new DefaultMutableTreeNode(new_node));
 				model.reload(root);
 				
@@ -501,12 +477,9 @@ public class HomeView {
 				
 			
 		}
-		
+*/
 		
 		panel_center.addTab("Category", null, tree, null);
-
-
-
 
 
 
