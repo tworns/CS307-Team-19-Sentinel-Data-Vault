@@ -1,7 +1,6 @@
 package userInterface;
 
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
@@ -17,18 +16,15 @@ import cryptography.PasswordHasher;
 import cryptography.SaltGenerator;
 import security.PasswordValidation;
 import javax.swing.JPasswordField;
-
 import controllers.DatabaseManager;
-
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.Font;
+
 public class PasswordChangeView {
 
 	public JFrame frmChangePassword;
 	private JTextField textField_3;
-	
-	
 	private String oldPass;
 	private String newPass1;
 	private String newPass2;
@@ -36,14 +32,12 @@ public class PasswordChangeView {
 	private boolean passCheck; 
 	private String question;
 	private String newAnswer;
-	/**
-	 * Launch the application.
-	 */
 	public User currentUser;
 	private JPasswordField passwordField;
 	private JPasswordField passwordField_1;
 	private JPasswordField passwordField_2;
 	private JTextField textField;
+	
 	public static void main(String[] args) { //Main for testing
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -88,23 +82,23 @@ public class PasswordChangeView {
 		frmChangePassword.getContentPane().setLayout(null);
 		
 		JLabel lblOldPassword = new JLabel("Current Password"); //Old password field label
-		lblOldPassword.setBounds(167, 33, 114, 16);
+		lblOldPassword.setBounds(165, 39, 114, 16);
 		frmChangePassword.getContentPane().add(lblOldPassword);
 		
 		JLabel lblNewPassword = new JLabel("New Password"); //new password field label
-		lblNewPassword.setBounds(165, 94, 88, 16);
+		lblNewPassword.setBounds(165, 76, 147, 16);
 		frmChangePassword.getContentPane().add(lblNewPassword);
 		
 		JLabel lblConfirmNewPassword = new JLabel("Confirm new Password"); //confirm password field label
-		lblConfirmNewPassword.setBounds(165, 128, 144, 16);
+		lblConfirmNewPassword.setBounds(165, 110, 144, 16);
 		frmChangePassword.getContentPane().add(lblConfirmNewPassword);
 		
-		JLabel lblAnswerToSecurity = new JLabel("Answer to Security Question"); //question answer field label
-		lblAnswerToSecurity.setBounds(165, 189, 189, 16);
+		JLabel lblAnswerToSecurity = new JLabel("Security Question Answer"); //question answer field label
+		lblAnswerToSecurity.setBounds(165, 179, 189, 16);
 		frmChangePassword.getContentPane().add(lblAnswerToSecurity);
 		
 		textField_3 = new JTextField(); //Answer to security question
-		textField_3.setBounds(37, 186, 116, 22);
+		textField_3.setBounds(37, 176, 116, 22);
 		frmChangePassword.getContentPane().add(textField_3);
 		textField_3.setColumns(10);
 		
@@ -214,7 +208,7 @@ public class PasswordChangeView {
 				}
 				}
 		});
-		btnNewButton.setBounds(63, 320, 97, 25);
+		btnNewButton.setBounds(77, 355, 97, 25);
 		frmChangePassword.getContentPane().add(btnNewButton);
 		
 		JButton btnCancel = new JButton("Cancel"); //Cancel button
@@ -223,37 +217,37 @@ public class PasswordChangeView {
 				frmChangePassword.dispose();
 			}
 		});
-		btnCancel.setBounds(198, 320, 97, 25);
+		btnCancel.setBounds(212, 355, 97, 25);
 		frmChangePassword.getContentPane().add(btnCancel);
 		
 		JTextPane txtpnThisIsWhere = new JTextPane(); //Field that displays currentUser's security question.
 		txtpnThisIsWhere.setEditable(false);
 		txtpnThisIsWhere.setText(currentUser.getSecurityQuestion());
-		txtpnThisIsWhere.setBounds(37, 154, 309, 22);
+		txtpnThisIsWhere.setBounds(41, 144, 305, 22);
 		frmChangePassword.getContentPane().add(txtpnThisIsWhere);
 		
 		passwordField = new JPasswordField(); //Password field for current password
 		passwordField.setToolTipText("Current user password must be entered to change passwords or security question/answer");
-		passwordField.setBounds(39, 27, 116, 22);
+		passwordField.setBounds(37, 36, 116, 22);
 		frmChangePassword.getContentPane().add(passwordField);
 		
 		passwordField_1 = new JPasswordField(); //Password field for newPass1
 		passwordField_1.setToolTipText("Password that you want to change to.");
-		passwordField_1.setBounds(37, 91, 116, 22);
+		passwordField_1.setBounds(37, 73, 116, 22);
 		frmChangePassword.getContentPane().add(passwordField_1);
 		
 		passwordField_2 = new JPasswordField(); //Password field for newPass2
 		passwordField_2.setToolTipText("Confirmation of the new password.");
-		passwordField_2.setBounds(37, 125, 116, 22);
+		passwordField_2.setBounds(37, 107, 116, 22);
 		frmChangePassword.getContentPane().add(passwordField_2);
 		
 		JLabel lblChangeSecurityQuestion = new JLabel("New Security Question"); //Label for new sec question
 		lblChangeSecurityQuestion.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblChangeSecurityQuestion.setBounds(101, 218, 194, 16);
+		lblChangeSecurityQuestion.setBounds(101, 238, 194, 16);
 		frmChangePassword.getContentPane().add(lblChangeSecurityQuestion);
 		
 		textField = new JTextField(); //NEW SECURITY QUESTION ANSWER BOX
-		textField.setBounds(37, 276, 116, 22);
+		textField.setBounds(37, 296, 116, 22);
 		frmChangePassword.getContentPane().add(textField);
 		textField.setColumns(10);
 		
@@ -264,17 +258,17 @@ public class PasswordChangeView {
 				question = (String) comboBox.getSelectedItem();
 			}
 		});
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Please choose a security question below", "What is the maiden name of your mother?", "What is name of your pet", "Where is your favorite city?"}));
-		comboBox.setBounds(37, 241, 309, 22);
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Choose a new security question..", "What is the maiden name of your mother?", "What is name of your pet", "Where is your favorite city?"}));
+		comboBox.setBounds(38, 264, 309, 22);
 		frmChangePassword.getContentPane().add(comboBox);
 		
-		JLabel lblNewLabel = new JLabel("New Security Question Answer"); //Label for answer text field
-		lblNewLabel.setBounds(165, 279, 189, 16);
+		JLabel lblNewLabel = new JLabel("Security Question Answer"); //Label for answer text field
+		lblNewLabel.setBounds(165, 299, 189, 16);
 		frmChangePassword.getContentPane().add(lblNewLabel);
 		
 		JLabel lblNewPassword_1 = new JLabel("New Password"); //label for new password field
 		lblNewPassword_1.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblNewPassword_1.setBounds(117, 62, 114, 16);
+		lblNewPassword_1.setBounds(139, 9, 114, 16);
 		frmChangePassword.getContentPane().add(lblNewPassword_1);
 	}
 }
