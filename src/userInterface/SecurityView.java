@@ -284,7 +284,7 @@ public class SecurityView {
 		textField.setBorder(null);
 		textField.setSelectedTextColor(SystemColor.control);
 		textField.setSelectionColor(SystemColor.control);
-		textField.setBackground(SystemColor.control);
+		textField.setOpaque(false);
 		textField.setEditable(false);
 		textField.setBounds(158, 11, 156, 22);
 		panel_1.add(textField);
