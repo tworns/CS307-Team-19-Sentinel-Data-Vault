@@ -361,6 +361,7 @@ public class HomeView {
 				//if data item
 				if (selectedNode.isLeaf()) {
 					DataEntry selectedDataEntry = retrieveOneDataEntry (selectedNodeName, currentUser, selectedNode.getParent().toString());
+					
 					if(selectedNode.getParent().toString() == "Account Login") {
 						panel = dataPanel.getAccountLoginPanelWithData(selectedDataEntry);
 						panelName = "Account Login";
