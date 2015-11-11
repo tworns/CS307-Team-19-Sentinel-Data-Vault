@@ -67,14 +67,14 @@ public class SecurityView {
 		//displays window
 		frame = new JFrame();
 		frame.setResizable(false);
-		frame.setBounds(100, 100, 337, 384);
+		frame.setBounds(100, 100, 412, 382);
 		frame.setTitle("Security View");
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		//display code for the tabs
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setBounds(0, 0, 331, 349);
+		tabbedPane.setBounds(0, 0, 406, 347);
 		frame.getContentPane().add(tabbedPane);
 		
 		//label for password generator section
@@ -89,7 +89,7 @@ public class SecurityView {
 				specials = chckbxNoSpecialCharacters.isSelected();
 			}
 		});
-		chckbxNoSpecialCharacters.setBounds(47, 126, 215, 25);
+		chckbxNoSpecialCharacters.setBounds(87, 147, 215, 25);
 
 		chckbxNoSpecialCharacters.setToolTipText("Password will contain at least one special character (!, @, #, $, etc.).");
 		panel.add(chckbxNoSpecialCharacters);
@@ -101,7 +101,7 @@ public class SecurityView {
 				uppercase = chckbxNoUppercase.isSelected();
 			}
 		});
-		chckbxNoUppercase.setBounds(47, 36, 208, 25);
+		chckbxNoUppercase.setBounds(87, 57, 208, 25);
 
 		chckbxNoUppercase.setToolTipText("Password will contain at least one uppercase letter.");
 
@@ -114,7 +114,7 @@ public class SecurityView {
 				numbers = chckbxNoNumbers.isSelected();
 			}
 		});
-		chckbxNoNumbers.setBounds(47, 96, 227, 25);
+		chckbxNoNumbers.setBounds(87, 117, 227, 25);
 
 		chckbxNoNumbers.setToolTipText("Password will contain at least one digit (numbers 0-9).");
 
@@ -122,13 +122,13 @@ public class SecurityView {
 		
 		//length of password to be input
 		JLabel lblLengthOfPassword = new JLabel("Password Length");
-		lblLengthOfPassword.setBounds(104, 200, 118, 16);
+		lblLengthOfPassword.setBounds(155, 221, 118, 16);
 		lblLengthOfPassword.setToolTipText("Specify the password length in number of characters.");
 		panel.add(lblLengthOfPassword);
 		
 		
 		JSpinner spinner = new JSpinner();
-		spinner.setBounds(47, 198, 45, 19);
+		spinner.setBounds(87, 219, 45, 19);
 		spinner.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				spinLength = (Integer)spinner.getValue();
@@ -141,7 +141,7 @@ public class SecurityView {
 		
 		//Displays the password that has been generated, values are currently hard coded because Password generator hasn't been finished.
 		JButton btnGenerate = new JButton("Generate");
-		btnGenerate.setBounds(47, 242, 95, 25);
+		btnGenerate.setBounds(87, 263, 95, 25);
 		panel.add(btnGenerate);
 		btnGenerate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent clickGenerate) {
@@ -159,14 +159,16 @@ public class SecurityView {
 					displayPass.setEditable(false); //Make it so the user can't mess with stuff now.
 					displayPass.setFont(new Font("Courier New",Font.PLAIN ,14)); //Change font so everything is ledgible
 					JScrollPane scroll = new JScrollPane(displayPass); //make a scoll pane so the text area has something to sit in 
+					
 					Object[] arr = { //Make a label for this scoll pane
 							new JLabel("Password"),
 							scroll,
 					};
+					
 					JOptionPane displayMessage = new JOptionPane(arr, JOptionPane.INFORMATION_MESSAGE); //Pack everything into a JOptionPane
-					JDialog dialog = displayMessage.createDialog(null, "Password"); //Make the dialog that displays the JOptionPane
+					JDialog dialog = displayMessage.createDialog(frame, "Password"); //Make the dialog that displays the JOptionPane
 					dialog.setResizable(false);// Properties of the dialog
-					dialog.setSize(500, 150);
+					dialog.setSize(360, 135);
 					dialog.setVisible(true); //User can see it now
 					dialog.dispose(); //dispose on close
 				}
@@ -175,7 +177,7 @@ public class SecurityView {
 		
 		//Action listener for the cancel button
 		JButton btnCancel = new JButton("Cancel");
-		btnCancel.setBounds(154, 242, 85, 25);
+		btnCancel.setBounds(217, 263, 85, 25);
 		panel.add(btnCancel);
 		
 		JCheckBox chckbxAvoidRepeatedCharacters = new JCheckBox("Avoid Sequential Letters and Digits");
@@ -185,7 +187,7 @@ public class SecurityView {
 			}
 		});
 		chckbxAvoidRepeatedCharacters.setToolTipText("Password will not contain sequential instances of letters or digits.");
-		chckbxAvoidRepeatedCharacters.setBounds(47, 159, 250, 25);
+		chckbxAvoidRepeatedCharacters.setBounds(87, 180, 250, 25);
 		panel.add(chckbxAvoidRepeatedCharacters);
 		
 		JCheckBox chckbxAtLeast = new JCheckBox("Include Lowercase Letters");
@@ -195,13 +197,16 @@ public class SecurityView {
 			}
 		});
 		chckbxAtLeast.setToolTipText("Password will contain at least one lowercase letter.");
-		chckbxAtLeast.setBounds(47, 66, 215, 25);
+		chckbxAtLeast.setBounds(87, 87, 215, 25);
 		panel.add(chckbxAtLeast);
+		
+		JLabel lblPasswordGenerationOptions = new JLabel("Password Generation Options");
+		lblPasswordGenerationOptions.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblPasswordGenerationOptions.setBounds(87, 24, 227, 16);
+		panel.add(lblPasswordGenerationOptions);
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent clickCancel) {
-				if(clickCancel.getActionCommand().equalsIgnoreCase("Cancel")) {
 					frame.dispose();
-				}
 			}
 		});
 		
@@ -213,7 +218,7 @@ public class SecurityView {
 		//password entry field
 		JLabel lblEnterPassword = new JLabel("Enter Password");
 		lblEnterPassword.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblEnterPassword.setBounds(21, 13, 164, 17);
+		lblEnterPassword.setBounds(118, 15, 164, 17);
 		panel_1.add(lblEnterPassword);
 		
 		//button that actually sets off the checking of the password.
@@ -223,21 +228,19 @@ public class SecurityView {
 				StrengthChecker check = new StrengthChecker();
 				String input = new String(passwordField.getPassword());
 				String output = check.checkStrength(input);
-				//String strength = "This password is ";
-				//strength += output +"\n";
 				textField.setText(output);
 				Color bg = Color.ORANGE;
-				if(output.equals("Strong")) { 
+				if(output.equals("Strong")) { //color password strength text
 					bg = Color.GREEN;
 				}
 				if(output.equals("Weak")){ 
 					bg = Color.RED;
 				}
 				textField.setForeground(bg);
-				//JOptionPane.showMessageDialog(null, strength, "Password", JOptionPane.INFORMATION_MESSAGE);
+				
 			}
 		});
-		btnCheck.setBounds(21, 73, 97, 25);
+		btnCheck.setBounds(95, 77, 97, 25);
 		panel_1.add(btnCheck);
 		
 		//cancel button closes window
@@ -247,46 +250,47 @@ public class SecurityView {
 				frame.dispose();	
 			}
 		});
-		btnCancel_1.setBounds(130, 73, 97, 25);
+		btnCancel_1.setBounds(209, 77, 97, 25);
 		panel_1.add(btnCancel_1);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(19, 42, 211, 19);
+		passwordField.setBounds(95, 45, 211, 19);
 		panel_1.add(passwordField);
 		
 		JLabel lblPasswordCreationTips = new JLabel("Password Creation Tips");
 		lblPasswordCreationTips.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblPasswordCreationTips.setBounds(74, 124, 187, 16);
+		lblPasswordCreationTips.setBounds(107, 127, 187, 16);
 		panel_1.add(lblPasswordCreationTips);
 		
 		JLabel lblAStrongPassword = new JLabel("A Strong password has: ");
-		lblAStrongPassword.setBounds(21, 149, 164, 16);
+		lblAStrongPassword.setBounds(107, 156, 164, 16);
 		panel_1.add(lblAStrongPassword);
 		
 		JLabel lblAtLeast = new JLabel("At least 1 special character");
-		lblAtLeast.setBounds(49, 178, 178, 16);
+		lblAtLeast.setBounds(107, 182, 178, 16);
 		panel_1.add(lblAtLeast);
 		
 		JLabel lblAtLeast_1 = new JLabel("At least 1 number");
-		lblAtLeast_1.setBounds(49, 208, 114, 16);
+		lblAtLeast_1.setBounds(107, 212, 114, 16);
 		panel_1.add(lblAtLeast_1);
 		
 		JLabel lblAtLeast_2 = new JLabel("At least 1 capital letter");
-		lblAtLeast_2.setBounds(49, 235, 156, 17);
+		lblAtLeast_2.setBounds(107, 239, 156, 17);
 		panel_1.add(lblAtLeast_2);
 		
-		JLabel lblAndAtLeast = new JLabel("And, at least 1 lowercase letter");
-		lblAndAtLeast.setBounds(46, 266, 196, 16);
+		JLabel lblAndAtLeast = new JLabel("And at least 1 lowercase letter");
+		lblAndAtLeast.setBounds(104, 270, 196, 16);
 		panel_1.add(lblAndAtLeast);
 		
 		textField = new JTextField();
+		textField.setFocusable(false);
 		textField.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		textField.setBorder(null);
 		textField.setSelectedTextColor(SystemColor.control);
 		textField.setSelectionColor(SystemColor.control);
 		textField.setOpaque(false);
 		textField.setEditable(false);
-		textField.setBounds(158, 11, 156, 22);
+		textField.setBounds(249, 12, 140, 22);
 		panel_1.add(textField);
 		textField.setColumns(10);
 

@@ -50,7 +50,7 @@ public class SettingsView {
 		frmSettings = new JFrame();
 		frmSettings.setResizable(false);
 		frmSettings.setTitle("Settings");
-		frmSettings.setBounds(100, 100, 439, 360);
+		frmSettings.setBounds(100, 100, 431, 345);
 		frmSettings.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frmSettings.getContentPane().setLayout(null);
 		
@@ -91,7 +91,7 @@ public class SettingsView {
 		
 		JLabel lblUserSettings = new JLabel("User Settings");
 		lblUserSettings.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblUserSettings.setBounds(28, 25, 118, 25);
+		lblUserSettings.setBounds(153, 26, 118, 25);
 		frmSettings.getContentPane().add(lblUserSettings);
 		
 		//Lets user set the file size past which they'll be warned about file size. & tool tip
@@ -155,7 +155,7 @@ public class SettingsView {
 				}
 			}
 		});
-		btnOk.setBounds(58, 276, 97, 25);
+		btnOk.setBounds(79, 255, 97, 25);
 		frmSettings.getContentPane().add(btnOk);
 		
 		//closes window
@@ -167,7 +167,7 @@ public class SettingsView {
 				}
 			}
 		});
-		btnCancel.setBounds(244, 276, 97, 25);
+		btnCancel.setBounds(248, 255, 97, 25);
 		frmSettings.getContentPane().add(btnCancel);
 		
 		JCheckBox chckbxD = new JCheckBox("Turn on account wipe after 5 failed login attemps");
@@ -193,13 +193,13 @@ public class SettingsView {
 				k.frmChangePassword.setVisible(true); 
 			}
 		});
-		btnChangePassword.setBounds(58, 220, 139, 25);
+		btnChangePassword.setBounds(58, 205, 139, 25);
 		frmSettings.getContentPane().add(btnChangePassword);
 		
 		JButton btnDeleteAccount = new JButton("Delete Account"); //Delete Account Button
 		btnDeleteAccount.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if(JOptionPane.showConfirmDialog(null, "Are You Sure?", "Sign Out",JOptionPane.YES_NO_OPTION, JOptionPane.DEFAULT_OPTION) == 0) {
+				if(JOptionPane.showConfirmDialog(frmSettings, "Are You Sure?", "Sign Out",JOptionPane.YES_NO_OPTION, JOptionPane.DEFAULT_OPTION) == 0) {
 					//This is for the user answering yes.
 					//TODO Actually delete stuff, close windows, etc.
 					DatabaseManager d = new DatabaseManager();
@@ -219,7 +219,7 @@ public class SettingsView {
 				}
 			}
 		});
-		btnDeleteAccount.setBounds(244, 220, 129, 25);
+		btnDeleteAccount.setBounds(232, 205, 129, 25);
 		frmSettings.getContentPane().add(btnDeleteAccount);
 	}
 }

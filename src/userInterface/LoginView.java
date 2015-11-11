@@ -71,11 +71,11 @@ public class LoginView {
 		lblPassword.setBounds(57, 145, 72, 18);
 		
 		textField = new JTextField();
-		textField.setBounds(131, 108, 184, 24);
+		textField.setBounds(130, 108, 184, 24);
 		textField.setColumns(10);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(131, 142, 184, 24);
+		passwordField.setBounds(130, 142, 184, 24);
 		
 		JButton btnNewButton = new JButton("Sign in");
 		btnNewButton.setBounds(325, 106, 72, 62);
@@ -135,7 +135,7 @@ public class LoginView {
 				signup.setVisible(true);
 			}
 		});
-		btnSignUp.setBounds(90, 231, 124, 27);
+		btnSignUp.setBounds(73, 199, 124, 27);
 		frmSignIn.getContentPane().add(btnSignUp);
 		frmSignIn.getContentPane().add(btnNewButton);
 		frmSignIn.getContentPane().add(lblPassword);
@@ -144,12 +144,12 @@ public class LoginView {
 		frmSignIn.getContentPane().add(passwordField);
 		
 		btnForgotPassword = new JButton("I forgot my password...");
-		btnForgotPassword.setBounds(226, 231, 170, 27);
+		btnForgotPassword.setBounds(227, 199, 170, 27);
 		frmSignIn.getContentPane().add(btnForgotPassword);
 		
 		lblSentinelDataVault = new JLabel("Sentinel Data Vault");
-		lblSentinelDataVault.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-		lblSentinelDataVault.setBounds(139, 33, 189, 27);
+		lblSentinelDataVault.setFont(new Font("Dialog", Font.PLAIN, 22));
+		lblSentinelDataVault.setBounds(119, 33, 206, 27);
 		frmSignIn.getContentPane().add(lblSentinelDataVault);
 		frmSignIn.getContentPane().setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{lblEmail, textField, lblPassword, passwordField, btnNewButton, btnSignUp, btnForgotPassword}));
 	}
