@@ -400,7 +400,7 @@ public class DatabaseManager {
 	        
 	        // Parse the valid_users String and convert to List<String> to assign to validUsers field of DataEntry
 	        List<String> validUsers = new ArrayList<String>();
-	        String validUsersString = dataEntryInfoSet.getString("valid_usres");
+	        String validUsersString = dataEntryInfoSet.getString("valid_users");
 	        String[] parsedValidUsers = validUsersString.split(" ");
 	        for (int i = 0; i < parsedValidUsers.length; i++) {
 	        	validUsers.add(parsedValidUsers[i]);
