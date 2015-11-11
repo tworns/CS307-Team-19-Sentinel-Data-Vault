@@ -131,11 +131,11 @@ public class VaultController {
 				newEntry2.addDataField("John Purdue");			//3
 				newEntry2.addDataField("000");					//4
 				newEntry2.addDataField("10/20");				//5
-				newEntry2.addDataField("");				//6
-				newEntry2.addDataField("");				//7
-				newEntry2.addDataField("");				//8
-				newEntry2.addDataField("");				//9
-				newEntry2.addDataField("");				//10
+				newEntry2.addDataField("");						//6
+				newEntry2.addDataField("");						//7
+				newEntry2.addDataField("");						//8
+				newEntry2.addDataField("");						//9
+				newEntry2.addDataField("");						//10
 				
 				m.addEntryToDatabase(newEntry2);
 

@@ -154,6 +154,76 @@ public class DataEntryPanel extends JPanel{
 		
 	}
 	
+	public JPanel getCreditCardPanelWithData(DataEntry data) {
+		panel.removeAll();	
+		panel.setLayout(new MigLayout("", "[grow]", "[][][][][][][][][][][][]"));
+		
+		String title = "Card Name";
+		
+		JLabel label_0 = new JLabel(title);
+		panel.add(label_0, "cell 0 0");
+		
+		JLabel label_1 = new JLabel("Card Type");
+		panel.add(label_1, "cell 0 1");
+		
+		JComboBox comboBox = new JComboBox();
+		String cardType = data.getFieldDataList().get(0);
+		if(cardType.equals("VISA")) {
+			comboBox.setModel(new DefaultComboBoxModel(new String[] {"VISA"}));
+		}
+		else if(cardType.equals("Master")) {
+			comboBox.setModel(new DefaultComboBoxModel(new String[] {"Master"}));
+		}
+		else if(cardType.equals("Discovery")) {
+			comboBox.setModel(new DefaultComboBoxModel(new String[] {"Discovery"}));
+		}
+		else if(cardType.equals("AMERICAN EXPRESS")) {
+			comboBox.setModel(new DefaultComboBoxModel(new String[] {"AMERICAN EXPRESS"}));
+		}
+		panel.add(comboBox, "cell 0 2,growx");
+		
+		JLabel label_2 = new JLabel("Card Number");
+		panel.add(label_2, "cell 0 3");
+		
+		JFormattedTextField formattedTextField = new JFormattedTextField();
+		formattedTextField.setText(data.getFieldDataList().get(1));
+		panel.add(formattedTextField, "cell 0 4,growx");
+		
+		JLabel label_3 = new JLabel("Name on Card");
+		panel.add(label_3, "cell 0 5");
+		
+		JFormattedTextField formattedTextField_1 = new JFormattedTextField();
+		formattedTextField_1.setText(data.getFieldDataList().get(2));
+		panel.add(formattedTextField_1, "cell 0 6,growx");
+		
+		JLabel label_4 = new JLabel("CVV");
+		panel.add(label_4, "cell 0 7");
+		
+		JFormattedTextField formattedTextField_2 = new JFormattedTextField();
+		formattedTextField_2.setText(data.getFieldDataList().get(3));
+		panel.add(formattedTextField_2, "cell 0 8,growx");
+		
+		JLabel label_5 = new JLabel("Expiration Date");
+		panel.add(label_5, "cell 0 9");
+		
+		JFormattedTextField formattedTextField_3 = new JFormattedTextField();
+		formattedTextField_3.setText(data.getFieldDataList().get(4));
+		panel.add(formattedTextField_2, "cell 0 10,growx");
+		/*
+		JComboBox comboBox_1 = new JComboBox();
+		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"01 ", "02 ", "03 ", "04 ", "05", "06 ", "07 ", "08 ", "09 ", "10", "11 ", "12"}));
+		panel.add(comboBox_1, "cell 0 10,growx");
+		
+		JComboBox comboBox_2 = new JComboBox();
+		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30"}));
+		panel.add(comboBox_2, "cell 0 10,growx");
+		*/
+		
+		return panel;
+		
+	}
+
+	
 	
 	public JPanel getLicensePanel(DataEntry data){
 		panel.removeAll();

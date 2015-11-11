@@ -381,7 +381,7 @@ public class HomeView {
 						panelName = "Account Login";
 					}
 					else if(selectedNode.getParent().toString() == "Credit/Debit Card") {
-						panel = dataPanel.getCreditCardPanel(selectedDataEntry);
+						panel = dataPanel.getCreditCardPanelWithData(selectedDataEntry);
 						panelName = "Credit/Debit Card";
 					}
 					else if(selectedNode.getParent().toString() == "Credit/Debit Card") {
@@ -397,11 +397,12 @@ public class HomeView {
 				}
 				return;
 			}
-
+/*
 			private DataEntry retrieveOneDataEntry(String selectedNodeName, User currentUser, String string) {
 				// TODO Auto-generated method stub
 				return null;
-			}
+				
+			}*/
 		});
 		
 		DatabaseManager dbmanger = new DatabaseManager();
