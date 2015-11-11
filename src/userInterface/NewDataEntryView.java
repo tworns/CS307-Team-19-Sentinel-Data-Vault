@@ -486,8 +486,7 @@ public class NewDataEntryView {
 						btnSave.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
 								LocalDateTime createdtime = LocalDateTime.now();
-								DataEntry newEntry = new DataEntry(textField.getText(), "License", "key", userName,
-										0, createdtime);
+								DataEntry newEntry = new DataEntry(textField.getText(), "License", "key", userName,0, createdtime);
 								newEntry.addDataField(textField_1.getText());
 								newEntry.addDataField(textField_2.getText());
 								newEntry.addDataField(textField_3.getText());
