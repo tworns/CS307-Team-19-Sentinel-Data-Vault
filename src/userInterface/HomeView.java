@@ -146,6 +146,20 @@ public class HomeView {
 		});
 
 		JButton btnDeleteData = new JButton("Delete Entry");
+		btnDeleteData.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			System.out.println(currentEntry.getEntryName());
+			Object[] options = { "OK", "CANCEL" };
+			int result = JOptionPane.showOptionDialog(null,
+					"Data Entry will be deleted permanently.\nAre you sure you want to delete the Entry?", "Warning", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+					null, options, options[1]);
+			if (result == 0) {
+				System.out.println("Delete Entry");
+				DatabaseManager m = new DatabaseManager();
+				m.deleteEntryFromDatabase(currentEntry);
+			}
+		}
+		});
 		btnDeleteData.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
 
 		JLabel lblEmpty_1 = new JLabel("     ");
