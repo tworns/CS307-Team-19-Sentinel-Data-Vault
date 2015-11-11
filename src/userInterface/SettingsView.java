@@ -211,7 +211,7 @@ public class SettingsView {
 					    	window.dispose();
 						}
 						LoginView l = new LoginView();
-						l.frame.setVisible(true);
+						l.frmSignIn.setVisible(true);
 					}
 					else {
 						JOptionPane.showMessageDialog(null,"Oops! Something went wrong!");
