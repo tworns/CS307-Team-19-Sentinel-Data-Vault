@@ -361,7 +361,15 @@ public class HomeView {
 				//if data item
 				if (selectedNode.isLeaf()) {
 					DatabaseManager dm = new DatabaseManager();
+					
 					DataEntry selectedDataEntry = dm.retrieveOneDataEntry(selectedNodeName, username, selectedNode.getParent().toString());
+					System.out.println("Here");
+
+					System.out.println(selectedNodeName);
+					System.out.println(username);
+					System.out.println(selectedNode.getParent().toString());
+					
+					
 					System.out.println(selectedDataEntry.getFieldDataList().get(0).toString());
 					System.out.println(selectedDataEntry.getFieldDataList().get(1).toString());
 					System.out.println(selectedDataEntry.getFieldDataList().get(2).toString());

@@ -111,19 +111,32 @@ public class VaultController {
 				LocalDateTime time = LocalDateTime.now();
 				//Sample Account Login
 				DataEntry newEntry = new DataEntry(username + " Sample Login", "Account Login", "key", username, 0, time);
-				newEntry.addDataField("johnpurdue");
-				newEntry.addDataField("12345678");
-				newEntry.addDataField("google.com");
+				newEntry.addDataField("johnpurdue"); 	//1
+				newEntry.addDataField("12345678");		//2
+				newEntry.addDataField("google.com");	//3
+				newEntry.addDataField("");				//4
+				newEntry.addDataField("");				//5
+				newEntry.addDataField("");				//6
+				newEntry.addDataField("");				//7
+				newEntry.addDataField("");				//8
+				newEntry.addDataField("");				//9
+				newEntry.addDataField("");				//10
 				DatabaseManager m = new DatabaseManager();
 				m.addEntryToDatabase(newEntry);
 				
 				//Sample Credit/Debit Card
 				DataEntry newEntry2 = new DataEntry(username + " Sample Card", "Credit/Debit Card", "key", username, 0, time);
-				newEntry2.addDataField("VISA");
-				newEntry2.addDataField("0000 0000 0000 0000");
-				newEntry2.addDataField("John Purdue");
-				newEntry2.addDataField("000");
-				newEntry2.addDataField("10/20");
+				newEntry2.addDataField("VISA");					//1
+				newEntry2.addDataField("0000 0000 0000 0000");	//2
+				newEntry2.addDataField("John Purdue");			//3
+				newEntry2.addDataField("000");					//4
+				newEntry2.addDataField("10/20");				//5
+				newEntry2.addDataField("");				//6
+				newEntry2.addDataField("");				//7
+				newEntry2.addDataField("");				//8
+				newEntry2.addDataField("");				//9
+				newEntry2.addDataField("");				//10
+				
 				m.addEntryToDatabase(newEntry2);
 
 				
