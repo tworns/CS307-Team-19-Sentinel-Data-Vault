@@ -640,7 +640,7 @@ public class DatabaseManager {
 				sql = sql + ", ";
 				sql = sql + "data_field_" + Integer.toString(i + 1);
 			}
-			sql = sql + ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			sql = sql + ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 			System.out.println(sql);
 
 			preparedStatement = DBconnection.prepareStatement(sql);
@@ -694,7 +694,7 @@ public class DatabaseManager {
 
 			// Construct the SQL INSERT statement
 			String sql = "DELETE FROM data_entries WHERE entry_name='" + entry.getEntryName() + "'" + " AND "
-					+ "owner='" + entry.getOwner() + "'";
+					+ "owner='" + entry.getOwner() + "';";
 			System.out.println(sql);
 
 			// Execute the statement and commit database changes
@@ -727,7 +727,7 @@ public class DatabaseManager {
 			Statement stmt = DBconnection.createStatement();
 
 			// Construct the SQL INSERT statement
-			String sql = "DELETE FROM data_entries WHERE owner='" + doomeduser.getUsername() + "'";
+			String sql = "DELETE FROM data_entries WHERE owner='" + doomeduser.getUsername() + "';";
 			System.out.println(sql);
 
 			// Execute the statement and commit database changes
