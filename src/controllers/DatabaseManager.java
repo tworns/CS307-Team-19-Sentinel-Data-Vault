@@ -575,11 +575,12 @@ public class DatabaseManager {
 			int size_of_datafield = newEntry.getFieldDataList().size();
 			String sql = "UPDATE data_entries SET entry_name=?, ";
 			for (int i = 0; i < size_of_datafield; i++) {
-				sql += "data_field_" + Integer.toString(i + 1) + "=?'";
+				sql += "data_field_" + Integer.toString(i + 1) + "=?";
 				if (i != size_of_datafield - 1)
 					sql += ", ";
 			}
-			sql += "WHERE entry_name=? AND owner=?;";
+			sql += " WHERE entry_name=? AND owner=?";
+
 
 			PreparedStatement preparedStatement = DBconnection.prepareStatement(sql);
 			int j = 2;
@@ -588,12 +589,15 @@ public class DatabaseManager {
 				preparedStatement.setString(2 + i, newEntry.getFieldDataList().get(i));
 				j++;
 			}
-			preparedStatement.setString(j + 1, oldEntry.getEntryName());
-			preparedStatement.setString(j + 2, newEntry.getOwner());
+			System.out.println(j);
+			preparedStatement.setString(j , oldEntry.getEntryName());
+			preparedStatement.setString(j , newEntry.getOwner());
 
 			System.out.println(sql);
 
+			
 			// Execute the statement and commit database changes
+			preparedStatement.executeUpdate();
 			DBconnection.commit();
 
 			// Disconnect from database
