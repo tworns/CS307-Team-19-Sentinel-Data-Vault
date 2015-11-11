@@ -90,7 +90,7 @@ public class NewDataEntryView {
 		choice.addItem("Account Logins");
 		choice.addItem("Credit/Debit Card");
 		choice.addItem("License");
-		choice.addItem("Passport");
+		//choice.addItem("Passport");
 		choice.addItem("Phone Number");
 		choice.addItem("SSN");		
 		choice.addItem("Wifi Network");
@@ -104,7 +104,7 @@ public class NewDataEntryView {
 			public void itemStateChanged(ItemEvent e) {
 				if (e.getStateChange() == ItemEvent.SELECTED) {
 					int index = choice.getSelectedIndex();
-					if (index == 5) {
+					if (index == 4) {
 						frame.setTitle("New SSN");
 
 						frame.getContentPane().removeAll();
@@ -205,7 +205,7 @@ public class NewDataEntryView {
 						label = new JLabel("Entry Name");
 						label.setBounds(40, 10, 150, 18);
 
-						label_1 = new JLabel("Card holder name");
+						label_1 = new JLabel("Name on Card");
 						label_1.setBounds(40, 100, 150, 18);
 
 						label_2 = new JLabel("Card Type");
@@ -214,7 +214,7 @@ public class NewDataEntryView {
 						label_3 = new JLabel("Card Number");
 						label_3.setBounds(40, 70, 150, 18);
 
-						label_4 = new JLabel("Expired Date");
+						label_4 = new JLabel("Expiration Date");
 						label_4.setBounds(40, 160, 150, 18);
 
 						label_5 = new JLabel("CVV");
@@ -322,7 +322,7 @@ public class NewDataEntryView {
 						btnCancel.setBounds(305, 307, 117, 29);
 						frame.getContentPane().add(btnCancel);
 					}
-					if (index == 3) {
+					/*if (index == 3) {
 						frame.setTitle("New Passport");
 						frame.getContentPane().removeAll();
 
@@ -467,7 +467,7 @@ public class NewDataEntryView {
 						});
 						btnCancel.setBounds(305, 307, 117, 29);
 						frame.getContentPane().add(btnCancel);
-					}
+					}*/
 					if (index == 2) {
 						frame.setTitle("New License");
 						frame.getContentPane().removeAll();
@@ -488,7 +488,7 @@ public class NewDataEntryView {
 						label_2 = new JLabel("Address");
 						label_2.setBounds(40, 70, 150, 18);
 
-						label_3 = new JLabel("Day of Birth");
+						label_3 = new JLabel("Date of Birth");
 						label_3.setBounds(40, 100, 150, 18);
 
 						label_4 = new JLabel("Expired Date");
@@ -585,13 +585,13 @@ public class NewDataEntryView {
 						label = new JLabel("Entry Name");
 						label.setBounds(40, 10, 150, 18);
 
-						label_1 = new JLabel("Login Account");
+						label_1 = new JLabel("User Name");
 						label_1.setBounds(40, 40, 150, 18);
 
 						label_2 = new JLabel("Password");
 						label_2.setBounds(40, 70, 150, 18);
 
-						label_3 = new JLabel("Account Address");
+						label_3 = new JLabel("Web URL");
 						label_3.setBounds(40, 100, 150, 18);
 
 						textField = new JTextField();
@@ -672,7 +672,7 @@ public class NewDataEntryView {
 						btnCancel.setBounds(305, 307, 117, 29);
 						frame.getContentPane().add(btnCancel);
 					}
-					if (index == 6) {
+					if (index == 5) {
 						frame.setTitle("New Wifi Network");
 						frame.getContentPane().removeAll();
 
@@ -766,7 +766,7 @@ public class NewDataEntryView {
 						frame.getContentPane().add(btnCancel);
 					}
 
-					if (index == 4) {
+					if (index == 3) {
 						frame.setTitle("New Phone Number");
 						frame.getContentPane().removeAll();
 
