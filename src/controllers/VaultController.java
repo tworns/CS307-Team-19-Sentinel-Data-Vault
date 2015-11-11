@@ -62,9 +62,12 @@ public class VaultController {
 		}
 		
 		//minimum password length check
-		if(((password1.length() < 8) && (password1.length()>0)) || 
-				((password2.length() < 8) && (password2.length()>0))){
-			JOptionPane.showMessageDialog(null,"Your password needs to contain at least 8 characters!");
+		PasswordValidation a = new PasswordValidation();
+		//if(((password1.length() < 8) && (password1.length()>0)) || 
+			//	((password2.length() < 8) && (password2.length()>0))){
+		if(a.minStandard(password1) == false){
+			JOptionPane.showMessageDialog(null,"Your password needs to contain at least 12 characters and at least one of each\n"
+					+ " of the following: uppercase letter, lowercase letter, number, special character!");
 			password1 = "";
 			password2 = "";
 			return 0;
@@ -157,7 +160,7 @@ public class VaultController {
 			return 0;
 		}
 		/******TODO: MainView should take in user OBJECT!**********/
-		PasswordValidation p = new PasswordValidation(password);
+		PasswordValidation p = new PasswordValidation();
 		if(p.isValidPassword(user, password)){
 			HomeView window = new HomeView(username);
 			//MainView window = new MainView(username);

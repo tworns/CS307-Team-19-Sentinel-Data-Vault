@@ -121,7 +121,7 @@ public class PasswordChangeView {
 				}
 
 				//Old password validation
-				PasswordValidation a = new PasswordValidation(oldPass);
+				PasswordValidation a = new PasswordValidation();
 				try{  
 					if(a.isValidPassword(currentUser, oldPass) == true) { 
 						passCheck = true;

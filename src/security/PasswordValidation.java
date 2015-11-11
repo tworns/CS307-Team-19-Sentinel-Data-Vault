@@ -6,7 +6,7 @@ import dataManagement.User;
 
 public class PasswordValidation {
 
-	public PasswordValidation(String password) { 
+	public PasswordValidation() { 
 	}
 	/**
 	* @param password 		password in need of checking
