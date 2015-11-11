@@ -579,7 +579,7 @@ public class DatabaseManager {
 				if (i != size_of_datafield - 1)
 					sql += ", ";
 			}
-			sql += "WHERE entry_name=? AND owner=?";
+			sql += "WHERE entry_name=? AND owner=?;";
 
 			PreparedStatement preparedStatement = DBconnection.prepareStatement(sql);
 			int j = 2;
