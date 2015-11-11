@@ -151,7 +151,11 @@ public class VaultController {
 	//*****TODO: When user successfully login, we need to update the last login time******
 	public int loginCheck(String username, String password) throws NoSuchAlgorithmException {
 		DatabaseManager d = new DatabaseManager();
-		User user = d.retrieveUserFromDatabase(username);
+		User user =d.retrieveUserFromDatabase(username);
+		if(user == null){
+			JOptionPane.showMessageDialog(null,"Incorrect email/ password!");
+			return 0;
+		}
 		/******TODO: MainView should take in user OBJECT!**********/
 		PasswordValidation p = new PasswordValidation(password);
 		if(p.isValidPassword(user, password)){
