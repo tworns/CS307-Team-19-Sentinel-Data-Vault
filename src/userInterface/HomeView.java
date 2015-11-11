@@ -360,7 +360,9 @@ public class HomeView {
 			
 				//if data item
 				if (selectedNode.isLeaf()) {
-					DataEntry selectedDataEntry = retrieveOneDataEntry (selectedNodeName, currentUser, selectedNode.getParent().toString());
+					DatabaseManager dm = new DatabaseManager();
+					DataEntry selectedDataEntry = dm.retrieveOneDataEntry(selectedNodeName, username, selectedNode.getParent().toString());
+					//retrieveOneDataEntry (selectedNodeName, currentUser, selectedNode.getParent().toString());
 					
 					if(selectedNode.getParent().toString() == "Account Login") {
 						panel = dataPanel.getAccountLoginPanelWithData(selectedDataEntry);
