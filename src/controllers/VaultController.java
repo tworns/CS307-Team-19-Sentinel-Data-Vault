@@ -153,7 +153,7 @@ public class VaultController {
 		DatabaseManager d = new DatabaseManager();
 		User user =d.retrieveUserFromDatabase(username);
 		if(user == null){
-			JOptionPane.showMessageDialog(null,"Incorrect email/ password!");
+			JOptionPane.showMessageDialog(null,"Incorrect email / password!");
 			return 0;
 		}
 		/******TODO: MainView should take in user OBJECT!**********/
@@ -165,7 +165,7 @@ public class VaultController {
 			return 1;
 		}
 		else{
-			JOptionPane.showMessageDialog(null,"Incorrect email/ password!");
+			JOptionPane.showMessageDialog(null,"Incorrect email / password!");
 			return 0;
 		}
 	}
