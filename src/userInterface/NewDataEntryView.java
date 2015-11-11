@@ -270,7 +270,7 @@ public class NewDataEntryView {
 								newEntry.addDataField("");	
 								newEntry.addDataField("");	
 								newEntry.addDataField("");	
-								
+
 								newEntry.addDataField(((String)month.getSelectedItem()) + "/" + ((String)year.getSelectedItem()));
 								DatabaseManager m = new DatabaseManager();
 								int result = m.addEntryToDatabase(newEntry);
@@ -589,7 +589,7 @@ public class NewDataEntryView {
 								newEntry.addDataField("");	
 								newEntry.addDataField("");	
 								newEntry.addDataField("");	
-								
+
 								DatabaseManager m = new DatabaseManager();
 								int result = m.addEntryToDatabase(newEntry);
 								if (result == -1) {
@@ -787,6 +787,11 @@ public class NewDataEntryView {
 				}
 			}
 		});
+		
+		HomeView window = new HomeView(userName);
+		window.frmSentinelDataVault.setVisible(true);
+		
+	
 
 	}
 

@@ -363,6 +363,7 @@ public class HomeView {
 					DatabaseManager dm = new DatabaseManager();
 					
 					DataEntry selectedDataEntry = dm.retrieveOneDataEntry(selectedNodeName, username, selectedNode.getParent().toString());
+					currentEntry = selectedDataEntry;
 					System.out.println("Here");
 
 					System.out.println(selectedNodeName);
