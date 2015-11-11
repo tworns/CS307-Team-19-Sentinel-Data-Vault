@@ -491,7 +491,7 @@ public class DatabaseManager {
 			Statement stmt = DBconnection.createStatement();
 			// Construct the SQL UPDATE statement
 
-			String sql = "UPDATE users" + "SET " + fieldName + " = '" + newTextData + "' " + "WHERE user_email = '"
+			String sql = "UPDATE users SET " + fieldName + " = '" + newTextData + "' " + "WHERE user_email = '"
 					+ user.getUsername() + "';";
 
 			// Execute the statement and commit database changes
