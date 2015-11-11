@@ -92,7 +92,7 @@ public class NewDataEntryView {
 		choice.addItem("Phone Number");
 		choice.addItem("SSN");		
 		choice.addItem("Wifi Network");
-		
+
 		panel.add(choice);
 
 		panel_1 = new JPanel();
@@ -211,8 +211,8 @@ public class NewDataEntryView {
 								"American Express", "Diners Club", "Carte Blanche", "Discover", "JCB" }));
 						cardType.setBounds(170, 40, 200, 18);
 
-						
-						
+
+
 						textField = new JTextField();
 						textField.setBounds(170, 10, 200, 18);
 						textField.setColumns(10);
@@ -232,7 +232,7 @@ public class NewDataEntryView {
 						JComboBox month = new JComboBox();
 						month.setModel(new DefaultComboBoxModel(new String[] {"01 ", "02 ", "03 ", "04 ", "05", "06 ", "07 ", "08 ", "09 ", "10", "11 ", "12"}));
 						month.setBounds(170, 160, 90, 18);;
-						
+
 						JComboBox year = new JComboBox();
 						year.setModel(new DefaultComboBoxModel(new String[] {"15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30"}));
 						year.setBounds(270, 160, 90, 18);
@@ -248,7 +248,7 @@ public class NewDataEntryView {
 						frame.getContentPane().add(textField_1);
 						frame.getContentPane().add(textField_2);
 						frame.getContentPane().add(textField_3);
-						
+
 						frame.getContentPane().add(cardType);
 						frame.getContentPane().add(month);
 						frame.getContentPane().add(year);
@@ -263,6 +263,14 @@ public class NewDataEntryView {
 								newEntry.addDataField(textField_1.getText());
 								newEntry.addDataField(textField_2.getText());
 								newEntry.addDataField(textField_3.getText());
+								newEntry.addDataField("");	
+								newEntry.addDataField("");	
+								newEntry.addDataField("");	
+								newEntry.addDataField("");	
+								newEntry.addDataField("");	
+								newEntry.addDataField("");	
+								newEntry.addDataField("");	
+								
 								newEntry.addDataField(((String)month.getSelectedItem()) + "/" + ((String)year.getSelectedItem()));
 								DatabaseManager m = new DatabaseManager();
 								int result = m.addEntryToDatabase(newEntry);
@@ -300,7 +308,7 @@ public class NewDataEntryView {
 						frame.setLocationRelativeTo(null);
 						JLabel label, label_1, label_2, label_3, label_4, label_5, label_6, label_7, label_8;
 						JTextField textField, textField_1, textField_2, textField_3, textField_4, textField_5,
-								textField_6, textField_7, textField_8;
+						textField_6, textField_7, textField_8;
 
 						label = new JLabel("Entry Name");
 						label.setBounds(40, 10, 150, 18);
@@ -574,6 +582,14 @@ public class NewDataEntryView {
 								newEntry.addDataField(textField_1.getText());
 								newEntry.addDataField(textField_2.getText());
 								newEntry.addDataField(textField_3.getText());
+								newEntry.addDataField("");	
+								newEntry.addDataField("");	
+								newEntry.addDataField("");	
+								newEntry.addDataField("");	
+								newEntry.addDataField("");	
+								newEntry.addDataField("");	
+								newEntry.addDataField("");	
+								
 								DatabaseManager m = new DatabaseManager();
 								int result = m.addEntryToDatabase(newEntry);
 								if (result == -1) {
