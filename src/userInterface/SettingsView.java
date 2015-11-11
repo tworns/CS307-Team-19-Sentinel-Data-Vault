@@ -152,10 +152,8 @@ public class SettingsView {
 					newVegas.modifyUserField(currentUser, "account_wipe_set", currentUser.isAccountWipeSet());
 					newVegas.modifyUserField(currentUser, "max_backup_size", currentUser.getMaxBackupSize());
 					frmSettings.dispose();
-		}
+				}
 			}
-			
-		
 		});
 		btnOk.setBounds(58, 276, 97, 25);
 		frmSettings.getContentPane().add(btnOk);
