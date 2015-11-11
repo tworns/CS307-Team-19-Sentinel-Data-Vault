@@ -80,6 +80,7 @@ public class PasswordChangeView {
 		frmChangePassword.setBounds(100, 100, 410, 429);
 		frmChangePassword.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frmChangePassword.getContentPane().setLayout(null);
+		frmChangePassword.setLocationRelativeTo(null);
 		
 		JLabel lblOldPassword = new JLabel("Current Password"); //Old password field label
 		lblOldPassword.setBounds(165, 53, 114, 16);

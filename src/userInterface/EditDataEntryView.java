@@ -46,6 +46,7 @@ public class EditDataEntryView {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setLocationRelativeTo(null);
 		String entryType = currentEntry.getEntryType();
 		if (entryType.equals("SSN")) {
 			JLabel label, label_1, label_2;

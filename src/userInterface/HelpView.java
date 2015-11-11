@@ -52,7 +52,7 @@ public class HelpView {
 		frmHelp.setBounds(100, 100, 450, 300);
 		frmHelp.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frmHelp.getContentPane().setLayout(new MigLayout("", "[151px][][grow]", "[213px,grow][29px]"));
-		
+		frmHelp.setLocationRelativeTo(null);
 		JTree tree = new JTree();
 		tree.setModel(new DefaultTreeModel(
 			new DefaultMutableTreeNode("FAQ") {

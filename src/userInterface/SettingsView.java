@@ -53,6 +53,7 @@ public class SettingsView {
 		frmSettings.setBounds(100, 100, 431, 345);
 		frmSettings.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frmSettings.getContentPane().setLayout(null);
+		frmSettings.setLocationRelativeTo(null);
 		
 		//High security toggle & tool tip
 		JCheckBox chckbxHighSecurityLevel = new JCheckBox("High Security Level ");

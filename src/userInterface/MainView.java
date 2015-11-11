@@ -78,7 +78,7 @@ public class MainView {
 		frmSentinelDataVault.setBounds(100, 100, 700, 450);
 		frmSentinelDataVault.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmSentinelDataVault.getContentPane().setLayout(new BoxLayout(frmSentinelDataVault.getContentPane(), BoxLayout.X_AXIS));
-		
+		frmSentinelDataVault.setLocationRelativeTo(null);
 		
 		
 		JPanel panel = new JPanel();

@@ -85,7 +85,7 @@ public class HomeView {
 		frmSentinelDataVault.setBounds(100, 100, 700, 500);
 		frmSentinelDataVault.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmSentinelDataVault.getContentPane().setLayout(null);
-
+		frmSentinelDataVault.setLocationRelativeTo(null);
 		//		anel_south		
 		JPanel panel_north = new JPanel();
 		panel_north.setBounds(6, 6, 688, 65);			// margins between object 8 

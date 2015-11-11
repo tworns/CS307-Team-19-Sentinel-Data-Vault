@@ -71,6 +71,7 @@ public class SecurityView {
 		frame.setTitle("Security View");
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		frame.setLocationRelativeTo(null);
 		
 		//display code for the tabs
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);

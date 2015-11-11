@@ -80,7 +80,7 @@ public class NewDataEntryView {
 		frame = new JFrame("Choose New Date Entry Type");
 		frame.setBounds(150, 150, 300, 200);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
+		frame.setLocationRelativeTo(null);
 		JPanel panel = new JPanel();
 		frame.getContentPane().add(panel, BorderLayout.NORTH);
 
@@ -111,7 +111,7 @@ public class NewDataEntryView {
 						frame.repaint();
 						frame.setBounds(150, 150, 550, 400);
 						frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
+						frame.setLocationRelativeTo(null);
 						JLabel label, label_1, label_2;
 						JTextField textField, textField_1, textField_2;
 						label = new JLabel("Entry Name");
@@ -183,7 +183,7 @@ public class NewDataEntryView {
 						frame.repaint();
 						frame.setBounds(150, 150, 550, 400);
 						frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
+						frame.setLocationRelativeTo(null);
 						JLabel label, label_1, label_2, label_3, label_4, label_5;
 						JComboBox cardType;
 						JTextField textField, textField_1, textField_2, textField_3, textField_4;
@@ -252,7 +252,7 @@ public class NewDataEntryView {
 						frame.getContentPane().add(cardType);
 						frame.getContentPane().add(month);
 						frame.getContentPane().add(year);
-
+						frame.setLocationRelativeTo(null);
 						JButton btnSave = new JButton("Save");
 						btnSave.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
@@ -297,7 +297,7 @@ public class NewDataEntryView {
 						frame.repaint();
 						frame.setBounds(150, 150, 550, 400);
 						frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
+						frame.setLocationRelativeTo(null);
 						JLabel label, label_1, label_2, label_3, label_4, label_5, label_6, label_7, label_8;
 						JTextField textField, textField_1, textField_2, textField_3, textField_4, textField_5,
 								textField_6, textField_7, textField_8;
@@ -384,7 +384,7 @@ public class NewDataEntryView {
 						frame.getContentPane().add(textField_6);
 						frame.getContentPane().add(textField_7);
 						frame.getContentPane().add(textField_8);
-
+						frame.setLocationRelativeTo(null);
 						JButton btnSave = new JButton("Save");
 						btnSave.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
@@ -432,7 +432,7 @@ public class NewDataEntryView {
 						frame.repaint();
 						frame.setBounds(150, 150, 550, 400);
 						frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
+						frame.setLocationRelativeTo(null);
 						JLabel label, label_1, label_2, label_3, label_4;
 						JTextField textField, textField_1, textField_2, textField_3, textField_4;
 						label = new JLabel("Entry Name");
@@ -481,7 +481,7 @@ public class NewDataEntryView {
 						frame.getContentPane().add(textField_2);
 						frame.getContentPane().add(textField_3);
 						frame.getContentPane().add(textField_4);
-
+						frame.setLocationRelativeTo(null);
 						JButton btnSave = new JButton("Save");
 						btnSave.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
@@ -524,7 +524,7 @@ public class NewDataEntryView {
 						frame.repaint();
 						frame.setBounds(150, 150, 550, 400);
 						frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
+						frame.setLocationRelativeTo(null);
 						JLabel label, label_1, label_2, label_3;
 						JTextField textField, textField_1, textField_2, textField_3;
 						label = new JLabel("Entry Name");
@@ -564,7 +564,7 @@ public class NewDataEntryView {
 						frame.getContentPane().add(textField_1);
 						frame.getContentPane().add(textField_2);
 						frame.getContentPane().add(textField_3);
-
+						frame.setLocationRelativeTo(null);
 						JButton btnSave = new JButton("Save");
 						btnSave.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
@@ -607,7 +607,7 @@ public class NewDataEntryView {
 						frame.repaint();
 						frame.setBounds(150, 150, 550, 400);
 						frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
+						frame.setLocationRelativeTo(null);
 						JLabel label, label_1, label_2, label_3;
 						JTextField textField, textField_1, textField_2, textField_3;
 						label = new JLabel("Entry Name");
@@ -647,7 +647,7 @@ public class NewDataEntryView {
 						frame.getContentPane().add(textField_1);
 						frame.getContentPane().add(textField_2);
 						frame.getContentPane().add(textField_3);
-
+						frame.setLocationRelativeTo(null);
 						JButton btnSave = new JButton("Save");
 						btnSave.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
@@ -691,7 +691,7 @@ public class NewDataEntryView {
 						frame.repaint();
 						frame.setBounds(100, 100, 450, 300);
 						frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
+						frame.setLocationRelativeTo(null);
 						JLabel label, label_1, label_2, label_3;
 						JTextField textField, textField_1, textField_2, textField_3;
 						label = new JLabel("Entry Name");
@@ -731,7 +731,7 @@ public class NewDataEntryView {
 						frame.getContentPane().add(textField_1);
 						frame.getContentPane().add(textField_2);
 						frame.getContentPane().add(textField_3);
-
+						frame.setLocationRelativeTo(null);
 						JButton btnSave = new JButton("Save");
 						btnSave.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {

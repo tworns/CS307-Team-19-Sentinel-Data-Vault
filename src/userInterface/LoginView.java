@@ -63,6 +63,7 @@ public class LoginView {
 		frmSignIn.setResizable(false);
 		frmSignIn.setBounds(100, 100, 450, 300);
 		frmSignIn.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmSignIn.setLocationRelativeTo(null);
 		
 		JLabel lblEmail = new JLabel("E-mail:");
 		lblEmail.setBounds(73, 108, 56, 18);
