@@ -85,7 +85,7 @@ public class DatabaseManager {
 			return -1;
 		}
 	}
-
+	
 	/**
 	 * Deletes a given user from the vault database.
 	 * 
@@ -573,29 +573,36 @@ public class DatabaseManager {
 
 			// Construct the SQL INSERT statement
 			int size_of_datafield = newEntry.getFieldDataList().size();
-			String sql = "UPDATE data_entries SET entry_name=?, ";
+			String sql = "UPDATE data_entries SET entry_name=?,";
 			for (int i = 0; i < size_of_datafield; i++) {
 				sql += "data_field_" + Integer.toString(i + 1) + "=?";
 				if (i != size_of_datafield - 1)
-					sql += ", ";
+					sql += ",";
 			}
-			sql += " WHERE entry_name=? AND owner=?";
+			sql += " WHERE entry_name=? AND owner=?;";
 
 
 			PreparedStatement preparedStatement = DBconnection.prepareStatement(sql);
 			int j = 2;
 			preparedStatement.setString(1, newEntry.getEntryName());
 			for (int i = 0; i < size_of_datafield; i++) {
+				System.out.println(newEntry.getFieldDataList().get(i));
 				preparedStatement.setString(2 + i, newEntry.getFieldDataList().get(i));
 				j++;
 			}
-			System.out.println(j);
+			System.out.println(newEntry.getEntryName() + oldEntry.getOwner());
 			preparedStatement.setString(j , oldEntry.getEntryName());
-			preparedStatement.setString(j , newEntry.getOwner());
+			preparedStatement.setString(j + 1 , oldEntry.getOwner());
 
 			System.out.println(sql);
-
 			
+			/*String sql_test = "UPDATE data_entries SET entry_name=?,data_field_1=? WHERE ";
+			
+			preparedStatement = DBconnection.prepareStatement(sql_test);
+			preparedStatement.setString(1, "myss");
+			preparedStatement.setString(2, "default");
+			preparedStatement.setString(3, "default");
+			preparedStatement.setString(4, "myss");*/
 			// Execute the statement and commit database changes
 			preparedStatement.executeUpdate();
 			DBconnection.commit();
