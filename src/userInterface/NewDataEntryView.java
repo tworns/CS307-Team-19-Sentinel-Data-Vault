@@ -159,7 +159,19 @@ public class NewDataEntryView {
 									return;
 								}
 								else {
+									
+									JOptionPane.showMessageDialog(null,"You have successfully Added DataEntry");
+									System.gc(); 
+									for (Window window : Window.getWindows()){
+								    	window.dispose();
+									}
+
 									frame.dispose();
+									
+									HomeView hv = new HomeView(userName);
+									hv.frmSentinelDataVault.setVisible(true);
+									
+									
 								}
 							}
 						});
@@ -427,7 +439,18 @@ public class NewDataEntryView {
 									return;
 								}
 								else {
+									
+									JOptionPane.showMessageDialog(null,"You have successfully Added DataEntry");
+									System.gc(); 
+									for (Window window : Window.getWindows()){
+								    	window.dispose();
+									}
+
 									frame.dispose();
+									
+									HomeView hv = new HomeView(userName);
+									hv.frmSentinelDataVault.setVisible(true);
+									
 								}
 							}
 						});
@@ -519,7 +542,18 @@ public class NewDataEntryView {
 									return;
 								}
 								else {
+
+									JOptionPane.showMessageDialog(null,"You have successfully Added DataEntry");
+									System.gc(); 
+									for (Window window : Window.getWindows()){
+								    	window.dispose();
+									}
+
 									frame.dispose();
+									
+									HomeView hv = new HomeView(userName);
+									hv.frmSentinelDataVault.setVisible(true);
+									
 								}
 							}
 						});
@@ -610,7 +644,17 @@ public class NewDataEntryView {
 									return;
 								}
 								else {
+									JOptionPane.showMessageDialog(null,"You have successfully Added DataEntry");
+									System.gc(); 
+									for (Window window : Window.getWindows()){
+								    	window.dispose();
+									}
+
 									frame.dispose();
+									
+									HomeView hv = new HomeView(userName);
+									hv.frmSentinelDataVault.setVisible(true);
+									
 								}
 							}
 						});
@@ -693,7 +737,17 @@ public class NewDataEntryView {
 									return;
 								}
 								else {
+									JOptionPane.showMessageDialog(null,"You have successfully Added DataEntry");
+									System.gc(); 
+									for (Window window : Window.getWindows()){
+								    	window.dispose();
+									}
+
 									frame.dispose();
+									
+									HomeView hv = new HomeView(userName);
+									hv.frmSentinelDataVault.setVisible(true);
+									
 								}
 							}
 						});
@@ -777,7 +831,17 @@ public class NewDataEntryView {
 									return;
 								}
 								else {
+									JOptionPane.showMessageDialog(null,"You have successfully Added DataEntry");
+									System.gc(); 
+									for (Window window : Window.getWindows()){
+								    	window.dispose();
+									}
+
 									frame.dispose();
+									
+									HomeView hv = new HomeView(userName);
+									hv.frmSentinelDataVault.setVisible(true);
+									
 								}
 							}
 						});
@@ -800,13 +864,7 @@ public class NewDataEntryView {
 			}
 		});
 		
-<<<<<<< Updated upstream
-=======
-		//HomeView window = new HomeView(userName);
-		//window.frmSentinelDataVault.setVisible(true);
-		
-	
->>>>>>> Stashed changes
+
 
 	}
 
