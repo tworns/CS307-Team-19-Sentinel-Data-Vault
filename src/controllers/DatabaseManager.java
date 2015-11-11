@@ -12,7 +12,8 @@ import java.util.List;
 public class DatabaseManager {
 
 	/**
-	 * Connects to the vault database and returns a Connection for two-way communication
+	 * Connects to the vault database and returns a Connection for two-way
+	 * communication
 	 * 
 	 * @return active Connection to vault_database
 	 */
@@ -33,8 +34,10 @@ public class DatabaseManager {
 	/**
 	 * Adds a given user (account) to the vault database.
 	 * 
-	 * @param newUser 	user object to add to the vault database
-	 * @return 			positive integer if user successfully added; negative if user already exists in the database
+	 * @param newUser
+	 *            user object to add to the vault database
+	 * @return positive integer if user successfully added; negative if user
+	 *         already exists in the database
 	 */
 	public int addUserToDatabase(User newUser) {
 		// Connect to the database
@@ -86,10 +89,14 @@ public class DatabaseManager {
 	/**
 	 * Deletes a given user from the vault database.
 	 * 
-	 * @param doomedUser	user object to delete from the vault database
-	 * @return 				positive integer if user successfully deleted; negative if unsuccessful
+	 * @param doomedUser
+	 *            user object to delete from the vault database
+	 * @return positive integer if user successfully deleted; negative if
+	 *         unsuccessful
 	 */
-	public int deleteUserFromDatabase(User doomedUser) { // TODO Check for success/failure unnecessary
+	public int deleteUserFromDatabase(User doomedUser) { // TODO Check for
+															// success/failure
+															// unnecessary
 		// Connect to the database
 		Connection DBconnection = connectToDatabase();
 
@@ -120,8 +127,10 @@ public class DatabaseManager {
 	/**
 	 * Retrieves a stored user from the vault database
 	 * 
-	 * @param userEmail	username (email) of user to be retrieved from the vault database
-	 * @return 			User object containing that user's stored data
+	 * @param userEmail
+	 *            username (email) of user to be retrieved from the vault
+	 *            database
+	 * @return User object containing that user's stored data
 	 */
 	public User retrieveUserFromDatabase(String userEmail) {
 		// Connect to the database
@@ -129,7 +138,7 @@ public class DatabaseManager {
 		try {
 			// Initialize a statement to execute
 			Statement stmt = DBconnection.createStatement();
-			
+
 			// Construct the SQL DELETE statement
 			String sql = "SELECT * FROM users WHERE user_email = " + "'" + userEmail + "';";
 
@@ -150,7 +159,7 @@ public class DatabaseManager {
 			int wipeSet = userInfoSet.getInt("account_wipe_set");
 			String backupFreq = userInfoSet.getString("backup_frequency");
 			int size = userInfoSet.getInt("max_backup_size");
-			
+
 			// Reconstruct user
 			User user = new User(userEmail, passwordHash, salt, datakey, question, answer, loginLDT);
 			user.setDefaultHighSecurity(isHigh);
@@ -172,7 +181,7 @@ public class DatabaseManager {
 			return null;
 		}
 	}
-	
+
 	/*
 	 * Retrieve DataEntry object from DB
 	 * 
@@ -182,196 +191,206 @@ public class DatabaseManager {
 		// Connect to the database
 		Connection DBconnection = connectToDatabase();
 		try {
-			/*this is the list we are returning contains all dataentries belong
-			 to certain user*/
+			/*
+			 * this is the list we are returning contains all dataentries belong
+			 * to certain user
+			 */
 			List<DataEntry> dataentries = new ArrayList<DataEntry>();
-			
+
 			// Initialize a statement to execute
 			Statement stmt = DBconnection.createStatement();
 			// Construct the SQL DELETE statement
-			String sql = "SELECT * FROM data_entries WHERE owner = "
-					+ "'" + userEmail + "';"
-					;
-			
+			String sql = "SELECT * FROM data_entries WHERE owner = " + "'" + userEmail + "';";
+
 			// Execute the statement and commit database changes
-		    ResultSet dataEntryInfoSet = stmt.executeQuery(sql);
-		    while(dataEntryInfoSet.next()){
-		    	/*TODO construct Dataentry object and add each one 
-		    	 to the List in the while loop here */
-		    }
-	        
-		    /*Basically just move the codes below to the loop and 
-		    ad the entry to the list*/
-		    
-		    /*String entryName = dataEntryInfoSet.getString("entry_name");
-	        String entryType  = dataEntryInfoSet.getString("entry_type");
-	        String encryptionKey = dataEntryInfoSet.getString("encryption_key");
-	        String owner = dataEntryInfoSet.getString("owner"); 
-	        int highSecurity = dataEntryInfoSet.getInt("secure_entry");
-	        
-	        String lastModified = dataEntryInfoSet.getString("last_modified");
-			LocalDateTime modifiedLDT = LocalDateTime.parse(lastModified);
-	        
-	        int isHigh = dataEntryInfoSet.getInt("high_security");
-	        int wipeSet = dataEntryInfoSet.getInt("account_wipe_set");
-	        String backupFreq = dataEntryInfoSet.getString("backup_frequency");
-	        int size = dataEntryInfoSet.getInt("max_backup_size");
-	       
-	        String datafield_1 = dataEntryInfoSet.getString("data_field_1");
-	        String datafield_2 = dataEntryInfoSet.getString("data_field_2");
-	        String datafield_3 = dataEntryInfoSet.getString("data_field_3");
-	        String datafield_4 = dataEntryInfoSet.getString("data_field_4");
-	        String datafield_5 = dataEntryInfoSet.getString("data_field_5");
-	        String datafield_6 = dataEntryInfoSet.getString("data_field_6");
-	        String datafield_7 = dataEntryInfoSet.getString("data_field_7");
-	        String datafield_8 = dataEntryInfoSet.getString("data_field_8");
-	        String datafield_9 = dataEntryInfoSet.getString("data_field_9");
-	        String datafield_10 = dataEntryInfoSet.getString("data_field_10");
-	        
-	        List<String> fields = new ArrayList<String>();
-	        fields.add(datafield_1);
-	        fields.add(datafield_2);
-	        fields.add(datafield_3);
-	        fields.add(datafield_4);
-	        fields.add(datafield_5);
-	        fields.add(datafield_6);
-	        fields.add(datafield_7);
-	        fields.add(datafield_8);
-	        fields.add(datafield_9);
-	        fields.add(datafield_10);
-	        
-	        // Reconstruct DataEntry
-	        DataEntry dataEntry = new DataEntry(entryName, entryType, encryptionKey, owner, highSecurity, modifiedLDT);
-	        dataEntry.setDataFields(fields);
-	        */
-		    
-		    // Disconnect from database
-	        dataEntryInfoSet.close();
-		    stmt.close();
-		    DBconnection.close();
-			
+			ResultSet dataEntryInfoSet = stmt.executeQuery(sql);
+			while (dataEntryInfoSet.next()) {
+				/*
+				 * TODO construct Dataentry object and add each one to the List
+				 * in the while loop here
+				 */
+			}
+
+			/*
+			 * Basically just move the codes below to the loop and ad the entry
+			 * to the list
+			 */
+
+			/*
+			 * String entryName = dataEntryInfoSet.getString("entry_name");
+			 * String entryType = dataEntryInfoSet.getString("entry_type");
+			 * String encryptionKey =
+			 * dataEntryInfoSet.getString("encryption_key"); String owner =
+			 * dataEntryInfoSet.getString("owner"); int highSecurity =
+			 * dataEntryInfoSet.getInt("secure_entry");
+			 * 
+			 * String lastModified =
+			 * dataEntryInfoSet.getString("last_modified"); LocalDateTime
+			 * modifiedLDT = LocalDateTime.parse(lastModified);
+			 * 
+			 * int isHigh = dataEntryInfoSet.getInt("high_security"); int
+			 * wipeSet = dataEntryInfoSet.getInt("account_wipe_set"); String
+			 * backupFreq = dataEntryInfoSet.getString("backup_frequency"); int
+			 * size = dataEntryInfoSet.getInt("max_backup_size");
+			 * 
+			 * String datafield_1 = dataEntryInfoSet.getString("data_field_1");
+			 * String datafield_2 = dataEntryInfoSet.getString("data_field_2");
+			 * String datafield_3 = dataEntryInfoSet.getString("data_field_3");
+			 * String datafield_4 = dataEntryInfoSet.getString("data_field_4");
+			 * String datafield_5 = dataEntryInfoSet.getString("data_field_5");
+			 * String datafield_6 = dataEntryInfoSet.getString("data_field_6");
+			 * String datafield_7 = dataEntryInfoSet.getString("data_field_7");
+			 * String datafield_8 = dataEntryInfoSet.getString("data_field_8");
+			 * String datafield_9 = dataEntryInfoSet.getString("data_field_9");
+			 * String datafield_10 =
+			 * dataEntryInfoSet.getString("data_field_10");
+			 * 
+			 * List<String> fields = new ArrayList<String>();
+			 * fields.add(datafield_1); fields.add(datafield_2);
+			 * fields.add(datafield_3); fields.add(datafield_4);
+			 * fields.add(datafield_5); fields.add(datafield_6);
+			 * fields.add(datafield_7); fields.add(datafield_8);
+			 * fields.add(datafield_9); fields.add(datafield_10);
+			 * 
+			 * // Reconstruct DataEntry DataEntry dataEntry = new
+			 * DataEntry(entryName, entryType, encryptionKey, owner,
+			 * highSecurity, modifiedLDT); dataEntry.setDataFields(fields);
+			 */
+
+			// Disconnect from database
+			dataEntryInfoSet.close();
+			stmt.close();
+			DBconnection.close();
+
 			// return a success value
 			return dataentries;
 		} catch (SQLException e) {
-			System.err.println( e.getClass().getName() + ": " + e.getMessage());
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
 			e.printStackTrace();
 			// return a failure value
 			return null;
 		}
 	}
-	
+
 	public List<String> retrieveDataEntryNameList(String user_email) {
 		List<String> entryNameList = new ArrayList<String>();
-		
+
 		// Connect to the database
 		Connection DBconnection = connectToDatabase();
 		try {
 			// Initialize a statement to execute
 			Statement stmt = DBconnection.createStatement();
-			
+
 			// Construct the SQL select statement
 			String sql = "SELECT entry_name FROM data_entries WHERE owner = '" + user_email + "';";
-			
+
 			// Execute SQL statement and retrieve result set
 			ResultSet entryNameSet = stmt.executeQuery(sql);
-			
+
 			// Construct list from result set
 			while (entryNameSet.next()) {
 				String entryName = entryNameSet.getString("entry_name");
 				entryNameList.add(entryName);
 			}
-			
+
 			// Disconnect and close database
 			entryNameSet.close();
 			stmt.close();
 			DBconnection.close();
-			
+
 		} catch (SQLException e) {
-			System.err.println( e.getClass().getName() + ": " + e.getMessage());
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
 			e.printStackTrace();
 		}
-		
+
 		return entryNameList;
 	}
-	
+
 	public List<String> retrieveDataEntryTypeList(String user_email) {
 		List<String> entryTypeList = new ArrayList<String>();
-		
+
 		// Connect to the database
 		Connection DBconnection = connectToDatabase();
 		try {
 			// Initialize a statement to execute
 			Statement stmt = DBconnection.createStatement();
-			
+
 			// Construct the SQL select statement
 			String sql = "SELECT entry_type FROM data_entries WHERE owner = '" + user_email + "';";
-			
+
 			// Execute SQL statement and retrieve result set
 			ResultSet entryTypeSet = stmt.executeQuery(sql);
-			
+
 			// Construct list from result set
 			while (entryTypeSet.next()) {
 				String entryType = entryTypeSet.getString("entry_type");
 				entryTypeList.add(entryType);
 			}
-			
+
 			// Disconnect and close database
 			entryTypeSet.close();
 			stmt.close();
 			DBconnection.close();
-			
+
 		} catch (SQLException e) {
-			System.err.println( e.getClass().getName() + ": " + e.getMessage());
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
 			e.printStackTrace();
 		}
-		
+
 		return entryTypeList;
 	}
-	
-	// TODO May need to be adjusted based on how shared data entries will be retrieved from the database (name & owner?)
+
+	// TODO May need to be adjusted based on how shared data entries will be
+	// retrieved from the database (name & owner?)
 	/**
-	 * Generates an alphabetical List of all a given user’s viewable shared data entries.
-	 * NOTE: Requires that valid_users field in database contains a SORTED String of user_emails separated by " " (space)
+	 * Generates an alphabetical List of all a given user’s viewable shared data
+	 * entries. NOTE: Requires that valid_users field in database contains a
+	 * SORTED String of user_emails separated by " " (space)
 	 * 
-	 * @param user_email	User to find viewable shared entries for
-	 * @return				Alphabetically-sorted List of all shared data entries a user has permission to view.
+	 * @param user_email
+	 *            User to find viewable shared entries for
+	 * @return Alphabetically-sorted List of all shared data entries a user has
+	 *         permission to view.
 	 */
 	public List<String> retrieveSharedEntryList(String user_email) {
 		List<String> sharedEntryList = new ArrayList<String>();
-		
+
 		// Connect to the database
 		Connection DBconnection = connectToDatabase();
 		try {
 			// Initialize a statement to execute
 			Statement stmt = DBconnection.createStatement();
-			
+
 			// Construct the SQL select statement (gets ALL data entries)
 			String sql = "SELECT entry_name, valid_users FROM data_entries;";
-			
+
 			// Execute SQL statement and retrieve result set
 			ResultSet allDataEntries = stmt.executeQuery(sql);
-			
-			// Construct list of available shared entries from result set of ALL entries
+
+			// Construct list of available shared entries from result set of ALL
+			// entries
 			while (allDataEntries.next()) {
-				// parse the valid_users STRING to get resulting LIST of valid users. Delimiter = ' '
+				// parse the valid_users STRING to get resulting LIST of valid
+				// users. Delimiter = ' '
 				String validUsers = allDataEntries.getString("valid_users");
 				String[] parsedValidUsers = validUsers.split(" ");
-				// search the String array for user_email; add to SharedEntryList
+				// search the String array for user_email; add to
+				// SharedEntryList
 				if (Arrays.binarySearch(parsedValidUsers, user_email) >= 0) {
 					sharedEntryList.add(allDataEntries.getString("entry_name"));
 				}
 			}
-			
+
 			// Disconnect and close database
 			allDataEntries.close();
 			stmt.close();
 			DBconnection.close();
-			
+
 		} catch (SQLException e) {
-			System.err.println( e.getClass().getName() + ": " + e.getMessage());
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
 			e.printStackTrace();
 		}
-		
+
 		Collections.sort(sharedEntryList);
 		return sharedEntryList;
 	}
@@ -383,77 +402,75 @@ public class DatabaseManager {
 			// Initialize a statement to execute
 			Statement stmt = DBconnection.createStatement();
 			// Construct the SQL select statement
-			String sql = "SELECT * FROM data_entries WHERE owner = "
-					+ "'" + email + "'" + " AND " + "entry_name = " +
-					"'" + entryname + "'" +" AND " + "entry_type = " +
-					"'" + type + "';"
-					;
-			
+			String sql = "SELECT * FROM data_entries WHERE owner = " + "'" + email + "'" + " AND " + "entry_name = "
+					+ "'" + entryname + "'" + " AND " + "entry_type = " + "'" + type + "';";
+
 			// Execute the statement and commit database changes
-		    ResultSet dataEntryInfoSet = stmt.executeQuery(sql);
-		    
-		    //reconstruct entry
-		    String entryName = dataEntryInfoSet.getString("entry_name");
-	        String entryType  = dataEntryInfoSet.getString("entry_type");
-	        String encryptionKey = dataEntryInfoSet.getString("encryption_key");
-	        String owner = dataEntryInfoSet.getString("owner");
-	        
-	        // Parse the valid_users String and convert to List<String> to assign to validUsers field of DataEntry
-	        List<String> validUsers = new ArrayList<String>();
-	        String validUsersString = dataEntryInfoSet.getString("valid_users");
-	        String[] parsedValidUsers = validUsersString.split(" ");
-	        for (int i = 0; i < parsedValidUsers.length; i++) {
-	        	validUsers.add(parsedValidUsers[i]);
-	        }
-	        
-	        int highSecurity = dataEntryInfoSet.getInt("secure_entry");
-	        String lastModified = dataEntryInfoSet.getString("last_modified");
+			ResultSet dataEntryInfoSet = stmt.executeQuery(sql);
+
+			// reconstruct entry
+			String entryName = dataEntryInfoSet.getString("entry_name");
+			String entryType = dataEntryInfoSet.getString("entry_type");
+			String encryptionKey = dataEntryInfoSet.getString("encryption_key");
+			String owner = dataEntryInfoSet.getString("owner");
+
+			// Parse the valid_users String and convert to List<String> to
+			// assign to validUsers field of DataEntry
+			List<String> validUsers = new ArrayList<String>();
+			String validUsersString = dataEntryInfoSet.getString("valid_users");
+			String[] parsedValidUsers = validUsersString.split(" ");
+			for (int i = 0; i < parsedValidUsers.length; i++) {
+				validUsers.add(parsedValidUsers[i]);
+			}
+
+			int highSecurity = dataEntryInfoSet.getInt("secure_entry");
+			String lastModified = dataEntryInfoSet.getString("last_modified");
 			LocalDateTime modifiedLDT = LocalDateTime.parse(lastModified);
-			
-	        String datafield_1 = dataEntryInfoSet.getString("data_field_1");
-	        String datafield_2 = dataEntryInfoSet.getString("data_field_2");
-	        String datafield_3 = dataEntryInfoSet.getString("data_field_3");
-	        String datafield_4 = dataEntryInfoSet.getString("data_field_4");
-	        String datafield_5 = dataEntryInfoSet.getString("data_field_5");
-	        String datafield_6 = dataEntryInfoSet.getString("data_field_6");
-	        String datafield_7 = dataEntryInfoSet.getString("data_field_7");
-	        String datafield_8 = dataEntryInfoSet.getString("data_field_8");
-	        String datafield_9 = dataEntryInfoSet.getString("data_field_9");
-	        String datafield_10 = dataEntryInfoSet.getString("data_field_10");
-	        
-	        List<String> fields = new ArrayList<String>();
-	        fields.add(datafield_1);
-	        fields.add(datafield_2);
-	        fields.add(datafield_3);
-	        fields.add(datafield_4);
-	        fields.add(datafield_5);
-	        fields.add(datafield_6);
-	        fields.add(datafield_7);
-	        fields.add(datafield_8);
-	        fields.add(datafield_9);
-	        fields.add(datafield_10);
-	        
-	        // Reconstruct DataEntry
-	        DataEntry dataEntry = new DataEntry(entryName, entryType, encryptionKey, owner, highSecurity, modifiedLDT);
-	        dataEntry.setHighSecurity(highSecurity);
-	        dataEntry.setDataFields(fields);
-	        dataEntry.setValidUsers(validUsers);
-	        
-		    // Disconnect from database
-	        dataEntryInfoSet.close();
-		    stmt.close();
-		    DBconnection.close();
-			
+
+			String datafield_1 = dataEntryInfoSet.getString("data_field_1");
+			String datafield_2 = dataEntryInfoSet.getString("data_field_2");
+			String datafield_3 = dataEntryInfoSet.getString("data_field_3");
+			String datafield_4 = dataEntryInfoSet.getString("data_field_4");
+			String datafield_5 = dataEntryInfoSet.getString("data_field_5");
+			String datafield_6 = dataEntryInfoSet.getString("data_field_6");
+			String datafield_7 = dataEntryInfoSet.getString("data_field_7");
+			String datafield_8 = dataEntryInfoSet.getString("data_field_8");
+			String datafield_9 = dataEntryInfoSet.getString("data_field_9");
+			String datafield_10 = dataEntryInfoSet.getString("data_field_10");
+
+			List<String> fields = new ArrayList<String>();
+			fields.add(datafield_1);
+			fields.add(datafield_2);
+			fields.add(datafield_3);
+			fields.add(datafield_4);
+			fields.add(datafield_5);
+			fields.add(datafield_6);
+			fields.add(datafield_7);
+			fields.add(datafield_8);
+			fields.add(datafield_9);
+			fields.add(datafield_10);
+
+			// Reconstruct DataEntry
+			DataEntry dataEntry = new DataEntry(entryName, entryType, encryptionKey, owner, highSecurity, modifiedLDT);
+			dataEntry.setHighSecurity(highSecurity);
+			dataEntry.setDataFields(fields);
+			dataEntry.setValidUsers(validUsers);
+
+			// Disconnect from database
+			dataEntryInfoSet.close();
+			stmt.close();
+			DBconnection.close();
+
 			// return a success value
 			return dataEntry;
 		} catch (SQLException e) {
-			System.err.println( e.getClass().getName() + ": " + e.getMessage());
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
 			e.printStackTrace();
 			// return a failure value
 			return null;
 		}
-	}	
-	
+	}
+
 	/**
 	 * Modifies a TEXT (String) user field in the 'users' table of the vault
 	 * database
@@ -510,17 +527,15 @@ public class DatabaseManager {
 			Statement stmt = DBconnection.createStatement();
 			// Construct the SQL UPDATE statement
 
-			String sql = "UPDATE users "
-					+ "SET " + fieldName + " = " + String.valueOf(newIntData) + " "
-					+ "WHERE user_email = '" + user.getUsername() + "';"
-					;
-
-
-/*
-			String sql = "UPDATE users" + "SET " + fieldName + " = '" + String.valueOf(newIntData) + "' "
+			String sql = "UPDATE users " + "SET " + fieldName + " = " + String.valueOf(newIntData) + " "
 					+ "WHERE user_email = '" + user.getUsername() + "';";
 
-*/
+			/*
+			 * String sql = "UPDATE users" + "SET " + fieldName + " = '" +
+			 * String.valueOf(newIntData) + "' " + "WHERE user_email = '" +
+			 * user.getUsername() + "';";
+			 * 
+			 */
 
 			// Execute the statement and commit database changes
 			stmt.executeUpdate(sql);
@@ -535,44 +550,68 @@ public class DatabaseManager {
 		}
 	}
 
-	public void updateEntry(DataEntry oldEntry, DataEntry newEntry) {
+	public int updateEntry(DataEntry oldEntry, DataEntry newEntry) {
 		// Connect to the database
 		Connection DBconnection = connectToDatabase();
 		try {
+			if (!oldEntry.getEntryName().equals(newEntry.getEntryName())) {
+				String count = "SELECT COUNT(*) FROM data_entries WHERE entry_name=? AND owner=?";
+				PreparedStatement preparedStatement = DBconnection.prepareStatement(count);
+				preparedStatement.setString(1, newEntry.getEntryName());
+				preparedStatement.setString(2, newEntry.getOwner());
+				ResultSet results = preparedStatement.executeQuery();
+				if (results.getInt(1) != 0) {
+					// entry_name exists, return failure value
+					System.out.println("Entry name already exists!");
+					results.close();
+					preparedStatement.close();
+					DBconnection.close();
+					return -1;
+				}
+			}
 			// Initialize a statement to execute
-			Statement stmt = DBconnection.createStatement();
 
 			// Construct the SQL INSERT statement
 			int size_of_datafield = newEntry.getFieldDataList().size();
-			String sql = "UPDATE data_entries SET entry_name='" + newEntry.getEntryName() + "', ";
+			String sql = "UPDATE data_entries SET entry_name=?, ";
 			for (int i = 0; i < size_of_datafield; i++) {
-				sql += "data_field_" + Integer.toString(i + 1) + "='" + newEntry.getFieldDataList().get(i) + "'";
+				sql += "data_field_" + Integer.toString(i + 1) + "=?'";
 				if (i != size_of_datafield - 1)
-					sql+= ", ";
+					sql += ", ";
 			}
-			sql += "WHERE entry_name='" + oldEntry.getEntryName();
-			System.out.println(sql);		
-					
+			sql += "WHERE entry_name=? AND owner=?";
+
+			PreparedStatement preparedStatement = DBconnection.prepareStatement(sql);
+			int j = 2;
+			preparedStatement.setString(1, newEntry.getEntryName());
+			for (int i = 0; i < size_of_datafield; i++) {
+				preparedStatement.setString(2 + i, newEntry.getFieldDataList().get(i));
+				j++;
+			}
+			preparedStatement.setString(j + 1, oldEntry.getEntryName());
+			preparedStatement.setString(j + 2, newEntry.getOwner());
+
+			System.out.println(sql);
+
 			// Execute the statement and commit database changes
-			stmt.executeUpdate(sql);
 			DBconnection.commit();
 
 			// Disconnect from database
-			stmt.close();
+			preparedStatement.close();
 			DBconnection.close();
 
 			// return a success value
-			return;
+			return 1;
 
 		} catch (SQLException e) {
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
 			e.printStackTrace();
 			// return a failure value
-			return;
+			return -1;
 		}
+
 	}
-	
-	
+
 	public int addEntryToDatabase(DataEntry entry) {
 		// Connect to the database
 		Connection DBconnection = connectToDatabase();
@@ -580,48 +619,32 @@ public class DatabaseManager {
 			// Initialize a statement to execute
 
 			String count = "SELECT COUNT(*) FROM data_entries WHERE entry_name=? AND owner=?";
-			PreparedStatement preparedStatement =
-			        DBconnection.prepareStatement(count);
+			PreparedStatement preparedStatement = DBconnection.prepareStatement(count);
 			preparedStatement.setString(1, entry.getEntryName());
 			preparedStatement.setString(2, entry.getOwner());
-			//Check that entry_name does not already exist
+			// Check that entry_name does not already exist
 			ResultSet results = preparedStatement.executeQuery();
 			if (results.getInt(1) != 0) {
 				// entry_name exists, return failure value
 				System.out.println("Entry name already exists!");
 				results.close();
 				preparedStatement.close();
-				DBconnection.close();						
+				DBconnection.close();
 				return -1;
 			}
 
 			// Construct the SQL INSERT statement
 			int field_number = entry.getFieldDataList().size();
 			String sql = "INSERT INTO data_entries(entry_name, entry_type, encryption_key, owner, valid_users, secure_entry, last_modified";
-			for (int i = 0; i < field_number; i++) {
+			for (int i = 0; i < 10; i++) {
 				sql = sql + ", ";
 				sql = sql + "data_field_" + Integer.toString(i + 1);
 			}
-			sql = sql + ") VALUES (?, ?, ?, ?, ?, ?, ?, ";
-			/*sql = sql + ") VALUES ('" + entry.getEntryName() + "', "  + "'" + entry.getEntryType()  + "', " + "'"
-					+ entry.getEncryptionKey()  + "', " + "'" + entry.getOwner()  + "', " + "'"
-					+ entry.buildValidUsersString() + "', " + entry.isHighSecurity() + ", '" + entry.getLastModified().toString() + "', ";*/
-			/*for (int j = 0; j < field_number; j++) {
-				sql = sql + "'" + entry.getFieldDataList().get(j) + "'";
-				if (j != field_number -1)
-					sql = sql + ", ";
-			}*/
-			for (int j = 0; j < field_number; j++) {
-				sql = sql + "?";
-				if (j != field_number -1)
-					sql = sql + ", ";
-			}
-			sql = sql + ")";
+			sql = sql + ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			System.out.println(sql);
-			
-			preparedStatement =
-			        DBconnection.prepareStatement(sql);
-			
+
+			preparedStatement = DBconnection.prepareStatement(sql);
+
 			preparedStatement.setString(1, entry.getEntryName());
 			preparedStatement.setString(2, entry.getEntryType());
 			preparedStatement.setString(3, entry.getEncryptionKey());
@@ -630,14 +653,21 @@ public class DatabaseManager {
 			preparedStatement.setInt(6, entry.isHighSecurity());
 			preparedStatement.setString(7, entry.getLastModified().toString());
 			
+			
+
+			int j = 0;
 			for (int i = 0; i < field_number; i++) {
 				preparedStatement.setString(8 + i, entry.getFieldDataList().get(i));
+				j++;
 			}
-			
+			for (int i = j; i < 10; i++) {
+				preparedStatement.setString(8 + i, "null");
+			}
+
 			preparedStatement.executeUpdate();
-			
+
 			// Execute the statement and commit database changes
-			//stmt.executeUpdate(sql);
+			// stmt.executeUpdate(sql);
 			DBconnection.commit();
 
 			// Disconnect from database
@@ -654,40 +684,41 @@ public class DatabaseManager {
 			return -1;
 		}
 	}
-	
+
 	public int deleteEntryFromDatabase(DataEntry entry) {
 		// Connect to the database
-				Connection DBconnection = connectToDatabase();
-				try {
-					// Initialize a statement to execute
-					Statement stmt = DBconnection.createStatement();
-					
-					// Construct the SQL INSERT statement
-					String sql = "DELETE FROM data_entries WHERE entry_name='" + entry.getEntryName() + "'" + " AND " +
-								"owner='" + entry.getOwner() + "'";
-					System.out.println(sql);		
-							
-					// Execute the statement and commit database changes
-					stmt.executeUpdate(sql);
-					DBconnection.commit();
+		Connection DBconnection = connectToDatabase();
+		try {
+			// Initialize a statement to execute
+			Statement stmt = DBconnection.createStatement();
 
-					// Disconnect from database
-					stmt.close();
-					DBconnection.close();
+			// Construct the SQL INSERT statement
+			String sql = "DELETE FROM data_entries WHERE entry_name='" + entry.getEntryName() + "'" + " AND "
+					+ "owner='" + entry.getOwner() + "'";
+			System.out.println(sql);
 
-					// return a success value
-					return 1;
+			// Execute the statement and commit database changes
+			stmt.executeUpdate(sql);
+			DBconnection.commit();
 
-				} catch (SQLException e) {
-					System.err.println(e.getClass().getName() + ": " + e.getMessage());
-					e.printStackTrace();
-					// return a failure value
-					return -1;
-				}
+			// Disconnect from database
+			stmt.close();
+			DBconnection.close();
+
+			// return a success value
+			return 1;
+
+		} catch (SQLException e) {
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			e.printStackTrace();
+			// return a failure value
+			return -1;
+		}
 	}
-	
-	//******This method should always be called BEFORE we delete a user account*****
-	//TODO 
+
+	// ******This method should always be called BEFORE we delete a user
+	// account*****
+	// TODO
 	public int deleteAllEntriesFromDatabase(User doomeduser) {
 		// Connect to the database
 		Connection DBconnection = connectToDatabase();
@@ -697,8 +728,8 @@ public class DatabaseManager {
 
 			// Construct the SQL INSERT statement
 			String sql = "DELETE FROM data_entries WHERE owner='" + doomeduser.getUsername() + "'";
-			System.out.println(sql);		
-					
+			System.out.println(sql);
+
 			// Execute the statement and commit database changes
 			stmt.executeUpdate(sql);
 			DBconnection.commit();
