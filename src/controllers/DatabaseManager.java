@@ -535,7 +535,7 @@ public class DatabaseManager {
 		}
 	}
 
-	public void updateEntry(DataEntry oldEntry, DataEntry newEntry) {
+	public int updateEntry(DataEntry oldEntry, DataEntry newEntry) {
 		// Connect to the database
 		Connection DBconnection = connectToDatabase();
 		try {
@@ -562,13 +562,13 @@ public class DatabaseManager {
 			DBconnection.close();
 
 			// return a success value
-			return;
+			return 0;
 
 		} catch (SQLException e) {
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
 			e.printStackTrace();
 			// return a failure value
-			return;
+			return -1;
 		}
 	}
 	
@@ -598,25 +598,12 @@ public class DatabaseManager {
 			// Construct the SQL INSERT statement
 			int field_number = entry.getFieldDataList().size();
 			String sql = "INSERT INTO data_entries(entry_name, entry_type, encryption_key, owner, valid_users, secure_entry, last_modified";
-			for (int i = 0; i < field_number; i++) {
+			for (int i = 0; i < 10; i++) {
 				sql = sql + ", ";
 				sql = sql + "data_field_" + Integer.toString(i + 1);
 			}
-			sql = sql + ") VALUES (?, ?, ?, ?, ?, ?, ?, ";
-			/*sql = sql + ") VALUES ('" + entry.getEntryName() + "', "  + "'" + entry.getEntryType()  + "', " + "'"
-					+ entry.getEncryptionKey()  + "', " + "'" + entry.getOwner()  + "', " + "'"
-					+ entry.buildValidUsersString() + "', " + entry.isHighSecurity() + ", '" + entry.getLastModified().toString() + "', ";*/
-			/*for (int j = 0; j < field_number; j++) {
-				sql = sql + "'" + entry.getFieldDataList().get(j) + "'";
-				if (j != field_number -1)
-					sql = sql + ", ";
-			}*/
-			for (int j = 0; j < field_number; j++) {
-				sql = sql + "?";
-				if (j != field_number -1)
-					sql = sql + ", ";
-			}
-			sql = sql + ")";
+			sql = sql + ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			
 			System.out.println(sql);
 			
 			preparedStatement =
@@ -630,9 +617,15 @@ public class DatabaseManager {
 			preparedStatement.setInt(6, entry.isHighSecurity());
 			preparedStatement.setString(7, entry.getLastModified().toString());
 			
+			int j = 0;
 			for (int i = 0; i < field_number; i++) {
 				preparedStatement.setString(8 + i, entry.getFieldDataList().get(i));
+				j++;
 			}
+			for(int i = j; i < 10; i++) {
+				preparedStatement.setString(8 + i, "null");
+			}
+			
 			
 			preparedStatement.executeUpdate();
 			
