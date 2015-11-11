@@ -265,15 +265,15 @@ public class NewDataEntryView {
 								newEntry.addDataField(textField_1.getText());
 								newEntry.addDataField(textField_2.getText());
 								newEntry.addDataField(textField_3.getText());
-								newEntry.addDataField("");	
-								newEntry.addDataField("");	
+								newEntry.addDataField(((String)month.getSelectedItem()) + "/" + ((String)year.getSelectedItem()));
 								newEntry.addDataField("");	
 								newEntry.addDataField("");	
 								newEntry.addDataField("");	
 								newEntry.addDataField("");	
 								newEntry.addDataField("");	
 
-								newEntry.addDataField(((String)month.getSelectedItem()) + "/" + ((String)year.getSelectedItem()));
+
+
 								DatabaseManager m = new DatabaseManager();
 								int result = m.addEntryToDatabase(newEntry);
 								if (result == -1) {
@@ -800,6 +800,13 @@ public class NewDataEntryView {
 			}
 		});
 		
+<<<<<<< Updated upstream
+=======
+		//HomeView window = new HomeView(userName);
+		//window.frmSentinelDataVault.setVisible(true);
+		
+	
+>>>>>>> Stashed changes
 
 	}
 
