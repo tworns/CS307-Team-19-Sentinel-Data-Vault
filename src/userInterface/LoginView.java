@@ -16,7 +16,7 @@ import dataManagement.User;
 
 public class LoginView {
 
-	public JFrame frame;
+	public JFrame frmSignIn;
 	private JTextField textField;
 	private JPasswordField passwordField;
 	private JButton btnSignUp;
@@ -39,7 +39,7 @@ public class LoginView {
 			public void run() {
 				try {
 					LoginView window = new LoginView();
-					window.frame.setVisible(true);
+					window.frmSignIn.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -58,10 +58,11 @@ public class LoginView {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame("Login");
-		frame.setResizable(false);
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmSignIn = new JFrame("Login");
+		frmSignIn.setTitle("Sign in");
+		frmSignIn.setResizable(false);
+		frmSignIn.setBounds(100, 100, 450, 300);
+		frmSignIn.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JLabel lblEmail = new JLabel("E-mail:");
 		lblEmail.setBounds(73, 108, 56, 18);
@@ -97,7 +98,7 @@ public class LoginView {
 				}
 				if (result == 1){
 					failedattempt = 0;
-					frame.dispose();
+					frmSignIn.dispose();
 					
 				}
 				else{
@@ -125,7 +126,7 @@ public class LoginView {
 				}
 			}
 		});
-		frame.getContentPane().setLayout(null);
+		frmSignIn.getContentPane().setLayout(null);
 		
 		btnSignUp = new JButton("Create Account");
 		btnSignUp.addActionListener(new ActionListener() {
@@ -135,21 +136,21 @@ public class LoginView {
 			}
 		});
 		btnSignUp.setBounds(90, 231, 124, 27);
-		frame.getContentPane().add(btnSignUp);
-		frame.getContentPane().add(btnNewButton);
-		frame.getContentPane().add(lblPassword);
-		frame.getContentPane().add(lblEmail);
-		frame.getContentPane().add(textField);
-		frame.getContentPane().add(passwordField);
+		frmSignIn.getContentPane().add(btnSignUp);
+		frmSignIn.getContentPane().add(btnNewButton);
+		frmSignIn.getContentPane().add(lblPassword);
+		frmSignIn.getContentPane().add(lblEmail);
+		frmSignIn.getContentPane().add(textField);
+		frmSignIn.getContentPane().add(passwordField);
 		
 		btnForgotPassword = new JButton("I forgot my password...");
 		btnForgotPassword.setBounds(226, 231, 170, 27);
-		frame.getContentPane().add(btnForgotPassword);
+		frmSignIn.getContentPane().add(btnForgotPassword);
 		
 		lblSentinelDataVault = new JLabel("Sentinel Data Vault");
 		lblSentinelDataVault.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		lblSentinelDataVault.setBounds(139, 33, 189, 27);
-		frame.getContentPane().add(lblSentinelDataVault);
-		frame.getContentPane().setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{lblEmail, textField, lblPassword, passwordField, btnNewButton, btnSignUp, btnForgotPassword}));
+		frmSignIn.getContentPane().add(lblSentinelDataVault);
+		frmSignIn.getContentPane().setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{lblEmail, textField, lblPassword, passwordField, btnNewButton, btnSignUp, btnForgotPassword}));
 	}
 }
