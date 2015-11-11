@@ -19,6 +19,7 @@ import javax.swing.JRadioButton;
 
 import java.awt.Button;
 import java.awt.TextField;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentEvent;
@@ -32,6 +33,7 @@ import javax.swing.JTextField;
 import controllers.DatabaseManager;
 import dataManagement.DataEntry;
 import dataManagement.User;
+import userInterface.HomeView;
 
 public class NewDataEntryView {
 
@@ -279,7 +281,18 @@ public class NewDataEntryView {
 									return;
 								}
 								else {
+									
+									JOptionPane.showMessageDialog(null,"You have successfully Added DataEntry");
+									System.gc(); 
+									for (Window window : Window.getWindows()){
+								    	window.dispose();
+									}
+
 									frame.dispose();
+									
+									HomeView hv = new HomeView(userName);
+									hv.frmSentinelDataVault.setVisible(true);
+									
 								}
 							}
 						});
@@ -776,7 +789,6 @@ public class NewDataEntryView {
 							public void actionPerformed(ActionEvent e) {
 
 								frame.dispose();
-
 							}
 						});
 						btnCancel.setBounds(305, 207, 117, 29);
@@ -788,10 +800,6 @@ public class NewDataEntryView {
 			}
 		});
 		
-		HomeView window = new HomeView(userName);
-		window.frmSentinelDataVault.setVisible(true);
-		
-	
 
 	}
 
