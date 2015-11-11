@@ -113,8 +113,9 @@ public class LoginView {
 				if(failedattempt > 1 && failedattempt <5){
 					try {
 						VaultController.Send("sentineldatavault", "SENTINELDATA", username, 
-								"Security Warning", "Dear user,\nYou have multiple failed login attempts for your account\n"
-										+ "If it is not you, please change your password immediatelly");
+								"Security Warning", "Dear user,\n\nYou have multiple failed login attempts for your account.\n"
+										+ "If it is not you, please change your password immediately.\n\n"+
+										"Sincerely,\nSentinel Data Vault Team");
 					} catch (AddressException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
