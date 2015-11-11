@@ -273,7 +273,7 @@ public class MainView {
 				if(JOptionPane.showConfirmDialog(null, "Are You Sure?", "Sign Out",JOptionPane.YES_NO_OPTION, JOptionPane.DEFAULT_OPTION) == 0) {
 					currentUser = null;
 					LoginView frmLog = new LoginView();
-					frmLog.frame.setVisible(true);
+					frmLog.frmSignIn.setVisible(true);
 					frmSentinelDataVault.dispose();
 				}
 				
