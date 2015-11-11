@@ -555,7 +555,7 @@ public class DatabaseManager {
 		Connection DBconnection = connectToDatabase();
 		try {
 			if (!oldEntry.getEntryName().equals(newEntry.getEntryName())) {
-				String count = "SELECT COUNT(*) FROM data_entries WHERE entry_name=? AND owner=?";
+				String count = "SELECT COUNT(*) FROM data_entries WHERE entry_name=? AND owner=?;";
 				PreparedStatement preparedStatement = DBconnection.prepareStatement(count);
 				preparedStatement.setString(1, newEntry.getEntryName());
 				preparedStatement.setString(2, newEntry.getOwner());
