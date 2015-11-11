@@ -11,7 +11,6 @@ import dataManagement.User;
 import java.awt.event.ActionListener;
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDateTime;
-import java.util.Locale;
 import java.awt.event.ActionEvent;
 import cryptography.PasswordHasher;
 import cryptography.SaltGenerator;
