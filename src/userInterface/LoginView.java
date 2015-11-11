@@ -134,7 +134,7 @@ public class LoginView {
 				signup.setVisible(true);
 			}
 		});
-		btnSignUp.setBounds(91, 245, 124, 27);
+		btnSignUp.setBounds(90, 231, 124, 27);
 		frame.getContentPane().add(btnSignUp);
 		frame.getContentPane().add(btnNewButton);
 		frame.getContentPane().add(lblPassword);
@@ -143,7 +143,7 @@ public class LoginView {
 		frame.getContentPane().add(passwordField);
 		
 		btnForgotPassword = new JButton("I forgot my password...");
-		btnForgotPassword.setBounds(227, 245, 170, 27);
+		btnForgotPassword.setBounds(226, 231, 170, 27);
 		frame.getContentPane().add(btnForgotPassword);
 		
 		lblSentinelDataVault = new JLabel("Sentinel Data Vault");
