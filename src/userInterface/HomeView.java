@@ -362,6 +362,10 @@ public class HomeView {
 				if (selectedNode.isLeaf()) {
 					DatabaseManager dm = new DatabaseManager();
 					DataEntry selectedDataEntry = dm.retrieveOneDataEntry(selectedNodeName, username, selectedNode.getParent().toString());
+					System.out.println(selectedDataEntry.getFieldDataList().get(0).toString());
+					System.out.println(selectedDataEntry.getFieldDataList().get(1).toString());
+					System.out.println(selectedDataEntry.getFieldDataList().get(2).toString());
+					System.out.println(selectedDataEntry.getFieldDataList().get(3).toString());
 					//retrieveOneDataEntry (selectedNodeName, currentUser, selectedNode.getParent().toString());
 					
 					if(selectedNode.getParent().toString() == "Account Login") {
