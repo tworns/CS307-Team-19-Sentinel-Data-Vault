@@ -145,7 +145,6 @@ public class SettingsView {
 		JButton btnOk = new JButton("Save");
 		btnOk.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				if(e.getActionCommand().equalsIgnoreCase("Ok")) {
 					DatabaseManager newVegas =  new DatabaseManager();
 					//TODO Test this. A lot. 
 					newVegas.modifyUserField(currentUser, "high_security", currentUser.isHighSecurity());
@@ -153,7 +152,7 @@ public class SettingsView {
 					newVegas.modifyUserField(currentUser, "account_wipe_set", currentUser.isAccountWipeSet());
 					newVegas.modifyUserField(currentUser, "max_backup_size", currentUser.getMaxBackupSize());
 					frmSettings.dispose();
-				}
+				
 			}
 		});
 		btnOk.setBounds(79, 255, 97, 25);
