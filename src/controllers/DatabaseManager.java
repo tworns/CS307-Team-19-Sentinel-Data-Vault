@@ -618,7 +618,7 @@ public class DatabaseManager {
 		try {
 			// Initialize a statement to execute
 
-			String count = "SELECT COUNT(*) FROM data_entries WHERE entry_name=? AND owner=?";
+			String count = "SELECT COUNT(*) FROM data_entries WHERE entry_name=? AND owner=?;";
 			PreparedStatement preparedStatement = DBconnection.prepareStatement(count);
 			preparedStatement.setString(1, entry.getEntryName());
 			preparedStatement.setString(2, entry.getOwner());
