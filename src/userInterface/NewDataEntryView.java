@@ -207,8 +207,8 @@ public class NewDataEntryView {
 						label_5.setBounds(40, 130, 150, 18);
 
 						cardType = new JComboBox();
-						cardType.setModel(new DefaultComboBoxModel(new String[] { "VISA", "MasterCard",
-								"American Express", "Diners Club", "Carte Blanche", "Discover", "JCB" }));
+						cardType.setModel(new DefaultComboBoxModel(new String[] { "VISA", "Master",
+								"AMERICAN EXPRESS", "Discover", }));
 						cardType.setBounds(170, 40, 200, 18);
 
 						
@@ -230,7 +230,7 @@ public class NewDataEntryView {
 						textField_3.setColumns(10);
 
 						JComboBox month = new JComboBox();
-						month.setModel(new DefaultComboBoxModel(new String[] {"01 ", "02 ", "03 ", "04 ", "05", "06 ", "07 ", "08 ", "09 ", "10", "11 ", "12"}));
+						month.setModel(new DefaultComboBoxModel(new String[] {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"}));
 						month.setBounds(170, 160, 90, 18);;
 						
 						JComboBox year = new JComboBox();
