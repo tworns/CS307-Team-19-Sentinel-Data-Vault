@@ -8,6 +8,8 @@ import javax.mail.internet.AddressException;
 import javax.swing.*; 
 
 import java.security.NoSuchAlgorithmException;
+import java.util.Locale;
+
 import org.eclipse.wb.swing.FocusTraversalOnArray;
 import controllers.DatabaseManager;
 import controllers.VaultController;
@@ -64,6 +66,8 @@ public class LoginView {
 		frmSignIn.setBounds(100, 100, 450, 300);
 		frmSignIn.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmSignIn.setLocationRelativeTo(null);
+		Locale l = new Locale("en");
+		frmSignIn.setLocale(l);
 		
 		JLabel lblEmail = new JLabel("E-mail:");
 		lblEmail.setBounds(73, 108, 56, 18);

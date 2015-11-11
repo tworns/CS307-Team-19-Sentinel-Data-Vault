@@ -11,6 +11,7 @@ import dataManagement.User;
 import java.awt.event.ActionListener;
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDateTime;
+import java.util.Locale;
 import java.awt.event.ActionEvent;
 import cryptography.PasswordHasher;
 import cryptography.SaltGenerator;
@@ -81,7 +82,8 @@ public class PasswordChangeView {
 		frmChangePassword.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frmChangePassword.getContentPane().setLayout(null);
 		frmChangePassword.setLocationRelativeTo(null);
-		
+		Locale l = new Locale("en","US");
+		frmChangePassword.setLocale(l);
 		JLabel lblOldPassword = new JLabel("Current Password"); //Old password field label
 		lblOldPassword.setBounds(165, 53, 114, 16);
 		frmChangePassword.getContentPane().add(lblOldPassword);
