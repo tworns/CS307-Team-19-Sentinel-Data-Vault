@@ -95,11 +95,11 @@ public class PasswordChangeView {
 		frmChangePassword.getContentPane().add(lblConfirmNewPassword);
 		
 		JLabel lblAnswerToSecurity = new JLabel("Security Question Answer"); //question answer field label
-		lblAnswerToSecurity.setBounds(165, 193, 189, 16);
+		lblAnswerToSecurity.setBounds(207, 193, 189, 16);
 		frmChangePassword.getContentPane().add(lblAnswerToSecurity);
 		
 		textField_3 = new JTextField(); //Answer to security question
-		textField_3.setBounds(37, 190, 116, 22);
+		textField_3.setBounds(37, 190, 158, 22);
 		frmChangePassword.getContentPane().add(textField_3);
 		textField_3.setColumns(10);
 		
@@ -115,7 +115,7 @@ public class PasswordChangeView {
 				oldAnswer = textField_3.getText();
 				newAnswer = textField.getText();
 				//</Field initializations>
-				if( question == null || question.equals("Please choose a security question below") == true) { 
+				if( question == null || question.equals("Please choose a security question below...") == true) { 
 					question =  null;
 					//this if statement makes sure the question is null if the user has not chosen a valid new question
 				}
@@ -209,7 +209,7 @@ public class PasswordChangeView {
 				}
 				}
 		});
-		btnNewButton.setBounds(56, 334, 97, 25);
+		btnNewButton.setBounds(37, 334, 97, 25);
 		frmChangePassword.getContentPane().add(btnNewButton);
 		
 		JButton btnCancel = new JButton("Cancel"); //Cancel button
@@ -218,7 +218,7 @@ public class PasswordChangeView {
 				frmChangePassword.dispose();
 			}
 		});
-		btnCancel.setBounds(215, 334, 97, 25);
+		btnCancel.setBounds(207, 334, 97, 25);
 		frmChangePassword.getContentPane().add(btnCancel);
 		
 		JTextPane txtpnThisIsWhere = new JTextPane(); //Field that displays currentUser's security question.
@@ -248,7 +248,7 @@ public class PasswordChangeView {
 		frmChangePassword.getContentPane().add(lblChangeSecurityQuestion);
 		
 		textField = new JTextField(); //NEW SECURITY QUESTION ANSWER BOX
-		textField.setBounds(37, 302, 116, 22);
+		textField.setBounds(37, 302, 158, 22);
 		frmChangePassword.getContentPane().add(textField);
 		textField.setColumns(10);
 		
@@ -259,12 +259,12 @@ public class PasswordChangeView {
 				question = (String) comboBox.getSelectedItem();
 			}
 		});
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Choose a new security question..", "What is the maiden name of your mother?", "What is name of your pet", "Where is your favorite city?"}));
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Choose a new security question...", "What is the maiden name of your mother?", "What is name of your pet", "Where is your favorite city?"}));
 		comboBox.setBounds(37, 267, 309, 22);
 		frmChangePassword.getContentPane().add(comboBox);
 		
 		JLabel lblNewLabel = new JLabel("Security Question Answer"); //Label for answer text field
-		lblNewLabel.setBounds(165, 305, 189, 16);
+		lblNewLabel.setBounds(207, 305, 189, 16);
 		frmChangePassword.getContentPane().add(lblNewLabel);
 		
 		JLabel lblNewPassword_1 = new JLabel("New Password"); //label for new password field
