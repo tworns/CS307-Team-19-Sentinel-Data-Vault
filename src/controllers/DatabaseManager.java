@@ -60,9 +60,9 @@ public class DatabaseManager {
 			// Construct the SQL INSERT statement
 			String sql = "INSERT INTO users (user_email, password_hash, password_salt, data_key, security_question, security_answer, "
 					+ "last_login, high_security, account_wipe_set, backup_frequency, max_backup_size) " + "VALUES ("
-					+ "'" + newUser.getUsername().replace("'", "\'") + "', " + "'" + newUser.getPasswordHash() + "', " + "'"
+					+ "'" + newUser.getUsername().replace("'", "''") + "', " + "'" + newUser.getPasswordHash() + "', " + "'"
 					+ newUser.getPasswordSalt() + "', " + "'" + newUser.getDataKey() + "', " + "'"
-					+ newUser.getSecurityQuestion() + "', " + "'" + newUser.getSecurityAnswer().replace("'", "\'") + "', " + "'"
+					+ newUser.getSecurityQuestion() + "', " + "'" + newUser.getSecurityAnswer().replace("'", "''") + "', " + "'"
 					+ newUser.getLastLogin().toString() + "', " + newUser.isHighSecurity() + ", "
 					+ newUser.isAccountWipeSet() + ", " + "'" + newUser.getBackupFrequency() + "', "
 					+ newUser.getMaxBackupSize() + ");";
@@ -491,7 +491,7 @@ public class DatabaseManager {
 			Statement stmt = DBconnection.createStatement();
 			// Construct the SQL UPDATE statement
 
-			String sql = "UPDATE users SET " + fieldName + " = '" + newTextData.replace("'", "\'") + "' " + "WHERE user_email = '"
+			String sql = "UPDATE users SET " + fieldName + " = '" + newTextData.replace("'", "''") + "' " + "WHERE user_email = '"
 					+ user.getUsername() + "';";
 
 			// Execute the statement and commit database changes
@@ -594,7 +594,7 @@ public class DatabaseManager {
 			preparedStatement.setString(j , oldEntry.getEntryName());
 			preparedStatement.setString(j + 1 , oldEntry.getOwner());
 
-			System.out.println(sql);
+			//System.out.println(sql);
 			
 			/*String sql_test = "UPDATE data_entries SET entry_name=?,data_field_1=? WHERE ";
 			
@@ -652,20 +652,17 @@ public class DatabaseManager {
 				sql = sql + "data_field_" + Integer.toString(i + 1);
 			}
 			sql = sql + ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
-			System.out.println(sql);
 
 			preparedStatement = DBconnection.prepareStatement(sql);
 
-			preparedStatement.setString(1, entry.getEntryName().replace("'", "\'"));
-			preparedStatement.setString(2, entry.getEntryType().replace("'", "\'"));
+			preparedStatement.setString(1, entry.getEntryName().replace("'", "''"));
+			preparedStatement.setString(2, entry.getEntryType().replace("'", "''"));
 			preparedStatement.setString(3, entry.getEncryptionKey());
-			preparedStatement.setString(4, entry.getOwner().replace("'", "\'"));
+			preparedStatement.setString(4, entry.getOwner().replace("'", "''"));
 			preparedStatement.setString(5, entry.buildValidUsersString());
 			preparedStatement.setInt(6, entry.isHighSecurity());
 			preparedStatement.setString(7, entry.getLastModified().toString());
 			
-			
-
 			int j = 0;
 			for (int i = 0; i < field_number; i++) {
 				preparedStatement.setString(8 + i, entry.getFieldDataList().get(i));
@@ -675,8 +672,9 @@ public class DatabaseManager {
 				preparedStatement.setString(8 + i, "null");
 			}
 
+			System.out.println(preparedStatement.toString());
 			preparedStatement.executeUpdate();
-
+			
 			// Execute the statement and commit database changes
 			// stmt.executeUpdate(sql);
 			DBconnection.commit();
