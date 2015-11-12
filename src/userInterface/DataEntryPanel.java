@@ -325,7 +325,7 @@ public class DataEntryPanel extends JPanel{
 
 	public JPanel getPhoneNumberPaneWithData(DataEntry data){
 		panel.removeAll();
-		panel.disable();
+		//panel.disable();
 		panel.setLayout(new MigLayout("", "[grow]", "[][][][][][][][][][][][]"));
 		
 		String title = "Phone Number";
