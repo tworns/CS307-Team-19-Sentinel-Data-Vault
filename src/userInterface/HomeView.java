@@ -65,13 +65,13 @@ public class HomeView {
 	public HomeView(String username) {
 		this.username = username;
 		lastlogin = "last login time";
-		
+
 		DatabaseManager dbmanger = new DatabaseManager();
 		currentUser = dbmanger.retrieveUserFromDatabase(username);
-		
+
 		currentDataEntryNameList = dbmanger.retrieveDataEntryNameList(username);
 		currentDataEntryTypeList = dbmanger.retrieveDataEntryTypeList(username);
-		
+
 		initialize();	
 	}
 
@@ -94,7 +94,7 @@ public class HomeView {
 
 		JButton btnSignOut = new JButton("Sign out");
 		btnSignOut.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
-		
+
 		btnSignOut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Locale locale = new Locale("EN", "US");
@@ -107,10 +107,10 @@ public class HomeView {
 				}
 			}
 		});
-		
+
 		JButton btnSetting = new JButton("Settings");
 		btnSetting.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
-		
+
 		btnSetting.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				SettingsView frmSettings = new SettingsView(currentUser);
@@ -124,14 +124,14 @@ public class HomeView {
 
 		btnAddData.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			NewDataEntryView newDataEntry = new NewDataEntryView(username);
-			newDataEntry.getJframe().setVisible(true);
+				NewDataEntryView newDataEntry = new NewDataEntryView(username);
+				newDataEntry.getJframe().setVisible(true);
 			}
 		});
-		
+
 		JButton btnSecurity = new JButton("Security");
 		btnSecurity.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
-		
+
 		btnSecurity.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				SecurityView regFace =new SecurityView();
@@ -139,7 +139,7 @@ public class HomeView {
 				// frmSentinelDataVault.dispose();
 			}
 		});
-		
+
 		btnSecurity.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -147,18 +147,18 @@ public class HomeView {
 
 		JButton btnDeleteData = new JButton("Delete Entry");
 		btnDeleteData.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent e) {
-			System.out.println(currentEntry.getEntryName());
-			Object[] options = { "OK", "CANCEL" };
-			int result = JOptionPane.showOptionDialog(null,
-					"Data Entry will be deleted permanently.\nAre you sure you want to delete the Entry?", "Warning", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
-					null, options, options[1]);
-			if (result == 0) {
-				System.out.println("Delete Entry");
-				DatabaseManager m = new DatabaseManager();
-				m.deleteEntryFromDatabase(currentEntry);
+			public void actionPerformed(ActionEvent e) {
+				System.out.println(currentEntry.getEntryName());
+				Object[] options = { "OK", "CANCEL" };
+				int result = JOptionPane.showOptionDialog(null,
+						"Data Entry will be deleted permanently.\nAre you sure you want to delete the Entry?", "Warning", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+						null, options, options[1]);
+				if (result == 0) {
+					System.out.println("Delete Entry");
+					DatabaseManager m = new DatabaseManager();
+					m.deleteEntryFromDatabase(currentEntry);
+				}
 			}
-		}
 		});
 		btnDeleteData.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
 
@@ -177,40 +177,40 @@ public class HomeView {
 
 		GroupLayout gl_panel_north = new GroupLayout(panel_north);
 		gl_panel_north.setHorizontalGroup(
-			gl_panel_north.createParallelGroup(Alignment.LEADING)
+				gl_panel_north.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_north.createSequentialGroup()
-					.addComponent(btnSignOut, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnSetting, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(lblEmpty_1, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnAddData, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnDeleteData, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(lblEmpty_2, GroupLayout.PREFERRED_SIZE, 55, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnEditData, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnSecurity, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
-					.addGap(326))
-		);
+						.addComponent(btnSignOut, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addComponent(btnSetting, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addComponent(lblEmpty_1, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addComponent(btnAddData, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addComponent(btnDeleteData, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addComponent(lblEmpty_2, GroupLayout.PREFERRED_SIZE, 55, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addComponent(btnEditData, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addComponent(btnSecurity, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+						.addGap(326))
+				);
 		gl_panel_north.setVerticalGroup(
-			gl_panel_north.createParallelGroup(Alignment.LEADING)
+				gl_panel_north.createParallelGroup(Alignment.LEADING)
 				.addGroup(Alignment.TRAILING, gl_panel_north.createSequentialGroup()
-					.addGroup(gl_panel_north.createParallelGroup(Alignment.TRAILING)
-						.addComponent(btnSignOut, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
-						.addGroup(gl_panel_north.createParallelGroup(Alignment.BASELINE)
-							.addComponent(btnSetting, GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
-							.addComponent(btnAddData, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
-							.addComponent(btnDeleteData, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
-							.addComponent(btnSecurity, GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
-							.addComponent(lblEmpty_1)
-							.addComponent(lblEmpty_2)
-							.addComponent(btnEditData, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)))
-					.addGap(15))
-		);
+						.addGroup(gl_panel_north.createParallelGroup(Alignment.TRAILING)
+								.addComponent(btnSignOut, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
+								.addGroup(gl_panel_north.createParallelGroup(Alignment.BASELINE)
+										.addComponent(btnSetting, GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+										.addComponent(btnAddData, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
+										.addComponent(btnDeleteData, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
+										.addComponent(btnSecurity, GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+										.addComponent(lblEmpty_1)
+										.addComponent(lblEmpty_2)
+										.addComponent(btnEditData, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)))
+						.addGap(15))
+				);
 		panel_north.setLayout(gl_panel_north);
 
 		JPanel panel_south = new JPanel();
@@ -228,25 +228,25 @@ public class HomeView {
 
 		GroupLayout gl_panel_south = new GroupLayout(panel_south);
 		gl_panel_south.setHorizontalGroup(
-			gl_panel_south.createParallelGroup(Alignment.LEADING)
+				gl_panel_south.createParallelGroup(Alignment.LEADING)
 				.addGroup(Alignment.TRAILING, gl_panel_south.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(panel_west, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
-					.addComponent(panel_center, GroupLayout.PREFERRED_SIZE, 225, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(panel_east, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
-		);
+						.addContainerGap()
+						.addComponent(panel_west, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+						.addComponent(panel_center, GroupLayout.PREFERRED_SIZE, 225, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addComponent(panel_east, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
+						.addContainerGap())
+				);
 		gl_panel_south.setVerticalGroup(
-			gl_panel_south.createParallelGroup(Alignment.LEADING)
+				gl_panel_south.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_south.createSequentialGroup()
-					.addGroup(gl_panel_south.createParallelGroup(Alignment.LEADING)
-						.addComponent(panel_east, GroupLayout.PREFERRED_SIZE, 375, GroupLayout.PREFERRED_SIZE)
-						.addComponent(panel_center, GroupLayout.PREFERRED_SIZE, 375, GroupLayout.PREFERRED_SIZE)
-						.addComponent(panel_west, GroupLayout.PREFERRED_SIZE, 375, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap())
-		);
+						.addGroup(gl_panel_south.createParallelGroup(Alignment.LEADING)
+								.addComponent(panel_east, GroupLayout.PREFERRED_SIZE, 375, GroupLayout.PREFERRED_SIZE)
+								.addComponent(panel_center, GroupLayout.PREFERRED_SIZE, 375, GroupLayout.PREFERRED_SIZE)
+								.addComponent(panel_west, GroupLayout.PREFERRED_SIZE, 375, GroupLayout.PREFERRED_SIZE))
+						.addContainerGap())
+				);
 
 		//panel_west		
 		textField = new JTextField();
@@ -303,7 +303,7 @@ public class HomeView {
 		DataEntryPanel dataPanel = new DataEntryPanel();
 		DataEntry currentdata = new DataEntry(null, null, null, null, 0, null);
 		String panelName = null;
-*/
+		 */
 
 
 
@@ -321,64 +321,83 @@ public class HomeView {
 
 
 
-	//	panel_east.addTab(panelName, null, panel, null);
+		//	panel_east.addTab(panelName, null, panel, null);
 
 
 
 
 		//panel_center	> Category(JTree) + List(JList) 
 
-		
-		
-		
+
+
+
 		//Tree		
-		
+
 		JTree tree = new JTree();
-		
+
 		//String selectedNode = null;
 
 		tree.addTreeSelectionListener(new TreeSelectionListener() {
 
 			public void valueChanged(TreeSelectionEvent e) {
-				
+
 				JTree tree = (JTree) e.getSource();
-				
+
 				DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
-				
+
 				String selectedNodeName = selectedNode.toString();
 
 				panel_east.removeAll();
-				
+
 				JPanel panel = new JPanel();
 				DataEntryPanel dataPanel = new DataEntryPanel();
 				DataEntry currentdata = new DataEntry(null, null, null, null, 0, null);
-			
+
 				String panelName = null;
-				
+/*
 				if (selectedNodeName.equals("Account Login")) {
 					panel = dataPanel.getAccountLoginPanel(currentdata);
 					panelName = "Account Login";
 					panel_east.addTab(panelName, null, panel, null);
 				}
 				if (selectedNodeName.equals("Credit/Debit Card")) {
-					
+
 					panel = dataPanel.getCreditCardPanel(currentdata);
 					panelName = "Credit/Debit Card";
 					panel_east.addTab(panelName, null, panel, null);
 				}
 				if (selectedNodeName.equals("License")) {
-					
+
 					panel = dataPanel.getLicensePanel(currentdata);
 					panelName = "License";
 					panel_east.addTab(panelName, null, panel, null);
 				}
-				
+				if (selectedNodeName.equals("Phone Number")) {
+
+					panel = dataPanel.getLicensePanel(currentdata);
+					panelName = "Phone Number";
+					panel_east.addTab(panelName, null, panel, null);
+				}
+				if (selectedNodeName.equals("SSN")) {
+
+					panel = dataPanel.getLicensePanel(currentdata);
+					panelName = "SSN";
+					panel_east.addTab(panelName, null, panel, null);
+				}
+				if (selectedNodeName.equals("Wifi Network")) {
+
+					panel = dataPanel.getLicensePanel(currentdata);
+					panelName = "Wifi Network";
+					panel_east.addTab(panelName, null, panel, null);
+				}
+*/			
+
 				System.out.println(selectedNodeName);
-			
+
 				//if data item
 				if (selectedNode.isLeaf()) {
 					DatabaseManager dm = new DatabaseManager();
-					
+
 					DataEntry selectedDataEntry = dm.retrieveOneDataEntry(selectedNodeName, username, selectedNode.getParent().toString());
 					currentEntry = selectedDataEntry;
 					System.out.println("Here");
@@ -386,14 +405,14 @@ public class HomeView {
 					System.out.println(selectedNodeName);
 					System.out.println(username);
 					System.out.println(selectedNode.getParent().toString());
-					
-					
+
+
 					System.out.println(selectedDataEntry.getFieldDataList().get(0).toString());
 					System.out.println(selectedDataEntry.getFieldDataList().get(1).toString());
 					System.out.println(selectedDataEntry.getFieldDataList().get(2).toString());
 					System.out.println(selectedDataEntry.getFieldDataList().get(3).toString());
 					//retrieveOneDataEntry (selectedNodeName, currentUser, selectedNode.getParent().toString());
-					
+
 					if(selectedNode.getParent().toString() == "Account Login") {
 						panel = dataPanel.getAccountLoginPanelWithData(selectedDataEntry);
 						panelName = "Account Login";
@@ -402,59 +421,71 @@ public class HomeView {
 						panel = dataPanel.getCreditCardPanelWithData(selectedDataEntry);
 						panelName = "Credit/Debit Card";
 					}
-					else if(selectedNode.getParent().toString() == "Credit/Debit Card") {
-						panel = dataPanel.getLicensePanel(selectedDataEntry);
+					else if(selectedNode.getParent().toString() == "License") {
+						panel = dataPanel.getLicensePaneWithData(selectedDataEntry);
 						panelName = "License";
 					}
-					
-					
+					else if(selectedNode.getParent().toString() == "Phone Number") {
+						panel = dataPanel.getPhoneNumberPaneWithData(selectedDataEntry);
+						panelName = "Phone Number";
+					}
+					else if(selectedNode.getParent().toString() == "SSN") {
+						panel = dataPanel.getSSNWithData(selectedDataEntry);
+						panelName = "SSN";
+					}
+					else if(selectedNode.getParent().toString() == "Wifi Network") {
+						panel = dataPanel.getWifiNetworkData(selectedDataEntry);
+						panelName = "Wifi Network";
+					}
+
+
 					panel_east.addTab(panelName, null, panel, null);
-					
-					
+
+
 					System.out.println("Leaf: " + selectedNodeName);
 				}
 				return;
 			}
-/*
+			/*
 			private DataEntry retrieveOneDataEntry(String selectedNodeName, User currentUser, String string) {
 				// TODO Auto-generated method stub
 				return null;
-				
+
 			}*/
 		});
-		
+
 		DatabaseManager dbmanger = new DatabaseManager();
 		currentUser = dbmanger.retrieveUserFromDatabase(username);
-		
+
 		DefaultMutableTreeNode node_0 = new DefaultMutableTreeNode("Account Login");
 		DefaultMutableTreeNode node_1 = new DefaultMutableTreeNode("Credit/Debit Card");
 		DefaultMutableTreeNode node_2 = new DefaultMutableTreeNode("License");
 		DefaultMutableTreeNode node_3 = new DefaultMutableTreeNode("Passport");
 		DefaultMutableTreeNode node_4 = new DefaultMutableTreeNode("SSN");
 		DefaultMutableTreeNode node_5 = new DefaultMutableTreeNode("Wifi Network");
-		
-		
+
+
 		tree.setModel(new DefaultTreeModel(
-			new DefaultMutableTreeNode("Data Entry") {
-				{
-					add(node_0);
-					add(node_1);
-					add(node_2);
-					add(node_3);
-					add(node_4);
-					add(node_5);
+				new DefaultMutableTreeNode("Data Entry") {
+					{
+						add(node_0);
+						add(node_1);
+						add(node_2);
+						//add(node_3);
+						add(node_4);
+						add(node_5);
+					}
 				}
-			}
-		));
-		
-//	
-/*		
+				));
+
+		//	
+		/*		
 		DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
 		DefaultMutableTreeNode node = (DefaultMutableTreeNode) model.getRoot();
 		DefaultMutableTreeNode child = (DefaultMutableTreeNode) node.getRoot();
 		node.add(child);
 		model.reload(node);
-*/		
+		 */		
 		//node_1 = new DefaultMutableTreeNode("Account Login");
 		//node_1.add(new DefaultMutableTreeNode("Google"));
 		//node_1.add(new DefaultMutableTreeNode("Apple"));
@@ -462,15 +493,15 @@ public class HomeView {
 		//root.add(node_1);
 		DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
 		DefaultMutableTreeNode root = (DefaultMutableTreeNode) model.getRoot();
-		
+
 		System.out.println("currentDataEntryNameList :" + currentDataEntryNameList.size());
 		System.out.println("currentDataEntryTypeList :" + currentDataEntryTypeList.size());
 		System.out.println("number of root :" + root.getChildCount());
 
-		
+
 		for (int i=0; i < currentDataEntryTypeList.size(); i++) {
 			DefaultMutableTreeNode child = new DefaultMutableTreeNode(currentDataEntryNameList.get(i));
-			
+
 			if (currentDataEntryTypeList.get(i).equals("Account Login")) {
 				System.out.println(currentDataEntryTypeList.get(i));
 				node_0.add(child);
@@ -495,9 +526,9 @@ public class HomeView {
 				System.out.println(currentDataEntryTypeList.get(i));
 				node_5.add(child);	
 			}
-			
+
 		}
-		
+
 		panel_center.addTab("Category", null, tree, null);
 
 		// MenuBar

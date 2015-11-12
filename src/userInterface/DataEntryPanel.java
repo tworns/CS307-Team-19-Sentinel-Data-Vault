@@ -208,7 +208,7 @@ public class DataEntryPanel extends JPanel{
 		
 		JFormattedTextField formattedTextField_3 = new JFormattedTextField();
 		formattedTextField_3.setText(data.getFieldDataList().get(4));
-		panel.add(formattedTextField_2, "cell 0 10,growx");
+		panel.add(formattedTextField_3, "cell 0 10,growx");
 		/*
 		JComboBox comboBox_1 = new JComboBox();
 		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"01 ", "02 ", "03 ", "04 ", "05", "06 ", "07 ", "08 ", "09 ", "10", "11 ", "12"}));
@@ -235,28 +235,28 @@ public class DataEntryPanel extends JPanel{
 		JLabel label_0 = new JLabel(title);
 		panel.add(label_0, "cell 0 0");
 		
-		JLabel label_1 = new JLabel("Name");
-		panel.add(label_1, "cell 0 1");
-		
-		JFormattedTextField formattedTextField = new JFormattedTextField();
-		formattedTextField.setText("Name on License");
-		panel.add(formattedTextField, "cell 0 2,growx");
-		
 		JLabel label_2 = new JLabel("License Number");
-		panel.add(label_2, "cell 0 3");
+		panel.add(label_2, "cell 0 1");
 		
 		JFormattedTextField formattedTextField1 = new JFormattedTextField();
 		formattedTextField1.setText("0000-00-0000");
-		panel.add(formattedTextField1, "cell 0 4,growx");
+		panel.add(formattedTextField1, "cell 0 2,growx");
+
+		JLabel label_1 = new JLabel("Name");
+		panel.add(label_1, "cell 0 3");
 		
-		JLabel label_3 = new JLabel("Date of Birth");
+		JFormattedTextField formattedTextField = new JFormattedTextField();
+		formattedTextField.setText("Name on License");
+		panel.add(formattedTextField, "cell 0 4,growx");
+		
+		JLabel label_3 = new JLabel("Address");
 		panel.add(label_3, "cell 0 5");
 		
 		JFormattedTextField formattedTextField_1 = new JFormattedTextField();
-		formattedTextField_1.setText("MM / DD / YYYY");
+		formattedTextField_1.setText("Address");
 		panel.add(formattedTextField_1, "cell 0 6,growx");
 		
-		JLabel label_4 = new JLabel("Issued Date");
+		JLabel label_4 = new JLabel("Date of Birth");
 		panel.add(label_4, "cell 0 7");
 
 		JFormattedTextField formattedTextField_2 = new JFormattedTextField();
@@ -273,6 +273,148 @@ public class DataEntryPanel extends JPanel{
 		
 		return panel;
 	}
+	
+	public JPanel getLicensePaneWithData(DataEntry data){
+		panel.removeAll();
+		panel.disable();
+		panel.setLayout(new MigLayout("", "[grow]", "[][][][][][][][][][][][]"));
+		
+		String title = "License";
+		
+		JLabel label_0 = new JLabel(title);
+		panel.add(label_0, "cell 0 0");
+		
+		JLabel label_1 = new JLabel("License Number");
+		panel.add(label_1, "cell 0 1");
+		
+		JFormattedTextField formattedTextField1 = new JFormattedTextField();
+		formattedTextField1.setText(data.getFieldDataList().get(0));
+		panel.add(formattedTextField1, "cell 0 2,growx");
+
+		JLabel label_2 = new JLabel("Name");
+		panel.add(label_2, "cell 0 3");
+		
+		JFormattedTextField formattedTextField = new JFormattedTextField();
+		formattedTextField.setText(data.getFieldDataList().get(1));
+		panel.add(formattedTextField, "cell 0 4,growx");
+		
+		JLabel label_3 = new JLabel("Address");
+		panel.add(label_3, "cell 0 5");
+		
+		JFormattedTextField formattedTextField_1 = new JFormattedTextField();
+		formattedTextField_1.setText(data.getFieldDataList().get(2));
+		panel.add(formattedTextField_1, "cell 0 6,growx");
+		
+		JLabel label_4 = new JLabel("Date of Birth");
+		panel.add(label_4, "cell 0 7");
+
+		JFormattedTextField formattedTextField_2 = new JFormattedTextField();
+		formattedTextField_2.setText(data.getFieldDataList().get(3));
+		panel.add(formattedTextField_2, "cell 0 8,growx");
+			
+		JLabel label_5 = new JLabel("Expiration Date");
+		panel.add(label_5, "cell 0 9");
+		
+		JFormattedTextField formattedTextField_3 = new JFormattedTextField();
+		formattedTextField_3.setText(data.getFieldDataList().get(4));
+		panel.add(formattedTextField_3, "cell 0 10,growx");
+		
+		
+		return panel;
+	}
+
+	public JPanel getPhoneNumberPaneWithData(DataEntry data){
+		panel.removeAll();
+		panel.disable();
+		panel.setLayout(new MigLayout("", "[grow]", "[][][][][][][][][][][][]"));
+		
+		String title = "Phone Number";
+			JLabel label_0 = new JLabel(title);
+			panel.add(label_0, "cell 0 0");
+		
+		JLabel label_1 = new JLabel("Name");
+			panel.add(label_1, "cell 0 1");
+		
+		JFormattedTextField formattedTextField1 = new JFormattedTextField();
+		formattedTextField1.setText(data.getFieldDataList().get(0));
+		panel.add(formattedTextField1, "cell 0 2,growx");
+
+		JLabel label_2 = new JLabel("Phone Number");
+			panel.add(label_2, "cell 0 3");
+		
+		JFormattedTextField formattedTextField = new JFormattedTextField();
+		formattedTextField.setText(data.getFieldDataList().get(1));
+		panel.add(formattedTextField, "cell 0 4,growx");
+		
+		JLabel label_3 = new JLabel("Group");
+			panel.add(label_3, "cell 0 5");
+		
+		JFormattedTextField formattedTextField_1 = new JFormattedTextField();
+		formattedTextField_1.setText(data.getFieldDataList().get(2));
+		panel.add(formattedTextField_1, "cell 0 6,growx");		
+		
+		return panel;
+	}
+	
+	public JPanel getSSNWithData(DataEntry data){
+		panel.removeAll();
+		panel.disable();
+		panel.setLayout(new MigLayout("", "[grow]", "[][][][][][][][][][][][]"));
+		
+		String title = "SSN";
+			JLabel label_0 = new JLabel(title);
+			panel.add(label_0, "cell 0 0");
+		
+		JLabel label_1 = new JLabel("Name");
+			panel.add(label_1, "cell 0 1");
+		
+		JFormattedTextField formattedTextField1 = new JFormattedTextField();
+		formattedTextField1.setText(data.getFieldDataList().get(0));
+		panel.add(formattedTextField1, "cell 0 2,growx");
+
+		JLabel label_2 = new JLabel("SSN");
+			panel.add(label_2, "cell 0 3");
+		
+		JFormattedTextField formattedTextField = new JFormattedTextField();
+		formattedTextField.setText(data.getFieldDataList().get(1));
+		panel.add(formattedTextField, "cell 0 4,growx");
+		
+		
+		return panel;
+	}
+	
+	public JPanel getWifiNetworkData(DataEntry data){
+		panel.removeAll();
+		panel.disable();
+		panel.setLayout(new MigLayout("", "[grow]", "[][][][][][][][][][][][]"));
+		
+		String title = "WiFi Network";
+			JLabel label_0 = new JLabel(title);
+			panel.add(label_0, "cell 0 0");
+		
+		JLabel label_1 = new JLabel("Network Name(SSID)");
+			panel.add(label_1, "cell 0 1");
+		
+		JFormattedTextField formattedTextField1 = new JFormattedTextField();
+		formattedTextField1.setText(data.getFieldDataList().get(0));
+		panel.add(formattedTextField1, "cell 0 2,growx");
+
+		JLabel label_2 = new JLabel("Password");
+			panel.add(label_2, "cell 0 3");
+		
+		JFormattedTextField formattedTextField2 = new JFormattedTextField();
+		formattedTextField2.setText(data.getFieldDataList().get(1));
+		panel.add(formattedTextField2, "cell 0 4,growx");
+		
+		JLabel label_3 = new JLabel("Security Mode");
+		panel.add(label_3, "cell 0 3");
+	
+		JFormattedTextField formattedTextField3 = new JFormattedTextField();
+		formattedTextField3.setText(data.getFieldDataList().get(1));
+		panel.add(formattedTextField3, "cell 0 4,growx");
+				
+		return panel;
+	}	
 	
 	public void valueChanged(TreeSelectionEvent tsl) {
 		

@@ -491,7 +491,7 @@ public class NewDataEntryView {
 						label_3 = new JLabel("Date of Birth");
 						label_3.setBounds(40, 100, 150, 18);
 
-						label_4 = new JLabel("Expired Date");
+						label_4 = new JLabel("Expiration Date");
 						label_4.setBounds(40, 130, 150, 18);
 
 						textField = new JTextField();
