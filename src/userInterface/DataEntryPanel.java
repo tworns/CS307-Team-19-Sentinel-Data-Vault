@@ -227,7 +227,7 @@ public class DataEntryPanel extends JPanel{
 	
 	public JPanel getLicensePanel(DataEntry data){
 		panel.removeAll();
-		panel.disable();
+		//panel.disable();
 		panel.setLayout(new MigLayout("", "[grow]", "[][][][][][][][][][][][]"));
 		
 		String title = "License";
@@ -276,7 +276,7 @@ public class DataEntryPanel extends JPanel{
 	
 	public JPanel getLicensePaneWithData(DataEntry data){
 		panel.removeAll();
-		panel.disable();
+		//panel.disable();
 		panel.setLayout(new MigLayout("", "[grow]", "[][][][][][][][][][][][]"));
 		
 		String title = "License";
@@ -329,25 +329,25 @@ public class DataEntryPanel extends JPanel{
 		panel.setLayout(new MigLayout("", "[grow]", "[][][][][][][][][][][][]"));
 		
 		String title = "Phone Number";
-			JLabel label_0 = new JLabel(title);
-			panel.add(label_0, "cell 0 0");
+		JLabel label_0 = new JLabel(title);
+		panel.add(label_0, "cell 0 0");
 		
 		JLabel label_1 = new JLabel("Name");
-			panel.add(label_1, "cell 0 1");
+		panel.add(label_1, "cell 0 1");
 		
 		JFormattedTextField formattedTextField1 = new JFormattedTextField();
 		formattedTextField1.setText(data.getFieldDataList().get(0));
 		panel.add(formattedTextField1, "cell 0 2,growx");
 
 		JLabel label_2 = new JLabel("Phone Number");
-			panel.add(label_2, "cell 0 3");
+		panel.add(label_2, "cell 0 3");
 		
 		JFormattedTextField formattedTextField = new JFormattedTextField();
 		formattedTextField.setText(data.getFieldDataList().get(1));
 		panel.add(formattedTextField, "cell 0 4,growx");
 		
 		JLabel label_3 = new JLabel("Group");
-			panel.add(label_3, "cell 0 5");
+		panel.add(label_3, "cell 0 5");
 		
 		JFormattedTextField formattedTextField_1 = new JFormattedTextField();
 		formattedTextField_1.setText(data.getFieldDataList().get(2));
@@ -358,12 +358,12 @@ public class DataEntryPanel extends JPanel{
 	
 	public JPanel getSSNWithData(DataEntry data){
 		panel.removeAll();
-		panel.disable();
+//		panel.disable();
 		panel.setLayout(new MigLayout("", "[grow]", "[][][][][][][][][][][][]"));
 		
 		String title = "SSN";
-			JLabel label_0 = new JLabel(title);
-			panel.add(label_0, "cell 0 0");
+		JLabel label_0 = new JLabel(title);
+		panel.add(label_0, "cell 0 0");
 		
 		JLabel label_1 = new JLabel("Name");
 			panel.add(label_1, "cell 0 1");

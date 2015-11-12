@@ -122,7 +122,7 @@ public class HomeView {
 		});
 
 		JButton btnAddData = new JButton("New Entry");
-		btnAddData.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
+		btnAddData.setFont(new Font("Lucida Grande", Font.PLAIN, 8));
 
 		btnAddData.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -428,11 +428,12 @@ public class HomeView {
 					System.out.println(username);
 					System.out.println(selectedNode.getParent().toString());
 
-
+/*
 					System.out.println(selectedDataEntry.getFieldDataList().get(0).toString());
 					System.out.println(selectedDataEntry.getFieldDataList().get(1).toString());
 					System.out.println(selectedDataEntry.getFieldDataList().get(2).toString());
 					System.out.println(selectedDataEntry.getFieldDataList().get(3).toString());
+*/
 					//retrieveOneDataEntry (selectedNodeName, currentUser, selectedNode.getParent().toString());
 
 					if(selectedNode.getParent().toString() == "Account Login") {
@@ -476,9 +477,12 @@ public class HomeView {
 			}*/
 		});
 
-		DatabaseManager dbmanger = new DatabaseManager();
 		currentUser = dbmanger.retrieveUserFromDatabase(username);
 
+		currentDataEntryNameList = dbmanger.retrieveDataEntryNameList(username);
+		currentDataEntryTypeList = dbmanger.retrieveDataEntryTypeList(username);
+		
+		
 		DefaultMutableTreeNode node_0 = new DefaultMutableTreeNode("Account Login");
 		DefaultMutableTreeNode node_1 = new DefaultMutableTreeNode("Credit/Debit Card");
 		DefaultMutableTreeNode node_2 = new DefaultMutableTreeNode("License");
