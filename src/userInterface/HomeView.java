@@ -23,6 +23,8 @@ import dataManagement.*;
 import controllers.DatabaseManager;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Window;
+
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
@@ -150,13 +152,26 @@ public class HomeView {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println(currentEntry.getEntryName());
 				Object[] options = { "OK", "CANCEL" };
-				int result = JOptionPane.showOptionDialog(null,
-						"Data Entry will be deleted permanently.\nAre you sure you want to delete the Entry?", "Warning", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+				int result = JOptionPane.showOptionDialog(null, "Data Entry will be deleted permanently.\nAre you sure you want to delete the Entry?", "Warning", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
 						null, options, options[1]);
 				if (result == 0) {
 					System.out.println("Delete Entry");
 					DatabaseManager m = new DatabaseManager();
 					m.deleteEntryFromDatabase(currentEntry);
+					
+					
+					JOptionPane.showMessageDialog(null,"You have successfully Added DataEntry");
+					System.gc(); 
+					for (Window window : Window.getWindows()){
+				    	window.dispose();
+					}
+
+					frmSentinelDataVault.dispose();
+					
+					HomeView hv = new HomeView(username);
+					hv.frmSentinelDataVault.setVisible(true);
+					
+					
 				}
 			}
 		});
