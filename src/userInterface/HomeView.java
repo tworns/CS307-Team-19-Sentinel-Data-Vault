@@ -352,6 +352,7 @@ public class HomeView {
 				JPanel panel = new JPanel();
 				DataEntryPanel dataPanel = new DataEntryPanel();
 				DataEntry currentdata = new DataEntry(null, null, null, null, 0, null);
+			
 				String panelName = null;
 				
 				if (selectedNodeName.equals("Account Login")) {
