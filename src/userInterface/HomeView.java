@@ -349,6 +349,13 @@ public class HomeView {
 		//Tree		
 
 		JTree tree = new JTree();
+		
+		DatabaseManager dbmanger = new DatabaseManager();
+		currentUser = dbmanger.retrieveUserFromDatabase(username);
+
+		currentDataEntryNameList = dbmanger.retrieveDataEntryNameList(username);
+		currentDataEntryTypeList = dbmanger.retrieveDataEntryTypeList(username);
+		
 
 		//String selectedNode = null;
 
