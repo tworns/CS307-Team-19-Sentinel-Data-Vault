@@ -60,9 +60,9 @@ public class DatabaseManager {
 			// Construct the SQL INSERT statement
 			String sql = "INSERT INTO users (user_email, password_hash, password_salt, data_key, security_question, security_answer, "
 					+ "last_login, high_security, account_wipe_set, backup_frequency, max_backup_size) " + "VALUES ("
-					+ "'" + newUser.getUsername().replace("'", "''") + "', " + "'" + newUser.getPasswordHash() + "', " + "'"
+					+ "'" + newUser.getUsername() + "', " + "'" + newUser.getPasswordHash() + "', " + "'"
 					+ newUser.getPasswordSalt() + "', " + "'" + newUser.getDataKey() + "', " + "'"
-					+ newUser.getSecurityQuestion() + "', " + "'" + newUser.getSecurityAnswer().replace("'", "''") + "', " + "'"
+					+ newUser.getSecurityQuestion() + "', " + "'" + newUser.getSecurityAnswer() + "', " + "'"
 					+ newUser.getLastLogin().toString() + "', " + newUser.isHighSecurity() + ", "
 					+ newUser.isAccountWipeSet() + ", " + "'" + newUser.getBackupFrequency() + "', "
 					+ newUser.getMaxBackupSize() + ");";
@@ -491,7 +491,7 @@ public class DatabaseManager {
 			Statement stmt = DBconnection.createStatement();
 			// Construct the SQL UPDATE statement
 
-			String sql = "UPDATE users SET " + fieldName + " = '" + newTextData.replace("'", "''") + "' " + "WHERE user_email = '"
+			String sql = "UPDATE users SET " + fieldName + " = '" + newTextData + "' " + "WHERE user_email = '"
 					+ user.getUsername() + "';";
 
 			// Execute the statement and commit database changes
@@ -655,10 +655,10 @@ public class DatabaseManager {
 
 			preparedStatement = DBconnection.prepareStatement(sql);
 
-			preparedStatement.setString(1, entry.getEntryName().replace("'", "''"));
-			preparedStatement.setString(2, entry.getEntryType().replace("'", "''"));
+			preparedStatement.setString(1, entry.getEntryName());
+			preparedStatement.setString(2, entry.getEntryType());
 			preparedStatement.setString(3, entry.getEncryptionKey());
-			preparedStatement.setString(4, entry.getOwner().replace("'", "''"));
+			preparedStatement.setString(4, entry.getOwner());
 			preparedStatement.setString(5, entry.buildValidUsersString());
 			preparedStatement.setInt(6, entry.isHighSecurity());
 			preparedStatement.setString(7, entry.getLastModified().toString());
