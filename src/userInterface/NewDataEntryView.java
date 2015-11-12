@@ -152,6 +152,14 @@ public class NewDataEntryView {
 								DataEntry newEntry = new DataEntry(textField.getText(), "SSN", "key", userName, 0, createdtime);
 								newEntry.addDataField(textField_1.getText());
 								newEntry.addDataField(textField_2.getText());
+								newEntry.addDataField("");//3	
+								newEntry.addDataField("");//4	
+								newEntry.addDataField("");//5	
+								newEntry.addDataField("");//6	
+								newEntry.addDataField("");//7	
+								newEntry.addDataField("");//8	
+								newEntry.addDataField("");//9	
+								newEntry.addDataField("");//10
 								DatabaseManager m = new DatabaseManager();
 								int result = m.addEntryToDatabase(newEntry);
 								if (result == -1) {
@@ -535,6 +543,12 @@ public class NewDataEntryView {
 								newEntry.addDataField(textField_2.getText());
 								newEntry.addDataField(textField_3.getText());
 								newEntry.addDataField(textField_4.getText());
+								newEntry.addDataField("");	
+								newEntry.addDataField("");	
+								newEntry.addDataField("");	
+								newEntry.addDataField("");	
+								newEntry.addDataField("");	
+								newEntry.addDataField("");
 								DatabaseManager m = new DatabaseManager();
 								int result = m.addEntryToDatabase(newEntry);
 								if (result == -1) {
@@ -730,6 +744,13 @@ public class NewDataEntryView {
 								newEntry.addDataField(textField_1.getText());
 								newEntry.addDataField(textField_2.getText());
 								newEntry.addDataField(textField_3.getText());
+								newEntry.addDataField("");	
+								newEntry.addDataField("");	
+								newEntry.addDataField("");	
+								newEntry.addDataField("");	
+								newEntry.addDataField("");	
+								newEntry.addDataField("");	
+								newEntry.addDataField("");
 								DatabaseManager m = new DatabaseManager();
 								int result = m.addEntryToDatabase(newEntry);
 								if (result == -1) {
@@ -824,6 +845,13 @@ public class NewDataEntryView {
 								newEntry.addDataField(textField_1.getText());
 								newEntry.addDataField(textField_2.getText());
 								newEntry.addDataField(textField_3.getText());
+								newEntry.addDataField("");	
+								newEntry.addDataField("");	
+								newEntry.addDataField("");	
+								newEntry.addDataField("");	
+								newEntry.addDataField("");	
+								newEntry.addDataField("");	
+								newEntry.addDataField("");
 								DatabaseManager m = new DatabaseManager();
 								int result = m.addEntryToDatabase(newEntry);
 								if (result == -1) {
