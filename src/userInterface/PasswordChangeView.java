@@ -141,7 +141,6 @@ public class PasswordChangeView {
 				else if ( passCheck == false) {  //if current password is wrong
 					JOptionPane.showMessageDialog(null, "Current password is incorrect.", "Change Password", 0);
 				}
-				
 				else if (question != null && newAnswer != null && passCheck == true && ((newPass1 == null && newPass2 == null && oldAnswer == null) ||
 						(newPass1.equals("")== true && newPass2.equals("") == true && oldAnswer.equals("") == true ))) {
 					//if there is something in for the new question and new answer, the current password is right, and all the password change fields are blank
