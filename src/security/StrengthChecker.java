@@ -73,8 +73,7 @@ public class StrengthChecker {
 		else {
 			System.out.println("Strength Score:\t\t" + strengthScore); // ***DEBUG***
 			return "Adequate";
-		}
-				
+		}		
 	}
 	
 	private int checkMinRequirements(String password) {
