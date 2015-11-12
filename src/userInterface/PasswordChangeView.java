@@ -83,15 +83,15 @@ public class PasswordChangeView {
 		frmChangePassword.setLocationRelativeTo(null);
 
 		JLabel lblOldPassword = new JLabel("Current Password"); //Old password field label
-		lblOldPassword.setBounds(165, 53, 114, 16);
+		lblOldPassword.setBounds(207, 53, 114, 16);
 		frmChangePassword.getContentPane().add(lblOldPassword);
 		
 		JLabel lblNewPassword = new JLabel("New Password"); //new password field label
-		lblNewPassword.setBounds(165, 90, 147, 16);
+		lblNewPassword.setBounds(207, 90, 147, 16);
 		frmChangePassword.getContentPane().add(lblNewPassword);
 		
 		JLabel lblConfirmNewPassword = new JLabel("Confirm new Password"); //confirm password field label
-		lblConfirmNewPassword.setBounds(165, 124, 144, 16);
+		lblConfirmNewPassword.setBounds(207, 129, 144, 16);
 		frmChangePassword.getContentPane().add(lblConfirmNewPassword);
 		
 		JLabel lblAnswerToSecurity = new JLabel("Security Question Answer"); //question answer field label
@@ -134,23 +134,14 @@ public class PasswordChangeView {
 					k.printStackTrace();
 				}
 				//Making sure the user puts stuff in.
-				if(newPass1 == null || newPass2 == null || oldAnswer == null && (question == null || newAnswer == null)){
+				if((newPass1 == null || newPass2 == null || oldAnswer == null) && (question == null || newAnswer == null)){
 					JOptionPane.showMessageDialog(null, "One or more fields left empty", "Change Password", 0);
 					//If all fields are empty
 				}
 				else if ( passCheck == false) {  //if current password is wrong
 					JOptionPane.showMessageDialog(null, "Current password is incorrect.", "Change Password", 0);
 				}
-				else if(a.minStandard(newPass2) == false) { //If the user password isn't at the minimum standard
-					JOptionPane.showMessageDialog(null, "Passwords must be at least 12 characters and contain"
-							+ "the following: uppercase and lowercase letters, a number, and a special character ", "Change Password", 0);
-				}
-				else if ( newPass1.equals(newPass2) && newPass2.equals(oldPass)) { //if the new password matches the old one
-					JOptionPane.showMessageDialog(null, "New password cannot match the old password.", "Change Password", 0);
-				}
-				else if (newPass1.equals(newPass2) == false) { //if the new password and it's confirm don't match
-					JOptionPane.showMessageDialog(null, "Check to make sure the new passwords match.", "Change Password", 0);
-				}
+				
 				else if (question != null && newAnswer != null && passCheck == true && ((newPass1 == null && newPass2 == null && oldAnswer == null) ||
 						(newPass1.equals("")== true && newPass2.equals("") == true && oldAnswer.equals("") == true ))) {
 					//if there is something in for the new question and new answer, the current password is right, and all the password change fields are blank
@@ -163,6 +154,16 @@ public class PasswordChangeView {
 					frmChangePassword.dispose();
 				}
 				//Makes sure the new passwords match each other, the old password and security q answer is correct
+				else if(a.minStandard(newPass2) == false) { //If the user password isn't at the minimum standard
+					JOptionPane.showMessageDialog(null, "Passwords must be at least 12 characters and contain"
+							+ "the following: uppercase and lowercase letters, a number, and a special character ", "Change Password", 0);
+				}
+				else if ( newPass1.equals(newPass2) && newPass2.equals(oldPass)) { //if the new password matches the old one
+					JOptionPane.showMessageDialog(null, "New password cannot match the old password.", "Change Password", 0);
+				}
+				else if (newPass1.equals(newPass2) == false) { //if the new password and it's confirm don't match
+					JOptionPane.showMessageDialog(null, "Check to make sure the new passwords match.", "Change Password", 0);
+				}
 				else if(newPass1.equals(newPass2) && passCheck ==true && a.minStandard(newPass2) == true && oldAnswer.equals(currentUser.getSecurityAnswer())){
 				 //if the new password stuff is right (newPass1 == newPass2) the new password passes the min security level,
 					//and the security answer that was input is correct
@@ -229,17 +230,17 @@ public class PasswordChangeView {
 		
 		passwordField = new JPasswordField(); //Password field for current password
 		passwordField.setToolTipText("Current user password must be entered to change passwords or security question/answer");
-		passwordField.setBounds(37, 50, 116, 22);
+		passwordField.setBounds(37, 50, 158, 22);
 		frmChangePassword.getContentPane().add(passwordField);
 		
 		passwordField_1 = new JPasswordField(); //Password field for newPass1
 		passwordField_1.setToolTipText("Password that you want to change to.");
-		passwordField_1.setBounds(37, 87, 116, 22);
+		passwordField_1.setBounds(37, 87, 158, 22);
 		frmChangePassword.getContentPane().add(passwordField_1);
 		
 		passwordField_2 = new JPasswordField(); //Password field for newPass2
 		passwordField_2.setToolTipText("Confirmation of the new password.");
-		passwordField_2.setBounds(37, 121, 116, 22);
+		passwordField_2.setBounds(37, 121, 158, 22);
 		frmChangePassword.getContentPane().add(passwordField_2);
 		
 		JLabel lblChangeSecurityQuestion = new JLabel("New Security Question"); //Label for new sec question

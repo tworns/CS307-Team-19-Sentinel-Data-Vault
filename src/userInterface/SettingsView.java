@@ -191,6 +191,7 @@ public class SettingsView {
 			public void actionPerformed(ActionEvent arg0) {
 				PasswordChangeView k = new PasswordChangeView(currentUser);
 				k.frmChangePassword.setVisible(true); 
+				frmSettings.dispose();
 			}
 		});
 		btnChangePassword.setBounds(58, 205, 139, 25);
