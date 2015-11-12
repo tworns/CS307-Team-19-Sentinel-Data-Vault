@@ -541,18 +541,22 @@ public class HomeView {
 			else if (currentDataEntryTypeList.get(i).equals("License")) {
 				System.out.println(currentDataEntryTypeList.get(i));
 				node_2.add(child);	
-			}
+			}/*
 			else if (currentDataEntryTypeList.get(i).equals("Passport")) {
 				System.out.println(currentDataEntryTypeList.get(i));
 				node_3.add(child);	
-			}
-			else if (currentDataEntryTypeList.get(i).equals("SSN")) {
+			}*/
+			else if (currentDataEntryTypeList.get(i).equals("Phone Number")) {
 				System.out.println(currentDataEntryTypeList.get(i));
 				node_4.add(child);	
 			}
-			else if (currentDataEntryTypeList.get(i).equals("Wifi Network")) {
+			else if (currentDataEntryTypeList.get(i).equals("SSN")) {
 				System.out.println(currentDataEntryTypeList.get(i));
 				node_5.add(child);	
+			}
+			else if (currentDataEntryTypeList.get(i).equals("Wifi Network")) {
+				System.out.println(currentDataEntryTypeList.get(i));
+				node_6.add(child);	
 			}
 
 		}
