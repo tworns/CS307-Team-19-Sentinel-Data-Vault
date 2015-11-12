@@ -476,7 +476,7 @@ public class HomeView {
 		DefaultMutableTreeNode node_1 = new DefaultMutableTreeNode("Credit/Debit Card");
 		DefaultMutableTreeNode node_2 = new DefaultMutableTreeNode("License");
 		DefaultMutableTreeNode node_3 = new DefaultMutableTreeNode("Passport");
-		DefaultMutableTreeNode node_4 = new DefaultMutableTreeNode("Phone Number);
+		DefaultMutableTreeNode node_4 = new DefaultMutableTreeNode("Phone Number");
 		DefaultMutableTreeNode node_5 = new DefaultMutableTreeNode("SSN");
 		DefaultMutableTreeNode node_6 = new DefaultMutableTreeNode("Wifi Network");
 
