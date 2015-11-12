@@ -113,7 +113,7 @@ public class EditDataEntryView {
 						return;
 					} else {
 
-						JOptionPane.showMessageDialog(null, "You have successfully Added DataEntry");
+						JOptionPane.showMessageDialog(null, "You have successfully modify DataEntry");
 						System.gc();
 						for (Window window : Window.getWindows()) {
 							window.dispose();
@@ -233,7 +233,16 @@ public class EditDataEntryView {
 								"The Entry Name has already existed! Please Try another Entry Name!");
 						return;
 					} else {
+						JOptionPane.showMessageDialog(null, "You have successfully modify DataEntry");
+						System.gc();
+						for (Window window : Window.getWindows()) {
+							window.dispose();
+						}
+
 						frame.dispose();
+
+						HomeView hv = new HomeView(currentEntry.getOwner());
+						hv.frmSentinelDataVault.setVisible(true);
 					}
 				}
 			});
@@ -401,7 +410,7 @@ public class EditDataEntryView {
 						return;
 					} else {
 
-						JOptionPane.showMessageDialog(null, "You have successfully Added DataEntry");
+						JOptionPane.showMessageDialog(null, "You have successfully modify DataEntry");
 						System.gc();
 						for (Window window : Window.getWindows()) {
 							window.dispose();
@@ -491,7 +500,7 @@ public class EditDataEntryView {
 								"The Entry Name has already existed! Please Try another Entry Name!");
 						return;
 					} else {
-						JOptionPane.showMessageDialog(null, "You have successfully Added DataEntry");
+						JOptionPane.showMessageDialog(null, "You have successfully modify DataEntry");
 						System.gc();
 						for (Window window : Window.getWindows()) {
 							window.dispose();
@@ -579,7 +588,7 @@ public class EditDataEntryView {
 								"The Entry Name has already existed! Please Try another Entry Name!");
 						return;
 					} else {
-						JOptionPane.showMessageDialog(null, "You have successfully Edit DataEntry");
+						JOptionPane.showMessageDialog(null, "You have successfully modify DataEntry");
 						System.gc();
 						for (Window window : Window.getWindows()) {
 							window.dispose();
@@ -666,7 +675,7 @@ public class EditDataEntryView {
 								"The Entry Name has already existed! Please Try another Entry Name!");
 						return;
 					} else {
-						JOptionPane.showMessageDialog(null, "You have successfully Added DataEntry");
+						JOptionPane.showMessageDialog(null, "You have successfully modify DataEntry");
 						System.gc();
 						for (Window window : Window.getWindows()) {
 							window.dispose();
