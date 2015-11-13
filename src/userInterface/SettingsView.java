@@ -57,6 +57,9 @@ public class SettingsView {
 		
 		//High security toggle & tool tip
 		JCheckBox chckbxHighSecurityLevel = new JCheckBox("High Security Level ");
+		if(currentUser.isHighSecurity() == 1) {
+		chckbxHighSecurityLevel.setSelected(true);
+		}
 		chckbxHighSecurityLevel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int secLvl;
@@ -73,6 +76,7 @@ public class SettingsView {
 		
 		//box lets user decide when to back up & tooltip
 		JComboBox comboBox = new JComboBox();
+		comboBox.setSelectedItem(currentUser.getBackupFrequency());
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) { //GETS VALUE FROM COMBO BOX
 				String s  = (String) comboBox.getSelectedItem();
@@ -97,6 +101,7 @@ public class SettingsView {
 		
 		//Lets user set the file size past which they'll be warned about file size. & tool tip
 		JComboBox comboBox_1 = new JComboBox();
+		comboBox_1.setSelectedItem(currentUser.getMaxBackupSize());
 		comboBox_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String s = (String) comboBox_1.getSelectedItem();
@@ -171,6 +176,9 @@ public class SettingsView {
 		frmSettings.getContentPane().add(btnCancel);
 		
 		JCheckBox chckbxD = new JCheckBox("Turn on account wipe after 5 failed login attemps");
+		if(currentUser.isAccountWipeSet() ==1){
+			chckbxD.setSelected(true);
+		}
 		chckbxD.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				Boolean b = chckbxD.isSelected();
