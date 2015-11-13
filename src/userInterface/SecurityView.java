@@ -169,7 +169,7 @@ public class SecurityView {
 					JOptionPane displayMessage = new JOptionPane(arr, JOptionPane.INFORMATION_MESSAGE); //Pack everything into a JOptionPane
 					JDialog dialog = displayMessage.createDialog(frame, "Password"); //Make the dialog that displays the JOptionPane
 					dialog.setResizable(false);// Properties of the dialog
-					dialog.setSize(400, 135);
+					dialog.setSize(450, 135);
 					dialog.setVisible(true); //User can see it now
 					dialog.dispose(); //dispose on close
 				}
