@@ -188,7 +188,7 @@ public class SecurityView {
 			}
 		});
 		chckbxAvoidRepeatedCharacters.setToolTipText("Password will not contain sequential instances of letters or digits.");
-		chckbxAvoidRepeatedCharacters.setBounds(87, 180, 250, 25);
+		chckbxAvoidRepeatedCharacters.setBounds(87, 180, 276, 25);
 		panel.add(chckbxAvoidRepeatedCharacters);
 		
 		JCheckBox chckbxAtLeast = new JCheckBox("Include Lowercase Letters");
