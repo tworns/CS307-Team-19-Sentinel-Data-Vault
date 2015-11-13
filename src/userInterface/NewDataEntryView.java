@@ -229,8 +229,7 @@ public class NewDataEntryView {
 						label_5.setBounds(40, 130, 150, 18);
 
 						cardType = new JComboBox();
-						cardType.setModel(new DefaultComboBoxModel(new String[] { "VISA", "MasterCard",
-								"American Express", "Diners Club", "Carte Blanche", "Discover", "JCB" }));
+						cardType.setModel(new DefaultComboBoxModel(new String[] { "VISA", "MasterCard", "Discovery", "AMERICAN EXPRESS"}));
 						cardType.setBounds(170, 40, 200, 18);
 
 

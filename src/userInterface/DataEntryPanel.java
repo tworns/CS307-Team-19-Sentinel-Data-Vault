@@ -172,7 +172,7 @@ public class DataEntryPanel extends JPanel{
 			comboBox.setModel(new DefaultComboBoxModel(new String[] {"VISA"}));
 		}
 		else if(cardType.equals("Master")) {
-			comboBox.setModel(new DefaultComboBoxModel(new String[] {"Master"}));
+			comboBox.setModel(new DefaultComboBoxModel(new String[] {"MasterCard"}));
 		}
 		else if(cardType.equals("Discovery")) {
 			comboBox.setModel(new DefaultComboBoxModel(new String[] {"Discovery"}));
