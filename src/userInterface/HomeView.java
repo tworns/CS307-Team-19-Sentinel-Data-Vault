@@ -122,7 +122,7 @@ public class HomeView {
 		});
 
 		JButton btnAddData = new JButton("New Entry");
-		btnAddData.setFont(new Font("Lucida Grande", Font.PLAIN, 8));
+		btnAddData.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
 
 		btnAddData.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
