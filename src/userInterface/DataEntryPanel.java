@@ -407,11 +407,11 @@ public class DataEntryPanel extends JPanel{
 		panel.add(formattedTextField2, "cell 0 4,growx");
 		
 		JLabel label_3 = new JLabel("Security Mode");
-		panel.add(label_3, "cell 0 3");
+		panel.add(label_3, "cell 0 5");
 	
 		JFormattedTextField formattedTextField3 = new JFormattedTextField();
 		formattedTextField3.setText(data.getFieldDataList().get(1));
-		panel.add(formattedTextField3, "cell 0 4,growx");
+		panel.add(formattedTextField3, "cell 0 6,growx");
 				
 		return panel;
 	}	
