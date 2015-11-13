@@ -100,7 +100,7 @@ public class EditDataEntryView {
 			JButton btnSave = new JButton("Save");
 			btnSave.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					if(textField.getText().equals("") || textField_1.getText().equals("") || textField_2.getText().equals("") || textField_3.getText().equals("")) {
+					if(textField.getText().equals("") || textField_1.getText().equals("") || textField_2.getText().equals("")) {
 						JOptionPane.showMessageDialog(null,"Please fill all the field!");
 						return;
 					}
