@@ -144,8 +144,12 @@ public class DatabaseManager {
 
 			// Execute the statement and commit database changes
 			ResultSet userInfoSet = stmt.executeQuery(sql);
-			if(userInfoSet.isClosed())
+			if(userInfoSet.isClosed()) {
+				userInfoSet.close();
+				stmt.close();
+				DBconnection.close();
 				return null;
+			}
 			// DBconnection.commit();
 			// while ( userInfoSet.next() ) {
 			// String id = userInfoSet.getString("user_email");
