@@ -485,22 +485,25 @@ public class NewDataEntryView {
 						frame.setBounds(150, 150, 550, 400);
 						frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 						frame.setLocationRelativeTo(null);
-						JLabel label, label_1, label_2, label_3, label_4;
-						JTextField textField, textField_1, textField_2, textField_3, textField_4;
+						JLabel label, label_1, label_2, label_3, label_4, label_5;
+						JTextField textField, textField_1, textField_2, textField_3, textField_4, textField_5;
 						label = new JLabel("Entry Name");
 						label.setBounds(40, 10, 150, 18);
-
-						label_1 = new JLabel("Name");
+						
+						label_1 = new JLabel("License Number");
 						label_1.setBounds(40, 40, 150, 18);
 
-						label_2 = new JLabel("Address");
+						label_2 = new JLabel("Name");
 						label_2.setBounds(40, 70, 150, 18);
 
-						label_3 = new JLabel("Date of Birth");
+						label_3 = new JLabel("Address");
 						label_3.setBounds(40, 100, 150, 18);
 
-						label_4 = new JLabel("Expiration Date");
+						label_4 = new JLabel("Date of Birth");
 						label_4.setBounds(40, 130, 150, 18);
+
+						label_5 = new JLabel("Expiration Date");
+						label_5.setBounds(40, 160, 150, 18);
 
 						textField = new JTextField();
 						textField.setBounds(170, 10, 200, 18);
@@ -521,6 +524,10 @@ public class NewDataEntryView {
 						textField_4 = new JTextField();
 						textField_4.setBounds(170, 130, 200, 18);
 						textField_4.setColumns(10);
+						
+						textField_5 = new JTextField();
+						textField_5.setBounds(170, 160, 200, 18);
+						textField_5.setColumns(10);
 
 						frame.getContentPane().setLayout(null);
 						frame.getContentPane().add(label);
@@ -528,11 +535,13 @@ public class NewDataEntryView {
 						frame.getContentPane().add(label_2);
 						frame.getContentPane().add(label_3);
 						frame.getContentPane().add(label_4);
+						frame.getContentPane().add(label_5);
 						frame.getContentPane().add(textField);
 						frame.getContentPane().add(textField_1);
 						frame.getContentPane().add(textField_2);
 						frame.getContentPane().add(textField_3);
 						frame.getContentPane().add(textField_4);
+						frame.getContentPane().add(textField_5);
 						frame.setLocationRelativeTo(null);
 						JButton btnSave = new JButton("Save");
 						btnSave.addActionListener(new ActionListener() {
@@ -543,7 +552,7 @@ public class NewDataEntryView {
 								newEntry.addDataField(textField_2.getText());
 								newEntry.addDataField(textField_3.getText());
 								newEntry.addDataField(textField_4.getText());
-								newEntry.addDataField("");	
+								newEntry.addDataField(textField_5.getText());	
 								newEntry.addDataField("");	
 								newEntry.addDataField("");	
 								newEntry.addDataField("");	

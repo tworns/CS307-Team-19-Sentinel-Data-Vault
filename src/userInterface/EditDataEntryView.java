@@ -343,42 +343,50 @@ public class EditDataEntryView {
 		if (entryType.equals("License"))
 
 		{
-			JLabel label, label_1, label_2, label_3, label_4;
-			JTextField textField, textField_1, textField_2, textField_3, textField_4;
+			JLabel label, label_1, label_2, label_3, label_4, label_5;
+			JTextField textField, textField_1, textField_2, textField_3, textField_4, textField_5;
 			label = new JLabel("Entry Name");
 			label.setBounds(40, 10, 150, 18);
 
-			label_1 = new JLabel("Name");
-			label_1.setBounds(40, 40, 150, 18);
 
-			label_2 = new JLabel("Address");
+			label_1 = new JLabel("License Number");
+			label_1.setBounds(40, 40, 150, 18);
+			
+			label_2 = new JLabel("Name");
 			label_2.setBounds(40, 70, 150, 18);
 
-			label_3 = new JLabel("Date of Birth");
+			label_3 = new JLabel("Address");
 			label_3.setBounds(40, 100, 150, 18);
 
-			label_4 = new JLabel("Expired Date");
+			label_4 = new JLabel("Date of Birth");
 			label_4.setBounds(40, 130, 150, 18);
 
-			textField = new JTextField();
+			label_5 = new JLabel("Expired Date");
+			label_5.setBounds(40, 160, 150, 18);
+
+			textField = new JTextField(currentEntry.getEntryName());
 			textField.setBounds(170, 10, 200, 18);
 			textField.setColumns(10);
 
-			textField_1 = new JTextField();
+			textField_1 = new JTextField(currentEntry.getFieldDataList().get(0));
 			textField_1.setBounds(170, 40, 200, 18);
 			textField_1.setColumns(10);
 
-			textField_2 = new JTextField();
+			textField_2 = new JTextField(currentEntry.getFieldDataList().get(1));
 			textField_2.setBounds(170, 70, 200, 18);
 			textField_2.setColumns(10);
 
-			textField_3 = new JTextField();
+			textField_3 = new JTextField(currentEntry.getFieldDataList().get(2));
 			textField_3.setBounds(170, 100, 200, 18);
 			textField_3.setColumns(10);
 
-			textField_4 = new JTextField();
+			textField_4 = new JTextField(currentEntry.getFieldDataList().get(3));
 			textField_4.setBounds(170, 130, 200, 18);
 			textField_4.setColumns(10);
+			
+			textField_5 = new JTextField(currentEntry.getFieldDataList().get(4));
+			textField_5.setBounds(170, 160, 200, 18);
+			textField_5.setColumns(10);
 
 			frame.getContentPane().setLayout(null);
 			frame.getContentPane().add(label);
@@ -386,11 +394,13 @@ public class EditDataEntryView {
 			frame.getContentPane().add(label_2);
 			frame.getContentPane().add(label_3);
 			frame.getContentPane().add(label_4);
+			frame.getContentPane().add(label_5);
 			frame.getContentPane().add(textField);
 			frame.getContentPane().add(textField_1);
 			frame.getContentPane().add(textField_2);
 			frame.getContentPane().add(textField_3);
 			frame.getContentPane().add(textField_4);
+			frame.getContentPane().add(textField_5);
 
 			JButton btnSave = new JButton("Save");
 			btnSave.addActionListener(new ActionListener() {
@@ -402,6 +412,7 @@ public class EditDataEntryView {
 					newEntry.addDataField(textField_2.getText());
 					newEntry.addDataField(textField_3.getText());
 					newEntry.addDataField(textField_4.getText());
+					newEntry.addDataField(textField_5.getText());
 					DatabaseManager m = new DatabaseManager();
 					int result = m.updateEntry(currentEntry, newEntry);
 					if (result == -1) {
