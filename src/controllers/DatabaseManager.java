@@ -177,6 +177,12 @@ public class DatabaseManager {
 		} catch (SQLException e) {
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
 			e.printStackTrace();
+			try {
+				DBconnection.close();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			// return a failure value
 			return null;
 		}
