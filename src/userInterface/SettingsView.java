@@ -76,15 +76,38 @@ public class SettingsView {
 		
 		//box lets user decide when to back up & tooltip
 		JComboBox comboBox = new JComboBox();
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Select Value", "Hourly", "Daily", "Weekly", "Monthly", "Annually"}));
+		if(currentUser.getBackupFrequency().equals("Hourly")){ 
+			comboBox.setSelectedIndex(1);
+		}
+		if(currentUser.getBackupFrequency().equals("Daily")){ 
+			comboBox.setSelectedIndex(2);
+		}
+		if(currentUser.getBackupFrequency().equals("Weekly")){ 
+			comboBox.setSelectedIndex(3);
+		}
+		if(currentUser.getBackupFrequency().equals("Monthly")){ 
+			comboBox.setSelectedIndex(4);
+		}
+		if(currentUser.getBackupFrequency().equals("Annually")){ 
+			comboBox.setSelectedIndex(5);
+		}
+		else{comboBox.setSelectedIndex(0); }
+		
 		comboBox.setSelectedItem(currentUser.getBackupFrequency());
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) { //GETS VALUE FROM COMBO BOX
 				String s  = (String) comboBox.getSelectedItem();
+				if(s.equals("Select Value")) {
+					JOptionPane.showMessageDialog(null, "Must select a max back up file size.", "Settings", 0);
+				}
+				else{
 				currentUser.setBackupFrequency(s); //Adds this value to user
+				}
 			}
 		});
 		comboBox.setToolTipText("This field sets how often all user data is backed up on disk.");
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Select Value", "Hourly", "Daily", "Weekly", "Monthly", "Annually"}));
+
 		
 		comboBox.setBounds(58, 126, 129, 22);
 		frmSettings.getContentPane().add(comboBox);
@@ -101,43 +124,77 @@ public class SettingsView {
 		
 		//Lets user set the file size past which they'll be warned about file size. & tool tip
 		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setSelectedItem(currentUser.getMaxBackupSize());
+		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Select Value", "10 MB", "50 MB", "100 MB", "512 MB", "1 GB", "2 GB", "3 GB", "4 GB", "5 GB"}));
+		String current = "";
+		if(currentUser.getMaxBackupSize() < 1024){ //sets combo box to user's selected value
+		 current += currentUser.getMaxBackupSize() + " MB";
+		}
+		if(currentUser.getMaxBackupSize() == 1024) { 
+			current+=1 + " GB";
+		}
+		if(currentUser.getMaxBackupSize() == 2048) { 
+			current+=2 + " GB";
+		}
+		if(currentUser.getMaxBackupSize() == 3072){
+			current+=3 + " GB";
+		}
+		if(currentUser.getMaxBackupSize() == 4096){
+			current+=4 + " GB";
+		}
+		if(currentUser.getMaxBackupSize() == 5120){
+			current += 5 + " GB";
+		}
+		else{ comboBox_1.setSelectedIndex(0); }
+
+		comboBox_1.setSelectedItem(current);
 		comboBox_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String s = (String) comboBox_1.getSelectedItem();
 				int size = 0;
-				if(s.equals("10 MB")) { 
+				if(s.equals("Select Value")) { 
+					JOptionPane.showMessageDialog(null, "Must select a max back up file size.", "Settings", 0);
+				}
+				else if(s.equals("10 MB")) { 
 					size = 10;
+					currentUser.setMaxBackupSize(size);//Adds max back up size to current user.
 				}
 				else if (s.equals("50 MB")) { 
 					size = 50;
+					currentUser.setMaxBackupSize(size);//Adds max back up size to current user.
 				}
 				else if (s.equals("100 MB")){
 					size = 100;
+					currentUser.setMaxBackupSize(size);//Adds max back up size to current user.
 				}
 				else if (s.equals("512 MB")) { 
 					size = 512;
+					currentUser.setMaxBackupSize(size);//Adds max back up size to current user.
 				}
 				else if ( s.equals("1 GB")){ 
 					size = 1024;
+					currentUser.setMaxBackupSize(size);//Adds max back up size to current user.
 				}
 				else if (s.equals("2 GB")) {
 					size = 2048;
+					currentUser.setMaxBackupSize(size);//Adds max back up size to current user.
 				}
 				else if (s.equals("3 GB")) { 
 					size = 3072;
+					currentUser.setMaxBackupSize(size);//Adds max back up size to current user.
 				}
 				else if(s.equals("4 GB")) { 
 					size = 4096;
+					currentUser.setMaxBackupSize(size);//Adds max back up size to current user.
 				}
 				else if (s.equals("5 GB")){ 
 					size = 5120;
+					currentUser.setMaxBackupSize(size);//Adds max back up size to current user.
 				}
-				currentUser.setMaxBackupSize(size);//Adds max back up size to current user.
+				
 			}
 		});
 		comboBox_1.setToolTipText("This field is the maximum size a backup file can reach before the user is warned. ");
-		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Select Value", "10 MB", "50 MB", "100 MB", "512 MB", "1 GB", "2 GB", "3 GB", "4 GB", "5 GB"}));
+		
 		comboBox_1.setBounds(58, 160, 129, 22);
 		frmSettings.getContentPane().add(comboBox_1);
 		
