@@ -424,9 +424,7 @@ public class HomeView {
 					currentEntry = selectedDataEntry;
 //					System.out.println("Here");
 
-					if (selectedNode.getParent().getChildCount() == 0) {
-						return;
-					}
+					
 					System.out.println(selectedNodeName);
 					System.out.println(username);
 					System.out.println(selectedNode.getParent().toString());

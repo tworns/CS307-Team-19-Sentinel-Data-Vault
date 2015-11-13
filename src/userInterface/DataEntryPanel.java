@@ -114,7 +114,7 @@ public class DataEntryPanel extends JPanel{
 		panel.add(label_1, "cell 0 1");
 		
 		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"VISA", "Master", "Discovery", "AMERICAN EXPRESS"}));
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"VISA", "MasterCard", "Discovery", "AMERICAN EXPRESS"}));
 		panel.add(comboBox, "cell 0 2,growx");
 		
 		JLabel label_2 = new JLabel("Card Number");
@@ -171,7 +171,7 @@ public class DataEntryPanel extends JPanel{
 		if(cardType.equals("VISA")) {
 			comboBox.setModel(new DefaultComboBoxModel(new String[] {"VISA"}));
 		}
-		else if(cardType.equals("Master")) {
+		else if(cardType.equals("MasterCard")) {
 			comboBox.setModel(new DefaultComboBoxModel(new String[] {"MasterCard"}));
 		}
 		else if(cardType.equals("Discovery")) {
