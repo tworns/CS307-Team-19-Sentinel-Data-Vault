@@ -16,7 +16,7 @@ public class SecurityView {
 	public JFrame frame;
 	private int instanceCount;
 	private SecurityView instance; 
-	private JPasswordField passwordField;
+	private JTextField passwordField; //private JPasswordField passwordField
 	public Object frmSentinelDataVault;
 	private int spinLength = 0;
 	private boolean numbers;
@@ -227,7 +227,7 @@ public class SecurityView {
 		btnCheck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				StrengthChecker check = new StrengthChecker();
-				String input = new String(passwordField.getPassword());
+				String input = new String(passwordField.getText()); //new String(passwordField.getPassword())
 				String output = check.checkStrength(input);
 				textField.setText(output);
 				Color bg = Color.ORANGE;
@@ -254,7 +254,7 @@ public class SecurityView {
 		btnCancel_1.setBounds(209, 77, 97, 25);
 		panel_1.add(btnCancel_1);
 		
-		passwordField = new JPasswordField();
+		passwordField = new JTextField();//new JPasswordField
 		passwordField.setBounds(95, 45, 211, 19);
 		panel_1.add(passwordField);
 		
