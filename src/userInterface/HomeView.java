@@ -498,13 +498,25 @@ public class HomeView {
 		tree.setModel(new DefaultTreeModel(
 				new DefaultMutableTreeNode("Data Entry") {
 					{
-						add(node_0);
-						add(node_1);
-						add(node_2);
+						if(currentDataEntryTypeList.contains("Account Login")) {
+							add(node_0);
+						}
+						if(currentDataEntryTypeList.contains("Credit/Debit Card")) {
+							add(node_1);
+						}
+						if(currentDataEntryTypeList.contains("License")) {
+							add(node_2);
+						}
 						//add(node_3);
-						add(node_4);
-						add(node_5);
-						add(node_6);
+						if(currentDataEntryTypeList.contains("Phone Number")) {
+							add(node_4);
+						}	
+						if(currentDataEntryTypeList.contains("SSN")) {
+							add(node_5);
+						}	
+						if(currentDataEntryTypeList.contains("Wifi Network")) {
+							add(node_6);
+						}	
 					}
 				}
 				));
