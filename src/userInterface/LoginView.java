@@ -126,6 +126,18 @@ public class LoginView {
 					DatabaseManager d = new DatabaseManager();
 					User u = d.retrieveUserFromDatabase(username);
 					d.deleteAllEntriesFromDatabase(u);
+					try {
+						VaultController.Send("sentineldatavault", "SENTINELDATA", username, 
+								"Security Warning", "Dear user,\n\nWe have deleted your account.\n"
+										+ "Have a nice day.\n\n"+
+										"Sincerely,\nSentinel Data Vault Team");
+					} catch (AddressException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (MessagingException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					JOptionPane.showMessageDialog(null,"Your account data has been deleted due to multiple failed login attempts");
 				}
 			}
