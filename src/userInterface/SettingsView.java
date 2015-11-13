@@ -232,7 +232,7 @@ public class SettingsView {
 		btnCancel.setBounds(248, 255, 97, 25);
 		frmSettings.getContentPane().add(btnCancel);
 		
-		JCheckBox chckbxD = new JCheckBox("Turn on account wipe after 5 failed login attemps");
+		JCheckBox chckbxD = new JCheckBox("Turn on account wipe after 6 failed login attemps");
 		if(currentUser.isAccountWipeSet() ==1){
 			chckbxD.setSelected(true);
 		}
