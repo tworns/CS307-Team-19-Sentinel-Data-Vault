@@ -148,6 +148,10 @@ public class NewDataEntryView {
 						JButton btnSave = new JButton("Save");
 						btnSave.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
+								if(textField.getText().equals("") || textField_1.getText().equals("") || textField_2.getText().equals("") ) {
+									JOptionPane.showMessageDialog(null,"Please fill all the field!");
+									return;
+								}
 								LocalDateTime createdtime = LocalDateTime.now();
 								DataEntry newEntry = new DataEntry(textField.getText(), "SSN", "key", userName, 0, createdtime);
 								newEntry.addDataField(textField_1.getText());
@@ -277,6 +281,10 @@ public class NewDataEntryView {
 						JButton btnSave = new JButton("Save");
 						btnSave.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
+								if(textField.getText().equals("") || textField_1.getText().equals("") || textField_2.getText().equals("") || textField_3.getText().equals("")) {
+									JOptionPane.showMessageDialog(null,"Please fill all the field!");
+									return;
+								}
 								LocalDateTime createdtime = LocalDateTime.now();
 								DataEntry newEntry = new DataEntry(textField.getText(), "Credit/Debit Card", "key", userName,
 										0, createdtime);
@@ -545,6 +553,11 @@ public class NewDataEntryView {
 						JButton btnSave = new JButton("Save");
 						btnSave.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
+								if(textField.getText().equals("") || textField_1.getText().equals("") || textField_2.getText().equals("") || textField_3.getText().equals("")
+										|| textField_4.getText().equals("") || textField_5.getText().equals("")) {
+									JOptionPane.showMessageDialog(null,"Please fill all the field!");
+									return;
+								}
 								LocalDateTime createdtime = LocalDateTime.now();
 								DataEntry newEntry = new DataEntry(textField.getText(), "License", "key", userName,0, createdtime);
 								newEntry.addDataField(textField_1.getText());
@@ -645,6 +658,10 @@ public class NewDataEntryView {
 						JButton btnSave = new JButton("Save");
 						btnSave.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
+								if(textField.getText().equals("") || textField_1.getText().equals("") || textField_2.getText().equals("") || textField_3.getText().equals("")) {
+									JOptionPane.showMessageDialog(null,"Please fill all the field!");
+									return;
+								}
 								LocalDateTime createdtime = LocalDateTime.now();
 								DataEntry newEntry = new DataEntry(textField.getText(), "Account Login", "key", userName, 0,
 										createdtime);
@@ -746,6 +763,10 @@ public class NewDataEntryView {
 						JButton btnSave = new JButton("Save");
 						btnSave.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
+								if(textField.getText().equals("") || textField_1.getText().equals("") || textField_2.getText().equals("") || textField_3.getText().equals("")) {
+									JOptionPane.showMessageDialog(null,"Please fill all the field!");
+									return;
+								}
 								LocalDateTime createdtime = LocalDateTime.now();
 								DataEntry newEntry = new DataEntry(textField.getText(), "Wifi Network", "key", userName, 0,
 										createdtime);
@@ -847,6 +868,10 @@ public class NewDataEntryView {
 						JButton btnSave = new JButton("Save");
 						btnSave.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
+								if(textField.getText().equals("") || textField_1.getText().equals("") || textField_2.getText().equals("") || textField_3.getText().equals("")) {
+									JOptionPane.showMessageDialog(null,"Please fill all the field!");
+									return;
+								}
 								LocalDateTime createdtime = LocalDateTime.now();
 								DataEntry newEntry = new DataEntry(textField.getText(), "Phone Number", "key", userName, 0,
 										createdtime);
