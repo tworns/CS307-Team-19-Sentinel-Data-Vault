@@ -255,7 +255,7 @@ public class NewDataEntryView {
 						textField_3.setColumns(10);
 
 						JComboBox month = new JComboBox();
-						month.setModel(new DefaultComboBoxModel(new String[] {"01 ", "02 ", "03 ", "04 ", "05", "06 ", "07 ", "08 ", "09 ", "10", "11 ", "12"}));
+						month.setModel(new DefaultComboBoxModel(new String[] {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"}));
 						month.setBounds(170, 160, 90, 18);;
 
 						JComboBox year = new JComboBox();
