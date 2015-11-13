@@ -2,18 +2,14 @@ package userInterface;
 
 import java.awt.*;
 import java.awt.event.*;
-
 import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
 import javax.swing.*; 
-
 import java.security.NoSuchAlgorithmException;
 import java.util.Locale;
-
 import org.eclipse.wb.swing.FocusTraversalOnArray;
 import controllers.DatabaseManager;
 import controllers.VaultController;
-
 import dataManagement.User;
 
 public class LoginView {
