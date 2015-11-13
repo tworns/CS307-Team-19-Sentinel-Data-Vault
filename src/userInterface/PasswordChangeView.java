@@ -83,7 +83,7 @@ public class PasswordChangeView {
 		frmChangePassword.setLocationRelativeTo(null);
 
 		JLabel lblOldPassword = new JLabel("Current Password"); //Old password field label
-		lblOldPassword.setBounds(207, 53, 114, 16);
+		lblOldPassword.setBounds(207, 16, 114, 16);
 		frmChangePassword.getContentPane().add(lblOldPassword);
 		
 		JLabel lblNewPassword = new JLabel("New Password"); //new password field label
@@ -229,7 +229,7 @@ public class PasswordChangeView {
 		
 		passwordField = new JPasswordField(); //Password field for current password
 		passwordField.setToolTipText("Current user password must be entered to change passwords or security question/answer");
-		passwordField.setBounds(37, 50, 158, 22);
+		passwordField.setBounds(37, 13, 158, 22);
 		frmChangePassword.getContentPane().add(passwordField);
 		
 		passwordField_1 = new JPasswordField(); //Password field for newPass1
@@ -269,7 +269,7 @@ public class PasswordChangeView {
 		
 		JLabel lblNewPassword_1 = new JLabel("New Password"); //label for new password field
 		lblNewPassword_1.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblNewPassword_1.setBounds(146, 23, 114, 16);
+		lblNewPassword_1.setBounds(145, 58, 114, 16);
 		frmChangePassword.getContentPane().add(lblNewPassword_1);
 	}
 }
