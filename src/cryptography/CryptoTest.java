@@ -13,7 +13,7 @@ public class CryptoTest {
 	public static void main(String[] args) { 
 		Crypto test = new Crypto();
 		int secLvl = 1;
-		DataEntry testData = new DataEntry(null, null, null, null, 0, null);
+		DataEntry testData = new DataEntry(null, null, null, null, 1, null);
 		User u = new User(null, null, null, null, null, null, null);
 		try{
 		SaltGenerator twitch = new SaltGenerator();
@@ -26,7 +26,7 @@ public class CryptoTest {
 		} 
  		testData.setEncryptionKey(test.randomDataKey(testData.isHighSecurity()));		
 		System.out.println(u.getDataKey()+ "\n");
-		testData.addDataField("This is a test string.");
+		testData.addDataField("This is SPARTA.");
 		testData.addDataField("This too is a test.");
 		testData.addDataField("TESTING!");
 		testData.addDataField("ASDFASDLKJFALSDKJF!#@!#!@##@LRKAJSFLIAJ[]);;;''");
