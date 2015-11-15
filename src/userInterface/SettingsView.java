@@ -76,23 +76,26 @@ public class SettingsView {
 		
 		//box lets user decide when to back up & tooltip
 		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Select Value", "Hourly", "Daily", "Weekly", "Monthly", "Annually"}));
-		if(currentUser.getBackupFrequency().equals("Hourly")){ 
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Select Value", "Manually", "Hourly", "Daily", "Weekly", "Monthly", "Annually"}));
+		if(currentUser.getBackupFrequency().equals("Manually")) { 
 			comboBox.setSelectedIndex(1);
 		}
-		if(currentUser.getBackupFrequency().equals("Daily")){ 
+		if(currentUser.getBackupFrequency().equals("Hourly")){ 
 			comboBox.setSelectedIndex(2);
 		}
-		if(currentUser.getBackupFrequency().equals("Weekly")){ 
+		if(currentUser.getBackupFrequency().equals("Daily")){ 
 			comboBox.setSelectedIndex(3);
 		}
-		if(currentUser.getBackupFrequency().equals("Monthly")){ 
+		if(currentUser.getBackupFrequency().equals("Weekly")){ 
 			comboBox.setSelectedIndex(4);
 		}
-		if(currentUser.getBackupFrequency().equals("Annually")){ 
+		if(currentUser.getBackupFrequency().equals("Monthly")){ 
 			comboBox.setSelectedIndex(5);
 		}
-		else{comboBox.setSelectedIndex(0); }
+		if(currentUser.getBackupFrequency().equals("Annually")){ 
+			comboBox.setSelectedIndex(6);
+		}
+		else{comboBox.setSelectedIndex(-1); }
 		
 		comboBox.setSelectedItem(currentUser.getBackupFrequency());
 		comboBox.addActionListener(new ActionListener() {
