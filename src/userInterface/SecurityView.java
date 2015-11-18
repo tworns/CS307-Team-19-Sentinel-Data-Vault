@@ -177,7 +177,7 @@ public class SecurityView {
 		});
 		
 		//Action listener for the cancel button
-		JButton btnCancel = new JButton("Cancel");
+		JButton btnCancel = new JButton("Close");
 		btnCancel.setBounds(217, 263, 85, 25);
 		panel.add(btnCancel);
 		
