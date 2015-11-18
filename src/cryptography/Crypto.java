@@ -17,7 +17,7 @@ public class Crypto {
 		
 	}
 	
-	public String randomDataKey(int security) {// USE THE DATAENTRY SECURITY KEY HERE!
+	public String randomDataKey(int security) throws UnsupportedEncodingException {// USE THE DATAENTRY SECURITY KEY HERE!
 		String output = null;
 		SecureRandom r = new SecureRandom();
 
@@ -25,51 +25,48 @@ public class Crypto {
 			byte[] secureDataKey = new byte[16]; //AES data key
 			r.nextBytes(secureDataKey); 
 			String secureOutput = new String(secureDataKey);  
+			secureOutput = new String(secureOutput.getBytes("US-ASCII"));
 			output = secureOutput;
 		}
 		else {  //3DES key gen
 			byte[] dataKey = new byte [24]; //3DES data key
 			r.nextBytes(dataKey); // 
 			String normalOutput = new String(dataKey);
-			try {
-				normalOutput = new String(normalOutput.getBytes("UTF8"));
-				output = normalOutput;
-			} catch (UnsupportedEncodingException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
+			normalOutput = new String(normalOutput.getBytes("US-ASCII"));
+			output = normalOutput;			
 		}
 		return output;
 	}
 	
 	// We're using AES & 3DES encryption. They're symmetric (same key for encrypt/decrypt).
-	public Key keyGen (User user, DataEntry data) {  
+	public Key keyGen (User user, DataEntry data) throws UnsupportedEncodingException {  
 		//generates the key the algorithm uses from the one stored in the user.
 		//DataEntries created by the User will be given the key that the user has. 
 		 //USER KEY GOES INTO THE SECRET KEY SPEC!
-		Key key;
+		Key key = null;
 		if( data.isHighSecurity() == 1) { //AES key gen
-		 key = new SecretKeySpec(data.getEncryptionKey().getBytes(), "AES");
+		
+			key = new SecretKeySpec(data.getEncryptionKey().getBytes("US-ASCII"), "AES");
+		
 		}
 		else{ //3DES key gen
-			key = new SecretKeySpec(data.getEncryptionKey().getBytes(), "DESede");
+			key = new SecretKeySpec(data.getEncryptionKey().getBytes("US-ASCII"), "DESede");
 		}
 		return key;
 	}
 	
-	public byte[] ivGen(User user, int security) { //Encryption was insecure, needed salt.
+	public byte[] ivGen(User user, int security) throws UnsupportedEncodingException { //Encryption was insecure, needed salt.
 		String iv = user.getPasswordSalt();
 		if(security == 1) { //AES
 			char[] salt16 = new char[16];
 			iv.getChars(0, 16, salt16, 0);
-			return new String(salt16).getBytes();
+			return new String(salt16).getBytes("US-ASCII");
 		}
 		
 		else { //3DES
 			char[] salt8 = new char[8];
 			iv.getChars(0, 8, salt8, 0);
-			return new String(salt8).getBytes();		
+			return new String(salt8).getBytes("US-ASCII");		
 		 }
 	}
 	
