@@ -3,6 +3,7 @@ package cryptography;
 import dataManagement.*;
 import sun.misc.*;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.security.*;
 import javax.crypto.*;
 import javax.crypto.spec.IvParameterSpec;
@@ -17,7 +18,7 @@ public class Crypto {
 	}
 	
 	public String randomDataKey(int security) {// USE THE DATAENTRY SECURITY KEY HERE!
-		String output;
+		String output = null;
 		SecureRandom r = new SecureRandom();
 
 		if( security == 1) { //AES key gen
@@ -30,7 +31,14 @@ public class Crypto {
 			byte[] dataKey = new byte [24]; //3DES data key
 			r.nextBytes(dataKey); // 
 			String normalOutput = new String(dataKey);
-			output = normalOutput;
+			try {
+				normalOutput = new String(normalOutput.getBytes("UTF8"));
+				output = normalOutput;
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 		}
 		return output;
 	}
