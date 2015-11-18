@@ -157,7 +157,7 @@ public class LoginView {
 		frmSignIn.getContentPane().add(textField);
 		frmSignIn.getContentPane().add(passwordField);
 		
-		btnForgotPassword = new JButton("I forgot my password...");
+		btnForgotPassword = new JButton("I forgot my password");
 		btnForgotPassword.setBounds(227, 199, 170, 27);
 		frmSignIn.getContentPane().add(btnForgotPassword);
 		
