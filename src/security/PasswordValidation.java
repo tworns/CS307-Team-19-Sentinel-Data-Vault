@@ -14,7 +14,7 @@ public class PasswordValidation {
 	public boolean minStandard(String password){ // little b boolean is the primitive, big B boolean is the object
 	
 	//TODO Check for length >12, at least one digit & special char, upper & lower case letters.
-	if(password.length() < 12) {
+	if(password.length() < 8) {
 		return false;
 	}
 	if(password.matches("(?=.*[a-z])(?=.*[A-Z])(?=.*([0-9]))(?=.*([!@#$%&*,.])).*") == false) { 
