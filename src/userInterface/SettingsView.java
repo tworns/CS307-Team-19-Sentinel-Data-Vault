@@ -112,12 +112,12 @@ public class SettingsView {
 		comboBox.setToolTipText("This field sets how often all user data is backed up on disk.");
 
 		
-		comboBox.setBounds(58, 126, 129, 22);
+		comboBox.setBounds(228, 126, 129, 22);
 		frmSettings.getContentPane().add(comboBox);
 		
-		JLabel lblBackupFrequency = new JLabel("Backup Frequency");
+		JLabel lblBackupFrequency = new JLabel("Backup Frequency:");
 		lblBackupFrequency.setToolTipText("This field sets how often all user data is backed up on disk.");
-		lblBackupFrequency.setBounds(195, 128, 113, 16);
+		lblBackupFrequency.setBounds(67, 128, 160, 16);
 		frmSettings.getContentPane().add(lblBackupFrequency);
 		
 		JLabel lblUserSettings = new JLabel("User Settings");
@@ -198,11 +198,11 @@ public class SettingsView {
 		});
 		comboBox_1.setToolTipText("This field is the maximum size a backup file can reach before the user is warned. ");
 		
-		comboBox_1.setBounds(58, 160, 129, 22);
+		comboBox_1.setBounds(228, 159, 129, 22);
 		frmSettings.getContentPane().add(comboBox_1);
 		
-		JLabel lblFileSizeLimit = new JLabel("File Size Limit Warning ");
-		lblFileSizeLimit.setBounds(195, 163, 190, 16);
+		JLabel lblFileSizeLimit = new JLabel("Backup Size Limit:");
+		lblFileSizeLimit.setBounds(68, 162, 190, 16);
 		lblFileSizeLimit.setToolTipText("This field is the maximum size a backup file can reach before the user is warned. ");
 
 		frmSettings.getContentPane().add(lblFileSizeLimit);
