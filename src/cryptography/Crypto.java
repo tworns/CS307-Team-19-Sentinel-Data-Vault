@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Crypto {
-	
+	private String charEncoding = "ISO-8859-1";
 	public Crypto () {
 		
 	}
@@ -25,14 +25,14 @@ public class Crypto {
 			byte[] secureDataKey = new byte[16]; //AES data key
 			r.nextBytes(secureDataKey); 
 			String secureOutput = new String(secureDataKey);  
-			secureOutput = new String(secureOutput.getBytes("US-ASCII"));
+			secureOutput = new String(secureOutput.getBytes(charEncoding));
 			output = secureOutput;
 		}
 		else {  //3DES key gen
 			byte[] dataKey = new byte [24]; //3DES data key
 			r.nextBytes(dataKey); // 
 			String normalOutput = new String(dataKey);
-			normalOutput = new String(normalOutput.getBytes("US-ASCII"));
+			normalOutput = new String(normalOutput.getBytes(charEncoding));
 			output = normalOutput;			
 		}
 		return output;
@@ -46,11 +46,11 @@ public class Crypto {
 		Key key = null;
 		if( data.isHighSecurity() == 1) { //AES key gen
 		
-			key = new SecretKeySpec(data.getEncryptionKey().getBytes("US-ASCII"), "AES");
+			key = new SecretKeySpec(data.getEncryptionKey().getBytes(charEncoding), "AES");
 		
 		}
 		else{ //3DES key gen
-			key = new SecretKeySpec(data.getEncryptionKey().getBytes("US-ASCII"), "DESede");
+			key = new SecretKeySpec(data.getEncryptionKey().getBytes(charEncoding), "DESede");
 		}
 		return key;
 	}
@@ -60,13 +60,13 @@ public class Crypto {
 		if(security == 1) { //AES
 			char[] salt16 = new char[16];
 			iv.getChars(0, 16, salt16, 0);
-			return new String(salt16).getBytes("US-ASCII");
+			return new String(salt16).getBytes(charEncoding);
 		}
 		
 		else { //3DES
 			char[] salt8 = new char[8];
 			iv.getChars(0, 8, salt8, 0);
-			return new String(salt8).getBytes("US-ASCII");		
+			return new String(salt8).getBytes(charEncoding);		
 		 }
 	}
 	
