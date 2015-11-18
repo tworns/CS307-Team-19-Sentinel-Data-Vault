@@ -142,7 +142,7 @@ public class LoginView {
 		});
 		frmSignIn.getContentPane().setLayout(null);
 		
-		btnSignUp = new JButton("Create New Account");
+		btnSignUp = new JButton("Create new account");
 		btnSignUp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				SignupView signup = new SignupView();
