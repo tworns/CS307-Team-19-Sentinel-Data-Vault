@@ -22,6 +22,7 @@ public class LoginView {
 	public String username = "";
 	private JLabel lblSentinelDataVault;
 	private int failedattempt = 0;
+	private JTextField txtWarning;
 
 	/**
 	 * Launch the application.
@@ -59,7 +60,7 @@ public class LoginView {
 		frmSignIn = new JFrame("Login");
 		frmSignIn.setTitle("Sign in");
 		frmSignIn.setResizable(false);
-		frmSignIn.setBounds(100, 100, 450, 300);
+		frmSignIn.setBounds(100, 100, 450, 357);
 		frmSignIn.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmSignIn.setLocationRelativeTo(null);
 		
@@ -101,6 +102,7 @@ public class LoginView {
 					
 				}
 				else{
+					txtWarning.setText("The E-mail and/or Password is incorrect. Please try again.");
 					failedattempt++;
 				}
 				//TODO migrate failcheck to Vault controller!
@@ -150,7 +152,7 @@ public class LoginView {
 				signup.setVisible(true);
 			}
 		});
-		btnSignUp.setBounds(57, 199, 158, 27);
+		btnSignUp.setBounds(57, 264, 158, 27);
 		frmSignIn.getContentPane().add(btnSignUp);
 		frmSignIn.getContentPane().add(btnNewButton);
 		frmSignIn.getContentPane().add(lblPassword);
@@ -160,13 +162,25 @@ public class LoginView {
 		
 		btnForgotPassword = new JButton("I forgot my password");
 		btnForgotPassword.setToolTipText("Click here to reset your account password");
-		btnForgotPassword.setBounds(227, 199, 170, 27);
+		btnForgotPassword.setBounds(227, 264, 170, 27);
 		frmSignIn.getContentPane().add(btnForgotPassword);
 		
 		lblSentinelDataVault = new JLabel("Sentinel Data Vault");
 		lblSentinelDataVault.setFont(new Font("Dialog", Font.PLAIN, 22));
 		lblSentinelDataVault.setBounds(119, 33, 206, 27);
 		frmSignIn.getContentPane().add(lblSentinelDataVault);
+		
+		txtWarning = new JTextField();
+		txtWarning.setForeground(new Color(220, 20, 60));
+		txtWarning.setBorder(null);
+		txtWarning.setOpaque(false);
+		txtWarning.setFocusable(false);
+		txtWarning.setEditable(false);
+		txtWarning.setFont(new Font("Tahoma", Font.ITALIC, 12));
+		txtWarning.setBackground(SystemColor.window);
+		txtWarning.setBounds(57, 175, 340, 26);
+		frmSignIn.getContentPane().add(txtWarning);
+		txtWarning.setColumns(10);
 		frmSignIn.getContentPane().setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{textField, passwordField, btnNewButton}));
 		frmSignIn.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{textField, passwordField, btnNewButton}));
 	}
