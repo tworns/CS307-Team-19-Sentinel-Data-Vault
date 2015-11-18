@@ -143,6 +143,7 @@ public class LoginView {
 		frmSignIn.getContentPane().setLayout(null);
 		
 		btnSignUp = new JButton("Create new account");
+		btnSignUp.setToolTipText("Click here to create a new Sentinel Data Vault account!");
 		btnSignUp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				SignupView signup = new SignupView();
@@ -158,6 +159,7 @@ public class LoginView {
 		frmSignIn.getContentPane().add(passwordField);
 		
 		btnForgotPassword = new JButton("I forgot my password");
+		btnForgotPassword.setToolTipText("Click here to reset your account password");
 		btnForgotPassword.setBounds(227, 199, 170, 27);
 		frmSignIn.getContentPane().add(btnForgotPassword);
 		
