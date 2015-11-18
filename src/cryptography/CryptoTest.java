@@ -25,7 +25,7 @@ public class CryptoTest {
 			e1.printStackTrace();
 		} 
  		testData.setEncryptionKey(test.randomDataKey(testData.isHighSecurity()));		
-		System.out.println(u.getDataKey()+ "\n");
+		System.out.println(testData.getEncryptionKey()+ "\n");
 		testData.addDataField("This is SPARTA.");
 		testData.addDataField("This too is a test.");
 		testData.addDataField("TESTING!");
