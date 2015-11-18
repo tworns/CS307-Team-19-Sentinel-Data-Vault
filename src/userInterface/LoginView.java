@@ -168,5 +168,6 @@ public class LoginView {
 		lblSentinelDataVault.setBounds(119, 33, 206, 27);
 		frmSignIn.getContentPane().add(lblSentinelDataVault);
 		frmSignIn.getContentPane().setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{textField, passwordField, btnNewButton}));
+		frmSignIn.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{textField, passwordField, btnNewButton}));
 	}
 }
