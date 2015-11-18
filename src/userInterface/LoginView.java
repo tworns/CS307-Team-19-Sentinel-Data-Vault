@@ -142,14 +142,14 @@ public class LoginView {
 		});
 		frmSignIn.getContentPane().setLayout(null);
 		
-		btnSignUp = new JButton("Create Account");
+		btnSignUp = new JButton("Create New Account");
 		btnSignUp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				SignupView signup = new SignupView();
 				signup.setVisible(true);
 			}
 		});
-		btnSignUp.setBounds(73, 199, 124, 27);
+		btnSignUp.setBounds(57, 199, 158, 27);
 		frmSignIn.getContentPane().add(btnSignUp);
 		frmSignIn.getContentPane().add(btnNewButton);
 		frmSignIn.getContentPane().add(lblPassword);
