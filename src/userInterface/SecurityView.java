@@ -217,9 +217,9 @@ public class SecurityView {
 		panel_1.setLayout(null);
 		
 		//password entry field
-		JLabel lblEnterPassword = new JLabel("Enter Password");
+		JLabel lblEnterPassword = new JLabel("Enter Password:");
 		lblEnterPassword.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblEnterPassword.setBounds(118, 15, 164, 17);
+		lblEnterPassword.setBounds(28, 16, 164, 17);
 		panel_1.add(lblEnterPassword);
 		
 		//button that actually sets off the checking of the password.
@@ -241,47 +241,27 @@ public class SecurityView {
 				
 			}
 		});
-		btnCheck.setBounds(95, 77, 97, 25);
+		btnCheck.setBounds(270, 40, 97, 27);
 		panel_1.add(btnCheck);
 		
 		//cancel button closes window
-		JButton btnCancel_1 = new JButton("Cancel");
+		JButton btnCancel_1 = new JButton("Close");
 		btnCancel_1.addActionListener(new ActionListener() {
 			 public void actionPerformed(ActionEvent clickCancel) {
 				frame.dispose();	
 			}
 		});
-		btnCancel_1.setBounds(209, 77, 97, 25);
+		btnCancel_1.setBounds(268, 267, 97, 25);
 		panel_1.add(btnCancel_1);
 		
 		passwordField = new JTextField();//new JPasswordField
-		passwordField.setBounds(95, 45, 211, 19);
+		passwordField.setBounds(25, 43, 235, 19);
 		panel_1.add(passwordField);
 		
-		JLabel lblPasswordCreationTips = new JLabel("Password Creation Tips");
+		JLabel lblPasswordCreationTips = new JLabel("How to improve password strength:");
 		lblPasswordCreationTips.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblPasswordCreationTips.setBounds(107, 127, 187, 16);
+		lblPasswordCreationTips.setBounds(31, 85, 336, 27);
 		panel_1.add(lblPasswordCreationTips);
-		
-		JLabel lblAStrongPassword = new JLabel("A Strong password has: ");
-		lblAStrongPassword.setBounds(107, 156, 164, 16);
-		panel_1.add(lblAStrongPassword);
-		
-		JLabel lblAtLeast = new JLabel("At least 1 special character");
-		lblAtLeast.setBounds(107, 182, 178, 16);
-		panel_1.add(lblAtLeast);
-		
-		JLabel lblAtLeast_1 = new JLabel("At least 1 number");
-		lblAtLeast_1.setBounds(107, 212, 114, 16);
-		panel_1.add(lblAtLeast_1);
-		
-		JLabel lblAtLeast_2 = new JLabel("At least 1 capital letter");
-		lblAtLeast_2.setBounds(107, 239, 156, 17);
-		panel_1.add(lblAtLeast_2);
-		
-		JLabel lblAndAtLeast = new JLabel("And at least 1 lowercase letter");
-		lblAndAtLeast.setBounds(104, 270, 196, 16);
-		panel_1.add(lblAndAtLeast);
 		
 		textField = new JTextField();
 		textField.setFocusable(false);
@@ -291,9 +271,17 @@ public class SecurityView {
 		textField.setSelectionColor(SystemColor.control);
 		textField.setOpaque(false);
 		textField.setEditable(false);
-		textField.setBounds(249, 12, 140, 22);
+		textField.setBounds(153, 13, 140, 22);
 		panel_1.add(textField);
 		textField.setColumns(10);
+		
+		JTextPane txtpnTips = new JTextPane();
+		txtpnTips.setBackground(SystemColor.window);
+		txtpnTips.setEditable(false);
+		txtpnTips.setFont(new Font("Lucida Grande", Font.PLAIN, 11));
+		txtpnTips.setText("  – Include mixed-case letters, numbers, and symbols\n  – Include a variety of different characters\n  – Avoid sequential or reused characters\n  – Make the password longer\n  – Substitue complexity with length, if needed\n\t");
+		txtpnTips.setBounds(31, 113, 336, 142);
+		panel_1.add(txtpnTips);
 
 	}
 }
