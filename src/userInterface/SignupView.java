@@ -78,7 +78,7 @@ public class SignupView extends JFrame {
 		passwordField2.setBounds(169, 188, 240, 24);
 		contentPane.add(passwordField2);
 		
-		JButton btnNewButton = new JButton("Create Account!");
+		JButton btnNewButton = new JButton("Create my account!");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String username = usernameField.getText();
@@ -102,7 +102,7 @@ public class SignupView extends JFrame {
 				
 			}
 		});
-		btnNewButton.setBounds(25, 303, 129, 27);
+		btnNewButton.setBounds(25, 303, 153, 27);
 		contentPane.add(btnNewButton);
 		
 		JLabel lblSecurityQuestion = new JLabel("Security Question:");
