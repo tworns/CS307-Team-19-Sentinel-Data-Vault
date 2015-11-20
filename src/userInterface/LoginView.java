@@ -64,7 +64,7 @@ public class LoginView {
 		frmSignIn.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmSignIn.setLocationRelativeTo(null);
 		
-		JLabel lblEmail = new JLabel("E-mail:");
+		JLabel lblEmail = new JLabel("Email:");
 		lblEmail.setBounds(73, 108, 56, 18);
 		
 		JLabel lblPassword = new JLabel("Password:");
@@ -102,7 +102,7 @@ public class LoginView {
 					
 				}
 				else{
-					txtWarning.setText("The E-mail and/or Password is incorrect. Please try again.");
+					txtWarning.setText("The Email and/or Password is incorrect. Please try again.");
 					failedattempt++;
 				}
 				//TODO migrate failcheck to Vault controller!

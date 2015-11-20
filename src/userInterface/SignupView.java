@@ -55,7 +55,7 @@ public class SignupView extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("E-mail:");
+		JLabel lblNewLabel = new JLabel("Email:");
 		lblNewLabel.setBounds(32, 131, 123, 18);
 		contentPane.add(lblNewLabel);
 		
