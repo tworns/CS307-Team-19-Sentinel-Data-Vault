@@ -25,6 +25,8 @@ public class SecurityView {
 	private boolean specials;
 	private boolean repeated;
 	private JTextField textField;
+	private JTextPane txtpnWarning;
+	private JTextField txtPassword;
 	
 	/*
 	 * Launch the application.
@@ -67,7 +69,7 @@ public class SecurityView {
 		//displays window
 		frame = new JFrame();
 		frame.setResizable(false);
-		frame.setBounds(100, 100, 412, 382);
+		frame.setBounds(100, 100, 412, 430);
 		frame.setTitle("Security View");
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -75,7 +77,7 @@ public class SecurityView {
 		
 		//display code for the tabs
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setBounds(0, 0, 406, 347);
+		tabbedPane.setBounds(0, 0, 406, 408);
 		frame.getContentPane().add(tabbedPane);
 		
 		//label for password generator section
@@ -123,7 +125,7 @@ public class SecurityView {
 		
 		//length of password to be input
 		JLabel lblLengthOfPassword = new JLabel("Password Length");
-		lblLengthOfPassword.setBounds(155, 221, 118, 16);
+		lblLengthOfPassword.setBounds(144, 221, 118, 16);
 		lblLengthOfPassword.setToolTipText("Specify the password length in number of characters.");
 		panel.add(lblLengthOfPassword);
 		
@@ -142,7 +144,7 @@ public class SecurityView {
 		
 		//Displays the password that has been generated, values are currently hard coded because Password generator hasn't been finished.
 		JButton btnGenerate = new JButton("Generate");
-		btnGenerate.setBounds(87, 263, 95, 25);
+		btnGenerate.setBounds(87, 325, 95, 25);
 		panel.add(btnGenerate);
 		btnGenerate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent clickGenerate) {
@@ -150,35 +152,21 @@ public class SecurityView {
 					spinLength =4;
 				}
 				if(numbers == false && specials == false && lowercase == false && uppercase == false) { 
-					JOptionPane.showMessageDialog(null, "Password must include at least one of the character types.", "Change Password", 0);
+					//JOptionPane.showMessageDialog(null, "Password must include at least one of the character types.", "Change Password", 0);
+					txtpnWarning.setText("Please include at least one character type.");
 				}
-				else { 
+				else {
+					txtpnWarning.setText(null);
 					PasswordGen passGen = new PasswordGen();
 					String password = passGen.generatePassword(uppercase, lowercase, numbers, specials, repeated, spinLength);
-					JTextArea displayPass = new JTextArea(1,1); //Make a spot to display the password
-					displayPass.setText(password); //Set the password in the display area
-					displayPass.setEditable(false); //Make it so the user can't mess with stuff now.
-					displayPass.setFont(new Font("Courier New",Font.PLAIN ,14)); //Change font so everything is ledgible
-					JScrollPane scroll = new JScrollPane(displayPass); //make a scoll pane so the text area has something to sit in 
-					
-					Object[] arr = { //Make a label for this scoll pane
-							new JLabel("Password"),
-							scroll,
-					};
-					
-					JOptionPane displayMessage = new JOptionPane(arr, JOptionPane.INFORMATION_MESSAGE); //Pack everything into a JOptionPane
-					JDialog dialog = displayMessage.createDialog(frame, "Password"); //Make the dialog that displays the JOptionPane
-					dialog.setResizable(false);// Properties of the dialog
-					dialog.setSize(450, 150);
-					dialog.setVisible(true); //User can see it now
-					dialog.dispose(); //dispose on close
+					txtPassword.setText(password);
 				}
 			}
 		});
 		
 		//Action listener for the cancel button
 		JButton btnCancel = new JButton("Close");
-		btnCancel.setBounds(217, 263, 85, 25);
+		btnCancel.setBounds(217, 325, 85, 25);
 		panel.add(btnCancel);
 		
 		JCheckBox chckbxAvoidRepeatedCharacters = new JCheckBox("Avoid Sequential Letters and Digits");
@@ -205,6 +193,23 @@ public class SecurityView {
 		lblPasswordGenerationOptions.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblPasswordGenerationOptions.setBounds(87, 24, 227, 16);
 		panel.add(lblPasswordGenerationOptions);
+		
+		txtpnWarning = new JTextPane();
+		txtpnWarning.setBorder(null);
+		txtpnWarning.setForeground(new Color(220, 20, 60));
+		txtpnWarning.setFont(new Font("Tahoma", Font.ITALIC, 12));
+		txtpnWarning.setEditable(false);
+		txtpnWarning.setFocusable(false);
+		txtpnWarning.setOpaque(false);
+		txtpnWarning.setBounds(90, 256, 256, 25);
+		panel.add(txtpnWarning);
+		
+		txtPassword = new JTextField();
+		txtPassword.setEditable(false);
+		txtPassword.setFont(new Font("Courier New", Font.PLAIN, 14));
+		txtPassword.setBounds(38, 287, 308, 26);
+		panel.add(txtPassword);
+		txtPassword.setColumns(10);
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent clickCancel) {
 					frame.dispose();
