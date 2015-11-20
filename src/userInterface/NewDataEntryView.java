@@ -91,9 +91,9 @@ public class NewDataEntryView {
 
 		choice = new Choice();
 		choice.addItem("Account Logins");
-		choice.addItem("Application passwords");
+		choice.addItem("Application Passwords");
 		choice.addItem("Credit/Debit Card");
-		choice.addItem("Coupons");
+		//choice.addItem("Coupons");
 		choice.addItem("Entry Codes");
 		choice.addItem("ID Cards");
 		choice.addItem("License");
@@ -369,23 +369,23 @@ public class NewDataEntryView {
 						frame.getContentPane().add(btnCancel);
 					}
 
-					// Coupons
+					/*// Coupons
 					else if (index == 3) {
 						// TODO: Coupons
-					}
+					}*/
 
 					// Entry Codes
-					else if (index == 4) {
+					else if (index == 3) {
 						// TODO: Entry Codes
 					}
 
 					// ID Cards
-					else if (index == 5) {
+					else if (index == 4) {
 						// TODO: ID Cards
 					}
 
 					// License
-					else if (index == 6) {
+					else if (index == 5) {
 						frame.setTitle("New License");
 						frame.getContentPane().removeAll();
 
@@ -512,7 +512,7 @@ public class NewDataEntryView {
 					}
 
 					// Passport
-					else if (index == 7) {
+					else if (index == 6) {
 						frame.setTitle("New Passport");
 						frame.getContentPane().removeAll();
 
@@ -660,7 +660,7 @@ public class NewDataEntryView {
 					}
 
 					// Phone Number
-					else if (index == 8) {
+					else if (index == 7) {
 						frame.setTitle("New Phone Number");
 						frame.getContentPane().removeAll();
 
@@ -765,7 +765,9 @@ public class NewDataEntryView {
 						frame.getContentPane().add(btnCancel);
 					}
 
-					else if (index == 9) {
+					else if (index == 8) {
+
+					} else if (index == 9) {
 
 					} else if (index == 10) {
 
@@ -776,8 +778,6 @@ public class NewDataEntryView {
 					} else if (index == 13) {
 
 					} else if (index == 14) {
-
-					} else if (index == 15) {
 						frame.setTitle("New SSN");
 
 						frame.getContentPane().removeAll();
