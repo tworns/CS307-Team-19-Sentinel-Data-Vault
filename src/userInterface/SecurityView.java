@@ -24,7 +24,7 @@ public class SecurityView {
 	private boolean lowercase;
 	private boolean specials;
 	private boolean repeated;
-	private JTextField textField;
+	private JTextField txtTestText;
 	private JTextPane txtpnWarning;
 	private JTextField txtPassword;
 	
@@ -234,16 +234,15 @@ public class SecurityView {
 				StrengthChecker check = new StrengthChecker();
 				String input = new String(passwordField.getText()); //new String(passwordField.getPassword())
 				String output = check.checkStrength(input);
-				textField.setText(output);
-				Color bg = Color.ORANGE;
+				Color bg = new Color(255, 175, 0);
 				if(output.equals("Strong")) { //color password strength text
 					bg = Color.GREEN;
 				}
 				if(output.equals("Weak")){ 
 					bg = Color.RED;
 				}
-				textField.setForeground(bg);
-				
+				txtTestText.setForeground(bg);
+				txtTestText.setText(output);
 			}
 		});
 		btnCheck.setBounds(270, 40, 97, 27);
@@ -268,17 +267,18 @@ public class SecurityView {
 		lblPasswordCreationTips.setBounds(31, 85, 336, 27);
 		panel_1.add(lblPasswordCreationTips);
 		
-		textField = new JTextField();
-		textField.setFocusable(false);
-		textField.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		textField.setBorder(null);
-		textField.setSelectedTextColor(SystemColor.control);
-		textField.setSelectionColor(SystemColor.control);
-		textField.setOpaque(false);
-		textField.setEditable(false);
-		textField.setBounds(153, 13, 140, 22);
-		panel_1.add(textField);
-		textField.setColumns(10);
+		txtTestText = new JTextField();
+		txtTestText.setForeground(new Color(255, 215, 0));
+		txtTestText.setFocusable(false);
+		txtTestText.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		txtTestText.setBorder(null);
+		txtTestText.setSelectedTextColor(SystemColor.control);
+		txtTestText.setSelectionColor(SystemColor.control);
+		txtTestText.setOpaque(false);
+		txtTestText.setEditable(false);
+		txtTestText.setBounds(153, 13, 140, 22);
+		panel_1.add(txtTestText);
+		txtTestText.setColumns(10);
 		
 		JTextPane txtpnTips = new JTextPane();
 		txtpnTips.setBackground(SystemColor.window);
