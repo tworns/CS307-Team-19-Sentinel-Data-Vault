@@ -126,7 +126,7 @@ public class HomeView {
 
 		btnAddData.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				NewDataEntryView newDataEntry = new NewDataEntryView(username);
+				NewDataEntryView newDataEntry = new NewDataEntryView(currentUser);
 				newDataEntry.getJframe().setVisible(true);
 			}
 		});
