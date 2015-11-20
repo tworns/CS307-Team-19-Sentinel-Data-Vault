@@ -12,27 +12,19 @@ import dataManagement.User;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-
 import java.awt.Font;
-
-import javax.mail.MessagingException;
-import javax.mail.internet.AddressException;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.security.NoSuchAlgorithmException;
-import java.util.Random;
 import java.awt.event.ActionEvent;
 
 public class PasswordRecoveryView {
 
 	public JFrame frmSentinelDataVault;
-	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField txtQuestion;
 	private JTextField textField_2;
 	private String securityCode;
-
+	private User user = null;
 	/**
 	 * Launch the application.
 	 */
@@ -40,8 +32,9 @@ public class PasswordRecoveryView {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					//User u = new User ("dave@purdue.edu",null,null, null,  "Sec Q", "Sec Ans", null);
 					PasswordRecoveryView window = new PasswordRecoveryView();
-					window.frmSentinelDataVault.setVisible(true);
+					//window.frmSentinelDataVault.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -62,21 +55,11 @@ public class PasswordRecoveryView {
 	private void initialize() {
 		DatabaseManager overseer = new DatabaseManager();
 		
-		frmSentinelDataVault = new JFrame();
+		/*frmSentinelDataVault = new JFrame();
 		frmSentinelDataVault.setTitle("Sentinel Data Vault Account Recovery");
-		frmSentinelDataVault.setBounds(100, 100, 447, 347);
+		frmSentinelDataVault.setBounds(100, 100, 456, 303);
 		frmSentinelDataVault.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frmSentinelDataVault.getContentPane().setLayout(null);
-		
-		textField = new JTextField();
-		textField.setBounds(55, 66, 116, 22);
-		frmSentinelDataVault.getContentPane().add(textField);
-		textField.setColumns(10);
-		
-		JLabel lblUsername = new JLabel("Username");
-		lblUsername.setLabelFor(textField);
-		lblUsername.setBounds(209, 66, 116, 22);
-		frmSentinelDataVault.getContentPane().add(lblUsername);
 		
 		JLabel lblSentinelDataVault = new JLabel("Sentinel Data Vault Account Recovery");
 		lblSentinelDataVault.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -84,50 +67,78 @@ public class PasswordRecoveryView {
 		frmSentinelDataVault.getContentPane().add(lblSentinelDataVault);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(55, 137, 116, 22);
+		textField_1.setBounds(52, 106, 116, 22);
 		frmSentinelDataVault.getContentPane().add(textField_1);
 		textField_1.setColumns(10);
 		
 		JLabel lblSecurityQuestionAnswer = new JLabel("Security Question Answer");
 		lblSecurityQuestionAnswer.setLabelFor(textField_1);
-		lblSecurityQuestionAnswer.setBounds(209, 140, 154, 16);
+		lblSecurityQuestionAnswer.setBounds(204, 109, 154, 16);
 		frmSentinelDataVault.getContentPane().add(lblSecurityQuestionAnswer);
+		*/
+		String name = JOptionPane.showInputDialog("Please input your username to begin the account recovery process.");
+		user = overseer.retrieveUserFromDatabase(name); //TODO Make the username field appear by itself. Then pop up other fields as needed
+		System.out.println(user.getSecurityAnswer());
+		String ans =  JOptionPane.showInputDialog(user.getSecurityQuestion());
+		if(ans.equals(user.getSecurityAnswer())){
 		
-
-		User u = overseer.retrieveUserFromDatabase(textField.getText()); //TODO Make the username field appear by itself. Then pop up other fields as needed
-		if(u != null){
-			txtQuestion.setText(u.getSecurityQuestion());
+		try {
+			
+			SaltGenerator pepper = new SaltGenerator();
+			 securityCode = pepper.generateSalt();
+			 System.out.println(securityCode);
+			 
+			/*VaultController.Send("sentineldatavault", "SENTINELDATA", user.getUsername(), 
+					"Security Warning", "Dear user,\n\n To continue recovering your account password, please enter the code below into the Sentinel Data Vault.\n"
+							+ "If you did not initiate this change, this e-mail can be safely disregarded.\n\n"+
+							"Your security code is: " + securityCode +"\n\n" +
+							"Sincerely,\nSentinel Data Vault Team");
+							*/
+			String code =	JOptionPane.showInputDialog("Please input the security code that was emailed to you");
+			if(securityCode.equals(code)) { 
+				System.out.println("WE DID IT REDDIT!");
+				}
+			else { 
+				System.out.println("Incorrect code");
+			}
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} 
 		}
-		JButton btnRecover = new JButton("Recover");
+		else  {
+			System.out.println("Ya dun fucked up.");
+		}
+		
+		}
+		/*JButton btnRecover = new JButton("Recover");
 		btnRecover.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(u.getSecurityAnswer().equals(textField_1)){
+				if(user.getSecurityAnswer().equals(textField_1)){
+					JOptionPane.showMessageDialog(null, "An email containing your password reset security code has been sent to" + user.getUsername() + ". \n"
+					 		+ "Emails may not be delivered immediately, but if you do not recieve this email in a timely manner, please check your spam filter.", "Change Password", 0);
 					try {
 						SaltGenerator pepper = new SaltGenerator();
 						 securityCode = pepper.generateSalt();
-						VaultController.Send("sentineldatavault", "SENTINELDATA", u.getUsername(), 
-								"Security Warning", "Dear user,\n\nYour account password has been changed.\n"
+						 System.out.println(securityCode);
+						 
+						VaultController.Send("sentineldatavault", "SENTINELDATA", user.getUsername(), 
+								"Security Warning", "Dear user,\n\n To continue recovering your account password, please enter the code below into the Sentinel Data Vault.\n"
 										+ "If you did not initiate this change, this e-mail can be safely disregarded.\n\n"+
 										"Your security code is: " + securityCode +"\n\n" +
 										"Sincerely,\nSentinel Data Vault Team");
-					} catch (AddressException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					} catch (MessagingException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					} catch (NoSuchAlgorithmException e1) {
+					} catch (Exception e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 				}
-				String inputCode = JOptionPane.showInputDialog("Please input the security code that was emailed to you, if the email is \nnot in your inbox, please check your spam filter");
-				if(securityCode.equals(inputCode)){ 
+				String inputCode = textField_2.getText();
+				if(securityCode != null && securityCode.equals(inputCode) ){ 
 					//PasswordRecoveryChangeView k = new PasswordRecoveryChangeView(); //TODO implement PasswordRecoveryChangeView
 				}
 			}
 		});
-		btnRecover.setBounds(55, 216, 97, 25);
+		btnRecover.setBounds(55, 194, 97, 25);
 		frmSentinelDataVault.getContentPane().add(btnRecover);
 		
 		JButton btnCancel = new JButton("Cancel");
@@ -136,19 +147,23 @@ public class PasswordRecoveryView {
 				frmSentinelDataVault.dispose();
 			}
 		});
-		btnCancel.setBounds(207, 216, 97, 25);
+		btnCancel.setBounds(204, 194, 97, 25);
 		frmSentinelDataVault.getContentPane().add(btnCancel);
 		
 		textField_2 = new JTextField();
-		textField_2.setBounds(55, 172, 116, 22);
+		textField_2.setBounds(52, 141, 116, 22);
 		frmSentinelDataVault.getContentPane().add(textField_2);
 		textField_2.setColumns(10);
 		
 		JLabel lblSecurityCode = new JLabel("Security Code");
-		lblSecurityCode.setBounds(217, 187, 97, 16);
+		lblSecurityCode.setBounds(204, 144, 97, 16);
 		frmSentinelDataVault.getContentPane().add(lblSecurityCode);
 		
+		txtQuestion = new JTextField();
+		txtQuestion.setText(user.getSecurityQuestion());
+		txtQuestion.setBounds(52, 71, 306, 22);
+		frmSentinelDataVault.getContentPane().add(txtQuestion);
+		txtQuestion.setColumns(10);
+		*/
 
-		
-	}
 }

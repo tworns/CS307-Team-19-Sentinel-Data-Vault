@@ -163,9 +163,9 @@ public class LoginView {
 		btnForgotPassword = new JButton("I forgot my password");
 		btnForgotPassword.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frmSignIn.dispose();
+				frmSignIn.setVisible(false);
 				PasswordRecoveryView p = new PasswordRecoveryView();
-				p.frmSentinelDataVault.setVisible(true);
+				frmSignIn.setVisible(true);
 			}
 		});
 		btnForgotPassword.setToolTipText("Click here to reset your account password");
