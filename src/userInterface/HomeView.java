@@ -378,6 +378,12 @@ public class HomeView {
 				DataEntryPanel dataPanel = new DataEntryPanel();
 				DataEntry currentdata = new DataEntry(null, null, null, null, 0, null);
 
+				
+				// Error: if user deleted all the data entries  folder become leaf 
+				// everytime leaf is clicked new pane called
+				
+				
+				
 				String panelName = null;
 /*
 				if (selectedNodeName.equals("Account Login")) {
@@ -422,8 +428,9 @@ public class HomeView {
 				//if data item
 				if (selectedNode.isLeaf()) {
 					DatabaseManager dm = new DatabaseManager();
-
+					
 					DataEntry selectedDataEntry = dm.retrieveOneDataEntry(selectedNodeName, username, selectedNode.getParent().toString());
+					
 					currentEntry = selectedDataEntry;
 //					System.out.println("Here");
 
