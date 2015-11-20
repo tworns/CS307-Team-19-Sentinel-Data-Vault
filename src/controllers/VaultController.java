@@ -41,7 +41,7 @@ public class VaultController {
 		
 		//check user enter all fields
 		if (password1.equals("") || password2.equals("")||username.equals("")||answer.equals("")){
-			JOptionPane.showMessageDialog(null,"You need to enter all the fields!");
+			//JOptionPane.showMessageDialog(null,"You need to enter all the fields!");
 			password1 = "";
 			password2 = "";
 			return 0;
@@ -49,16 +49,16 @@ public class VaultController {
 		
 		//check is valid email address
 		if(isValidEmailAddress(username)== false){
-			JOptionPane.showMessageDialog(null,"You need to enter a valid email address!");
-			return 0;
+			//JOptionPane.showMessageDialog(null,"You need to enter a valid email address!");
+			return -1;
 		}
 		
 		//check password consistency
 		if(!(password1.equals(password2))){
-			JOptionPane.showMessageDialog(null,"Your password doesn't match");
+			//JOptionPane.showMessageDialog(null,"Your password doesn't match");
 			password1 = "";
 			password2 = "";
-			return 0;
+			return -2;
 		}
 		
 		//minimum password length check
@@ -66,20 +66,18 @@ public class VaultController {
 		//if(((password1.length() < 8) && (password1.length()>0)) || 
 			//	((password2.length() < 8) && (password2.length()>0))){
 		if(a.minStandard(password1) == false){
-			JOptionPane.showMessageDialog(null,"Your password needs to contain at least 8 characters and at least one of each\n"
-					+ " of the following: uppercase letter, lowercase letter, number, special character!");
+			//JOptionPane.showMessageDialog(null,"Your password needs to contain at least 8 characters and at least one of each\n"
+			//		+ " of the following: uppercase letter, lowercase letter, number, special character!");
 			password1 = "";
 			password2 = "";
-			return 0;
+			return -3;
 		}
 		
 		//security question check
 		if(question.equals("")||question.equals("Please choose a security question below")){
-			JOptionPane.showMessageDialog(null,"Please choose one security question!");
-			return 0;
+			//JOptionPane.showMessageDialog(null,"Please choose one security question!");
+			return -4;
 		}
-		
-		
 		
 		//send user info to database
 		if (password1.equals(password2) && !password1.equals("") && !username.equals("")

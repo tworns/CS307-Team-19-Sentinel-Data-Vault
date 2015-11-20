@@ -12,6 +12,7 @@ import cryptography.SaltGenerator;
 import javax.mail.*;
 import java.awt.Font;
 import java.awt.SystemColor;
+import java.awt.Color;
 
 public class SignupView extends JFrame {
 
@@ -21,6 +22,7 @@ public class SignupView extends JFrame {
 	private JPasswordField passwordField2;
 	private JTextField answerField;
 	private String question = "";
+	private JTextPane txtpnWarning;
 
 	/**
 	 * Launch the application.
@@ -46,7 +48,7 @@ public class SignupView extends JFrame {
 		setTitle("Create Your Account");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 451, 381);
+		setBounds(100, 100, 451, 434);
 		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -94,6 +96,21 @@ public class SignupView extends JFrame {
 					if (result == 1){
 							dispose();
 					}
+					else if (result == 0) {
+						txtpnWarning.setText("Please complete all entry fields!");
+					}
+					else if (result == -1) {
+						txtpnWarning.setText("Please enter a valid email address!");
+					}
+					else if (result == -2) {
+						txtpnWarning.setText("Please ensure the passwords match!");
+					}
+					else if (result == -3) {
+						txtpnWarning.setText("Password must contain at least 8 characters, an uppercase and lowercase letter, a number, and a symbol.");
+					}
+					else if (result == -4) {
+						txtpnWarning.setText("Please select a security question!");
+					}
 				} catch (NoSuchAlgorithmException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -102,7 +119,7 @@ public class SignupView extends JFrame {
 				
 			}
 		});
-		btnNewButton.setBounds(25, 303, 153, 27);
+		btnNewButton.setBounds(25, 355, 153, 27);
 		contentPane.add(btnNewButton);
 		
 		JLabel lblSecurityQuestion = new JLabel("Security Question:");
@@ -131,7 +148,7 @@ public class SignupView extends JFrame {
 			
 			}
 		});
-		btnCancel.setBounds(319, 303, 90, 29);
+		btnCancel.setBounds(319, 355, 90, 29);
 		contentPane.add(btnCancel);
 		
 		answerField = new JTextField();
@@ -141,6 +158,7 @@ public class SignupView extends JFrame {
 		
 		JTextPane txtpnWelcome = new JTextPane();
 		txtpnWelcome.setEditable(false);
+		txtpnWelcome.setOpaque(false);
 		txtpnWelcome.setBackground(SystemColor.window);
 		txtpnWelcome.setFont(new Font("Lucida Grande", Font.BOLD, 14));
 		txtpnWelcome.setText("Welcome to Sentinel Data Vault!");
@@ -148,9 +166,22 @@ public class SignupView extends JFrame {
 		contentPane.add(txtpnWelcome);
 		
 		JTextPane txtpnInstructions = new JTextPane();
+		txtpnInstructions.setEditable(false);
+		txtpnInstructions.setOpaque(false);
 		txtpnInstructions.setBackground(SystemColor.window);
 		txtpnInstructions.setText("Enter the information for your new account below.\n\nPasswords must contain 8 or more characters with at least one upper and lower case, number, and symbol.");
 		txtpnInstructions.setBounds(29, 36, 377, 64);
 		contentPane.add(txtpnInstructions);
+		
+		txtpnWarning = new JTextPane();
+		txtpnWarning.setForeground(new Color(220, 20, 60));
+		txtpnWarning.setEditable(false);
+		txtpnWarning.setBorder(null);
+		txtpnWarning.setOpaque(false);
+		txtpnWarning.setFocusable(false);
+		txtpnWarning.setFont(new Font("Tahoma", Font.ITALIC, 12));
+		txtpnWarning.setBackground(SystemColor.window);
+		txtpnWarning.setBounds(173, 281, 236, 62);
+		contentPane.add(txtpnWarning);
 	}
 }
