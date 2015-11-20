@@ -1,30 +1,29 @@
 package userInterface;
 
 import java.awt.EventQueue;
+import java.awt.TextField;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.JFrame;
-import javax.swing.JTextField;
-
 import controllers.DatabaseManager;
-import controllers.VaultController;
 import cryptography.SaltGenerator;
 import dataManagement.User;
-
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import java.awt.Font;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
+import javax.swing.JLabel;
+
 
 public class PasswordRecoveryView {
 
 	public JFrame frmSentinelDataVault;
-	private JTextField textField_1;
-	private JTextField txtQuestion;
-	private JTextField textField_2;
 	private String securityCode;
 	private User user = null;
+	private JTextField textField;
+	String username;
+	private JTextField txtQuestion;
 	/**
 	 * Launch the application.
 	 */
@@ -41,53 +40,81 @@ public class PasswordRecoveryView {
 			}
 		});
 	}
-
 	/**
 	 * Create the application.
 	 */
 	public PasswordRecoveryView() {
 		initialize();
 	}
-
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		DatabaseManager overseer = new DatabaseManager();
-		
-		/*frmSentinelDataVault = new JFrame();
-		frmSentinelDataVault.setTitle("Sentinel Data Vault Account Recovery");
-		frmSentinelDataVault.setBounds(100, 100, 456, 303);
+		frmSentinelDataVault = new JFrame();
+		frmSentinelDataVault.setResizable(false);
+		frmSentinelDataVault.setTitle("Password Recovery");
+		frmSentinelDataVault.setBounds(100, 100, 431, 345);
 		frmSentinelDataVault.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frmSentinelDataVault.getContentPane().setLayout(null);
+		frmSentinelDataVault.setLocationRelativeTo(null);
+		DatabaseManager overseer = new DatabaseManager();
+		textField = new JTextField();
+		textField.setBounds(12, 55, 200, 18);
+		textField.setColumns(10);
+		 
+		textField.addFocusListener(new FocusListener() {
+
+			@Override
+			public void focusGained(FocusEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void focusLost(FocusEvent arg0) {
+				// TODO Auto-generated method stub
+				username = textField.getText();
+				user = overseer.retrieveUserFromDatabase(username); //TODO Make the username field appear by itself. Then pop up other fields as needed
+			} 
+			
+		});
+			
+		frmSentinelDataVault.getContentPane().add(textField);
 		
-		JLabel lblSentinelDataVault = new JLabel("Sentinel Data Vault Account Recovery");
-		lblSentinelDataVault.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblSentinelDataVault.setBounds(58, 24, 315, 16);
-		frmSentinelDataVault.getContentPane().add(lblSentinelDataVault);
+		JLabel lblUsername = new JLabel("Username");
+		lblUsername.setBounds(244, 56, 99, 16);
+		frmSentinelDataVault.getContentPane().add(lblUsername);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(52, 106, 116, 22);
-		frmSentinelDataVault.getContentPane().add(textField_1);
-		textField_1.setColumns(10);
+		txtQuestion = new JTextField();
+		txtQuestion.setText(user.getSecurityQuestion());
+		txtQuestion.setBounds(12, 97, 331, 22);
+		frmSentinelDataVault.getContentPane().add(txtQuestion);
+		txtQuestion.setColumns(10);
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 		
-		JLabel lblSecurityQuestionAnswer = new JLabel("Security Question Answer");
-		lblSecurityQuestionAnswer.setLabelFor(textField_1);
-		lblSecurityQuestionAnswer.setBounds(204, 109, 154, 16);
-		frmSentinelDataVault.getContentPane().add(lblSecurityQuestionAnswer);
-		*/
-		String name = JOptionPane.showInputDialog("Please input your username to begin the account recovery process.");
-		user = overseer.retrieveUserFromDatabase(name); //TODO Make the username field appear by itself. Then pop up other fields as needed
+		
+		
+		if(user.getSecurityAnswer() != null){
 		System.out.println(user.getSecurityAnswer());
 		String ans =  JOptionPane.showInputDialog(user.getSecurityQuestion());
 		if(ans.equals(user.getSecurityAnswer())){
 		
-		try {
-			
+		try {	
 			SaltGenerator pepper = new SaltGenerator();
 			 securityCode = pepper.generateSalt();
-			 System.out.println(securityCode);
-			 
+			 System.out.println(securityCode);	 
 			/*VaultController.Send("sentineldatavault", "SENTINELDATA", user.getUsername(), 
 					"Security Warning", "Dear user,\n\n To continue recovering your account password, please enter the code below into the Sentinel Data Vault.\n"
 							+ "If you did not initiate this change, this e-mail can be safely disregarded.\n\n"+
@@ -108,7 +135,7 @@ public class PasswordRecoveryView {
 		}
 		else  {
 			System.out.println("Ya dun goofed up.");
+		}		
 		}
-		
-		}
+	}
 }
