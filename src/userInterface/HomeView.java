@@ -33,6 +33,7 @@ import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreePath;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.event.TreeSelectionListener;
+import javax.swing.JList;
 
 public class HomeView {
 
@@ -575,6 +576,9 @@ public class HomeView {
 		}
 
 		panel_center.addTab("Category", null, tree, null);
+		
+		JList list = new JList();
+		panel_center.addTab("Item List", null, list, null);
 
 		// MenuBar
 		JMenuBar menuBar = new JMenuBar();
