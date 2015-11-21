@@ -101,8 +101,8 @@ public class VaultController {
 			DatabaseManager d = new DatabaseManager();
 			
 			if(d.addUserToDatabase(newuser) == -1) {
-				JOptionPane.showMessageDialog(null,"The account already exists! Please Try another email!");
-				return 0;
+				//JOptionPane.showMessageDialog(null,"The account already exists! Please Try another email!");
+				return -5;
 			}
 			else{
 				/*	Jiho Choi

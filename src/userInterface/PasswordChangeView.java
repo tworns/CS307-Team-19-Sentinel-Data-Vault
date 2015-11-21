@@ -40,6 +40,9 @@ public class PasswordChangeView {
 	private JTextField textField;
 	private JTextField txtCurPassWarn;
 	private JTextField txtNewPassWarn;
+	private JTextField txtQAwarn;
+	private JTextPane txtGenWarn;
+	private JTextField txtNewSecWarn;
 	
 	public static void main(String[] args) { //Main for testing
 		EventQueue.invokeLater(new Runnable() {
@@ -75,12 +78,10 @@ public class PasswordChangeView {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() { //METHOD THAT DOES USEFUL THINGS
-		
-		
 		frmChangePassword = new JFrame();
 		frmChangePassword.setResizable(false);
 		frmChangePassword.setTitle("Change Password");
-		frmChangePassword.setBounds(100, 100, 410, 487);
+		frmChangePassword.setBounds(100, 100, 410, 578);
 		frmChangePassword.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frmChangePassword.getContentPane().setLayout(null);
 		frmChangePassword.setLocationRelativeTo(null);
@@ -97,8 +98,8 @@ public class PasswordChangeView {
 		lblConfirmNewPassword.setBounds(207, 168, 167, 16);
 		frmChangePassword.getContentPane().add(lblConfirmNewPassword);
 		
-		JLabel lblAnswerToSecurity = new JLabel("Security Question Answer"); //question answer field label
-		lblAnswerToSecurity.setBounds(207, 275, 189, 16);
+		JLabel lblAnswerToSecurity = new JLabel("Security Answer"); //question answer field label
+		lblAnswerToSecurity.setBounds(207, 275, 158, 16);
 		frmChangePassword.getContentPane().add(lblAnswerToSecurity);
 		
 		textField_3 = new JTextField(); //Answer to security question
@@ -109,7 +110,6 @@ public class PasswordChangeView {
 		JButton btnNewButton = new JButton("Change");//Confirm (change) button
 		
 		btnNewButton.addActionListener(new ActionListener() { //If you read this, I am sorry. I hope the comments help.
-			
 			public void actionPerformed(ActionEvent e) {
 				//<Field initializations>
 				oldPass = String.valueOf(passwordField.getPassword());
@@ -118,7 +118,7 @@ public class PasswordChangeView {
 				oldAnswer = textField_3.getText();
 				newAnswer = textField.getText();
 				//</Field initializations>
-				if( question == null || question.equals("Please choose a security question below...") == true) { 
+				if( question == null || question.equals("Choose a new security question...") == true) { 
 					question =  null;
 					//this if statement makes sure the question is null if the user has not chosen a valid new question
 				}
@@ -136,14 +136,34 @@ public class PasswordChangeView {
 				catch ( NoSuchAlgorithmException k){ 
 					k.printStackTrace();
 				}
+				
+				// Reset all red-text warnings.
+				txtCurPassWarn.setText(null);
+				txtNewPassWarn.setText(null);
+				txtQAwarn.setText(null);
+				txtGenWarn.setText(null);
+				txtNewSecWarn.setText(null);
+				
 				//Making sure the user puts stuff in.
 				if((newPass1 == null || newPass2 == null || oldAnswer == null) && (question == null || newAnswer == null)){
 					JOptionPane.showMessageDialog(null, "One or more fields left empty", "Change Password", 0);
 					//If all fields are empty
 				}
-				else if ( passCheck == false) {  //if current password is wrong
+				else if (passCheck == false) {  //if current password is wrong
 					//JOptionPane.showMessageDialog(null, "Current password is incorrect.", "Change Password", 0);
 					txtCurPassWarn.setText("Current password is incorrect.");
+				}
+				else if (passCheck && newPass1.equals("") && newPass2.equals("") && oldAnswer.equals("") && newAnswer.equals("") && question == null && newAnswer.equals("")) {
+					txtGenWarn.setText("Please complete either New Password or New Security Question sections, or both if desired.");
+				}
+				else if (passCheck && newPass1.equals("") && newPass2.equals("") && oldAnswer.equals("") && question == null && newAnswer != null) {
+					txtNewSecWarn.setText("Please choose a new security question.");
+				}
+				else if (passCheck && newPass1.equals("") && newPass2.equals("") && oldAnswer.equals("") && question != null && newAnswer.equals("")) { // Current password correct, new question chosen, but no answer given.
+					txtNewSecWarn.setText("Please answer your new security question.");
+				}
+				else if (passCheck && newPass1.equals(newPass2) && a.minStandard(newPass2) && oldAnswer.isEmpty()) { // Everything correct, but NO security answer given
+					txtQAwarn.setText("Please answer your current security question above.");
 				}
 				else if (question != null && newAnswer != null && passCheck == true && ((newPass1 == null && newPass2 == null && oldAnswer == null) ||
 						(newPass1.equals("")== true && newPass2.equals("") == true && oldAnswer.equals("") == true ))) {
@@ -176,14 +196,14 @@ public class PasswordChangeView {
 					txtNewPassWarn.setText("New passwords do not match.");
 					txtCurPassWarn.setText(null);
 				}
-				else if(newPass1.equals(newPass2) && passCheck ==true && a.minStandard(newPass2) == true && oldAnswer.equals(currentUser.getSecurityAnswer())){
+				else if(newPass1.equals(newPass2) && passCheck == true && a.minStandard(newPass2) == true && oldAnswer.equals(currentUser.getSecurityAnswer())){
 				 //if the new password stuff is right (newPass1 == newPass2) the new password passes the min security level,
 					//and the security answer that was input is correct
 					PasswordHasher p = null; // might have issues with the null initializations here.
 					try {
 						p = new PasswordHasher();
 					} catch (NoSuchAlgorithmException e1) {
-							e1.printStackTrace();
+						e1.printStackTrace();
 					}
 					String newPass1 = p.hashPassword(newPass2, currentUser.getPasswordSalt() );
 					currentUser.setPasswordHash(newPass1);
@@ -197,12 +217,11 @@ public class PasswordChangeView {
 				else if (question != null && newAnswer != null && oldAnswer.equals(currentUser.getSecurityAnswer()) && a.minStandard(newPass2) 
 							&& newPass1.equals(newPass2) && passCheck == true) {
 					//If ALL fields are true and valid
-				
 					PasswordHasher p = null; // might have issues with the null initializations here.
 					try {
 						p = new PasswordHasher();
 					} catch (NoSuchAlgorithmException e1) {
-							e1.printStackTrace();
+						e1.printStackTrace();
 					}
 					String newPass1 = p.hashPassword(newPass2, currentUser.getPasswordSalt() );
 					currentUser.setPasswordHash(newPass1);
@@ -215,14 +234,14 @@ public class PasswordChangeView {
 					jim.modifyUserField(currentUser, "password_hash", currentUser.getPasswordHash());
 					frmChangePassword.dispose();
 					}
-				
 				//Yells at user if the above if has a false in it
-				else{ 
-					JOptionPane.showMessageDialog(null, "Ensure your current security question answer is correct and \n that all fields for the subcatagory you are changing are filled in.", "Change Password", 0);
+				else { 
+					//JOptionPane.showMessageDialog(null, "Ensure your current security question answer is correct and \n that all fields for the subcatagory you are changing are filled in.", "Change Password", 0);
+					txtQAwarn.setText("Incorrect answer to security question. Please try again.");
 				}
 			}
 		});
-		btnNewButton.setBounds(37, 434, 97, 25);
+		btnNewButton.setBounds(45, 514, 97, 25);
 		frmChangePassword.getContentPane().add(btnNewButton);
 		
 		JButton btnCancel = new JButton("Cancel"); //Cancel button
@@ -231,7 +250,7 @@ public class PasswordChangeView {
 				frmChangePassword.dispose();
 			}
 		});
-		btnCancel.setBounds(207, 434, 97, 25);
+		btnCancel.setBounds(257, 514, 97, 25);
 		frmChangePassword.getContentPane().add(btnCancel);
 		
 		JTextPane txtpnThisIsWhere = new JTextPane(); //Field that displays currentUser's security question.
@@ -257,11 +276,11 @@ public class PasswordChangeView {
 		
 		JLabel lblChangeSecurityQuestion = new JLabel("New Security Question"); //Label for new sec question
 		lblChangeSecurityQuestion.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblChangeSecurityQuestion.setBounds(106, 319, 194, 16);
+		lblChangeSecurityQuestion.setBounds(112, 346, 194, 16);
 		frmChangePassword.getContentPane().add(lblChangeSecurityQuestion);
 		
 		textField = new JTextField(); //NEW SECURITY QUESTION ANSWER BOX
-		textField.setBounds(37, 383, 158, 22);
+		textField.setBounds(43, 410, 158, 22);
 		frmChangePassword.getContentPane().add(textField);
 		textField.setColumns(10);
 		
@@ -272,12 +291,12 @@ public class PasswordChangeView {
 				question = (String) comboBox.getSelectedItem();
 			}
 		});
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Choose a new security question...", "What is the maiden name of your mother?", "What is name of your pet", "Where is your favorite city?"}));
-		comboBox.setBounds(37, 348, 309, 22);
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Choose a new security question...", "What is the maiden name of your mother?", "What is the name of your first pet?", "What is your favorite city?"}));
+		comboBox.setBounds(43, 375, 309, 22);
 		frmChangePassword.getContentPane().add(comboBox);
 		
-		JLabel lblNewLabel = new JLabel("Security Question Answer"); //Label for answer text field
-		lblNewLabel.setBounds(207, 387, 189, 16);
+		JLabel lblNewLabel = new JLabel("New Security Answer"); //Label for answer text field
+		lblNewLabel.setBounds(213, 414, 189, 16);
 		frmChangePassword.getContentPane().add(lblNewLabel);
 		
 		JLabel lblNewPassword_1 = new JLabel("New Password"); //label for new password field
@@ -287,7 +306,7 @@ public class PasswordChangeView {
 		
 		JTextPane txtpnIntro = new JTextPane();
 		txtpnIntro.setOpaque(false);
-		txtpnIntro.setText("Your current password must be entered correctly to make any changes.");
+		txtpnIntro.setText("Your current password must be given to change your password, security question, or both.");
 		txtpnIntro.setBounds(40, 11, 314, 32);
 		frmChangePassword.getContentPane().add(txtpnIntro);
 		
@@ -312,5 +331,38 @@ public class PasswordChangeView {
 		txtNewPassWarn.setBorder(null);
 		txtNewPassWarn.setBounds(40, 188, 334, 39);
 		frmChangePassword.getContentPane().add(txtNewPassWarn);
+		
+		txtQAwarn = new JTextField();
+		txtQAwarn.setOpaque(false);
+		txtQAwarn.setForeground(new Color(220, 20, 60));
+		txtQAwarn.setFont(new Font("Tahoma", Font.ITALIC, 12));
+		txtQAwarn.setFocusable(false);
+		txtQAwarn.setEditable(false);
+		txtQAwarn.setColumns(10);
+		txtQAwarn.setBorder(null);
+		txtQAwarn.setBounds(40, 294, 334, 39);
+		frmChangePassword.getContentPane().add(txtQAwarn);
+		
+		txtGenWarn = new JTextPane();
+		txtGenWarn.setOpaque(false);
+		txtGenWarn.setForeground(new Color(220, 20, 60));
+		txtGenWarn.setFont(new Font("Tahoma", Font.ITALIC, 12));
+		txtGenWarn.setFocusable(false);
+		txtGenWarn.setEditable(false);
+		//txtGenWarn.setColumns(10);
+		txtGenWarn.setBorder(null);
+		txtGenWarn.setBounds(45, 476, 334, 39);
+		frmChangePassword.getContentPane().add(txtGenWarn);
+		
+		txtNewSecWarn = new JTextField();
+		txtNewSecWarn.setOpaque(false);
+		txtNewSecWarn.setForeground(new Color(220, 20, 60));
+		txtNewSecWarn.setFont(new Font("Tahoma", Font.ITALIC, 12));
+		txtNewSecWarn.setFocusable(false);
+		txtNewSecWarn.setEditable(false);
+		txtNewSecWarn.setColumns(10);
+		txtNewSecWarn.setBorder(null);
+		txtNewSecWarn.setBounds(48, 432, 334, 23);
+		frmChangePassword.getContentPane().add(txtNewSecWarn);
 	}
 }

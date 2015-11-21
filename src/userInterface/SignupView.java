@@ -111,6 +111,9 @@ public class SignupView extends JFrame {
 					else if (result == -4) {
 						txtpnWarning.setText("Please select a security question!");
 					}
+					else if (result == -5) {
+						txtpnWarning.setText("This account already exists! Please try another email.");
+					}
 				} catch (NoSuchAlgorithmException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
