@@ -305,6 +305,7 @@ public class PasswordChangeView {
 		frmChangePassword.getContentPane().add(lblNewPassword_1);
 		
 		JTextPane txtpnIntro = new JTextPane();
+		txtpnIntro.setEditable(false);
 		txtpnIntro.setOpaque(false);
 		txtpnIntro.setText("Your current password must be given to change your password, security question, or both.");
 		txtpnIntro.setBounds(40, 11, 314, 32);
