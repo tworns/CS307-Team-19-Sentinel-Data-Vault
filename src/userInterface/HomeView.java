@@ -69,7 +69,7 @@ public class HomeView {
 		this.username = username;
 		lastlogin = "last login time";
 
-		DatabaseManager dbmanger = new DatabaseManager();
+		DatabaseManager dbmanger = new DatabaseManager("vault_database");
 		currentUser = dbmanger.retrieveUserFromDatabase(username);
 
 		currentDataEntryNameList = dbmanger.retrieveDataEntryNameList(username);
@@ -159,7 +159,7 @@ public class HomeView {
 						null, options, options[1]);
 				if (result == 0) {
 					System.out.println("Delete Entry");
-					DatabaseManager m = new DatabaseManager();
+					DatabaseManager m = new DatabaseManager("vault_database");
 					m.deleteEntryFromDatabase(currentEntry);
 					
 					
@@ -353,7 +353,7 @@ public class HomeView {
 
 		JTree tree = new JTree();
 		
-		DatabaseManager dbmanger = new DatabaseManager();
+		DatabaseManager dbmanger = new DatabaseManager("vault_database");
 		currentUser = dbmanger.retrieveUserFromDatabase(username);
 
 		currentDataEntryNameList = dbmanger.retrieveDataEntryNameList(username);
@@ -427,7 +427,7 @@ public class HomeView {
 
 				//if data item
 				if (selectedNode.isLeaf()) {
-					DatabaseManager dm = new DatabaseManager();
+					DatabaseManager dm = new DatabaseManager("vault_database");
 					
 					DataEntry selectedDataEntry = dm.retrieveOneDataEntry(selectedNodeName, username, selectedNode.getParent().toString());
 					
