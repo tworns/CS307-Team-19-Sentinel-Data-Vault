@@ -121,7 +121,7 @@ public class LoginView {
 					}
 				}
 				else if(failedattempt == 5){
-					DatabaseManager d = new DatabaseManager();
+					DatabaseManager d = new DatabaseManager("vault_database");
 					User u = d.retrieveUserFromDatabase(username);
 					d.deleteAllEntriesFromDatabase(u);
 					d.deleteUserFromDatabase(u);

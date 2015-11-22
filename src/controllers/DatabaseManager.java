@@ -10,6 +10,12 @@ import java.util.Collections;
 import java.util.List;
 
 public class DatabaseManager {
+	
+	private static String database_name;
+	
+	public DatabaseManager(String database) {
+		this.database_name = database;
+	}
 
 	/**
 	 * Connects to the vault database and returns a Connection for two-way
@@ -17,12 +23,12 @@ public class DatabaseManager {
 	 * 
 	 * @return active Connection to vault_database
 	 */
-	private static Connection connectToDatabase() {
+	public static Connection connectToDatabase() {
 		Connection connection = null;
 		// Establish connection to the existing database
 		try {
 			Class.forName("org.sqlite.JDBC");
-			connection = DriverManager.getConnection("jdbc:sqlite:vault_database");
+			connection = DriverManager.getConnection("jdbc:sqlite:" + database_name);
 			connection.setAutoCommit(false);
 		} catch (Exception e) {
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
@@ -38,7 +44,7 @@ public class DatabaseManager {
 	 * @param	database	name of database to connect to
 	 * @return	active		Connection to vault_database
 	 */
-	private static Connection connectToDatabase(String database) {
+	public static Connection connectToDatabase(String database) {
 		Connection connection = null;
 		// Establish connection to the existing database
 		try {
@@ -50,6 +56,85 @@ public class DatabaseManager {
 			// e.printStackTrace();
 		}
 		return connection;
+	}
+	
+	/**
+	 * Create the "users" table in a given database to set up for use with Sentinel Data Vault
+	 * 
+	 * @param database name of database to add a "users" table to
+	 */
+	public void createUsersTable(String database) {
+		// Connect to the given database
+		Connection DBconnection = connectToDatabase(database);
+		try {
+			// Construct SQLite statement
+			Statement stmt = DBconnection.createStatement();
+			String sql = "CREATE TABLE users ("
+					+ "'user_email'			TEXT	NOT NULL	UNIQUE, "
+					+ "'password_hash'		TEXT	NOT NULL, "
+					+ "'password_salt'		TEXT, "
+					+ "'data_key'			TEXT, "
+					+ "'security_question'	TEXT, "
+					+ "'security_answer'	TEXT, "
+					+ "'last_login'			TEXT,"
+					+ "'high_security'		INTEGER, "
+					+ "'account_wipe_set'	INTEGER, "
+					+ "'backup_frequency'	TEXT, "
+					+ "'max_backup_size'	INTEGER, "
+					+ "PRIMARY KEY(user_email))";
+			// Execute the statement and commit database changes
+			stmt.executeUpdate(sql);
+			DBconnection.commit();
+			// Disconnect from database
+			stmt.close();
+			DBconnection.close();
+		}
+		catch (SQLException e) {
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Create the "data_entries" table in a given database to set up for use with Sentinel Data Vault
+	 * 
+	 * @param database name of database to add a "data_entries" table to
+	 */
+	public void createDataEntriesTable(String database) {
+		// Connect to the given database
+		Connection DBconnection = connectToDatabase(database);
+		try {
+			// Construct SQLite statement
+			Statement stmt = DBconnection.createStatement();
+			String sql = "CREATE TABLE data_entries ("
+					+ "'entry_name'		TEXT 	NOT NULL, "
+					+ "'entry_type'		TEXT 	NOT NULL, "
+					+ "'encryption_key'	TEXT, "
+					+ "'owner'			TEXT 	NOT NULL, "
+					+ "'valid_users'	TEXT, "
+					+ "'secure_entry'	INTEGER, "
+					+ "'last_modified'	TEXT, "
+					+ "'data_field_1'	TEXT, "
+					+ "'data_field_2'	TEXT, "
+					+ "'data_field_3'	TEXT, "
+					+ "'data_field_4'	TEXT, "
+					+ "'data_field_5'	TEXT, "
+					+ "'data_field_6'	TEXT, "
+					+ "'data_field_7'	TEXT, "
+					+ "'data_field_8'	TEXT, "
+					+ "'data_field_9'	TEXT, "
+					+ "'data_field_10'	TEXT)";
+			// Execute the statement and commit database changes
+			stmt.executeUpdate(sql);
+			DBconnection.commit();
+			// Disconnect from database
+			stmt.close();
+			DBconnection.close();
+		}
+		catch (SQLException e) {
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			e.printStackTrace();
+		}
 	}
 
 	/**
