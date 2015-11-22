@@ -1,6 +1,8 @@
 package userInterface;
 
 
+import java.util.ArrayList;
+
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
@@ -114,7 +116,7 @@ public class DataEntryPanel extends JPanel{
 		panel.add(label_1, "cell 0 1");
 		
 		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"VISA", "MasterCard", "Discovery", "AMERICAN EXPRESS"}));
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"American Express", "MasterCard", "Discovery", "Visa"}));
 		panel.add(comboBox, "cell 0 2,growx");
 		
 		JLabel label_2 = new JLabel("Card Number");
@@ -168,8 +170,8 @@ public class DataEntryPanel extends JPanel{
 		
 		JComboBox comboBox = new JComboBox();
 		String cardType = data.getFieldDataList().get(0);
-		if(cardType.equals("VISA")) {
-			comboBox.setModel(new DefaultComboBoxModel(new String[] {"VISA"}));
+		if(cardType.equals("Visa")) {
+			comboBox.setModel(new DefaultComboBoxModel(new String[] {"Visa"}));
 		}
 		else if(cardType.equals("MasterCard")) {
 			comboBox.setModel(new DefaultComboBoxModel(new String[] {"MasterCard"}));
@@ -177,8 +179,11 @@ public class DataEntryPanel extends JPanel{
 		else if(cardType.equals("Discovery")) {
 			comboBox.setModel(new DefaultComboBoxModel(new String[] {"Discovery"}));
 		}
-		else if(cardType.equals("AMERICAN EXPRESS")) {
-			comboBox.setModel(new DefaultComboBoxModel(new String[] {"AMERICAN EXPRESS"}));
+		else if(cardType.equals("American Express")) {
+			comboBox.setModel(new DefaultComboBoxModel(new String[] {"American Express"}));
+		}
+		else if(cardType.equals("Other")) {
+			comboBox.setModel(new DefaultComboBoxModel(new String[] {"Other"}));
 		}
 		panel.add(comboBox, "cell 0 2,growx");
 		
@@ -223,7 +228,7 @@ public class DataEntryPanel extends JPanel{
 		
 	}
 
-	
+	/*
 	
 	public JPanel getLicensePanel(DataEntry data){
 		panel.removeAll();
@@ -273,6 +278,7 @@ public class DataEntryPanel extends JPanel{
 		
 		return panel;
 	}
+	*/
 	
 	public JPanel getLicensePaneWithData(DataEntry data){
 		panel.removeAll();
@@ -383,9 +389,8 @@ public class DataEntryPanel extends JPanel{
 		return panel;
 	}
 	
-	public JPanel getWifiNetworkData(DataEntry data){
+	public JPanel getWifiNetworkWithData(DataEntry data){
 		panel.removeAll();
-		panel.disable();
 		panel.setLayout(new MigLayout("", "[grow]", "[][][][][][][][][][][][]"));
 		
 		String title = "WiFi Network";
@@ -413,6 +418,29 @@ public class DataEntryPanel extends JPanel{
 		formattedTextField3.setText(data.getFieldDataList().get(1));
 		panel.add(formattedTextField3, "cell 0 6,growx");
 				
+		return panel;
+	}	
+	
+	public JPanel getGeneralPanelWithData(ArrayList<String> index, DataEntry data){
+		panel.removeAll();
+		panel.setLayout(new MigLayout("", "[grow]", "[][][][][][][][][][][][]"));
+		
+		String title = data.getEntryType();
+			JLabel label_0 = new JLabel(title);
+			panel.add(label_0, "cell 0 0");
+		
+		for (int i=0; i < index.size(); i++) {
+			
+			JLabel label_1 = new JLabel(index.get(i));
+			int row = (i*2+1);
+			panel.add(label_1, "cell 0 " + Integer.toString(row) );
+		
+			row = (i*2+2);
+			JFormattedTextField formattedTextField1 = new JFormattedTextField();
+			formattedTextField1.setText(data.getFieldDataList().get(i));
+			panel.add(formattedTextField1, "cell 0 "+ Integer.toString(row) +",growx");
+		}
+						
 		return panel;
 	}	
 	

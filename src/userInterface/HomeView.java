@@ -432,52 +432,139 @@ public class HomeView {
 					DataEntry selectedDataEntry = dm.retrieveOneDataEntry(selectedNodeName, username, selectedNode.getParent().toString());
 					
 					currentEntry = selectedDataEntry;
-//					System.out.println("Here");
 
+					ArrayList<String> indexList = new ArrayList<String>();
+					
 					
 					System.out.println(selectedNodeName);
 					System.out.println(username);
 					System.out.println(selectedNode.getParent().toString());
 
-/*
-					System.out.println(selectedDataEntry.getFieldDataList().get(0).toString());
-					System.out.println(selectedDataEntry.getFieldDataList().get(1).toString());
-					System.out.println(selectedDataEntry.getFieldDataList().get(2).toString());
-					System.out.println(selectedDataEntry.getFieldDataList().get(3).toString());
-*/
-					//retrieveOneDataEntry (selectedNodeName, currentUser, selectedNode.getParent().toString());
-
 					if(selectedNode.getParent().toString() == "Account Login") {
 						panel = dataPanel.getAccountLoginPanelWithData(selectedDataEntry);
-						panelName = "Account Login";
+					}
+					else if(selectedNode.getParent().toString() == "Confirmation Number") {
+						indexList.add("Confirmation Name");
+						indexList.add("Confirmation Number");
+						
+						panel = dataPanel.getGeneralPanelWithData(indexList, selectedDataEntry);
 					}
 					else if(selectedNode.getParent().toString() == "Credit/Debit Card") {
 						panel = dataPanel.getCreditCardPanelWithData(selectedDataEntry);
-						panelName = "Credit/Debit Card";
+					}
+					else if(selectedNode.getParent().toString() == "Entry Code") {
+						indexList.add("Code Name");
+						indexList.add("Code");
+						panel = dataPanel.getGeneralPanelWithData(indexList, selectedDataEntry);
+					}
+					else if(selectedNode.getParent().toString() == "Flight Ticket") {
+						indexList.add("Passenger");
+						indexList.add("Destination");
+						indexList.add("Airport (Origin)");
+						indexList.add("Airport (Dest.)");
+						indexList.add("Gate (Origin)");
+						indexList.add("Gate (Dest.)");
+						indexList.add("Departure");
+						indexList.add("Arrival");
+						indexList.add("Group");
+						indexList.add("Seat");
+						
+						
+						panel = dataPanel.getGeneralPanelWithData(indexList, selectedDataEntry);
+					}
+					else if(selectedNode.getParent().toString() == "General Password") {
+						
+						indexList.add("Password Name");
+						indexList.add("Password");
+						
+						panel = dataPanel.getGeneralPanelWithData(indexList, selectedDataEntry);
+					}
+					else if(selectedNode.getParent().toString() == "ID Card") {
+						
+						indexList.add("ID Card Name");
+						indexList.add("ID Card Number");
+						indexList.add("Cardholder Name");
+						indexList.add("Address");
+						indexList.add("Issue Date");
+						indexList.add("Expiration Date");
+							
+						panel = dataPanel.getGeneralPanelWithData(indexList, selectedDataEntry);
 					}
 					else if(selectedNode.getParent().toString() == "License") {
+						
 						panel = dataPanel.getLicensePaneWithData(selectedDataEntry);
-						panelName = "License";
+						/*
+						indexList.add("License Name");
+						indexList.add("PCardholder Name");
+						indexList.add("License Number");
+						indexList.add("Address");
+						indexList.add("Date of Birth");
+						indexList.add("Expiration Date");
+						indexList.add("Class");
+						indexList.add("Restrictions");	
+						panel = dataPanel.getGeneralPanelWithData(indexList, selectedDataEntry);
+						 */
+						
+					}
+					else if(selectedNode.getParent().toString() == "Passport") {
+						indexList.add("Name");
+						indexList.add("Passport Number");
+						indexList.add("Nationality");
+						indexList.add("Sex");
+						indexList.add("Date of Birth");
+						indexList.add("Place of Birth");
+						indexList.add("Issued Date");
+						indexList.add("Expiration Date");
+
+						
+						panel = dataPanel.getGeneralPanelWithData(indexList, selectedDataEntry);
 					}
 					else if(selectedNode.getParent().toString() == "Phone Number") {
 						panel = dataPanel.getPhoneNumberPaneWithData(selectedDataEntry);
-						panelName = "Phone Number";
+						/*
+						indexList.add("Name");
+						indexList.add("Phone Number");
+						indexList.add("Group");
+						panel = dataPanel.getGeneralPanelWithData(indexList, selectedDataEntry);
+						*/
+					}
+					else if(selectedNode.getParent().toString() == "Serial Number") {
+						indexList.add("Product Name");
+						indexList.add("Serial Number");
+						
+						panel = dataPanel.getGeneralPanelWithData(indexList, selectedDataEntry);
+					}
+					else if(selectedNode.getParent().toString() == "Shipment Tracking Number") {
+						indexList.add("Company/Item Name");
+						indexList.add("Shipment Tracking Number");
+						
+						panel = dataPanel.getGeneralPanelWithData(indexList, selectedDataEntry);
 					}
 					else if(selectedNode.getParent().toString() == "SSN") {
 						panel = dataPanel.getSSNWithData(selectedDataEntry);
-						panelName = "SSN";
+						/*
+						indexList.add("Name");
+						indexList.add("SSN");
+						panel = dataPanel.getGeneralPanelWithData(indexList, selectedDataEntry);
+						*/
 					}
 					else if(selectedNode.getParent().toString() == "Wifi Network") {
-						panel = dataPanel.getWifiNetworkData(selectedDataEntry);
-						panelName = "Wifi Network";
+						//panel = dataPanel.getWifiNetworkWithData(selectedDataEntry);
+						indexList.add("Network Name");
+						indexList.add("Password");
+						indexList.add("Security");
+						panel = dataPanel.getGeneralPanelWithData(indexList, selectedDataEntry);
+						
 					}
-
+					
+					panelName = selectedNode.getParent().toString();
 
 					panel_east.addTab(panelName, null, panel, null);
 
-
 					System.out.println("Leaf: " + selectedNodeName);
+					indexList.clear();
 				}
+				
 				return;
 			}
 			/*
@@ -494,37 +581,67 @@ public class HomeView {
 		currentDataEntryTypeList = dbmanger.retrieveDataEntryTypeList(username);
 		
 		
-		DefaultMutableTreeNode node_0 = new DefaultMutableTreeNode("Account Login");
-		DefaultMutableTreeNode node_1 = new DefaultMutableTreeNode("Credit/Debit Card");
-		DefaultMutableTreeNode node_2 = new DefaultMutableTreeNode("License");
-		DefaultMutableTreeNode node_3 = new DefaultMutableTreeNode("Passport");
-		DefaultMutableTreeNode node_4 = new DefaultMutableTreeNode("Phone Number");
-		DefaultMutableTreeNode node_5 = new DefaultMutableTreeNode("SSN");
-		DefaultMutableTreeNode node_6 = new DefaultMutableTreeNode("Wifi Network");
+		DefaultMutableTreeNode node_1 = new DefaultMutableTreeNode("Account Login");
+		DefaultMutableTreeNode node_2 = new DefaultMutableTreeNode("Confirmation Number");
+		DefaultMutableTreeNode node_3 = new DefaultMutableTreeNode("Credit/Debit Card");
+		DefaultMutableTreeNode node_4 = new DefaultMutableTreeNode("Entry Code");
+		DefaultMutableTreeNode node_5 = new DefaultMutableTreeNode("Flight Ticket");
+		DefaultMutableTreeNode node_6 = new DefaultMutableTreeNode("General Password");
+		DefaultMutableTreeNode node_7 = new DefaultMutableTreeNode("ID Card");
+		DefaultMutableTreeNode node_8 = new DefaultMutableTreeNode("License");
+		DefaultMutableTreeNode node_9 = new DefaultMutableTreeNode("Passport");
+		DefaultMutableTreeNode node_10 = new DefaultMutableTreeNode("Phone Number");
+		DefaultMutableTreeNode node_11 = new DefaultMutableTreeNode("Serial Number");
+		DefaultMutableTreeNode node_12 = new DefaultMutableTreeNode("Shipment Tracking Number");
+		DefaultMutableTreeNode node_13 = new DefaultMutableTreeNode("SSN");
+		DefaultMutableTreeNode node_14 = new DefaultMutableTreeNode("Wifi Network");
 
 
 		tree.setModel(new DefaultTreeModel(
 				new DefaultMutableTreeNode("Data Entry") {
 					{
 						if(currentDataEntryTypeList.contains("Account Login")) {
-							add(node_0);
-						}
-						if(currentDataEntryTypeList.contains("Credit/Debit Card")) {
 							add(node_1);
 						}
-						if(currentDataEntryTypeList.contains("License")) {
+						if(currentDataEntryTypeList.contains("Confirmation Number")) {
 							add(node_2);
 						}
-						//add(node_3);
-						if(currentDataEntryTypeList.contains("Phone Number")) {
+						if(currentDataEntryTypeList.contains("Credit/Debit Card")) {
+							add(node_3);
+						}
+						if(currentDataEntryTypeList.contains("Entry Code")) {
 							add(node_4);
-						}	
-						if(currentDataEntryTypeList.contains("SSN")) {
+						}
+						if(currentDataEntryTypeList.contains("Flight Ticket")) {
 							add(node_5);
+						}
+						if(currentDataEntryTypeList.contains("General Password")) {
+							add(node_6);
+						}
+						if(currentDataEntryTypeList.contains("ID Card")) {
+							add(node_7);
+						}
+						if(currentDataEntryTypeList.contains("License")) {
+							add(node_8);
+						}
+						if(currentDataEntryTypeList.contains("Passport")) {
+							add(node_9);
+						}
+						if(currentDataEntryTypeList.contains("Phone Number")) {
+							add(node_10);
+						}
+						if(currentDataEntryTypeList.contains("Serial Number")) {
+							add(node_11);
+						}
+						if(currentDataEntryTypeList.contains("Shipment Tracking Number")) {
+							add(node_12);
+						}
+						if(currentDataEntryTypeList.contains("SSN")) {
+							add(node_13);
 						}	
 						if(currentDataEntryTypeList.contains("Wifi Network")) {
-							add(node_6);
-						}	
+							add(node_14);
+						}
 					}
 				}
 				));
@@ -555,31 +672,59 @@ public class HomeView {
 
 			if (currentDataEntryTypeList.get(i).equals("Account Login")) {
 				System.out.println(currentDataEntryTypeList.get(i));
-				node_0.add(child);
+				node_1.add(child);
+			}
+			else if (currentDataEntryTypeList.get(i).equals("Confirmation Number")) {
+				System.out.println(currentDataEntryTypeList.get(i));
+				node_2.add(child);	
 			}
 			else if (currentDataEntryTypeList.get(i).equals("Credit/Debit Card")) {
 				System.out.println(currentDataEntryTypeList.get(i));
-				node_1.add(child);	
-			}
-			else if (currentDataEntryTypeList.get(i).equals("License")) {
-				System.out.println(currentDataEntryTypeList.get(i));
-				node_2.add(child);	
-			}/*
-			else if (currentDataEntryTypeList.get(i).equals("Passport")) {
-				System.out.println(currentDataEntryTypeList.get(i));
 				node_3.add(child);	
-			}*/
-			else if (currentDataEntryTypeList.get(i).equals("Phone Number")) {
+			}
+			else if (currentDataEntryTypeList.get(i).equals("Entry Code")) {
 				System.out.println(currentDataEntryTypeList.get(i));
 				node_4.add(child);	
 			}
-			else if (currentDataEntryTypeList.get(i).equals("SSN")) {
+			else if (currentDataEntryTypeList.get(i).equals("Flight Ticket")) {
 				System.out.println(currentDataEntryTypeList.get(i));
 				node_5.add(child);	
 			}
-			else if (currentDataEntryTypeList.get(i).equals("Wifi Network")) {
+			else if (currentDataEntryTypeList.get(i).equals("General Password")) {
 				System.out.println(currentDataEntryTypeList.get(i));
 				node_6.add(child);	
+			}
+			else if (currentDataEntryTypeList.get(i).equals("ID Card")) {
+				System.out.println(currentDataEntryTypeList.get(i));
+				node_7.add(child);	
+			}
+			else if (currentDataEntryTypeList.get(i).equals("License")) {
+				System.out.println(currentDataEntryTypeList.get(i));
+				node_8.add(child);	
+			}
+			else if (currentDataEntryTypeList.get(i).equals("Passport")) {
+				System.out.println(currentDataEntryTypeList.get(i));
+				node_9.add(child);	
+			}
+			else if (currentDataEntryTypeList.get(i).equals("Phone Number")) {
+				System.out.println(currentDataEntryTypeList.get(i));
+				node_10.add(child);	
+			}
+			else if (currentDataEntryTypeList.get(i).equals("Serial Number")) {
+				System.out.println(currentDataEntryTypeList.get(i));
+				node_11.add(child);	
+			}
+			else if (currentDataEntryTypeList.get(i).equals("Shipment Tracking Number")) {
+				System.out.println(currentDataEntryTypeList.get(i));
+				node_12.add(child);	
+			}
+			else if (currentDataEntryTypeList.get(i).equals("SSN")) {
+				System.out.println(currentDataEntryTypeList.get(i));
+				node_13.add(child);	
+			}
+			else if (currentDataEntryTypeList.get(i).equals("Wifi Network")) {
+				System.out.println(currentDataEntryTypeList.get(i));
+				node_14.add(child);	
 			}
 
 		}
