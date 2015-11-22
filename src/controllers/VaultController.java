@@ -4,10 +4,12 @@ package controllers;
 import java.security.NoSuchAlgorithmException;
 import java.security.Security;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Properties;
 
 import javax.swing.JOptionPane;
+import javax.swing.tree.DefaultMutableTreeNode;
 
 import com.sun.mail.smtp.SMTPTransport;
 
@@ -106,9 +108,48 @@ public class VaultController {
 			}
 			else{
 				/*	Jiho Choi
-				 * Add Sample Data Entry (Account Login, Credit Car)
+				 * Add Sample Data Entry (Account Login, Credit Car) + all
 				 * 
 				 */
+				
+				ArrayList<String> sampleDataName = new ArrayList<String>();
+				ArrayList<DataEntry> sampleData = new ArrayList<DataEntry>();
+				
+				sampleDataName.add("Account Login");
+				sampleDataName.add("Confirmation Number");
+				sampleDataName.add("Credit/Debit Card");
+				sampleDataName.add("Entry Code");
+				sampleDataName.add("Flight Ticket");
+				sampleDataName.add("General Password");
+				sampleDataName.add("ID Card");
+				sampleDataName.add("License");
+				sampleDataName.add("Passport");
+				sampleDataName.add("Phone Number");
+				sampleDataName.add("Serial Number");
+				sampleDataName.add("Shipment Tracking Number");
+				sampleDataName.add("SSN");
+				sampleDataName.add("Wifi Network");
+				
+				DatabaseManager m = new DatabaseManager("vault_database");
+				
+				for (int i=0; i< sampleDataName.size(); i++){
+					LocalDateTime time = LocalDateTime.now();
+					DataEntry newEntry = new DataEntry(username + " Sample "+ sampleDataName.get(i), sampleDataName.get(i), "key", username, 0, time);
+					newEntry.addDataField(""); 	//1
+					newEntry.addDataField("");	//2
+					newEntry.addDataField("");	//3
+					newEntry.addDataField("");	//4
+					newEntry.addDataField("");	//5
+					newEntry.addDataField("");	//6
+					newEntry.addDataField("");	//7
+					newEntry.addDataField("");	//8
+					newEntry.addDataField("");	//9
+					newEntry.addDataField("");	//10
+					
+					m.addEntryToDatabase(newuser, newEntry);	
+				}
+				
+				/*
 				LocalDateTime time = LocalDateTime.now();
 				//Sample Account Login
 				DataEntry newEntry = new DataEntry(username + " Sample Login", "Account Login", "key", username, 0, time);
@@ -123,12 +164,10 @@ public class VaultController {
 				newEntry.addDataField("");				//9
 				newEntry.addDataField("");				//10
 
-				DatabaseManager m = new DatabaseManager("vault_database");
-				m.addEntryToDatabase(newuser, newEntry);
 				
 				//Sample Credit/Debit Card
 				DataEntry newEntry2 = new DataEntry(username + " Sample Card", "Credit/Debit Card", "key", username, 0, time);
-				newEntry2.addDataField("VISA");					//1
+				newEntry2.addDataField("Visa");					//1
 				newEntry2.addDataField("0000 0000 0000 0000");	//2
 				newEntry2.addDataField("John Purdue");			//3
 				newEntry2.addDataField("000");					//4
@@ -140,7 +179,7 @@ public class VaultController {
 				newEntry2.addDataField("");						//10
 				
 				m.addEntryToDatabase(newuser, newEntry2);
-
+				 */
 				
 				JOptionPane.showMessageDialog(null,"You have successfully created your account!");
 				

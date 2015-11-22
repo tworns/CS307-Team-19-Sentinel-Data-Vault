@@ -170,21 +170,8 @@ public class DataEntryPanel extends JPanel{
 		
 		JComboBox comboBox = new JComboBox();
 		String cardType = data.getFieldDataList().get(0);
-		if(cardType.equals("Visa")) {
-			comboBox.setModel(new DefaultComboBoxModel(new String[] {"Visa"}));
-		}
-		else if(cardType.equals("MasterCard")) {
-			comboBox.setModel(new DefaultComboBoxModel(new String[] {"MasterCard"}));
-		}
-		else if(cardType.equals("Discovery")) {
-			comboBox.setModel(new DefaultComboBoxModel(new String[] {"Discovery"}));
-		}
-		else if(cardType.equals("American Express")) {
-			comboBox.setModel(new DefaultComboBoxModel(new String[] {"American Express"}));
-		}
-		else if(cardType.equals("Other")) {
-			comboBox.setModel(new DefaultComboBoxModel(new String[] {"Other"}));
-		}
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {cardType}));
+		
 		panel.add(comboBox, "cell 0 2,growx");
 		
 		JLabel label_2 = new JLabel("Card Number");
