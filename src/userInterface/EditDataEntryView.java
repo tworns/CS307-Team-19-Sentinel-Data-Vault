@@ -29,7 +29,7 @@ public class EditDataEntryView {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					DatabaseManager m = new DatabaseManager();
+					DatabaseManager m = new DatabaseManager("vault_database");
 					DataEntry d = m.retrieveOneDataEntry("myvisa", "default", "Credit/Debit Card");
 					EditDataEntryView window = new EditDataEntryView(d);
 					window.frame.setVisible(true);
@@ -109,7 +109,7 @@ public class EditDataEntryView {
 							createdtime);
 					newEntry.addDataField(textField_1.getText());
 					newEntry.addDataField(textField_2.getText());
-					DatabaseManager m = new DatabaseManager();
+					DatabaseManager m = new DatabaseManager("vault_database");
 					int result = m.updateEntry(currentEntry, newEntry);
 					if (result == -1) {
 						JOptionPane.showMessageDialog(null,
@@ -234,7 +234,7 @@ public class EditDataEntryView {
 					newEntry.addDataField(textField_2.getText());
 					newEntry.addDataField(textField_3.getText());
 					newEntry.addDataField(((String) month.getSelectedItem()) + "/" + ((String) year.getSelectedItem()));
-					DatabaseManager m = new DatabaseManager();
+					DatabaseManager m = new DatabaseManager("vault_database");
 					int result = m.updateEntry(currentEntry, newEntry);
 					if (result == -1) {
 						JOptionPane.showMessageDialog(null,
@@ -426,7 +426,7 @@ public class EditDataEntryView {
 					newEntry.addDataField(textField_3.getText());
 					newEntry.addDataField(textField_4.getText());
 					newEntry.addDataField(textField_5.getText());
-					DatabaseManager m = new DatabaseManager();
+					DatabaseManager m = new DatabaseManager("vault_database");
 					int result = m.updateEntry(currentEntry, newEntry);
 					if (result == -1) {
 						JOptionPane.showMessageDialog(null,
@@ -521,7 +521,7 @@ public class EditDataEntryView {
 					newEntry.addDataField(textField_2.getText());
 					newEntry.addDataField(textField_3.getText());
 
-					DatabaseManager m = new DatabaseManager();
+					DatabaseManager m = new DatabaseManager("vault_database");
 					int result = m.updateEntry(currentEntry, newEntry);
 					if (result == -1) {
 						JOptionPane.showMessageDialog(null,
@@ -613,7 +613,7 @@ public class EditDataEntryView {
 					newEntry.addDataField(textField_1.getText());
 					newEntry.addDataField(textField_2.getText());
 					newEntry.addDataField(textField_3.getText());
-					DatabaseManager m = new DatabaseManager();
+					DatabaseManager m = new DatabaseManager("vault_database");
 					int result = m.updateEntry(currentEntry, newEntry);
 					if (result == -1) {
 						JOptionPane.showMessageDialog(null,
@@ -704,7 +704,7 @@ public class EditDataEntryView {
 					newEntry.addDataField(textField_1.getText());
 					newEntry.addDataField(textField_2.getText());
 					newEntry.addDataField(textField_3.getText());
-					DatabaseManager m = new DatabaseManager();
+					DatabaseManager m = new DatabaseManager("vault_database");
 					int result = m.updateEntry(currentEntry, newEntry);
 					if (result == -1) {
 						JOptionPane.showMessageDialog(null,
