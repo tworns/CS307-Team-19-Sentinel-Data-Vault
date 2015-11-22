@@ -98,7 +98,7 @@ public class VaultController {
 			String datakey = null; // c.randomDataKey(defaultSecLvl); //generates a random data key from the Crypto class.
 			User newuser =  new User(username, hashedPassword, passwordSalt, datakey, question, answer, createdtime);
 
-			DatabaseManager d = new DatabaseManager();
+			DatabaseManager d = new DatabaseManager("vault_database");
 			
 			if(d.addUserToDatabase(newuser) == -1) {
 				//JOptionPane.showMessageDialog(null,"The account already exists! Please Try another email!");
@@ -122,7 +122,7 @@ public class VaultController {
 				newEntry.addDataField("");				//8
 				newEntry.addDataField("");				//9
 				newEntry.addDataField("");				//10
-				DatabaseManager m = new DatabaseManager();
+				DatabaseManager m = new DatabaseManager("vault_database");
 				m.addEntryToDatabase(newEntry);
 				
 				//Sample Credit/Debit Card
@@ -151,7 +151,7 @@ public class VaultController {
 	
 	//*****TODO: When user successfully login, we need to update the last login time******
 	public int loginCheck(String username, String password) throws NoSuchAlgorithmException {
-		DatabaseManager d = new DatabaseManager();
+		DatabaseManager d = new DatabaseManager("vault_database");
 		User user =d.retrieveUserFromDatabase(username);
 		if(user == null){
 			//JOptionPane.showMessageDialog(null,"Incorrect email / password!");
