@@ -41,35 +41,35 @@ public class DatabaseManager {
 		return connection;
 	}
 	
-	/**
-	 * Connects to a given database and returns a Connection for two-way
-	 * communication
-	 * 
-	 * @param	database	name of database to connect to
-	 * @return	active		Connection to vault_database
-	 */
-	public static Connection connectToDatabase(String database) {
-		Connection connection = null;
-		// Establish connection to the existing database
-		try {
-			Class.forName("org.sqlite.JDBC");
-			connection = DriverManager.getConnection("jdbc:sqlite:" + database);
-			connection.setAutoCommit(false);
-		} catch (Exception e) {
-			System.err.println(e.getClass().getName() + ": " + e.getMessage());
-			// e.printStackTrace();
-		}
-		return connection;
-	}
+//	/**
+//	 * Connects to a given database and returns a Connection for two-way
+//	 * communication
+//	 * 
+//	 * @param	database	name of database to connect to
+//	 * @return	active		Connection to vault_database
+//	 */
+//	public static Connection connectToDatabase(String database) {
+//		Connection connection = null;
+//		// Establish connection to the existing database
+//		try {
+//			Class.forName("org.sqlite.JDBC");
+//			connection = DriverManager.getConnection("jdbc:sqlite:" + database);
+//			connection.setAutoCommit(false);
+//		} catch (Exception e) {
+//			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+//			// e.printStackTrace();
+//		}
+//		return connection;
+//	}
 	
 	/**
 	 * Create the "users" table in a given database to set up for use with Sentinel Data Vault
 	 * 
 	 * @param database name of database to add a "users" table to
 	 */
-	public void createUsersTable(String database) {
+	public void createUsersTable() {
 		// Connect to the given database
-		Connection DBconnection = connectToDatabase(database);
+		Connection DBconnection = connectToDatabase();
 		try {
 			// Construct SQLite statement
 			Statement stmt = DBconnection.createStatement();
@@ -104,9 +104,9 @@ public class DatabaseManager {
 	 * 
 	 * @param database name of database to add a "data_entries" table to
 	 */
-	public void createDataEntriesTable(String database) {
+	public void createDataEntriesTable() {
 		// Connect to the given database
-		Connection DBconnection = connectToDatabase(database);
+		Connection DBconnection = connectToDatabase();
 		try {
 			// Construct SQLite statement
 			Statement stmt = DBconnection.createStatement();
@@ -204,9 +204,7 @@ public class DatabaseManager {
 	 * @return positive integer if user successfully deleted; negative if
 	 *         unsuccessful
 	 */
-	public int deleteUserFromDatabase(User doomedUser) { // TODO Check for
-															// success/failure
-															// unnecessary
+	public int deleteUserFromDatabase(User doomedUser) {
 		// Connect to the database
 		Connection DBconnection = connectToDatabase();
 
@@ -311,9 +309,9 @@ public class DatabaseManager {
 	 * @param database	name of database to access
 	 * @return			List<DataEntry> of all a user's data entries
 	 */
-	public List<DataEntry> retrieveUserDataEntries(String userEmail, String database) {
+	public List<DataEntry> retrieveUserDataEntries(String userEmail) {
 		// Connect to the database
-		Connection DBconnection = connectToDatabase(database);
+		Connection DBconnection = connectToDatabase();
 		// Create an empty List to populate with data entries
 		List<DataEntry> dataEntryList = new ArrayList<DataEntry>();
 		try {
@@ -749,7 +747,6 @@ public class DatabaseManager {
 		entry = c.encrypt(user, entry);
 		try {
 			// Initialize a statement to execute
-
 			String count = "SELECT COUNT(*) FROM data_entries WHERE entry_name=? AND owner=?;";
 			PreparedStatement preparedStatement = DBconnection.prepareStatement(count);
 			preparedStatement.setString(1, entry.getEntryName());
