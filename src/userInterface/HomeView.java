@@ -429,7 +429,7 @@ public class HomeView {
 				if (selectedNode.isLeaf()) {
 					DatabaseManager dm = new DatabaseManager("vault_database");
 					
-					DataEntry selectedDataEntry = dm.retrieveOneDataEntry(selectedNodeName, username, selectedNode.getParent().toString());
+					DataEntry selectedDataEntry = dm.retrieveOneDataEntry(selectedNodeName, currentUser, selectedNode.getParent().toString());
 					
 					currentEntry = selectedDataEntry;
 

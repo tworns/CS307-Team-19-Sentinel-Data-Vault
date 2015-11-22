@@ -506,14 +506,14 @@ public class DatabaseManager {
 		return sharedEntryList;
 	}
 
-	public DataEntry retrieveOneDataEntry(String entryname, String email, String type) {
+	public DataEntry retrieveOneDataEntry(String entryname, User user, String type) {
 		// Connect to the database
 		Connection DBconnection = connectToDatabase();
 		try {
 			// Initialize a statement to execute
 			Statement stmt = DBconnection.createStatement();
 			// Construct the SQL select statement
-			String sql = "SELECT * FROM data_entries WHERE owner = " + "'" + email + "'" + " AND " + "entry_name = "
+			String sql = "SELECT * FROM data_entries WHERE owner = " + "'" + user.getUsername() + "'" + " AND " + "entry_name = "
 					+ "'" + entryname + "'" + " AND " + "entry_type = " + "'" + type + "';";
 
 			// Execute the statement and commit database changes
@@ -573,6 +573,8 @@ public class DatabaseManager {
 			DBconnection.close();
 
 			// return a success value
+			Crypto c = new Crypto();
+			c.decrypt(user, dataEntry);
 			return dataEntry;
 		} catch (SQLException e) {
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());

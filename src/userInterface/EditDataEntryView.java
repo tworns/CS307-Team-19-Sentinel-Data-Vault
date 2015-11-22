@@ -16,6 +16,7 @@ import javax.swing.JTextField;
 
 import controllers.DatabaseManager;
 import dataManagement.DataEntry;
+import dataManagement.User;
 
 public class EditDataEntryView {
 
@@ -30,7 +31,7 @@ public class EditDataEntryView {
 			public void run() {
 				try {
 					DatabaseManager m = new DatabaseManager("vault_database");
-					DataEntry d = m.retrieveOneDataEntry("myvisa", "default", "Credit/Debit Card");
+					DataEntry d = m.retrieveOneDataEntry("myvisa", new User(null, null, null, null, null, null, null), "Credit/Debit Card");
 					EditDataEntryView window = new EditDataEntryView(d);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
