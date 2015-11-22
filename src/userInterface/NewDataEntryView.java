@@ -186,13 +186,9 @@ public class NewDataEntryView {
 								newEntry.addDataField("");
 								newEntry.addDataField("");
 
-<<<<<<< Updated upstream
-								DatabaseManager m = new DatabaseManager();
-								int result = m.addEntryToDatabase(currentUser, newEntry);
-=======
+
 								DatabaseManager m = new DatabaseManager("vault_database");
-								int result = m.addEntryToDatabase(newEntry);
->>>>>>> Stashed changes
+								int result = m.addEntryToDatabase(currentUser, newEntry);
 								if (result == -1) {
 									JOptionPane.showMessageDialog(null,
 											"The Entry Name has already existed! Please Try another Entry Name!");
@@ -282,13 +278,8 @@ public class NewDataEntryView {
 								newEntry.addDataField(textField_1.getText());
 								newEntry.addDataField(textField_2.getText());
 
-<<<<<<< Updated upstream
-								DatabaseManager m = new DatabaseManager();
-								int result = m.addEntryToDatabase(currentUser, newEntry);
-=======
 								DatabaseManager m = new DatabaseManager("vault_database");
-								int result = m.addEntryToDatabase(newEntry);
->>>>>>> Stashed changes
+								int result = m.addEntryToDatabase(currentUser, newEntry);
 								if (result == -1) {
 									JOptionPane.showMessageDialog(null,
 											"The Entry Name has already existed! Please Try another Entry Name!");
@@ -426,13 +417,8 @@ public class NewDataEntryView {
 								newEntry.addDataField("");
 								newEntry.addDataField("");
 
-<<<<<<< Updated upstream
-								DatabaseManager m = new DatabaseManager();
-								int result = m.addEntryToDatabase(currentUser, newEntry);
-=======
 								DatabaseManager m = new DatabaseManager("vault_database");
-								int result = m.addEntryToDatabase(newEntry);
->>>>>>> Stashed changes
+								int result = m.addEntryToDatabase(currentUser, newEntry);
 								if (result == -1) {
 									JOptionPane.showMessageDialog(null,
 											"The Entry Name has already existed! Please Try another Entry Name!");
@@ -523,13 +509,8 @@ public class NewDataEntryView {
 								newEntry.addDataField(textField_1.getText());
 								newEntry.addDataField(textField_2.getText());
 
-<<<<<<< Updated upstream
-								DatabaseManager m = new DatabaseManager();
-								int result = m.addEntryToDatabase(currentUser, newEntry);
-=======
 								DatabaseManager m = new DatabaseManager("vault_database");
-								int result = m.addEntryToDatabase(newEntry);
->>>>>>> Stashed changes
+								int result = m.addEntryToDatabase(currentUser, newEntry);
 								if (result == -1) {
 									JOptionPane.showMessageDialog(null,
 											"The Entry Name has already existed! Please Try another Entry Name!");
@@ -781,13 +762,8 @@ public class NewDataEntryView {
 								newEntry.addDataField(textField_7.getText());
 								newEntry.addDataField(textField_8.getText());
 
-<<<<<<< Updated upstream
-								DatabaseManager m = new DatabaseManager();
-								int result = m.addEntryToDatabase(currentUser, newEntry);
-=======
 								DatabaseManager m = new DatabaseManager("vault_database");
-								int result = m.addEntryToDatabase(newEntry);
->>>>>>> Stashed changes
+								int result = m.addEntryToDatabase(currentUser, newEntry);
 								if (result == -1) {
 									JOptionPane.showMessageDialog(null,
 											"The Entry Name has already existed! Please Try another Entry Name!");
@@ -877,13 +853,8 @@ public class NewDataEntryView {
 								newEntry.addDataField(textField_1.getText());
 								newEntry.addDataField(textField_2.getText());
 
-<<<<<<< Updated upstream
-								DatabaseManager m = new DatabaseManager();
-								int result = m.addEntryToDatabase(currentUser, newEntry);
-=======
 								DatabaseManager m = new DatabaseManager("vault_database");
-								int result = m.addEntryToDatabase(newEntry);
->>>>>>> Stashed changes
+								int result = m.addEntryToDatabase(currentUser, newEntry);
 								if (result == -1) {
 									JOptionPane.showMessageDialog(null,
 											"The Entry Name has already existed! Please Try another Entry Name!");
@@ -1048,13 +1019,8 @@ public class NewDataEntryView {
 								newEntry.addDataField(month_1.getSelectedItem() + "/" + date_1.getSelectedItem() + "/"
 										+ year_1.getSelectedItem());
 
-<<<<<<< Updated upstream
-								DatabaseManager m = new DatabaseManager();
-								int result = m.addEntryToDatabase(currentUser, newEntry);
-=======
 								DatabaseManager m = new DatabaseManager("vault_database");
-								int result = m.addEntryToDatabase(newEntry);
->>>>>>> Stashed changes
+								int result = m.addEntryToDatabase(currentUser, newEntry);
 								if (result == -1) {
 									JOptionPane.showMessageDialog(null,
 											"The Entry Name has already existed! Please Try another Entry Name!");
@@ -1179,13 +1145,9 @@ public class NewDataEntryView {
 								newEntry.addDataField("");
 								newEntry.addDataField("");
 								newEntry.addDataField("");
-<<<<<<< Updated upstream
-								DatabaseManager m = new DatabaseManager();
-								int result = m.addEntryToDatabase(currentUser, newEntry);
-=======
+
 								DatabaseManager m = new DatabaseManager("vault_database");
-								int result = m.addEntryToDatabase(newEntry);
->>>>>>> Stashed changes
+								int result = m.addEntryToDatabase(currentUser, newEntry);
 								if (result == -1) {
 									JOptionPane.showMessageDialog(null,
 											"The Entry Name has already existed! Please Try another Entry Name!");
@@ -1340,13 +1302,9 @@ public class NewDataEntryView {
 								newEntry.addDataField(textField_6.getText());
 								newEntry.addDataField(textField_7.getText());
 								newEntry.addDataField(textField_8.getText());
-<<<<<<< Updated upstream
-								DatabaseManager m = new DatabaseManager();
-								int result = m.addEntryToDatabase(currentUser, newEntry);
-=======
+
 								DatabaseManager m = new DatabaseManager("vault_database");
-								int result = m.addEntryToDatabase(newEntry);
->>>>>>> Stashed changes
+								int result = m.addEntryToDatabase(currentUser, newEntry);
 								if (result == -1) {
 									JOptionPane.showMessageDialog(null,
 											"The Entry Name has already existed! Please Try another Entry Name!");
@@ -1454,13 +1412,9 @@ public class NewDataEntryView {
 								newEntry.addDataField("");
 								newEntry.addDataField("");
 								newEntry.addDataField("");
-<<<<<<< Updated upstream
-								DatabaseManager m = new DatabaseManager();
-								int result = m.addEntryToDatabase(currentUser, newEntry);
-=======
+
 								DatabaseManager m = new DatabaseManager("vault_database");
-								int result = m.addEntryToDatabase(newEntry);
->>>>>>> Stashed changes
+								int result = m.addEntryToDatabase(currentUser, newEntry);
 								if (result == -1) {
 									JOptionPane.showMessageDialog(null,
 											"The Entry Name has already existed! Please Try another Entry Name!");
@@ -1549,13 +1503,8 @@ public class NewDataEntryView {
 								newEntry.addDataField(textField_1.getText());
 								newEntry.addDataField(textField_2.getText());
 
-<<<<<<< Updated upstream
-								DatabaseManager m = new DatabaseManager();
-								int result = m.addEntryToDatabase(currentUser, newEntry);
-=======
 								DatabaseManager m = new DatabaseManager("vault_database");
-								int result = m.addEntryToDatabase(newEntry);
->>>>>>> Stashed changes
+								int result = m.addEntryToDatabase(currentUser, newEntry);
 								if (result == -1) {
 									JOptionPane.showMessageDialog(null,
 											"The Entry Name has already existed! Please Try another Entry Name!");
@@ -1645,13 +1594,8 @@ public class NewDataEntryView {
 								newEntry.addDataField(textField_1.getText());
 								newEntry.addDataField(textField_2.getText());
 
-<<<<<<< Updated upstream
-								DatabaseManager m = new DatabaseManager();
-								int result = m.addEntryToDatabase(currentUser, newEntry);
-=======
 								DatabaseManager m = new DatabaseManager("vault_database");
-								int result = m.addEntryToDatabase(newEntry);
->>>>>>> Stashed changes
+								int result = m.addEntryToDatabase(currentUser, newEntry);
 								if (result == -1) {
 									JOptionPane.showMessageDialog(null,
 											"The Entry Name has already existed! Please Try another Entry Name!");
@@ -1749,13 +1693,9 @@ public class NewDataEntryView {
 								newEntry.addDataField("");// 8
 								newEntry.addDataField("");// 9
 								newEntry.addDataField("");// 10
-<<<<<<< Updated upstream
-								DatabaseManager m = new DatabaseManager();
-								int result = m.addEntryToDatabase(currentUser, newEntry);
-=======
+
 								DatabaseManager m = new DatabaseManager("vault_database");
-								int result = m.addEntryToDatabase(newEntry);
->>>>>>> Stashed changes
+								int result = m.addEntryToDatabase(currentUser, newEntry);
 								if (result == -1) {
 									JOptionPane.showMessageDialog(null,
 											"The Entry Name has already existed! Please Try another Entry Name!");
@@ -1861,13 +1801,9 @@ public class NewDataEntryView {
 								newEntry.addDataField("");
 								newEntry.addDataField("");
 								newEntry.addDataField("");
-<<<<<<< Updated upstream
-								DatabaseManager m = new DatabaseManager();
-								int result = m.addEntryToDatabase(currentUser, newEntry);
-=======
+
 								DatabaseManager m = new DatabaseManager("vault_database");
-								int result = m.addEntryToDatabase(newEntry);
->>>>>>> Stashed changes
+								int result = m.addEntryToDatabase(currentUser, newEntry);
 								if (result == -1) {
 									JOptionPane.showMessageDialog(null,
 											"The Entry Name has already existed! Please Try another Entry Name!");
