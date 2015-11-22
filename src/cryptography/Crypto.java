@@ -5,121 +5,146 @@ import sun.misc.*;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.security.*;
+
 import javax.crypto.*;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Crypto {
 	private String charEncoding = "ISO-8859-1";
-	public Crypto () {
-		
+
+	public Crypto() {
+
 	}
-	
-	public String randomDataKey(int security) throws UnsupportedEncodingException {// USE THE DATAENTRY SECURITY KEY HERE!
+
+	public String randomDataKey(int security) throws UnsupportedEncodingException {// USE
+																					// THE
+																					// DATAENTRY
+																					// SECURITY
+																					// KEY
+																					// HERE!
 		String output = null;
 		SecureRandom r = new SecureRandom();
 
-		if( security == 1) { //AES key gen
-			byte[] secureDataKey = new byte[16]; //AES data key
-			r.nextBytes(secureDataKey); 
-			String secureOutput = new String(secureDataKey);  
-			secureOutput = new String(secureOutput.getBytes(charEncoding));
+		if (security == 1) { // AES key gen
+			byte[] secureDataKey = new byte[16]; // AES data key
+			r.nextBytes(secureDataKey);
+			String secureOutput = new String(secureDataKey);
+			secureOutput = new String(Arrays.copyOf(secureOutput.getBytes(charEncoding), 16));
 			output = secureOutput;
-		}
-		else {  //3DES key gen
-			byte[] dataKey = new byte [24]; //3DES data key
-			r.nextBytes(dataKey); // 
+		} else { // 3DES key gen
+			byte[] dataKey = new byte[24]; // 3DES data key
+			r.nextBytes(dataKey); //
 			String normalOutput = new String(dataKey);
-			normalOutput = new String(normalOutput.getBytes(charEncoding));
-			output = normalOutput;			
+			normalOutput = new String(Arrays.copyOf(normalOutput.getBytes(charEncoding), 24));
+			output = normalOutput;
 		}
 		return output;
 	}
-	
-	// We're using AES & 3DES encryption. They're symmetric (same key for encrypt/decrypt).
-	public Key keyGen (User user, DataEntry data) throws UnsupportedEncodingException {  
-		//generates the key the algorithm uses from the one stored in the user.
-		//DataEntries created by the User will be given the key that the user has. 
-		 //USER KEY GOES INTO THE SECRET KEY SPEC!
+
+	// We're using AES & 3DES encryption. They're symmetric (same key for
+	// encrypt/decrypt).
+	public Key keyGen(User user, DataEntry data) throws UnsupportedEncodingException {
+		// generates the key the algorithm uses from the one stored in the user.
+		// DataEntries created by the User will be given the key that the user
+		// has.
+		// USER KEY GOES INTO THE SECRET KEY SPEC!
 		Key key = null;
-		if( data.isHighSecurity() == 1) { //AES key gen
-		
+		if (data.isHighSecurity() == 1) { // AES key gen
 			key = new SecretKeySpec(data.getEncryptionKey().getBytes(charEncoding), "AES");
-		
-		}
-		else{ //3DES key gen
+		} else { // 3DES key gen
 			key = new SecretKeySpec(data.getEncryptionKey().getBytes(charEncoding), "DESede");
 		}
 		return key;
 	}
-	
-	public byte[] ivGen(User user, int security) throws UnsupportedEncodingException { //Encryption was insecure, needed salt.
+
+	public byte[] ivGen(User user, int security) throws UnsupportedEncodingException { // Encryption
+																						// was
+																						// insecure,
+																						// needed
+																						// salt.
 		String iv = user.getPasswordSalt();
-		if(security == 1) { //AES
+		if (security == 1) { // AES
 			char[] salt16 = new char[16];
 			iv.getChars(0, 16, salt16, 0);
 			return new String(salt16).getBytes(charEncoding);
 		}
-		
-		else { //3DES
+
+		else { // 3DES
 			char[] salt8 = new char[8];
 			iv.getChars(0, 8, salt8, 0);
-			return new String(salt8).getBytes(charEncoding);		
-		 }
+			return new String(salt8).getBytes(charEncoding);
+		}
 	}
-	
-	public DataEntry encrypt(User user, DataEntry data) { //TODO figure out where the high security is being retrieved from.
-				
+
+	public DataEntry encrypt(User user, DataEntry data) { // TODO figure out
+															// where the high
+															// security is being
+															// retrieved from.
+
 		try {
 			Cipher c;
-			IvParameterSpec iv = new IvParameterSpec(ivGen(user,data.isHighSecurity()));
+			IvParameterSpec iv = new IvParameterSpec(ivGen(user, data.isHighSecurity()));
 			List<String> dataList = new ArrayList<String>();
-			Key key = keyGen(user,data); // makes a key from the user's data key.
-			
-			if(data.isHighSecurity() == 1) { //AES encryption
-				 c = Cipher.getInstance("AES/CBC/PKCS5Padding");
-				c.init(Cipher.ENCRYPT_MODE, key, iv); //make a cipher.
+			Key key = keyGen(user, data); // makes a key from the user's data
+											// key.
+			if (data.isHighSecurity() == 1) { // AES encryption
+				c = Cipher.getInstance("AES/CBC/PKCS5Padding");
+				c.init(Cipher.ENCRYPT_MODE, key, iv); // make a cipher.
 			}
-			
-			else { //3DES encryption
-				 c = Cipher.getInstance("DESede/CBC/PKCS5Padding");
+
+			else { // 3DES encryption
+				c = Cipher.getInstance("DESede/CBC/PKCS5Padding");
 				c.init(Cipher.ENCRYPT_MODE, key, iv);
-				
+
 			}
-			for(String entry : data.getFieldDataList()){	//NOTE: If there is a null entry in this list, you WILL get a NullPointerException
-				byte[] encrypted = c.doFinal(entry.getBytes()); //loops through the list, encrypting as it goes
+			for (String entry : data.getFieldDataList()) { // NOTE: If there is
+															// a null entry in
+															// this list, you
+															// WILL get a
+															// NullPointerException
+				byte[] encrypted = c.doFinal(entry.getBytes()); // loops through
+																// the list,
+																// encrypting as
+																// it goes
 				BASE64Encoder k = new BASE64Encoder();
 				String encryptedData = k.encode(encrypted);
-				dataList.add(encryptedData);//adds the encrypted data to the temp list
+				dataList.add(encryptedData);// adds the encrypted data to the
+											// temp list
 			}
-			data.setDataFields(dataList); //sets temp list into the dataEntry.
-			
-			
+			data.setDataFields(dataList); // sets temp list into the dataEntry.
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return data;
 	}
-	
-	public DataEntry decrypt(User user, DataEntry data) { //Return type is temporary
+
+	public DataEntry decrypt(User user, DataEntry data) { // Return type is
+															// temporary
 		try {
-			Key key = keyGen(user,data);
+			Key key = keyGen(user, data);
 			Cipher c;
-			IvParameterSpec iv = new IvParameterSpec(ivGen(user,data.isHighSecurity()));
+			IvParameterSpec iv = new IvParameterSpec(ivGen(user, data.isHighSecurity()));
 			List<String> dataList = new ArrayList<String>();
-			
-			if(data.isHighSecurity()==1) { //AES encryption decrypt
+
+			if (data.isHighSecurity() == 1) { // AES encryption decrypt
 				c = Cipher.getInstance("AES/CBC/PKCS5Padding");
 				c.init(Cipher.DECRYPT_MODE, key, iv);
 			}
-			
-			else { //3DES encryption decrypt
-				 c = Cipher.getInstance("DESede/CBC/PKCS5Padding");
-				c.init(Cipher.DECRYPT_MODE, key,iv);
+
+			else { // 3DES encryption decrypt
+				c = Cipher.getInstance("DESede/CBC/PKCS5Padding");
+				c.init(Cipher.DECRYPT_MODE, key, iv);
 			}
-			for(String entry : data.getFieldDataList()){	//NOTE: If there is a null entry in this list, you WILL get a NullPointerException
+			for (String entry : data.getFieldDataList()) { // NOTE: If there is
+															// a null entry in
+															// this list, you
+															// WILL get a
+															// NullPointerException
 				BASE64Decoder k = new BASE64Decoder();
 				byte[] decryptedBytes = k.decodeBuffer(entry);
 				byte[] decryptedData = c.doFinal(decryptedBytes);
@@ -127,8 +152,8 @@ public class Crypto {
 				dataList.add(output);
 			}
 			data.setDataFields(dataList);
-			
-		} catch (Exception e ) {
+
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return data;

@@ -2,12 +2,16 @@ package controllers;
 
 import dataManagement.User;
 import dataManagement.DataEntry;
+
+import java.io.UnsupportedEncodingException;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+
+import cryptography.Crypto;
 
 public class DatabaseManager {
 	
@@ -730,9 +734,17 @@ public class DatabaseManager {
 
 	}
 
-	public int addEntryToDatabase(DataEntry entry) {
+	public int addEntryToDatabase(User user, DataEntry entry) {
 		// Connect to the database
 		Connection DBconnection = connectToDatabase();
+		Crypto c = new Crypto();
+		try {
+			entry.setEncryptionKey(c.randomDataKey(entry.isHighSecurity()));
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+		entry = c.encrypt(user, entry);
 		try {
 			// Initialize a statement to execute
 

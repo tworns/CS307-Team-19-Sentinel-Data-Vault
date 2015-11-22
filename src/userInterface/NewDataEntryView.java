@@ -187,7 +187,7 @@ public class NewDataEntryView {
 								newEntry.addDataField("");
 
 								DatabaseManager m = new DatabaseManager();
-								int result = m.addEntryToDatabase(newEntry);
+								int result = m.addEntryToDatabase(currentUser, newEntry);
 								if (result == -1) {
 									JOptionPane.showMessageDialog(null,
 											"The Entry Name has already existed! Please Try another Entry Name!");
@@ -278,7 +278,7 @@ public class NewDataEntryView {
 								newEntry.addDataField(textField_2.getText());
 
 								DatabaseManager m = new DatabaseManager();
-								int result = m.addEntryToDatabase(newEntry);
+								int result = m.addEntryToDatabase(currentUser, newEntry);
 								if (result == -1) {
 									JOptionPane.showMessageDialog(null,
 											"The Entry Name has already existed! Please Try another Entry Name!");
@@ -417,7 +417,7 @@ public class NewDataEntryView {
 								newEntry.addDataField("");
 
 								DatabaseManager m = new DatabaseManager();
-								int result = m.addEntryToDatabase(newEntry);
+								int result = m.addEntryToDatabase(currentUser, newEntry);
 								if (result == -1) {
 									JOptionPane.showMessageDialog(null,
 											"The Entry Name has already existed! Please Try another Entry Name!");
@@ -509,7 +509,7 @@ public class NewDataEntryView {
 								newEntry.addDataField(textField_2.getText());
 
 								DatabaseManager m = new DatabaseManager();
-								int result = m.addEntryToDatabase(newEntry);
+								int result = m.addEntryToDatabase(currentUser, newEntry);
 								if (result == -1) {
 									JOptionPane.showMessageDialog(null,
 											"The Entry Name has already existed! Please Try another Entry Name!");
@@ -762,7 +762,7 @@ public class NewDataEntryView {
 								newEntry.addDataField(textField_8.getText());
 
 								DatabaseManager m = new DatabaseManager();
-								int result = m.addEntryToDatabase(newEntry);
+								int result = m.addEntryToDatabase(currentUser, newEntry);
 								if (result == -1) {
 									JOptionPane.showMessageDialog(null,
 											"The Entry Name has already existed! Please Try another Entry Name!");
@@ -853,7 +853,7 @@ public class NewDataEntryView {
 								newEntry.addDataField(textField_2.getText());
 
 								DatabaseManager m = new DatabaseManager();
-								int result = m.addEntryToDatabase(newEntry);
+								int result = m.addEntryToDatabase(currentUser, newEntry);
 								if (result == -1) {
 									JOptionPane.showMessageDialog(null,
 											"The Entry Name has already existed! Please Try another Entry Name!");
@@ -1019,7 +1019,7 @@ public class NewDataEntryView {
 										+ year_1.getSelectedItem());
 
 								DatabaseManager m = new DatabaseManager();
-								int result = m.addEntryToDatabase(newEntry);
+								int result = m.addEntryToDatabase(currentUser, newEntry);
 								if (result == -1) {
 									JOptionPane.showMessageDialog(null,
 											"The Entry Name has already existed! Please Try another Entry Name!");
@@ -1145,7 +1145,7 @@ public class NewDataEntryView {
 								newEntry.addDataField("");
 								newEntry.addDataField("");
 								DatabaseManager m = new DatabaseManager();
-								int result = m.addEntryToDatabase(newEntry);
+								int result = m.addEntryToDatabase(currentUser, newEntry);
 								if (result == -1) {
 									JOptionPane.showMessageDialog(null,
 											"The Entry Name has already existed! Please Try another Entry Name!");
@@ -1301,7 +1301,7 @@ public class NewDataEntryView {
 								newEntry.addDataField(textField_7.getText());
 								newEntry.addDataField(textField_8.getText());
 								DatabaseManager m = new DatabaseManager();
-								int result = m.addEntryToDatabase(newEntry);
+								int result = m.addEntryToDatabase(currentUser, newEntry);
 								if (result == -1) {
 									JOptionPane.showMessageDialog(null,
 											"The Entry Name has already existed! Please Try another Entry Name!");
@@ -1410,7 +1410,7 @@ public class NewDataEntryView {
 								newEntry.addDataField("");
 								newEntry.addDataField("");
 								DatabaseManager m = new DatabaseManager();
-								int result = m.addEntryToDatabase(newEntry);
+								int result = m.addEntryToDatabase(currentUser, newEntry);
 								if (result == -1) {
 									JOptionPane.showMessageDialog(null,
 											"The Entry Name has already existed! Please Try another Entry Name!");
@@ -1500,7 +1500,7 @@ public class NewDataEntryView {
 								newEntry.addDataField(textField_2.getText());
 
 								DatabaseManager m = new DatabaseManager();
-								int result = m.addEntryToDatabase(newEntry);
+								int result = m.addEntryToDatabase(currentUser, newEntry);
 								if (result == -1) {
 									JOptionPane.showMessageDialog(null,
 											"The Entry Name has already existed! Please Try another Entry Name!");
@@ -1591,7 +1591,7 @@ public class NewDataEntryView {
 								newEntry.addDataField(textField_2.getText());
 
 								DatabaseManager m = new DatabaseManager();
-								int result = m.addEntryToDatabase(newEntry);
+								int result = m.addEntryToDatabase(currentUser, newEntry);
 								if (result == -1) {
 									JOptionPane.showMessageDialog(null,
 											"The Entry Name has already existed! Please Try another Entry Name!");
@@ -1690,7 +1690,7 @@ public class NewDataEntryView {
 								newEntry.addDataField("");// 9
 								newEntry.addDataField("");// 10
 								DatabaseManager m = new DatabaseManager();
-								int result = m.addEntryToDatabase(newEntry);
+								int result = m.addEntryToDatabase(currentUser, newEntry);
 								if (result == -1) {
 									JOptionPane.showMessageDialog(null,
 											"The Entry Name has already existed! Please Try another Entry Name!");
@@ -1797,7 +1797,7 @@ public class NewDataEntryView {
 								newEntry.addDataField("");
 								newEntry.addDataField("");
 								DatabaseManager m = new DatabaseManager();
-								int result = m.addEntryToDatabase(newEntry);
+								int result = m.addEntryToDatabase(currentUser, newEntry);
 								if (result == -1) {
 									JOptionPane.showMessageDialog(null,
 											"The Entry Name has already existed! Please Try another Entry Name!");
