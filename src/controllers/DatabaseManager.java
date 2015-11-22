@@ -666,6 +666,9 @@ public class DatabaseManager {
 		Connection DBconnection = connectToDatabase();
 		Crypto c = new Crypto();
 		newEntry = c.encrypt(user, newEntry);
+		for(int i = 0; i < newEntry.getFieldDataList().size();i++) {
+			System.out.println(newEntry.getFieldDataList().get(i));
+		}
 		try {
 			if (!oldEntry.getEntryName().equals(newEntry.getEntryName())) {
 				String count = "SELECT COUNT(*) FROM data_entries WHERE entry_name=? AND owner=?;";

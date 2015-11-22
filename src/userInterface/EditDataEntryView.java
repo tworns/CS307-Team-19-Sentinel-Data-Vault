@@ -108,7 +108,7 @@ public class EditDataEntryView {
 						return;
 					}
 					LocalDateTime createdtime = LocalDateTime.now();
-					DataEntry newEntry = new DataEntry(textField.getText(), "SSN", "key", currentEntry.getOwner(), 0,
+					DataEntry newEntry = new DataEntry(textField.getText(), "SSN", currentEntry.getEncryptionKey(), currentEntry.getOwner(), 0,
 							createdtime);
 					newEntry.addDataField(textField_1.getText());
 					newEntry.addDataField(textField_2.getText());
@@ -230,7 +230,7 @@ public class EditDataEntryView {
 						return;
 					}
 					LocalDateTime modifytime = LocalDateTime.now();
-					DataEntry newEntry = new DataEntry(textField.getText(), "Credit/Debit Card", "key",
+					DataEntry newEntry = new DataEntry(textField.getText(), "Credit/Debit Card", currentEntry.getEncryptionKey(),
 							currentEntry.getOwner(), 0, modifytime);
 					newEntry.addDataField((String) cardType.getSelectedItem());
 					newEntry.addDataField(textField_1.getText());
@@ -422,7 +422,7 @@ public class EditDataEntryView {
 						return;
 					}
 					LocalDateTime createdtime = LocalDateTime.now();
-					DataEntry newEntry = new DataEntry(textField.getText(), "License", "key", currentEntry.getOwner(),
+					DataEntry newEntry = new DataEntry(textField.getText(), "License", currentEntry.getEncryptionKey(), currentEntry.getOwner(),
 							0, createdtime);
 					newEntry.addDataField(textField_1.getText());
 					newEntry.addDataField(textField_2.getText());
@@ -518,7 +518,7 @@ public class EditDataEntryView {
 						return;
 					}
 					LocalDateTime createdtime = LocalDateTime.now();
-					DataEntry newEntry = new DataEntry(textField.getText(), "Account Login", "key",
+					DataEntry newEntry = new DataEntry(textField.getText(), "Account Login", currentEntry.getEncryptionKey(),
 							currentEntry.getOwner(), 0, createdtime);
 					newEntry.addDataField(textField_1.getText());
 					newEntry.addDataField(textField_2.getText());
@@ -611,7 +611,7 @@ public class EditDataEntryView {
 						return;
 					}
 					LocalDateTime createdtime = LocalDateTime.now();
-					DataEntry newEntry = new DataEntry(textField.getText(), "Wifi Network", "key",
+					DataEntry newEntry = new DataEntry(textField.getText(), "Wifi Network", currentEntry.getEncryptionKey(),
 							currentEntry.getOwner(), 0, createdtime);
 					newEntry.addDataField(textField_1.getText());
 					newEntry.addDataField(textField_2.getText());
@@ -702,7 +702,7 @@ public class EditDataEntryView {
 						return;
 					}
 					LocalDateTime createdtime = LocalDateTime.now();
-					DataEntry newEntry = new DataEntry(textField.getText(), "Phone Number", "key",
+					DataEntry newEntry = new DataEntry(textField.getText(), "Phone Number", currentEntry.getEncryptionKey(),
 							currentEntry.getOwner(), 0, createdtime);
 					newEntry.addDataField(textField_1.getText());
 					newEntry.addDataField(textField_2.getText());
