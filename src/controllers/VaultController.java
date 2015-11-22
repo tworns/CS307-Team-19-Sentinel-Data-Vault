@@ -134,7 +134,7 @@ public class VaultController {
 				
 				for (int i=0; i< sampleDataName.size(); i++){
 					LocalDateTime time = LocalDateTime.now();
-					DataEntry newEntry = new DataEntry(username + " Sample "+ sampleDataName.get(i), sampleDataName.get(i), "key", username, 0, time);
+					DataEntry newEntry = new DataEntry("Sample "+ sampleDataName.get(i), sampleDataName.get(i), "key", username, 0, time);
 					newEntry.addDataField(""); 	//1
 					newEntry.addDataField("");	//2
 					newEntry.addDataField("");	//3
