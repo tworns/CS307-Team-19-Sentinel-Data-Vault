@@ -61,7 +61,7 @@ public class PasswordRecoveryView {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		DatabaseManager overseer = new DatabaseManager();
+		DatabaseManager overseer = new DatabaseManager("vault_database");
 		frmSentinelDataVault = new JFrame();
 		frmSentinelDataVault.setResizable(false);
 		frmSentinelDataVault.setTitle("Password Recovery");
