@@ -210,7 +210,7 @@ public class SettingsView {
 		JButton btnOk = new JButton("Save");
 		btnOk.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-					DatabaseManager newVegas =  new DatabaseManager();
+					DatabaseManager newVegas =  new DatabaseManager("vault_database");
 					//TODO Test this. A lot. 
 					newVegas.modifyUserField(currentUser, "high_security", currentUser.isHighSecurity());
 					newVegas.modifyUserField(currentUser, "backup_frequency", currentUser.getBackupFrequency());
@@ -271,7 +271,7 @@ public class SettingsView {
 				if(JOptionPane.showConfirmDialog(frmSettings, "Are You Sure?", "Sign Out",JOptionPane.YES_NO_OPTION, JOptionPane.DEFAULT_OPTION) == 0) {
 					//This is for the user answering yes.
 					//TODO Actually delete stuff, close windows, etc.
-					DatabaseManager d = new DatabaseManager();
+					DatabaseManager d = new DatabaseManager("vault_database");
 					d.deleteAllEntriesFromDatabase(currentUser);
 					if (d.deleteUserFromDatabase(currentUser) == 1) {
 						JOptionPane.showMessageDialog(null,"You have successfully deleted your account!");
