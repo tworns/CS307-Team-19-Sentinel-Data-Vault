@@ -122,13 +122,9 @@ public class VaultController {
 				newEntry.addDataField("");				//8
 				newEntry.addDataField("");				//9
 				newEntry.addDataField("");				//10
-<<<<<<< Updated upstream
+
 				DatabaseManager m = new DatabaseManager("vault_database");
-				m.addEntryToDatabase(newEntry);
-=======
-				DatabaseManager m = new DatabaseManager();
 				m.addEntryToDatabase(newuser, newEntry);
->>>>>>> Stashed changes
 				
 				//Sample Credit/Debit Card
 				DataEntry newEntry2 = new DataEntry(username + " Sample Card", "Credit/Debit Card", "key", username, 0, time);
