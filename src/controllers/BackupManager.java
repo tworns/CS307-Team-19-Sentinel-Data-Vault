@@ -21,6 +21,9 @@ public class BackupManager {
 		newDBM.createDataEntriesTable();
 		// Fill the new database with the user and their entries from the result set
 		newDBM.addUserToDatabase(user);
+		for (DataEntry entry : dataEntryList) {
+			newDBM.addEntryToDatabase(user, entry);
+		}
 		
 	}
 
