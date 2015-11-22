@@ -30,6 +30,27 @@ public class DatabaseManager {
 		}
 		return connection;
 	}
+	
+	/**
+	 * Connects to a given database and returns a Connection for two-way
+	 * communication
+	 * 
+	 * @param	database	name of database to connect to
+	 * @return	active		Connection to vault_database
+	 */
+	private static Connection connectToDatabase(String database) {
+		Connection connection = null;
+		// Establish connection to the existing database
+		try {
+			Class.forName("org.sqlite.JDBC");
+			connection = DriverManager.getConnection("jdbc:sqlite:" + database);
+			connection.setAutoCommit(false);
+		} catch (Exception e) {
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			// e.printStackTrace();
+		}
+		return connection;
+	}
 
 	/**
 	 * Adds a given user (account) to the vault database.
@@ -199,9 +220,9 @@ public class DatabaseManager {
 	 * 
 	 * Jiho Choi
 	 */
-	public List<DataEntry> retrieveAllDataEntries(String userEmail) {
+	public List<DataEntry> retrieveAllDataEntries(String userEmail, String database) {
 		// Connect to the database
-		Connection DBconnection = connectToDatabase();
+		Connection DBconnection = connectToDatabase(database);
 		try {
 			/*
 			 * this is the list we are returning contains all dataentries belong
