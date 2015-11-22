@@ -176,7 +176,7 @@ public class NewDataView {
 								newEntry.addDataField("");
 								newEntry.addDataField("");
 
-								DatabaseManager m = new DatabaseManager();
+								DatabaseManager m = new DatabaseManager("vault_database");
 								int result = m.addEntryToDatabase(currentUser, newEntry);
 								if (result == -1) {
 									JOptionPane.showMessageDialog(null,
@@ -320,7 +320,7 @@ public class NewDataView {
 								newEntry.addDataField("");
 								newEntry.addDataField("");
 
-								DatabaseManager m = new DatabaseManager();
+								DatabaseManager m = new DatabaseManager("vault_database");
 								int result = m.addEntryToDatabase(currentUser, newEntry);
 								if (result == -1) {
 									JOptionPane.showMessageDialog(null,
@@ -462,7 +462,7 @@ public class NewDataView {
 								newEntry.addDataField("");
 								newEntry.addDataField("");
 								newEntry.addDataField("");
-								DatabaseManager m = new DatabaseManager();
+								DatabaseManager m = new DatabaseManager("vault_database");
 								int result = m.addEntryToDatabase(currentUser, newEntry);
 								if (result == -1) {
 									JOptionPane.showMessageDialog(null,
@@ -610,7 +610,7 @@ public class NewDataView {
 								newEntry.addDataField(textField_6.getText());
 								newEntry.addDataField(textField_7.getText());
 								newEntry.addDataField(textField_8.getText());
-								DatabaseManager m = new DatabaseManager();
+								DatabaseManager m = new DatabaseManager("vault_database");
 								int result = m.addEntryToDatabase(currentUser, newEntry);
 								if (result == -1) {
 									JOptionPane.showMessageDialog(null,
@@ -718,7 +718,7 @@ public class NewDataView {
 								newEntry.addDataField("");
 								newEntry.addDataField("");
 								newEntry.addDataField("");
-								DatabaseManager m = new DatabaseManager();
+								DatabaseManager m = new DatabaseManager("vault_database");
 								int result = m.addEntryToDatabase(currentUser, newEntry);
 								if (result == -1) {
 									JOptionPane.showMessageDialog(null,
@@ -827,7 +827,7 @@ public class NewDataView {
 								newEntry.addDataField("");// 8
 								newEntry.addDataField("");// 9
 								newEntry.addDataField("");// 10
-								DatabaseManager m = new DatabaseManager();
+								DatabaseManager m = new DatabaseManager("vault_database");
 								int result = m.addEntryToDatabase(currentUser, newEntry);
 								if (result == -1) {
 									JOptionPane.showMessageDialog(null,
@@ -934,7 +934,7 @@ public class NewDataView {
 								newEntry.addDataField("");
 								newEntry.addDataField("");
 								newEntry.addDataField("");
-								DatabaseManager m = new DatabaseManager();
+								DatabaseManager m = new DatabaseManager("vault_database");
 								int result = m.addEntryToDatabase(currentUser, newEntry);
 								if (result == -1) {
 									JOptionPane.showMessageDialog(null,
