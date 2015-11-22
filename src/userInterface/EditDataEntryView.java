@@ -22,6 +22,7 @@ public class EditDataEntryView {
 
 	private JFrame frame;
 	private DataEntry currentEntry;
+	private User currentUser;
 
 	/**
 	 * Launch the application.
@@ -32,7 +33,7 @@ public class EditDataEntryView {
 				try {
 					DatabaseManager m = new DatabaseManager("vault_database");
 					DataEntry d = m.retrieveOneDataEntry("myvisa", new User(null, null, null, null, null, null, null), "Credit/Debit Card");
-					EditDataEntryView window = new EditDataEntryView(d);
+					EditDataEntryView window = new EditDataEntryView(new User(null, null, null, null, null, null, null), d);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -44,7 +45,8 @@ public class EditDataEntryView {
 	/**
 	 * Create the application.
 	 */
-	public EditDataEntryView(DataEntry data) {
+	public EditDataEntryView(User currentUser, DataEntry data) {
+		this.currentUser = currentUser;
 		currentEntry = data;
 		initialize();
 	}
@@ -111,7 +113,7 @@ public class EditDataEntryView {
 					newEntry.addDataField(textField_1.getText());
 					newEntry.addDataField(textField_2.getText());
 					DatabaseManager m = new DatabaseManager("vault_database");
-					int result = m.updateEntry(currentEntry, newEntry);
+					int result = m.updateEntry(currentUser,currentEntry, newEntry);
 					if (result == -1) {
 						JOptionPane.showMessageDialog(null,
 								"The Entry Name has already existed! Please Try another Entry Name!");
@@ -236,7 +238,7 @@ public class EditDataEntryView {
 					newEntry.addDataField(textField_3.getText());
 					newEntry.addDataField(((String) month.getSelectedItem()) + "/" + ((String) year.getSelectedItem()));
 					DatabaseManager m = new DatabaseManager("vault_database");
-					int result = m.updateEntry(currentEntry, newEntry);
+					int result = m.updateEntry(currentUser,currentEntry, newEntry);
 					if (result == -1) {
 						JOptionPane.showMessageDialog(null,
 								"The Entry Name has already existed! Please Try another Entry Name!");
@@ -428,7 +430,7 @@ public class EditDataEntryView {
 					newEntry.addDataField(textField_4.getText());
 					newEntry.addDataField(textField_5.getText());
 					DatabaseManager m = new DatabaseManager("vault_database");
-					int result = m.updateEntry(currentEntry, newEntry);
+					int result = m.updateEntry(currentUser,currentEntry, newEntry);
 					if (result == -1) {
 						JOptionPane.showMessageDialog(null,
 								"The Entry Name has already existed! Please Try another Entry Name!");
@@ -523,7 +525,7 @@ public class EditDataEntryView {
 					newEntry.addDataField(textField_3.getText());
 
 					DatabaseManager m = new DatabaseManager("vault_database");
-					int result = m.updateEntry(currentEntry, newEntry);
+					int result = m.updateEntry(currentUser,currentEntry, newEntry);
 					if (result == -1) {
 						JOptionPane.showMessageDialog(null,
 								"The Entry Name has already existed! Please Try another Entry Name!");
@@ -615,7 +617,7 @@ public class EditDataEntryView {
 					newEntry.addDataField(textField_2.getText());
 					newEntry.addDataField(textField_3.getText());
 					DatabaseManager m = new DatabaseManager("vault_database");
-					int result = m.updateEntry(currentEntry, newEntry);
+					int result = m.updateEntry(currentUser,currentEntry, newEntry);
 					if (result == -1) {
 						JOptionPane.showMessageDialog(null,
 								"The Entry Name has already existed! Please Try another Entry Name!");
@@ -706,7 +708,7 @@ public class EditDataEntryView {
 					newEntry.addDataField(textField_2.getText());
 					newEntry.addDataField(textField_3.getText());
 					DatabaseManager m = new DatabaseManager("vault_database");
-					int result = m.updateEntry(currentEntry, newEntry);
+					int result = m.updateEntry(currentUser,currentEntry, newEntry);
 					if (result == -1) {
 						JOptionPane.showMessageDialog(null,
 								"The Entry Name has already existed! Please Try another Entry Name!");

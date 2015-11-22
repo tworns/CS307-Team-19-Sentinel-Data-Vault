@@ -187,7 +187,7 @@ public class HomeView {
 		JButton btnEditData = new JButton("Edit Entry");
 		btnEditData.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				EditDataEntryView editDataEntry = new EditDataEntryView(currentEntry);
+				EditDataEntryView editDataEntry = new EditDataEntryView(currentUser, currentEntry);
 				editDataEntry.getJframe().setVisible(true);
 			}
 		});

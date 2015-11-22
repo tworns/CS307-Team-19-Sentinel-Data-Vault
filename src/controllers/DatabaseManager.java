@@ -661,9 +661,11 @@ public class DatabaseManager {
 		}
 	}
 
-	public int updateEntry(DataEntry oldEntry, DataEntry newEntry) {
+	public int updateEntry(User user, DataEntry oldEntry, DataEntry newEntry) {
 		// Connect to the database
 		Connection DBconnection = connectToDatabase();
+		Crypto c = new Crypto();
+		newEntry = c.encrypt(user, newEntry);
 		try {
 			if (!oldEntry.getEntryName().equals(newEntry.getEntryName())) {
 				String count = "SELECT COUNT(*) FROM data_entries WHERE entry_name=? AND owner=?;";
