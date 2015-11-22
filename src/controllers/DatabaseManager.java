@@ -215,88 +215,77 @@ public class DatabaseManager {
 		}
 	}
 
-	/*
-	 * Retrieve DataEntry object from DB
+	/**
+	 * Retrieve of List of all a user's data entry objects
 	 * 
-	 * Jiho Choi
+	 * @param userEmail	user to retrieve data entries from
+	 * @param database	name of database to access
+	 * @return			List<DataEntry> of all a user's data entries
 	 */
-	public List<DataEntry> retrieveAllDataEntries(String userEmail, String database) {
+	public List<DataEntry> retrieveUserDataEntries(String userEmail, String database) {
 		// Connect to the database
 		Connection DBconnection = connectToDatabase(database);
+		// Create an empty List to populate with data entries
+		List<DataEntry> dataEntryList = new ArrayList<DataEntry>();
 		try {
-			/*
-			 * this is the list we are returning contains all dataentries belong
-			 * to certain user
-			 */
-			List<DataEntry> dataentries = new ArrayList<DataEntry>();
-
 			// Initialize a statement to execute
 			Statement stmt = DBconnection.createStatement();
 			// Construct the SQL DELETE statement
 			String sql = "SELECT * FROM data_entries WHERE owner = " + "'" + userEmail + "';";
-
 			// Execute the statement and commit database changes
-			ResultSet dataEntryInfoSet = stmt.executeQuery(sql);
-			while (dataEntryInfoSet.next()) {
-				/*
-				 * TODO construct Dataentry object and add each one to the List
-				 * in the while loop here
-				 */
+			ResultSet dataEntrySet = stmt.executeQuery(sql);
+			while (dataEntrySet.next()) {
+				// Retrieve all fields of the entry
+				String entry_name = dataEntrySet.getString("entry_name");
+				String entry_type = dataEntrySet.getString("entry_type");
+				String encryption_key = dataEntrySet.getString("encryption_key");
+				String owner = dataEntrySet.getString("owner");
+				int secure_entry = dataEntrySet.getInt("secure_entry");
+				LocalDateTime last_modified = LocalDateTime.parse(dataEntrySet.getString("last_modified"));
+				
+				// Parse the valid_users String and convert to List<String> to assign to validUsers field of DataEntry
+				List<String> validUsers = new ArrayList<String>();
+				String validUsersString = dataEntrySet.getString("valid_users");
+				String[] parsedValidUsers = validUsersString.split(" ");
+				for (int i = 0; i < parsedValidUsers.length; i++) {
+					validUsers.add(parsedValidUsers[i]);
+				}
+				
+				// Retrieve the data_fields; create a List of the fields
+				List<String> data_field_list = new ArrayList<String>();
+				String data_field_1 = dataEntrySet.getString("data_field_1");
+				String data_field_2 = dataEntrySet.getString("data_field_2");
+				String data_field_3 = dataEntrySet.getString("data_field_3");
+				String data_field_4 = dataEntrySet.getString("data_field_4");
+				String data_field_5 = dataEntrySet.getString("data_field_5");
+				String data_field_6 = dataEntrySet.getString("data_field_6");
+				String data_field_7 = dataEntrySet.getString("data_field_7");
+				String data_field_8 = dataEntrySet.getString("data_field_8");
+				String data_field_9 = dataEntrySet.getString("data_field_9");
+				String data_field_10 = dataEntrySet.getString("data_field_10");
+				data_field_list.add(data_field_1);
+				data_field_list.add(data_field_2);
+				data_field_list.add(data_field_3);
+				data_field_list.add(data_field_4);
+				data_field_list.add(data_field_5);
+				data_field_list.add(data_field_6);
+				data_field_list.add(data_field_7);
+				data_field_list.add(data_field_8);
+				data_field_list.add(data_field_9);
+				data_field_list.add(data_field_10);
+				
+				// Create a data entry to encapsulate the information; add entry to List
+				DataEntry entry = new DataEntry(entry_name, entry_type, encryption_key, owner, validUsers, secure_entry, last_modified, data_field_list);
+				dataEntryList.add(entry);
 			}
 
-			/*
-			 * Basically just move the codes below to the loop and ad the entry
-			 * to the list
-			 */
-
-			/*
-			 * String entryName = dataEntryInfoSet.getString("entry_name");
-			 * String entryType = dataEntryInfoSet.getString("entry_type");
-			 * String encryptionKey =
-			 * dataEntryInfoSet.getString("encryption_key"); String owner =
-			 * dataEntryInfoSet.getString("owner"); int highSecurity =
-			 * dataEntryInfoSet.getInt("secure_entry");
-			 * 
-			 * String lastModified =
-			 * dataEntryInfoSet.getString("last_modified"); LocalDateTime
-			 * modifiedLDT = LocalDateTime.parse(lastModified);
-			 * 
-			 * int isHigh = dataEntryInfoSet.getInt("high_security"); int
-			 * wipeSet = dataEntryInfoSet.getInt("account_wipe_set"); String
-			 * backupFreq = dataEntryInfoSet.getString("backup_frequency"); int
-			 * size = dataEntryInfoSet.getInt("max_backup_size");
-			 * 
-			 * String datafield_1 = dataEntryInfoSet.getString("data_field_1");
-			 * String datafield_2 = dataEntryInfoSet.getString("data_field_2");
-			 * String datafield_3 = dataEntryInfoSet.getString("data_field_3");
-			 * String datafield_4 = dataEntryInfoSet.getString("data_field_4");
-			 * String datafield_5 = dataEntryInfoSet.getString("data_field_5");
-			 * String datafield_6 = dataEntryInfoSet.getString("data_field_6");
-			 * String datafield_7 = dataEntryInfoSet.getString("data_field_7");
-			 * String datafield_8 = dataEntryInfoSet.getString("data_field_8");
-			 * String datafield_9 = dataEntryInfoSet.getString("data_field_9");
-			 * String datafield_10 =
-			 * dataEntryInfoSet.getString("data_field_10");
-			 * 
-			 * List<String> fields = new ArrayList<String>();
-			 * fields.add(datafield_1); fields.add(datafield_2);
-			 * fields.add(datafield_3); fields.add(datafield_4);
-			 * fields.add(datafield_5); fields.add(datafield_6);
-			 * fields.add(datafield_7); fields.add(datafield_8);
-			 * fields.add(datafield_9); fields.add(datafield_10);
-			 * 
-			 * // Reconstruct DataEntry DataEntry dataEntry = new
-			 * DataEntry(entryName, entryType, encryptionKey, owner,
-			 * highSecurity, modifiedLDT); dataEntry.setDataFields(fields);
-			 */
-
 			// Disconnect from database
-			dataEntryInfoSet.close();
+			dataEntrySet.close();
 			stmt.close();
 			DBconnection.close();
 
-			// return a success value
-			return dataentries;
+			return dataEntryList;
+			
 		} catch (SQLException e) {
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
 			e.printStackTrace();

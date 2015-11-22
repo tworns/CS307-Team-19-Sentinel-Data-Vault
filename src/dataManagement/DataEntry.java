@@ -13,8 +13,8 @@ public class DataEntry {
 	private String owner;
 	private List<String> validUsers;
 	private int highSecurity;
-	private List<String> fieldDataList;
 	private LocalDateTime lastModified;
+	private List<String> fieldDataList;
 
 	public DataEntry(String entryName, String entryType, String encryptionKey, String owner, int highSecurity, LocalDateTime lastModified) {
 		this.entryName = entryName;
@@ -25,6 +25,17 @@ public class DataEntry {
 		this.fieldDataList = new ArrayList<String>();
 		this.highSecurity = highSecurity;
 		this.lastModified = lastModified;
+	}
+	
+	public DataEntry(String entryName, String entryType, String encryptionKey, String owner, List<String> validUsers, int highSecurity, LocalDateTime lastModified, List<String> fieldDataList) {
+		this.entryName = entryName;
+		this.entryType = entryType;
+		this.encryptionKey = encryptionKey;
+		this.owner = owner;
+		this.validUsers = validUsers;
+		this.highSecurity = highSecurity;
+		this.lastModified = lastModified;
+		this.fieldDataList = fieldDataList;
 	}
 
 	public List<String> getFieldDataList() {
