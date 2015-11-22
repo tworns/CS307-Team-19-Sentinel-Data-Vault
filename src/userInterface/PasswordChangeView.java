@@ -51,7 +51,7 @@ public class PasswordChangeView {
 					//Make a  user for testing
 					PasswordHasher l = new PasswordHasher();
 					SaltGenerator twitchChat = new SaltGenerator();
-					DatabaseManager d = new DatabaseManager();
+					DatabaseManager d = new DatabaseManager("vault_database");
 					String salt = twitchChat.generateSalt();
 					LocalDateTime k = LocalDateTime.now();
 					User u = new User("ben@purdue.edu", l.hashPassword("Password1!", salt), salt, "This is my data key", "This is my sec question", "answer",k );
@@ -171,7 +171,7 @@ public class PasswordChangeView {
 					currentUser.setSecurityQuestion(question);
 					currentUser.setSecurityAnswer(newAnswer);
 					// GET TO THE DATABASE!
-					DatabaseManager brian = new DatabaseManager();
+					DatabaseManager brian = new DatabaseManager("vault_database");
 					brian.modifyUserField(currentUser, "security_question", currentUser.getSecurityQuestion());
 					brian.modifyUserField(currentUser, "security_answer", currentUser.getSecurityAnswer());
 					frmChangePassword.dispose();
@@ -208,7 +208,7 @@ public class PasswordChangeView {
 					String newPass1 = p.hashPassword(newPass2, currentUser.getPasswordSalt() );
 					currentUser.setPasswordHash(newPass1);
 					
-					DatabaseManager dave = new DatabaseManager();
+					DatabaseManager dave = new DatabaseManager("vault_database");
 					dave.modifyUserField(currentUser, "password_hash", currentUser.getPasswordHash());
 					// Get the updated user to the database!
 					
@@ -228,7 +228,7 @@ public class PasswordChangeView {
 					currentUser.setSecurityQuestion(question);
 					currentUser.setSecurityAnswer(newAnswer);
 					// Get the updated user to the database!
-					DatabaseManager jim = new DatabaseManager();
+					DatabaseManager jim = new DatabaseManager("vault_database");
 					jim.modifyUserField(currentUser, "security_question", currentUser.getSecurityQuestion());
 					jim.modifyUserField(currentUser, "security_answer", currentUser.getSecurityAnswer());
 					jim.modifyUserField(currentUser, "password_hash", currentUser.getPasswordHash());
