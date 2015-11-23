@@ -95,7 +95,7 @@ public class NewDataEntryView {
 		choice.addItem("Confirmation Number");
 		choice.addItem("Credit/Debit Card");
 		choice.addItem("Entry Code");
-		choice.addItem("Flight ticket");
+		choice.addItem("Flight Ticket");
 		choice.addItem("General Password");
 		choice.addItem("ID Card");
 		choice.addItem("License");
@@ -915,7 +915,7 @@ public class NewDataEntryView {
 
 					// ID Card
 					else if (index == 6) {
-						frame.setTitle("New Flight Ticket");
+						frame.setTitle("New ID Card");
 						frame.getContentPane().removeAll();
 
 						frame.revalidate();
