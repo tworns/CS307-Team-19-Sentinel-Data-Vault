@@ -18,7 +18,15 @@ public class DatabaseManager {
 	private static String database_name;
 	
 	public DatabaseManager(String database) {
-		this.database_name = database;
+		database_name = database;
+	}
+	
+	public static String getCurrentDatabase() {
+		return database_name;
+	}
+	
+	public void setWorkingDatabase(String newDatabase) {
+		database_name = newDatabase;
 	}
 
 	/**
@@ -32,7 +40,7 @@ public class DatabaseManager {
 		// Establish connection to the existing database
 		try {
 			Class.forName("org.sqlite.JDBC");
-			connection = DriverManager.getConnection("jdbc:sqlite:" + database_name);
+			connection = DriverManager.getConnection("jdbc:sqlite:" + getCurrentDatabase());
 			connection.setAutoCommit(false);
 		} catch (Exception e) {
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
