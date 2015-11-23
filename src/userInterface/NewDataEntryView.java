@@ -277,6 +277,14 @@ public class NewDataEntryView {
 										userName, 0, createdtime);
 								newEntry.addDataField(textField_1.getText());
 								newEntry.addDataField(textField_2.getText());
+								newEntry.addDataField("");
+								newEntry.addDataField("");
+								newEntry.addDataField("");
+								newEntry.addDataField("");
+								newEntry.addDataField("");
+								newEntry.addDataField("");
+								newEntry.addDataField("");
+								newEntry.addDataField("");
 
 								DatabaseManager m = new DatabaseManager("vault_database");
 								int result = m.addEntryToDatabase(currentUser, newEntry);
@@ -508,6 +516,14 @@ public class NewDataEntryView {
 										0, createdtime);
 								newEntry.addDataField(textField_1.getText());
 								newEntry.addDataField(textField_2.getText());
+								newEntry.addDataField("");
+								newEntry.addDataField("");
+								newEntry.addDataField("");
+								newEntry.addDataField("");
+								newEntry.addDataField("");
+								newEntry.addDataField("");
+								newEntry.addDataField("");
+								newEntry.addDataField("");
 
 								DatabaseManager m = new DatabaseManager("vault_database");
 								int result = m.addEntryToDatabase(currentUser, newEntry);
@@ -852,6 +868,14 @@ public class NewDataEntryView {
 										userName, 0, createdtime);
 								newEntry.addDataField(textField_1.getText());
 								newEntry.addDataField(textField_2.getText());
+								newEntry.addDataField("");
+								newEntry.addDataField("");
+								newEntry.addDataField("");
+								newEntry.addDataField("");
+								newEntry.addDataField("");
+								newEntry.addDataField("");
+								newEntry.addDataField("");
+								newEntry.addDataField("");
 
 								DatabaseManager m = new DatabaseManager("vault_database");
 								int result = m.addEntryToDatabase(currentUser, newEntry);
@@ -1018,6 +1042,11 @@ public class NewDataEntryView {
 										+ year.getSelectedItem());
 								newEntry.addDataField(month_1.getSelectedItem() + "/" + date_1.getSelectedItem() + "/"
 										+ year_1.getSelectedItem());
+								newEntry.addDataField("");
+								newEntry.addDataField("");
+								newEntry.addDataField("");
+								newEntry.addDataField("");
+								
 
 								DatabaseManager m = new DatabaseManager("vault_database");
 								int result = m.addEntryToDatabase(currentUser, newEntry);
@@ -1302,6 +1331,9 @@ public class NewDataEntryView {
 								newEntry.addDataField(textField_6.getText());
 								newEntry.addDataField(textField_7.getText());
 								newEntry.addDataField(textField_8.getText());
+								newEntry.addDataField("");
+								newEntry.addDataField("");
+								
 
 								DatabaseManager m = new DatabaseManager("vault_database");
 								int result = m.addEntryToDatabase(currentUser, newEntry);
@@ -1502,6 +1534,14 @@ public class NewDataEntryView {
 										userName, 0, createdtime);
 								newEntry.addDataField(textField_1.getText());
 								newEntry.addDataField(textField_2.getText());
+								newEntry.addDataField("");
+								newEntry.addDataField("");
+								newEntry.addDataField("");
+								newEntry.addDataField("");
+								newEntry.addDataField("");
+								newEntry.addDataField("");
+								newEntry.addDataField("");
+								newEntry.addDataField("");
 
 								DatabaseManager m = new DatabaseManager("vault_database");
 								int result = m.addEntryToDatabase(currentUser, newEntry);
@@ -1593,6 +1633,14 @@ public class NewDataEntryView {
 										"key", userName, 0, createdtime);
 								newEntry.addDataField(textField_1.getText());
 								newEntry.addDataField(textField_2.getText());
+								newEntry.addDataField("");
+								newEntry.addDataField("");
+								newEntry.addDataField("");
+								newEntry.addDataField("");
+								newEntry.addDataField("");
+								newEntry.addDataField("");
+								newEntry.addDataField("");
+								newEntry.addDataField("");
 
 								DatabaseManager m = new DatabaseManager("vault_database");
 								int result = m.addEntryToDatabase(currentUser, newEntry);
