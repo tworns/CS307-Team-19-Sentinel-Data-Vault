@@ -9,8 +9,13 @@ public class PasswordHasher {
 	
 	private static MessageDigest md;
 	
-	public PasswordHasher() throws NoSuchAlgorithmException {
-		md = MessageDigest.getInstance("SHA-512");
+	public PasswordHasher() {
+		try {
+			md = MessageDigest.getInstance("SHA-512");
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	private static String getHash(String hashee) {

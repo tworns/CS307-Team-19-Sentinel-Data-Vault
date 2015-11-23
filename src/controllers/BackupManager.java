@@ -4,6 +4,7 @@ import java.util.List;
 import java.sql.*;
 import dataManagement.DataEntry;
 import dataManagement.User;
+import security.PasswordValidation;
 
 public class BackupManager {
 	
@@ -43,8 +44,16 @@ public class BackupManager {
 		}
 	}
 	
-	public boolean isValidBackupUser() {
-		return false;
+	public boolean isValidBackupUser(String backupUserEmail, String backupUserPassword, String backupDatabaseName) {
+		DatabaseManager dbm = new DatabaseManager(backupDatabaseName);
+		User backupUser = dbm.retrieveUserFromDatabase(backupUserEmail);
+		PasswordValidation pv = new PasswordValidation();
+		if (pv.isValidPassword(backupUser, backupUserPassword)) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 
 	public static void main(String[] args) {

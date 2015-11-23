@@ -30,7 +30,7 @@ public class PasswordValidation {
 	 * @param password	Given password being tested if it matches the User's actual password
 	 * @return			True if given password matches User's actual password
 	 */
-	public Boolean isValidPassword(User user, String password) throws NoSuchAlgorithmException {
+	public boolean isValidPassword(User user, String password) {
 		// Hash the given password
 		PasswordHasher ph = new PasswordHasher();
 		String givenHash = ph.hashPassword(password, user.getPasswordSalt());

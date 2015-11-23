@@ -124,17 +124,12 @@ public class PasswordChangeView {
 				}
 
 				//Old password validation
-				PasswordValidation a = new PasswordValidation();
-				try{  
-					if(a.isValidPassword(currentUser, oldPass) == true) { 
-						passCheck = true;
-					}
-					else { 
-						passCheck = false;
-					}
+				PasswordValidation a = new PasswordValidation(); 
+				if(a.isValidPassword(currentUser, oldPass) == true) { 
+					passCheck = true;
 				}
-				catch ( NoSuchAlgorithmException k){ 
-					k.printStackTrace();
+				else { 
+					passCheck = false;
 				}
 				
 				// Reset all red-text warnings.
@@ -200,11 +195,7 @@ public class PasswordChangeView {
 				 //if the new password stuff is right (newPass1 == newPass2) the new password passes the min security level,
 					//and the security answer that was input is correct
 					PasswordHasher p = null; // might have issues with the null initializations here.
-					try {
-						p = new PasswordHasher();
-					} catch (NoSuchAlgorithmException e1) {
-						e1.printStackTrace();
-					}
+					p = new PasswordHasher();
 					String newPass1 = p.hashPassword(newPass2, currentUser.getPasswordSalt() );
 					currentUser.setPasswordHash(newPass1);
 					
@@ -218,11 +209,7 @@ public class PasswordChangeView {
 							&& newPass1.equals(newPass2) && passCheck == true) {
 					//If ALL fields are true and valid
 					PasswordHasher p = null; // might have issues with the null initializations here.
-					try {
-						p = new PasswordHasher();
-					} catch (NoSuchAlgorithmException e1) {
-						e1.printStackTrace();
-					}
+					p = new PasswordHasher();
 					String newPass1 = p.hashPassword(newPass2, currentUser.getPasswordSalt() );
 					currentUser.setPasswordHash(newPass1);
 					currentUser.setSecurityQuestion(question);
