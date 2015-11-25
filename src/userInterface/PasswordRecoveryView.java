@@ -27,6 +27,7 @@ public class PasswordRecoveryView {
 	private JTextField textField;
 	User user;
 	String username;
+	private String code = null;
 	private JTextField invalidUser;
 	private JTextField securityQuestion;
 	private JLabel lblNewLabel;
@@ -35,6 +36,9 @@ public class PasswordRecoveryView {
 	private JTextField securityCode;
 	private JLabel lblSecurityCode;
 	private JButton btnValidate_2;
+	private JTextField txtIncorrectAnswer;
+	private JTextField txtIncorrectCode;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -105,7 +109,7 @@ public class PasswordRecoveryView {
 		invalidUser.setRequestFocusEnabled(false);
 		invalidUser.setOpaque(false);
 		invalidUser.setBorder(null);
-		invalidUser.setBounds(140, 13, 116, 22);
+		invalidUser.setBounds(283, 13, 116, 22);
 		frmSentinelDataVault.getContentPane().add(invalidUser);
 		invalidUser.setColumns(10);
 		
@@ -143,9 +147,9 @@ public class PasswordRecoveryView {
 					lblSecurityCode.setVisible(true);
 					try {
 						SaltGenerator chat = new SaltGenerator();
-						String code = chat.generateSalt();
+						 code = chat.generateSalt();
 						VaultController.Send("sentineldatavault", "SENTINELDATA", user.getUsername(), 
-								"Security Warning", "Dear user,\n\n To continue recovering your account password, please enter the code below into the Sentinel Data Vault.\n"
+								"Changed Password", "Dear user,\n\n To continue recovering your account password, please enter the code below into the Sentinel Data Vault.\n"
 										+ "If you did not initiate this change, this e-mail can be safely disregarded.\n\n"+
 										"Your security code is: " + code +"\n\n" +
 										"Sincerely,\nSentinel Data Vault Team");
@@ -153,15 +157,11 @@ public class PasswordRecoveryView {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-									
-					if(securityCode.equals(securityCode.getText())) { 
-						System.out.println("WE DID IT REDDIT!");
-						}
-					else { 
-						System.out.println("Incorrect code");
-					}
 					JOptionPane.showMessageDialog(null, "An email containing your security code has been sent to you.\n"
-							+ " If you do not find this email in your inbox, please check your spam folder", "Change Password", 0);
+							+ " If you do not find this email in your inbox, please check your spam folder", "Change Password", 1);
+				}
+				else { 
+					txtIncorrectAnswer.setText("Incorrect Answer");
 				}
 			}
 		});
@@ -170,19 +170,54 @@ public class PasswordRecoveryView {
 		
 		securityCode = new JTextField();
 		securityCode.setVisible(false);
-		securityCode.setBounds(22, 155, 116, 22);
+		securityCode.setBounds(22, 188, 116, 22);
 		frmSentinelDataVault.getContentPane().add(securityCode);
 		securityCode.setColumns(10);
 		
 		lblSecurityCode = new JLabel("Security Code");
 		lblSecurityCode.setVisible(false);
-		lblSecurityCode.setBounds(149, 158, 107, 16);
+		lblSecurityCode.setBounds(149, 191, 107, 16);
 		frmSentinelDataVault.getContentPane().add(lblSecurityCode);
 		
 		btnValidate_2 = new JButton("Validate");
+		btnValidate_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+					if(securityCode.getText().equals(code)) { 
+						System.out.println("WE DID IT REDDIT!");
+						}
+					if (code.equals(securityCode.getText())!= true && (securityCode.getText() != null || securityCode.getText().equals("") == false)) { 
+						txtIncorrectCode.setText("Incorrect code");
+					}
+			}
+		});
 		btnValidate_2.setVisible(false);
-		btnValidate_2.setBounds(283, 154, 97, 25);
+		btnValidate_2.setBounds(283, 187, 97, 25);
 		frmSentinelDataVault.getContentPane().add(btnValidate_2);
+		
+		txtIncorrectAnswer = new JTextField();
+		txtIncorrectAnswer.setBorder(null);
+		txtIncorrectAnswer.setForeground(Color.RED);
+		txtIncorrectAnswer.setSelectedTextColor(Color.RED);
+		txtIncorrectAnswer.setOpaque(false);
+		txtIncorrectAnswer.setFocusTraversalKeysEnabled(false);
+		txtIncorrectAnswer.setFocusable(false);
+		txtIncorrectAnswer.setEditable(false);
+		txtIncorrectAnswer.setBounds(283, 89, 116, 22);
+		frmSentinelDataVault.getContentPane().add(txtIncorrectAnswer);
+		txtIncorrectAnswer.setColumns(10);
+		
+		txtIncorrectCode = new JTextField();
+		txtIncorrectCode.setSelectedTextColor(Color.RED);
+		txtIncorrectCode.setOpaque(false);
+		txtIncorrectCode.setForeground(Color.RED);
+		txtIncorrectCode.setFocusable(false);
+		txtIncorrectCode.setFocusTraversalKeysEnabled(false);
+		txtIncorrectCode.setEditable(false);
+		txtIncorrectCode.setColumns(10);
+		txtIncorrectCode.setBorder(null);
+		txtIncorrectCode.setBounds(283, 161, 116, 22);
+		frmSentinelDataVault.getContentPane().add(txtIncorrectCode);
 		frmSentinelDataVault.setLocationRelativeTo(null);
 		frmSentinelDataVault.setVisible(true);
 	
