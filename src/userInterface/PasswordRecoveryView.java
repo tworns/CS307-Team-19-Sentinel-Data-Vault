@@ -38,6 +38,7 @@ public class PasswordRecoveryView {
 	private JButton btnValidate_2;
 	private JTextField txtIncorrectAnswer;
 	private JTextField txtIncorrectCode;
+	private JButton btnCancel;
 	
 	/**
 	 * Launch the application.
@@ -184,7 +185,7 @@ public class PasswordRecoveryView {
 			public void actionPerformed(ActionEvent arg0) {
 				
 					if(securityCode.getText().equals(code)) { 
-						System.out.println("WE DID IT REDDIT!");
+						System.out.println("WE DID IT REDDIT!"); //TODO New passwordView
 						}
 					if (code.equals(securityCode.getText())!= true && (securityCode.getText() != null || securityCode.getText().equals("") == false)) { 
 						txtIncorrectCode.setText("Incorrect code");
@@ -218,6 +219,15 @@ public class PasswordRecoveryView {
 		txtIncorrectCode.setBorder(null);
 		txtIncorrectCode.setBounds(283, 161, 116, 22);
 		frmSentinelDataVault.getContentPane().add(txtIncorrectCode);
+		
+		btnCancel = new JButton("Cancel");
+		btnCancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frmSentinelDataVault.dispose();
+			}
+		});
+		btnCancel.setBounds(149, 258, 97, 25);
+		frmSentinelDataVault.getContentPane().add(btnCancel);
 		frmSentinelDataVault.setLocationRelativeTo(null);
 		frmSentinelDataVault.setVisible(true);
 	
