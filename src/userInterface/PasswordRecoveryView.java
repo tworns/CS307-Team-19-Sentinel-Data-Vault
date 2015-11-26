@@ -75,12 +75,12 @@ public class PasswordRecoveryView {
 		frmSentinelDataVault.getContentPane().setLayout(null);
 		
 		textField = new JTextField();
-		textField.setBounds(22, 35, 116, 22);
+		textField.setBounds(22, 35, 152, 22);
 		frmSentinelDataVault.getContentPane().add(textField);
 		textField.setColumns(10);
 		
 		JLabel lblUsername = new JLabel("Username");
-		lblUsername.setBounds(149, 38, 79, 16);
+		lblUsername.setBounds(186, 38, 79, 16);
 		frmSentinelDataVault.getContentPane().add(lblUsername);
 		
 		JButton btnValidate = new JButton("Validate");
@@ -99,7 +99,7 @@ public class PasswordRecoveryView {
 				}
 			}
 		});
-		btnValidate.setBounds(283, 34, 97, 25);
+		btnValidate.setBounds(314, 34, 97, 25);
 		frmSentinelDataVault.getContentPane().add(btnValidate);
 		
 		invalidUser = new JTextField();
@@ -122,18 +122,18 @@ public class PasswordRecoveryView {
 		securityQuestion.setRequestFocusEnabled(false);
 		securityQuestion.setOpaque(false);
 		securityQuestion.setVisible(false);
-		securityQuestion.setBounds(22, 72, 230, 22);
+		securityQuestion.setBounds(26, 72, 354, 22);
 		frmSentinelDataVault.getContentPane().add(securityQuestion);
 		securityQuestion.setColumns(10);
 		
 		lblNewLabel = new JLabel("Security Answer");
 		lblNewLabel.setVisible(false);
-		lblNewLabel.setBounds(149, 113, 122, 16);
+		lblNewLabel.setBounds(186, 113, 122, 16);
 		frmSentinelDataVault.getContentPane().add(lblNewLabel);
 		
 		securityQuestionAnswer = new JTextField();
 		securityQuestionAnswer.setVisible(false);
-		securityQuestionAnswer.setBounds(22, 110, 116, 22);
+		securityQuestionAnswer.setBounds(22, 110, 152, 22);
 		frmSentinelDataVault.getContentPane().add(securityQuestionAnswer);
 		securityQuestionAnswer.setColumns(10);
 		
@@ -166,18 +166,18 @@ public class PasswordRecoveryView {
 				}
 			}
 		});
-		btnValidate_1.setBounds(283, 109, 97, 25);
+		btnValidate_1.setBounds(314, 109, 97, 25);
 		frmSentinelDataVault.getContentPane().add(btnValidate_1);
 		
 		securityCode = new JTextField();
 		securityCode.setVisible(false);
-		securityCode.setBounds(22, 188, 116, 22);
+		securityCode.setBounds(22, 188, 152, 22);
 		frmSentinelDataVault.getContentPane().add(securityCode);
 		securityCode.setColumns(10);
 		
 		lblSecurityCode = new JLabel("Security Code");
 		lblSecurityCode.setVisible(false);
-		lblSecurityCode.setBounds(149, 191, 107, 16);
+		lblSecurityCode.setBounds(186, 191, 107, 16);
 		frmSentinelDataVault.getContentPane().add(lblSecurityCode);
 		
 		btnValidate_2 = new JButton("Validate");
@@ -193,7 +193,7 @@ public class PasswordRecoveryView {
 			}
 		});
 		btnValidate_2.setVisible(false);
-		btnValidate_2.setBounds(283, 187, 97, 25);
+		btnValidate_2.setBounds(314, 187, 97, 25);
 		frmSentinelDataVault.getContentPane().add(btnValidate_2);
 		
 		txtIncorrectAnswer = new JTextField();
