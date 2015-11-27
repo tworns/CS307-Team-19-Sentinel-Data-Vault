@@ -226,7 +226,7 @@ public class PasswordRecoveryView {
 				frmSentinelDataVault.dispose();
 			}
 		});
-		btnCancel.setBounds(149, 258, 97, 25);
+		btnCancel.setBounds(167, 278, 97, 25);
 		frmSentinelDataVault.getContentPane().add(btnCancel);
 		frmSentinelDataVault.setLocationRelativeTo(null);
 		frmSentinelDataVault.setVisible(true);

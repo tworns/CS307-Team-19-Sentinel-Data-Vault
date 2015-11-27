@@ -2,7 +2,6 @@ package controllers;
 
 import dataManagement.User;
 import dataManagement.DataEntry;
-
 import java.io.UnsupportedEncodingException;
 import java.sql.*;
 import java.time.LocalDateTime;
@@ -163,7 +162,6 @@ public class DatabaseManager {
 		try {
 			// Initialize a statement to execute
 			Statement stmt = DBconnection.createStatement();
-
 			// Check that user does not already exist
 			ResultSet results = stmt.executeQuery(
 					"SELECT count(*) FROM users WHERE user_email = " + "'" + newUser.getUsername() + "';");
@@ -188,15 +186,13 @@ public class DatabaseManager {
 			// Execute the statement and commit database changes
 			stmt.executeUpdate(sql);
 			DBconnection.commit();
-
 			// Disconnect from database
 			stmt.close();
 			DBconnection.close();
-
 			// return a success value
 			return 1;
-
-		} catch (SQLException e) {
+		}
+		catch (SQLException e) {
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
 			e.printStackTrace();
 			// return a failure value
@@ -221,18 +217,16 @@ public class DatabaseManager {
 			Statement stmt = DBconnection.createStatement();
 			// Construct the SQL DELETE statement
 			String sql = "DELETE FROM users WHERE user_email = " + "'" + doomedUser.getUsername() + "';";
-
 			// Execute the statement and commit database changes
 			stmt.executeUpdate(sql);
 			DBconnection.commit();
-
 			// Disconnect from database
 			stmt.close();
 			DBconnection.close();
-
 			// return a success value
 			return 1;
-		} catch (SQLException e) {
+		}
+		catch (SQLException e) {
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
 			e.printStackTrace();
 			// return a failure value
@@ -254,10 +248,8 @@ public class DatabaseManager {
 		try {
 			// Initialize a statement to execute
 			Statement stmt = DBconnection.createStatement();
-
 			// Construct the SQL DELETE statement
 			String sql = "SELECT * FROM users WHERE user_email = " + "'" + userEmail + "';";
-
 			// Execute the statement and commit database changes
 			ResultSet userInfoSet = stmt.executeQuery(sql);
 			if(userInfoSet.isClosed()) {
@@ -266,9 +258,6 @@ public class DatabaseManager {
 				DBconnection.close();
 				return null;
 			}
-			// DBconnection.commit();
-			// while ( userInfoSet.next() ) {
-			// String id = userInfoSet.getString("user_email");
 			String passwordHash = userInfoSet.getString("password_hash");
 			String salt = userInfoSet.getString("password_salt");
 			String datakey = userInfoSet.getString("data_key");
@@ -296,12 +285,14 @@ public class DatabaseManager {
 
 			// return a success value
 			return user;
-		} catch (SQLException e) {
+		}
+		catch (SQLException e) {
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
 			e.printStackTrace();
 			try {
 				DBconnection.close();
-			} catch (SQLException e1) {
+			}
+			catch (SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
@@ -373,15 +364,14 @@ public class DatabaseManager {
 				DataEntry entry = new DataEntry(entry_name, entry_type, encryption_key, owner, validUsers, secure_entry, last_modified, data_field_list);
 				dataEntryList.add(entry);
 			}
-
 			// Disconnect from database
 			dataEntrySet.close();
 			stmt.close();
 			DBconnection.close();
 
 			return dataEntryList;
-			
-		} catch (SQLException e) {
+		}
+		catch (SQLException e) {
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
 			e.printStackTrace();
 			// return a failure value
@@ -397,25 +387,21 @@ public class DatabaseManager {
 		try {
 			// Initialize a statement to execute
 			Statement stmt = DBconnection.createStatement();
-
 			// Construct the SQL select statement
 			String sql = "SELECT entry_name FROM data_entries WHERE owner = '" + user_email + "';";
-
 			// Execute SQL statement and retrieve result set
 			ResultSet entryNameSet = stmt.executeQuery(sql);
-
 			// Construct list from result set
 			while (entryNameSet.next()) {
 				String entryName = entryNameSet.getString("entry_name");
 				entryNameList.add(entryName);
 			}
-
 			// Disconnect and close database
 			entryNameSet.close();
 			stmt.close();
 			DBconnection.close();
-
-		} catch (SQLException e) {
+		}
+		catch (SQLException e) {
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
 			e.printStackTrace();
 		}
@@ -431,25 +417,21 @@ public class DatabaseManager {
 		try {
 			// Initialize a statement to execute
 			Statement stmt = DBconnection.createStatement();
-
 			// Construct the SQL select statement
 			String sql = "SELECT entry_type FROM data_entries WHERE owner = '" + user_email + "';";
-
 			// Execute SQL statement and retrieve result set
 			ResultSet entryTypeSet = stmt.executeQuery(sql);
-
 			// Construct list from result set
 			while (entryTypeSet.next()) {
 				String entryType = entryTypeSet.getString("entry_type");
 				entryTypeList.add(entryType);
 			}
-
 			// Disconnect and close database
 			entryTypeSet.close();
 			stmt.close();
 			DBconnection.close();
-
-		} catch (SQLException e) {
+		}
+		catch (SQLException e) {
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
 			e.printStackTrace();
 		}
@@ -471,39 +453,31 @@ public class DatabaseManager {
 	 */
 	public List<String> retrieveSharedEntryList(String user_email) {
 		List<String> sharedEntryList = new ArrayList<String>();
-
 		// Connect to the database
 		Connection DBconnection = connectToDatabase();
 		try {
 			// Initialize a statement to execute
 			Statement stmt = DBconnection.createStatement();
-
 			// Construct the SQL select statement (gets ALL data entries)
 			String sql = "SELECT entry_name, valid_users FROM data_entries;";
-
 			// Execute SQL statement and retrieve result set
 			ResultSet allDataEntries = stmt.executeQuery(sql);
-
-			// Construct list of available shared entries from result set of ALL
-			// entries
+			// Construct list of available shared entries from result set of ALL entries
 			while (allDataEntries.next()) {
-				// parse the valid_users STRING to get resulting LIST of valid
-				// users. Delimiter = ' '
+				// parse the valid_users STRING to get resulting LIST of valid users. Delimiter = ' '
 				String validUsers = allDataEntries.getString("valid_users");
 				String[] parsedValidUsers = validUsers.split(" ");
-				// search the String array for user_email; add to
-				// SharedEntryList
+				// search the String array for user_email; add to SharedEntryList
 				if (Arrays.binarySearch(parsedValidUsers, user_email) >= 0) {
 					sharedEntryList.add(allDataEntries.getString("entry_name"));
 				}
 			}
-
 			// Disconnect and close database
 			allDataEntries.close();
 			stmt.close();
 			DBconnection.close();
-
-		} catch (SQLException e) {
+		}
+		catch (SQLException e) {
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
 			e.printStackTrace();
 		}
@@ -531,8 +505,7 @@ public class DatabaseManager {
 			String encryptionKey = dataEntryInfoSet.getString("encryption_key");
 			String owner = dataEntryInfoSet.getString("owner");
 
-			// Parse the valid_users String and convert to List<String> to
-			// assign to validUsers field of DataEntry
+			// Parse the valid_users String and convert to List<String> to assign to validUsers field of DataEntry
 			List<String> validUsers = new ArrayList<String>();
 			String validUsersString = dataEntryInfoSet.getString("valid_users");
 			String[] parsedValidUsers = validUsersString.split(" ");
@@ -582,7 +555,8 @@ public class DatabaseManager {
 			Crypto c = new Crypto();
 			c.decrypt(user, dataEntry);
 			return dataEntry;
-		} catch (SQLException e) {
+		}
+		catch (SQLException e) {
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
 			e.printStackTrace();
 			// return a failure value
@@ -604,23 +578,20 @@ public class DatabaseManager {
 	public void modifyUserField(User user, String fieldName, String newTextData) {
 		// Connect to the database
 		Connection DBconnection = connectToDatabase();
-
 		try {
 			// Initialize a statement to execute
 			Statement stmt = DBconnection.createStatement();
 			// Construct the SQL UPDATE statement
-
 			String sql = "UPDATE users SET " + fieldName + " = '" + newTextData + "' " + "WHERE user_email = '"
 					+ user.getUsername() + "';";
-
 			// Execute the statement and commit database changes
 			stmt.executeUpdate(sql);
 			DBconnection.commit();
-
 			// Disconnect from database
 			stmt.close();
 			DBconnection.close();
-		} catch (SQLException e) {
+		}
+		catch (SQLException e) {
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
 			e.printStackTrace();
 		}
@@ -640,30 +611,20 @@ public class DatabaseManager {
 	public void modifyUserField(User user, String fieldName, int newIntData) {
 		// Connect to the database
 		Connection DBconnection = connectToDatabase();
-
 		try {
 			// Initialize a statement to execute
 			Statement stmt = DBconnection.createStatement();
 			// Construct the SQL UPDATE statement
-
 			String sql = "UPDATE users SET " + fieldName + " = " + String.valueOf(newIntData) + " "
 					+ "WHERE user_email = '" + user.getUsername() + "';";
-
-			/*
-			 * String sql = "UPDATE users" + "SET " + fieldName + " = '" +
-			 * String.valueOf(newIntData) + "' " + "WHERE user_email = '" +
-			 * user.getUsername() + "';";
-			 * 
-			 */
-
 			// Execute the statement and commit database changes
 			stmt.executeUpdate(sql);
 			DBconnection.commit();
-
 			// Disconnect from database
 			stmt.close();
 			DBconnection.close();
-		} catch (SQLException e) {
+		}
+		catch (SQLException e) {
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
 			e.printStackTrace();
 		}
@@ -693,7 +654,6 @@ public class DatabaseManager {
 					return -1;
 				}
 			}
-			// Initialize a statement to execute
 
 			// Construct the SQL INSERT statement
 			int size_of_datafield = newEntry.getFieldDataList().size();
@@ -704,7 +664,6 @@ public class DatabaseManager {
 					sql += ",";
 			}
 			sql += " WHERE entry_name=? AND owner=?;";
-
 
 			PreparedStatement preparedStatement = DBconnection.prepareStatement(sql);
 			int j = 2;
@@ -717,34 +676,21 @@ public class DatabaseManager {
 			System.out.println(newEntry.getEntryName() + oldEntry.getOwner());
 			preparedStatement.setString(j , oldEntry.getEntryName());
 			preparedStatement.setString(j + 1 , oldEntry.getOwner());
-
-			//System.out.println(sql);
-			
-			/*String sql_test = "UPDATE data_entries SET entry_name=?,data_field_1=? WHERE ";
-			
-			preparedStatement = DBconnection.prepareStatement(sql_test);
-			preparedStatement.setString(1, "myss");
-			preparedStatement.setString(2, "default");
-			preparedStatement.setString(3, "default");
-			preparedStatement.setString(4, "myss");*/
 			// Execute the statement and commit database changes
 			preparedStatement.executeUpdate();
 			DBconnection.commit();
-
 			// Disconnect from database
 			preparedStatement.close();
 			DBconnection.close();
-
 			// return a success value
 			return 1;
-
-		} catch (SQLException e) {
+		}
+		catch (SQLException e) {
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
 			e.printStackTrace();
 			// return a failure value
 			return -1;
 		}
-
 	}
 
 	public int addEntryToDatabase(User user, DataEntry entry) {
@@ -753,7 +699,8 @@ public class DatabaseManager {
 		Crypto c = new Crypto();
 		try {
 			entry.setEncryptionKey(c.randomDataKey(entry.isHighSecurity()));
-		} catch (UnsupportedEncodingException e) {
+		}
+		catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}		
@@ -805,19 +752,15 @@ public class DatabaseManager {
 
 			System.out.println(preparedStatement.toString());
 			preparedStatement.executeUpdate();
-			
-			// Execute the statement and commit database changes
-			// stmt.executeUpdate(sql);
+			// Execute the statement and commit database changes stmt.executeUpdate(sql);
 			DBconnection.commit();
-
 			// Disconnect from database
 			preparedStatement.close();
 			DBconnection.close();
-
 			// return a success value
 			return 1;
-
-		} catch (SQLException e) {
+		}
+		catch (SQLException e) {
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
 			e.printStackTrace();
 			// return a failure value
@@ -831,24 +774,20 @@ public class DatabaseManager {
 		try {
 			// Initialize a statement to execute
 			Statement stmt = DBconnection.createStatement();
-
 			// Construct the SQL INSERT statement
 			String sql = "DELETE FROM data_entries WHERE entry_name='" + entry.getEntryName() + "'" + " AND "
 					+ "owner='" + entry.getOwner() + "';";
 			System.out.println(sql);
-
 			// Execute the statement and commit database changes
 			stmt.executeUpdate(sql);
 			DBconnection.commit();
-
 			// Disconnect from database
 			stmt.close();
 			DBconnection.close();
-
 			// return a success value
 			return 1;
-
-		} catch (SQLException e) {
+		}
+		catch (SQLException e) {
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
 			e.printStackTrace();
 			// return a failure value
@@ -856,32 +795,25 @@ public class DatabaseManager {
 		}
 	}
 
-	// ******This method should always be called BEFORE we delete a user
-	// account*****
-	// TODO
 	public int deleteAllEntriesFromDatabase(User doomeduser) {
 		// Connect to the database
 		Connection DBconnection = connectToDatabase();
 		try {
 			// Initialize a statement to execute
 			Statement stmt = DBconnection.createStatement();
-
 			// Construct the SQL INSERT statement
 			String sql = "DELETE FROM data_entries WHERE owner='" + doomeduser.getUsername() + "';";
 			System.out.println(sql);
-
 			// Execute the statement and commit database changes
 			stmt.executeUpdate(sql);
 			DBconnection.commit();
-
 			// Disconnect from database
 			stmt.close();
 			DBconnection.close();
-
 			// return a success value
 			return 1;
-
-		} catch (SQLException e) {
+		}
+		catch (SQLException e) {
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
 			e.printStackTrace();
 			// return a failure value
