@@ -47,28 +47,7 @@ public class DatabaseManager {
 		}
 		return connection;
 	}
-	
-//	/**
-//	 * Connects to a given database and returns a Connection for two-way
-//	 * communication
-//	 * 
-//	 * @param	database	name of database to connect to
-//	 * @return	active		Connection to vault_database
-//	 */
-//	public static Connection connectToDatabase(String database) {
-//		Connection connection = null;
-//		// Establish connection to the existing database
-//		try {
-//			Class.forName("org.sqlite.JDBC");
-//			connection = DriverManager.getConnection("jdbc:sqlite:" + database);
-//			connection.setAutoCommit(false);
-//		} catch (Exception e) {
-//			System.err.println(e.getClass().getName() + ": " + e.getMessage());
-//			// e.printStackTrace();
-//		}
-//		return connection;
-//	}
-	
+		
 	/**
 	 * Create the "users" table in a given database to set up for use with Sentinel Data Vault
 	 * 
@@ -151,10 +130,8 @@ public class DatabaseManager {
 	/**
 	 * Adds a given user (account) to the vault database.
 	 * 
-	 * @param newUser
-	 *            user object to add to the vault database
-	 * @return positive integer if user successfully added; negative if user
-	 *         already exists in the database
+	 * @param	newUseruser	object to add to the vault database
+	 * @return	positive integer if user successfully added; negative if user already exists in the database
 	 */
 	public int addUserToDatabase(User newUser) {
 		// Connect to the database
@@ -203,15 +180,12 @@ public class DatabaseManager {
 	/**
 	 * Deletes a given user from the vault database.
 	 * 
-	 * @param doomedUser
-	 *            user object to delete from the vault database
-	 * @return positive integer if user successfully deleted; negative if
-	 *         unsuccessful
+	 * @param	doomedUser user object to delete from the vault database
+	 * @return	positive integer if user successfully deleted; negative if unsuccessful
 	 */
 	public int deleteUserFromDatabase(User doomedUser) {
 		// Connect to the database
 		Connection DBconnection = connectToDatabase();
-
 		try {
 			// Initialize a statement to execute
 			Statement stmt = DBconnection.createStatement();
@@ -237,10 +211,8 @@ public class DatabaseManager {
 	/**
 	 * Retrieves a stored user from the vault database
 	 * 
-	 * @param userEmail
-	 *            username (email) of user to be retrieved from the vault
-	 *            database
-	 * @return User object containing that user's stored data
+	 * @param	userEmail username (email) of user to be retrieved from the vault database
+	 * @return	User object containing that user's stored data
 	 */
 	public User retrieveUserFromDatabase(String userEmail) {
 		// Connect to the database
@@ -304,9 +276,9 @@ public class DatabaseManager {
 	/**
 	 * Retrieve of List of all a user's data entry objects
 	 * 
-	 * @param userEmail	user to retrieve data entries from
-	 * @param database	name of database to access
-	 * @return			List<DataEntry> of all a user's data entries
+	 * @param	userEmail	user to retrieve data entries from
+	 * @param	database	name of database to access
+	 * @return	List<DataEntry> of all a user's data entries
 	 */
 	public List<DataEntry> retrieveUserDataEntries(String userEmail) {
 		// Connect to the database
@@ -379,9 +351,16 @@ public class DatabaseManager {
 		}
 	}
 
+	/**
+	 * Generates a List of Strings of all the data entry NAMES of a given user.
+	 * To be used in tandem with retrieveDataEntryTypeList().
+	 * The order of the List's items for both methods will correspond directly with each other [Name <–> Type].
+	 * 
+	 * @param	user_email username (email) of the user to retrieve data entries from.
+	 * @return	List<String> of all the data entry NAMES of user_email
+	 */
 	public List<String> retrieveDataEntryNameList(String user_email) {
 		List<String> entryNameList = new ArrayList<String>();
-
 		// Connect to the database
 		Connection DBconnection = connectToDatabase();
 		try {
@@ -409,9 +388,16 @@ public class DatabaseManager {
 		return entryNameList;
 	}
 
+	/**
+	 * Generates a List of Strings of all the data entry TYPES of a given user.
+	 * To be used in tandem with retrieveDataEntryNameList().
+	 * The order of the List's items for both methods will correspond directly with each other [Name <–> Type].
+	 * 
+	 * @param	user_email username (email) of the user to retrieve data entries from.
+	 * @return	List<String> of all the data entry TYPES of user_email
+	 */
 	public List<String> retrieveDataEntryTypeList(String user_email) {
 		List<String> entryTypeList = new ArrayList<String>();
-
 		// Connect to the database
 		Connection DBconnection = connectToDatabase();
 		try {
@@ -439,12 +425,10 @@ public class DatabaseManager {
 		return entryTypeList;
 	}
 
-	// TODO May need to be adjusted based on how shared data entries will be
-	// retrieved from the database (name & owner?)
+	// TODO May need to be adjusted based on how shared data entries will be retrieved from the database (name & owner?)
 	/**
-	 * Generates an alphabetical List of all a given user’s viewable shared data
-	 * entries. NOTE: Requires that valid_users field in database contains a
-	 * SORTED String of user_emails separated by " " (space)
+	 * Generates an alphabetical List of all a given user’s viewable shared data entries.
+	 * NOTE: Requires that valid_users field in database contains a SORTED String of user_emails separated by " " (space)
 	 * 
 	 * @param user_email
 	 *            User to find viewable shared entries for
@@ -486,6 +470,14 @@ public class DatabaseManager {
 		return sharedEntryList;
 	}
 
+	/**
+	 * Retrieves a single data entry from the vault database.
+	 * 
+	 * @param	entryname	Name of the data entry to be retrieved
+	 * @param	user		User who owns the data entry to be retrieved
+	 * @param	type		Type of the data entry to be retrieved
+	 * @return	DataEntry object representation of the data entry in the database.
+	 */
 	public DataEntry retrieveOneDataEntry(String entryname, User user, String type) {
 		// Connect to the database
 		Connection DBconnection = connectToDatabase();
@@ -565,15 +557,11 @@ public class DatabaseManager {
 	}
 
 	/**
-	 * Modifies a TEXT (String) user field in the 'users' table of the vault
-	 * database
+	 * Modifies a TEXT (String) field of a user entry in the 'users' table of the vault database
 	 * 
-	 * @param user
-	 *            user whose field is to be updated
-	 * @param fieldName
-	 *            name of user field to modify ('users' table column identifier)
-	 * @param newTextData
-	 *            new TEXT data to put into user field
+	 * @param user			User whose field is to be updated
+	 * @param fieldName		Name of the user field to be modified ('users' table column identifier)
+	 * @param newTextData	New TEXT data to insert into the field
 	 */
 	public void modifyUserField(User user, String fieldName, String newTextData) {
 		// Connect to the database
@@ -598,15 +586,11 @@ public class DatabaseManager {
 	}
 
 	/**
-	 * Modifies a INTEGER (int) user field in the 'users' table of the vault
-	 * database
+	 * Modifies an INTEGER (int) field of a user entry in the 'users' table of the vault database
 	 * 
-	 * @param user
-	 *            user whose field is to be updated
-	 * @param fieldName
-	 *            name of user field to modify ('users' table column identifier)
-	 * @param newIntData
-	 *            new INTEGER data to put into user field
+	 * @param user			User whose field is to be updated
+	 * @param fieldName		Name of the user field to be modified ('users' table column identifier)
+	 * @param newIntData	New INTEGER data to insert into the field
 	 */
 	public void modifyUserField(User user, String fieldName, int newIntData) {
 		// Connect to the database
@@ -630,12 +614,20 @@ public class DatabaseManager {
 		}
 	}
 
+	/**
+	 * Replaces an existing data entry with a new one.
+	 * 
+	 * @param 	user		User whose data entry is to be replaced
+	 * @param 	oldEntry	Existing data entry that will be replaced
+	 * @param 	newEntry	New data entry that will replace the existing data entry
+	 * @return	positive integer upon successful replacement; negative if failure
+	 */
 	public int updateEntry(User user, DataEntry oldEntry, DataEntry newEntry) {
 		// Connect to the database
 		Connection DBconnection = connectToDatabase();
 		Crypto c = new Crypto();
 		newEntry = c.encrypt(user, newEntry);
-		for(int i = 0; i < newEntry.getFieldDataList().size();i++) {
+		for(int i = 0; i < newEntry.getFieldDataList().size(); i++) {
 			System.out.println(newEntry.getFieldDataList().get(i));
 		}
 		try {
@@ -693,6 +685,13 @@ public class DatabaseManager {
 		}
 	}
 
+	/**
+	 * Adds a data entry in the database for a User's account
+	 * 
+	 * @param	user	User to add a data entry for
+	 * @param	entry	Data entry to be added to the database
+	 * @return	positive integer if data entry successfully added; negative if failure
+	 */
 	public int addEntryToDatabase(User user, DataEntry entry) {
 		// Connect to the database
 		Connection DBconnection = connectToDatabase();
@@ -768,6 +767,12 @@ public class DatabaseManager {
 		}
 	}
 
+	/**
+	 * Completely delete a single data entry from the database
+	 * 
+	 * @param	entry Data entry to be deleted from the database
+	 * @return	positive integer upon successful deletion; negative if failure
+	 */
 	public int deleteEntryFromDatabase(DataEntry entry) {
 		// Connect to the database
 		Connection DBconnection = connectToDatabase();
@@ -795,14 +800,20 @@ public class DatabaseManager {
 		}
 	}
 
-	public int deleteAllEntriesFromDatabase(User doomeduser) {
+	/**
+	 * Completely deletes all data entries from the database for a given user.
+	 * 
+	 * @param	destroyer User whose data entries will be deleted from the database
+	 * @return	positive integer upon successful deletion; negative if failure
+	 */
+	public int deleteAllEntriesFromDatabase(User destroyer) {
 		// Connect to the database
 		Connection DBconnection = connectToDatabase();
 		try {
 			// Initialize a statement to execute
 			Statement stmt = DBconnection.createStatement();
 			// Construct the SQL INSERT statement
-			String sql = "DELETE FROM data_entries WHERE owner='" + doomeduser.getUsername() + "';";
+			String sql = "DELETE FROM data_entries WHERE owner='" + destroyer.getUsername() + "';";
 			System.out.println(sql);
 			// Execute the statement and commit database changes
 			stmt.executeUpdate(sql);
