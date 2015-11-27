@@ -220,7 +220,7 @@ public class SettingsView {
 				
 			}
 		});
-		btnOk.setBounds(79, 255, 97, 25);
+		btnOk.setBounds(81, 276, 97, 25);
 		frmSettings.getContentPane().add(btnOk);
 		
 		//closes window
@@ -232,7 +232,7 @@ public class SettingsView {
 				}
 			}
 		});
-		btnCancel.setBounds(248, 255, 97, 25);
+		btnCancel.setBounds(248, 276, 97, 25);
 		frmSettings.getContentPane().add(btnCancel);
 		
 		JCheckBox chckbxD = new JCheckBox("Turn on account wipe after 6 failed login attemps");
@@ -262,7 +262,7 @@ public class SettingsView {
 				frmSettings.dispose();
 			}
 		});
-		btnChangePassword.setBounds(58, 205, 139, 25);
+		btnChangePassword.setBounds(58, 231, 139, 25);
 		frmSettings.getContentPane().add(btnChangePassword);
 		
 		JButton btnDeleteAccount = new JButton("Delete Account"); //Delete Account Button
@@ -288,7 +288,11 @@ public class SettingsView {
 				}
 			}
 		});
-		btnDeleteAccount.setBounds(232, 205, 129, 25);
+		btnDeleteAccount.setBounds(228, 231, 129, 25);
 		frmSettings.getContentPane().add(btnDeleteAccount);
+		
+		JButton btnChangeAvatar = new JButton("Change Avatars Picture");
+		btnChangeAvatar.setBounds(58, 190, 169, 29);
+		frmSettings.getContentPane().add(btnChangeAvatar);
 	}
 }
