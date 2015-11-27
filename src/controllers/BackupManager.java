@@ -32,6 +32,14 @@ public class BackupManager {
 		}
 	}
 	
+	/**
+	 * Imports data entries from a database backup file into the current user's account
+	 * 
+	 * @param currentUser			Current user who will receive entries from the backup
+	 * @param backupUser			User of the backup file whose entries will be added to the current user
+	 * @param currentDatabaseName	Name of the current working database to receive entries from the backup
+	 * @param backupDatabaseName	Name of the backup database whose entries will be added to the current database
+	 */
 	public void importEntriesFromBackup(User currentUser, User backupUser, String currentDatabaseName, String backupDatabaseName) {
 		// Connect to backup database and retrieve all the entries into a List
 		DatabaseManager dbm = new DatabaseManager(backupDatabaseName);
@@ -44,6 +52,14 @@ public class BackupManager {
 		}
 	}
 	
+	/**
+	 * Determines if the current user has correct privileges to access a backup database file
+	 * 
+	 * @param	backupUserEmail		Username (email) of the user who owns the backup database file
+	 * @param	backupUserPassword	Entered password to validate against the actual password of the backup database's owner
+	 * @param	backupDatabaseName	Name of the backup database being attempted to access
+	 * @return	true if the given credentials of the backup database file are valid; false if not 
+	 */
 	public boolean isValidBackupUser(String backupUserEmail, String backupUserPassword, String backupDatabaseName) {
 		DatabaseManager dbm = new DatabaseManager(backupDatabaseName);
 		User backupUser = dbm.retrieveUserFromDatabase(backupUserEmail);
