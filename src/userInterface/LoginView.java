@@ -81,7 +81,7 @@ public class LoginView {
 		System.out.println(passwordField.getEchoChar());
 
 		JCheckBox chckbxShowPassword = new JCheckBox("Show Password");
-		chckbxShowPassword.setBounds(130, 175, 128, 23);
+		chckbxShowPassword.setBounds(130, 176, 128, 23);
 		frmSignIn.getContentPane().add(chckbxShowPassword);
 
 		chckbxShowPassword.addItemListener(new ItemListener() {
@@ -89,7 +89,7 @@ public class LoginView {
 				if (e.getStateChange() == ItemEvent.SELECTED) {
 					passwordField.setEchoChar((char)0);
 				} else {
-					passwordField.setEchoChar('●');
+					passwordField.setEchoChar('*'); // TODO Get this to something that actually looks good
 				}
 			}
 		});
@@ -185,7 +185,6 @@ public class LoginView {
 			public void actionPerformed(ActionEvent e) {
 				frmSignIn.setVisible(false);
 				PasswordRecoveryView p = new PasswordRecoveryView();
-				frmSignIn.setVisible(true);
 			}
 		});
 		btnForgotPassword.setToolTipText("Click here to reset your account password");
@@ -205,7 +204,7 @@ public class LoginView {
 		txtWarning.setEditable(false);
 		txtWarning.setFont(new Font("Tahoma", Font.ITALIC, 12));
 		txtWarning.setBackground(SystemColor.window);
-		txtWarning.setBounds(57, 175, 340, 26);
+		txtWarning.setBounds(57, 196, 340, 26);
 		frmSignIn.getContentPane().add(txtWarning);
 		txtWarning.setColumns(10);
 

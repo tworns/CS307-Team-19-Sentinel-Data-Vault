@@ -25,8 +25,8 @@ public class PasswordRecoveryView {
 
 	public JFrame frmSentinelDataVault;
 	private JTextField textField;
-	User user;
-	String username;
+	public  User user;
+	private String username;
 	private String code = null;
 	private JTextField invalidUser;
 	private JTextField securityQuestion;
@@ -39,6 +39,7 @@ public class PasswordRecoveryView {
 	private JTextField txtIncorrectAnswer;
 	private JTextField txtIncorrectCode;
 	private JButton btnCancel;
+	
 	
 	/**
 	 * Launch the application.
@@ -96,6 +97,7 @@ public class PasswordRecoveryView {
 					securityQuestionAnswer.setVisible(true);
 					btnValidate.setVisible(false);
 					btnValidate_1.setVisible(true);
+					invalidUser.setText("");
 				}
 			}
 		});
@@ -147,6 +149,8 @@ public class PasswordRecoveryView {
 					securityCode.setVisible(true);
 					lblSecurityCode.setVisible(true);
 					try {
+						JOptionPane.showMessageDialog(null, "An email containing your security code has been sent to you.\n"
+								+ " If you do not find this email in your inbox, please check your spam folder", "Change Password", 1);
 						SaltGenerator chat = new SaltGenerator();
 						 code = chat.generateSalt();
 						VaultController.Send("sentineldatavault", "SENTINELDATA", user.getUsername(), 
@@ -154,12 +158,11 @@ public class PasswordRecoveryView {
 										+ "If you did not initiate this change, this e-mail can be safely disregarded.\n\n"+
 										"Your security code is: " + code +"\n\n" +
 										"Sincerely,\nSentinel Data Vault Team");
+						txtIncorrectAnswer.setText("");
 					} catch (Exception e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					JOptionPane.showMessageDialog(null, "An email containing your security code has been sent to you.\n"
-							+ " If you do not find this email in your inbox, please check your spam folder", "Change Password", 1);
 				}
 				else { 
 					txtIncorrectAnswer.setText("Incorrect Answer");
@@ -185,7 +188,9 @@ public class PasswordRecoveryView {
 			public void actionPerformed(ActionEvent arg0) {
 				
 					if(securityCode.getText().equals(code)) { 
-						System.out.println("WE DID IT REDDIT!"); //TODO New passwordView
+						txtIncorrectCode.setText("");
+						PasswordChangeRecovery k = new PasswordChangeRecovery(user);
+						frmSentinelDataVault.dispose();
 						}
 					if (code.equals(securityCode.getText())!= true && (securityCode.getText() != null || securityCode.getText().equals("") == false)) { 
 						txtIncorrectCode.setText("Incorrect code");
