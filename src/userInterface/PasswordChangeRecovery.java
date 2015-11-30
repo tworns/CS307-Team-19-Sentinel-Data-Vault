@@ -100,10 +100,10 @@ public class PasswordChangeRecovery {
 				}
 				
 				else if(pass1.trim().equals(pass2.trim()) != true) { 
-					textField_2.setText("Passwords Must Match");
+					textField_2.setText("Passwords must match. Please try again.");
 				}
 				else if(v.minStandard(pass1) != true){ 
-					textField_2.setText("Password must contain one of each type of character");
+					textField_2.setText("Password must contain at least 8 characters, an uppercase and lowercase letter, a number, and a symbol.");
 				}
 				else { 
 					textField_2.setText("Unidentified input");
