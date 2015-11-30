@@ -261,25 +261,26 @@ public class HomeView {
 
 		GroupLayout gl_panel_south = new GroupLayout(panel_south);
 		gl_panel_south.setHorizontalGroup(
-				gl_panel_south.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, gl_panel_south.createSequentialGroup()
-						.addContainerGap()
-						.addComponent(panel_west, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
-						.addComponent(panel_center, GroupLayout.PREFERRED_SIZE, 225, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(panel_east, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
-						.addContainerGap())
-				);
-		gl_panel_south.setVerticalGroup(
-				gl_panel_south.createParallelGroup(Alignment.LEADING)
+			gl_panel_south.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_panel_south.createSequentialGroup()
-						.addGroup(gl_panel_south.createParallelGroup(Alignment.LEADING)
-								.addComponent(panel_east, GroupLayout.PREFERRED_SIZE, 375, GroupLayout.PREFERRED_SIZE)
-								.addComponent(panel_center, GroupLayout.PREFERRED_SIZE, 375, GroupLayout.PREFERRED_SIZE)
-								.addComponent(panel_west, GroupLayout.PREFERRED_SIZE, 375, GroupLayout.PREFERRED_SIZE))
-						.addContainerGap())
-				);
+					.addContainerGap()
+					.addComponent(panel_west, GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(panel_center, GroupLayout.PREFERRED_SIZE, 245, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(panel_east, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap())
+		);
+		gl_panel_south.setVerticalGroup(
+			gl_panel_south.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_panel_south.createSequentialGroup()
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addGroup(gl_panel_south.createParallelGroup(Alignment.LEADING)
+						.addComponent(panel_center, GroupLayout.PREFERRED_SIZE, 375, GroupLayout.PREFERRED_SIZE)
+						.addComponent(panel_west, GroupLayout.PREFERRED_SIZE, 375, GroupLayout.PREFERRED_SIZE)
+						.addComponent(panel_east, GroupLayout.PREFERRED_SIZE, 375, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap())
+		);
 
 		//panel_west		
 		textField = new JTextField();
@@ -576,7 +577,12 @@ public class HomeView {
 					
 					panelName = selectedNode.getParent().toString();
 
-					panel_east.addTab(panelName, null, panel, null);
+					
+					JScrollPane scroll = new JScrollPane(panel);
+					panel_east.addTab(panelName, null, scroll, null);
+
+					
+					//panel_east.addTab(panelName, null, panel, null);
 
 					System.out.println("Leaf: " + selectedNodeName);
 					indexList.clear();
