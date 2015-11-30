@@ -425,6 +425,7 @@ public class DataEntryPanel extends JPanel{
 			row = (i*2+2);
 			JFormattedTextField formattedTextField1 = new JFormattedTextField();
 			formattedTextField1.setText(data.getFieldDataList().get(i));
+			formattedTextField1.setEditable(false);
 			panel.add(formattedTextField1, "cell 0 "+ Integer.toString(row) +",growx");
 		}
 						
