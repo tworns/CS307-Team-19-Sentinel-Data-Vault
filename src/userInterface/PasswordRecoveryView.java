@@ -19,14 +19,11 @@ import java.security.NoSuchAlgorithmException;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 
-
-
 public class PasswordRecoveryView {
 
 	public JFrame frmSentinelDataVault;
 	private JTextField textField;
 	public  User user;
-	private String username;
 	private String code = null;
 	private JTextField invalidUser;
 	private JTextField securityQuestion;
