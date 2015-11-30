@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
@@ -367,6 +368,7 @@ public class HomeView {
 		//Tree		
 
 		JTree tree = new JTree();
+		
 		
 		DatabaseManager dbmanger = new DatabaseManager("vault_database");
 		currentUser = dbmanger.retrieveUserFromDatabase(username);
@@ -743,8 +745,15 @@ public class HomeView {
 			}
 
 		}
-
-		panel_center.addTab("Category", null, tree, null);
+		
+		
+		JScrollPane jsp = new JScrollPane(tree);
+		panel_center.addTab("Category", null, jsp, null);
+		
+		
+		//panel_center.addTab("Category", null, tree, null);
+		
+		
 		
 		JList list = new JList();
 		panel_center.addTab("Item List", null, list, null);
