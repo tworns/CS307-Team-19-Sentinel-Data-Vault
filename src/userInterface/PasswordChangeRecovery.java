@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.JTextPane;
 
 import cryptography.PasswordHasher;
 import dataManagement.User;
@@ -23,7 +24,7 @@ public class PasswordChangeRecovery {
 	private JPasswordField textField;
 	private JPasswordField textField_1;
 	private User currentUser;
-	private JTextField textField_2;
+	private JTextPane textField_2;
 	/**
 	 * Launch the application.
 	 */
@@ -54,7 +55,7 @@ public class PasswordChangeRecovery {
 	private void initialize() {
 		frmPasswordRecovery = new JFrame();
 		frmPasswordRecovery.setTitle("Password Recovery");
-		frmPasswordRecovery.setBounds(100, 100, 450, 300);
+		frmPasswordRecovery.setBounds(100, 100, 450, 256);
 		frmPasswordRecovery.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmPasswordRecovery.getContentPane().setLayout(null);
 		frmPasswordRecovery.setLocationRelativeTo(null);
@@ -76,10 +77,6 @@ public class PasswordChangeRecovery {
 		JLabel lblConfirmNewPassword = new JLabel("Confirm Password");
 		lblConfirmNewPassword.setBounds(254, 92, 148, 16);
 		frmPasswordRecovery.getContentPane().add(lblConfirmNewPassword);
-		
-		JLabel lblRememberThatPassword = new JLabel("Remember that password must be longer than 8 characters ");
-		lblRememberThatPassword.setBounds(38, 186, 388, 22);
-		frmPasswordRecovery.getContentPane().add(lblRememberThatPassword);
 		
 		JLabel lblPasswordReset = new JLabel("Password Reset");
 		lblPasswordReset.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -110,7 +107,7 @@ public class PasswordChangeRecovery {
 				}
 			}
 		});
-		btnResetPassword.setBounds(52, 240, 135, 25);
+		btnResetPassword.setBounds(51, 186, 135, 25);
 		frmPasswordRecovery.getContentPane().add(btnResetPassword);
 		
 		JButton btnCancel = new JButton("Cancel");
@@ -119,10 +116,10 @@ public class PasswordChangeRecovery {
 				frmPasswordRecovery.dispose();
 			}
 		});
-		btnCancel.setBounds(239, 240, 135, 25);
+		btnCancel.setBounds(238, 186, 135, 25);
 		frmPasswordRecovery.getContentPane().add(btnCancel);
 		
-		textField_2 = new JTextField();
+		textField_2 = new JTextPane();
 		textField_2.setFont(new Font("Tahoma", Font.ITALIC, 12));
 		textField_2.setOpaque(false);
 		textField_2.setFocusTraversalKeysEnabled(false);
@@ -130,8 +127,8 @@ public class PasswordChangeRecovery {
 		textField_2.setBorder(null);
 		textField_2.setForeground(new Color(220, 20, 60));
 		textField_2.setEditable(false);
-		textField_2.setBounds(78, 116, 324, 22);
+		textField_2.setBounds(78, 116, 324, 58);
 		frmPasswordRecovery.getContentPane().add(textField_2);
-		textField_2.setColumns(10);
+		//textField_2.setColumns(10);
 	}
 }
