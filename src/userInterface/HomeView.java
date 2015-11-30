@@ -192,6 +192,17 @@ public class HomeView {
 			}
 		});
 		btnEditData.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
+		
+		JButton btnShareData = new JButton("Share Entry");
+		btnShareData.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
+		btnEditData.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				EditDataEntryView editDataEntry = new EditDataEntryView(currentUser, currentEntry);
+				editDataEntry.getJframe().setVisible(true);
+			}
+		});
+		btnEditData.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
+
 
 		GroupLayout gl_panel_north = new GroupLayout(panel_north);
 		gl_panel_north.setHorizontalGroup(
@@ -201,7 +212,7 @@ public class HomeView {
 						.addPreferredGap(ComponentPlacement.RELATED)
 						.addComponent(btnSetting, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
 						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(lblEmpty_1, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblEmpty_1, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
 						.addPreferredGap(ComponentPlacement.RELATED)
 						.addComponent(btnAddData, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
 						.addPreferredGap(ComponentPlacement.RELATED)
@@ -210,6 +221,8 @@ public class HomeView {
 						.addComponent(lblEmpty_2, GroupLayout.PREFERRED_SIZE, 55, GroupLayout.PREFERRED_SIZE)
 						.addPreferredGap(ComponentPlacement.RELATED)
 						.addComponent(btnEditData, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addComponent(btnShareData, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
 						.addPreferredGap(ComponentPlacement.RELATED)
 						.addComponent(btnSecurity, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
 						.addGap(326))
@@ -226,7 +239,8 @@ public class HomeView {
 										.addComponent(btnSecurity, GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
 										.addComponent(lblEmpty_1)
 										.addComponent(lblEmpty_2)
-										.addComponent(btnEditData, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)))
+										.addComponent(btnEditData, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
+										.addComponent(btnShareData, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)))
 						.addGap(15))
 				);
 		panel_north.setLayout(gl_panel_north);
@@ -270,6 +284,7 @@ public class HomeView {
 		textField = new JTextField();
 		textField.setText(username);
 		textField.setColumns(10);
+		textField.setEditable(false);
 
 		JLabel lblLastLogin = new JLabel("Last Login");
 

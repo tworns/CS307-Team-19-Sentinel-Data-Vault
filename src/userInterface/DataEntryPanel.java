@@ -17,9 +17,9 @@ import net.miginfocom.swing.MigLayout;
 
 
 public class DataEntryPanel extends JPanel{
+	//private JPanel panel = new JPanel();
 	private JPanel panel = new JPanel();
 	private JLabel info = new JLabel("Select Data Entry");
-
 	public DataEntryPanel() {
 		
 		initialize();
