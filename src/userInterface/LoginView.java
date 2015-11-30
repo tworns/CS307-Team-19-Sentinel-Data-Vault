@@ -78,7 +78,7 @@ public class LoginView {
 		passwordField = new JPasswordField();
 		passwordField.setBounds(130, 142, 184, 24);
 		
-		passwordField.setEchoChar('*');
+		char a = passwordField.getEchoChar();
 
 		JCheckBox chckbxShowPassword = new JCheckBox("Show Password");
 		chckbxShowPassword.setBounds(130, 176, 128, 23);
@@ -89,7 +89,7 @@ public class LoginView {
 				if (e.getStateChange() == ItemEvent.SELECTED) {
 					passwordField.setEchoChar((char)0);
 				} else {
-					passwordField.setEchoChar('*'); // TODO Get this to something that actually looks good
+					passwordField.setEchoChar(a); // TODO Get this to something that actually looks good
 				}
 			}
 		});
