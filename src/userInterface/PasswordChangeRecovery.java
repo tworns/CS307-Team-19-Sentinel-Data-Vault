@@ -50,7 +50,7 @@ public class PasswordChangeRecovery {
 	public PasswordChangeRecovery(User user, JFrame frame) {
 		initialize();
 		this.currentUser = user;
-		this.grandParentFrame = frame;
+		this.grandParentFrame = frame; //Needed so that LoginView can be shown again. 
 	}
 
 	/**
