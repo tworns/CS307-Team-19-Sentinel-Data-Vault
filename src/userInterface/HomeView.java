@@ -200,6 +200,18 @@ public class HomeView {
 		btnEditData.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
 		
 		JButton btnShareData = new JButton("Share Entry");
+		btnShareData.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(currentEntry != null){
+					ShareView share = new ShareView(currentUser, currentEntry);
+					share.setVisible(true);
+				}
+				else{
+					JOptionPane.showMessageDialog(null,
+							"You need to select a data entry before sharing!");
+				}
+			}
+		});
 		btnShareData.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
 		btnEditData.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

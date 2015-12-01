@@ -18,6 +18,7 @@ import java.awt.Color;
 import dataManagement.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTabbedPane;
 
 public class ShareView extends JFrame {
 
@@ -51,14 +52,38 @@ public class ShareView extends JFrame {
 		this.oldData = entry;
 		this.sharingData = entry;
 		setResizable(false);
+		setTitle("Share with your friend");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 446, 265);
 		contentPanel = new JPanel();
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPanel);
 		contentPanel.setLayout(null);
 		
+		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.setBounds(0, -1, 440, 233);
+		contentPanel.add(tabbedPane);
+		
+		JPanel panel = new JPanel();
+		tabbedPane.addTab("Share", null, panel, null);
+		panel.setLayout(null);
+		
+		JLabel lblEmailAccountYou = new JLabel("Enter the email account you want to share with:");
+		lblEmailAccountYou.setBounds(31, 5, 376, 18);
+		panel.add(lblEmailAccountYou);
+		
 		JButton btnShareLocally = new JButton("Share locally");
+		btnShareLocally.setBounds(31, 129, 137, 27);
+		panel.add(btnShareLocally);
+		
+		JButton btnShareViaEmail = new JButton("Share via email");
+		btnShareViaEmail.setBounds(182, 129, 153, 27);
+		panel.add(btnShareViaEmail);
+		
+		textField = new JTextField();
+		textField.setBounds(31, 63, 199, 24);
+		panel.add(textField);
+		textField.setColumns(10);
 		btnShareLocally.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				DatabaseManager d = new DatabaseManager("vault_database");
@@ -79,20 +104,7 @@ public class ShareView extends JFrame {
 			}
 		});
 		
-		btnShareLocally.setBounds(46, 186, 130, 27);
-		contentPanel.add(btnShareLocally);
-		
-		JButton btnShareViaEmail = new JButton("Share via email");
-		btnShareViaEmail.setBounds(241, 186, 130, 27);
-		contentPanel.add(btnShareViaEmail);
-		
-		JLabel lblEmailAccountYou = new JLabel("Enter the email account you want to share with:");
-		lblEmailAccountYou.setBounds(46, 46, 360, 18);
-		contentPanel.add(lblEmailAccountYou);
-		
-		textField = new JTextField();
-		textField.setBounds(46, 106, 210, 24);
-		contentPanel.add(textField);
-		textField.setColumns(10);
+		JPanel panel_1 = new JPanel();
+		tabbedPane.addTab("Decrypt", null, panel_1, null);
 	}
 }
