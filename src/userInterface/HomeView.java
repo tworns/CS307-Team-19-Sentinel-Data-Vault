@@ -25,6 +25,7 @@ import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
 
 import dataManagement.*;
+import controllers.BackupManager;
 import controllers.DatabaseManager;
 import java.awt.Color;
 import java.awt.Font;
@@ -308,7 +309,8 @@ public class HomeView {
 		JButton btnCreatebackup = new JButton("Create Backup");
 		btnCreatebackup.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				BackupManager bm = new BackupManager();
+				bm.createUserBackupDatabase(currentUser);
 			}
 		});
 		GroupLayout gl_panel_west = new GroupLayout(panel_west);

@@ -1,10 +1,10 @@
 package controllers;
 
 import java.util.List;
-import java.sql.*;
 import dataManagement.DataEntry;
 import dataManagement.User;
 import security.PasswordValidation;
+import java.io.*;
 
 public class BackupManager {
 	
@@ -14,17 +14,20 @@ public class BackupManager {
 	 * @param user User object to create an account backup database file for
 	 */
 	public void createUserBackupDatabase(User user) {
-		// Retrieve all of user's data entries into a list
-		DatabaseManager dbm = new DatabaseManager("vault_database");
-		List<DataEntry> dataEntryList = dbm.retrieveUserDataEntries(user.getUsername());
 		// Parse username from user_email to use as backup database name
 		String username = user.getUsername().substring(0, user.getUsername().indexOf('@'));
 		String backup_database_name = username + "_backup_database";
+		// Retrieve all of user's data entries into a list
+		DatabaseManager dbm = new DatabaseManager("vault_database");
+		List<DataEntry> dataEntryList = dbm.retrieveUserDataEntries(user.getUsername());
 		// Create a new backup database to store account data
 		dbm.setWorkingDatabase(backup_database_name); // DatabaseManager dbm = new DatabaseManager(backup_database_name);
-		// Create the users and data_entries tables in new database
-		dbm.createUsersTable();
-		dbm.createDataEntriesTable();
+		// If backup does not already exist, create the users and data_entries tables in new database
+		File databaseFile = new File(backup_database_name);
+		if (!databaseFile.exists()) {
+			dbm.createUsersTable();
+			dbm.createDataEntriesTable();
+		}
 		// Fill the new database with the user and their entries from the List of user's data entries
 		dbm.addUserToDatabase(user);
 		for (DataEntry entry : dataEntryList) {
@@ -73,7 +76,13 @@ public class BackupManager {
 	}
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+//		File databaseFile = new File("README.md");
+//		if (databaseFile.exists()) {
+//			System.out.println("File exists.");
+//		}
+//		else {
+//			System.out.println("File does not exist.");
+//		}
 
 	}
 
