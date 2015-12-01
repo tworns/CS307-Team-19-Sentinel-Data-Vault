@@ -592,7 +592,7 @@ public class HomeView {
 			}
 			/*
 			private DataEntry retrieveOneDataEntry(String selectedNodeName, User currentUser, String string) {
-				// TODO Auto-generated method stub
+				
 				return null;
 
 			}*/

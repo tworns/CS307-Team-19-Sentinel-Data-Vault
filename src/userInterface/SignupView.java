@@ -115,7 +115,7 @@ public class SignupView extends JFrame {
 						txtpnWarning.setText("This account already exists! Please try another email.");
 					}
 				} catch (NoSuchAlgorithmException e1) {
-						// TODO Auto-generated catch block
+					
 						e1.printStackTrace();
 				}
 				

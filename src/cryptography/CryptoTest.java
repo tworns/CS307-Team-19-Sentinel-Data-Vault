@@ -28,7 +28,6 @@ public class CryptoTest {
  		try {
 			testData.setEncryptionKey(test.randomDataKey(testData.isHighSecurity()));
 		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}		
 		System.out.println(testData.getEncryptionKey()+ "\n");

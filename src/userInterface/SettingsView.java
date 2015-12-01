@@ -211,7 +211,7 @@ public class SettingsView {
 		btnOk.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 					DatabaseManager newVegas =  new DatabaseManager("vault_database");
-					//TODO Test this. A lot. 
+	
 					newVegas.modifyUserField(currentUser, "high_security", currentUser.isHighSecurity());
 					newVegas.modifyUserField(currentUser, "backup_frequency", currentUser.getBackupFrequency());
 					newVegas.modifyUserField(currentUser, "account_wipe_set", currentUser.isAccountWipeSet());
@@ -270,7 +270,7 @@ public class SettingsView {
 			public void actionPerformed(ActionEvent arg0) {
 				if(JOptionPane.showConfirmDialog(frmSettings, "Are You Sure?", "Sign Out",JOptionPane.YES_NO_OPTION, JOptionPane.DEFAULT_OPTION) == 0) {
 					//This is for the user answering yes.
-					//TODO Actually delete stuff, close windows, etc.
+					// Actually deletes stuff, closes windows, etc.
 					DatabaseManager d = new DatabaseManager("vault_database");
 					d.deleteAllEntriesFromDatabase(currentUser);
 					if (d.deleteUserFromDatabase(currentUser) == 1) {

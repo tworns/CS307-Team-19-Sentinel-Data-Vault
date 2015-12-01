@@ -157,7 +157,7 @@ public class PasswordRecoveryView {
 										"Sincerely,\nSentinel Data Vault Team");
 						txtIncorrectAnswer.setText("");
 					} catch (Exception e1) {
-						// TODO Auto-generated catch block
+						
 						e1.printStackTrace();
 					}
 				}

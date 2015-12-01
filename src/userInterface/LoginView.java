@@ -89,7 +89,7 @@ public class LoginView {
 				if (e.getStateChange() == ItemEvent.SELECTED) {
 					passwordField.setEchoChar((char)0);
 				} else {
-					passwordField.setEchoChar(a); // TODO Get this to something that actually looks good
+					passwordField.setEchoChar(a); 
 				}
 			}
 		});
@@ -115,7 +115,7 @@ public class LoginView {
 				try {
 					result = v.loginCheck(username, password);
 				} catch (NoSuchAlgorithmException e1) {
-					// TODO Auto-generated catch block
+					
 					e1.printStackTrace();
 				}
 				if (result == 1) {
@@ -134,10 +134,8 @@ public class LoginView {
 										+ "If it is not you, please change your password immediately.\n\n"
 										+ "Sincerely,\nSentinel Data Vault Team");
 					} catch (AddressException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					} catch (MessagingException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 				} else if (failedattempt == 5) {
@@ -152,10 +150,8 @@ public class LoginView {
 								"Dear user,\n\nWe have deleted your account.\n" + "Have a nice day.\n\n"
 										+ "Sincerely,\nSentinel Data Vault Team");
 					} catch (AddressException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					} catch (MessagingException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 

@@ -8,7 +8,6 @@ import java.util.Scanner;
 public class SaltHashTest {
 
 	public static void main(String[] args) throws NoSuchAlgorithmException {
-		// TODO Auto-generated method stub
 		
 		System.out.println("Choose a password:");
 		Scanner in = new Scanner(System.in);
