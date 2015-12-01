@@ -105,7 +105,7 @@ public class LoginView {
 																				// changed
 																				// to
 																				// getPassword()
-
+				//password.toLowerCase();  Do we want case sensitive email? 
 				/*
 				 * SHA implementation to validate password
 				 */
