@@ -25,6 +25,7 @@ public class PasswordChangeRecovery {
 	private JPasswordField textField_1;
 	private User currentUser;
 	private JTextPane textField_2;
+	public JFrame grandParentFrame;
 	/**
 	 * Launch the application.
 	 */
@@ -33,7 +34,8 @@ public class PasswordChangeRecovery {
 			public void run() {
 				try {
 					User user = new User(null, null, null, null, null, null, null);
-					PasswordChangeRecovery window = new PasswordChangeRecovery(user);
+					JFrame frame = new JFrame();
+					PasswordChangeRecovery window = new PasswordChangeRecovery(user, frame);
 					window.frmPasswordRecovery.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -45,8 +47,10 @@ public class PasswordChangeRecovery {
 	/**
 	 * Create the application.
 	 */
-	public PasswordChangeRecovery(User user) {
+	public PasswordChangeRecovery(User user, JFrame frame) {
 		initialize();
+		this.currentUser = user;
+		this.grandParentFrame = frame;
 	}
 
 	/**
@@ -91,9 +95,12 @@ public class PasswordChangeRecovery {
 				PasswordValidation v = new PasswordValidation();
 				if(pass1.trim().equals(pass2.trim()) && v.minStandard(pass1) ) { 
 					PasswordHasher p = new PasswordHasher();
+					System.out.println(pass1);
+					System.out.println(currentUser.getUsername());
 					String passwordHash = p.hashPassword(pass1, currentUser.getPasswordSalt());
 					currentUser.setPasswordHash(passwordHash);
 					frmPasswordRecovery.dispose();
+					grandParentFrame.setVisible(true);
 				}
 				
 				else if(pass1.trim().equals(pass2.trim()) != true) { 

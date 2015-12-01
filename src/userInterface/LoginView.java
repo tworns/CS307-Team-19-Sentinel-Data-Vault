@@ -180,7 +180,7 @@ public class LoginView {
 		btnForgotPassword.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frmSignIn.setVisible(false);
-				PasswordRecoveryView p = new PasswordRecoveryView();
+				PasswordRecoveryView p = new PasswordRecoveryView(frmSignIn);
 			}
 		});
 		btnForgotPassword.setToolTipText("Click here to reset your account password");

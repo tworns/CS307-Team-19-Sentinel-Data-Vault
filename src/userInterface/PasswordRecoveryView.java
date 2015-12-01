@@ -36,6 +36,7 @@ public class PasswordRecoveryView {
 	private JTextField txtIncorrectAnswer;
 	private JTextField txtIncorrectCode;
 	private JButton btnCancel;
+	public JFrame parentFrame;
 	
 	
 	/**
@@ -46,7 +47,8 @@ public class PasswordRecoveryView {
 			public void run() {
 				try {
 					//User u = new User ("dave@purdue.edu",null,null, null,  "Sec Q", "Sec Ans", null);
-					PasswordRecoveryView window = new PasswordRecoveryView();
+					JFrame frame = new JFrame();
+					PasswordRecoveryView window = new PasswordRecoveryView(frame);
 					//window.frmSentinelDataVault.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -57,8 +59,9 @@ public class PasswordRecoveryView {
 	/**
 	 * Create the application.
 	 */
-	public PasswordRecoveryView() {
+	public PasswordRecoveryView(JFrame frame) {
 		initialize();
+		this.parentFrame = frame;
 	}
 	/**
 	 * Initialize the contents of the frame.
@@ -89,6 +92,7 @@ public class PasswordRecoveryView {
 				 invalidUser.setText("Invalid User");
 				}
 				else{ 
+					 
 					securityQuestion.setText(user.getSecurityQuestion());
 					securityQuestion.setVisible(true);
 					securityQuestionAnswer.setVisible(true);
@@ -186,7 +190,7 @@ public class PasswordRecoveryView {
 				
 					if(securityCode.getText().equals(code)) { 
 						txtIncorrectCode.setText("");
-						PasswordChangeRecovery k = new PasswordChangeRecovery(user);
+						PasswordChangeRecovery k = new PasswordChangeRecovery(user, parentFrame);
 						frmSentinelDataVault.dispose();
 						}
 					if (code.equals(securityCode.getText())!= true && (securityCode.getText() != null || securityCode.getText().equals("") == false)) { 
