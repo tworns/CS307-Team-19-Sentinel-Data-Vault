@@ -304,31 +304,45 @@ public class HomeView {
 			}
 		}
 		textField_1.setColumns(10);
+		
+		JButton btnCreatebackup = new JButton("Create Backup");
+		btnCreatebackup.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		GroupLayout gl_panel_west = new GroupLayout(panel_west);
 		gl_panel_west.setHorizontalGroup(
-				gl_panel_west.createParallelGroup(Alignment.LEADING)
+			gl_panel_west.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_west.createSequentialGroup()
-						.addContainerGap()
-						.addGroup(gl_panel_west.createParallelGroup(Alignment.LEADING, false)
+					.addGroup(gl_panel_west.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel_west.createSequentialGroup()
+							.addContainerGap()
+							.addGroup(gl_panel_west.createParallelGroup(Alignment.LEADING, false)
 								.addComponent(lblLastLogin)
 								.addComponent(lblUserEmail)
 								.addComponent(textField_1, GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
-								.addComponent(textField))
-						.addContainerGap(24, Short.MAX_VALUE))
-				);
+								.addComponent(textField)))
+						.addGroup(gl_panel_west.createSequentialGroup()
+							.addGap(20)
+							.addComponent(btnCreatebackup)))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+		);
 		gl_panel_west.setVerticalGroup(
-				gl_panel_west.createParallelGroup(Alignment.LEADING)
+			gl_panel_west.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_west.createSequentialGroup()
-						.addContainerGap()
-						.addComponent(lblUserEmail)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(lblLastLogin)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addContainerGap(287, Short.MAX_VALUE))
-				);
+					.addContainerGap()
+					.addComponent(lblUserEmail)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(lblLastLogin)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(116)
+					.addComponent(btnCreatebackup)
+					.addContainerGap(122, Short.MAX_VALUE))
+		);
 		panel_west.setLayout(gl_panel_west);
 		panel_south.setLayout(gl_panel_south);
 
