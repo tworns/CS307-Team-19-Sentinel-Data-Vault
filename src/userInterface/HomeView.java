@@ -17,9 +17,13 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JTree;
+import javax.swing.DefaultListModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.ListModel;
+import javax.swing.ListSelectionModel;
+
 import dataManagement.*;
 import controllers.DatabaseManager;
 import java.awt.Color;
@@ -682,7 +686,11 @@ public class HomeView {
 		//node_1.add(new DefaultMutableTreeNode("Apple"));
 		//node_1.add(new DefaultMutableTreeNode("Purdue"));
 		//root.add(node_1);
+		
 		DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
+		DefaultListModel<String> listModel = new DefaultListModel<String>();
+		listModel.setSize(currentDataEntryNameList.size());
+		
 		DefaultMutableTreeNode root = (DefaultMutableTreeNode) model.getRoot();
 
 		System.out.println("currentDataEntryNameList :" + currentDataEntryNameList.size());
@@ -693,6 +701,8 @@ public class HomeView {
 		for (int i=0; i < currentDataEntryTypeList.size(); i++) {
 			DefaultMutableTreeNode child = new DefaultMutableTreeNode(currentDataEntryNameList.get(i));
 
+			listModel.addElement(currentDataEntryNameList.get(i));
+			
 			if (currentDataEntryTypeList.get(i).equals("Account Login")) {
 				System.out.println(currentDataEntryTypeList.get(i));
 				node_1.add(child);
@@ -755,13 +765,13 @@ public class HomeView {
 		
 		JScrollPane jsp = new JScrollPane(tree);
 		panel_center.addTab("Category", null, jsp, null);
-		
-		
 		//panel_center.addTab("Category", null, tree, null);
 		
+	
+		JList<String> list = new JList<String>();
+		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		list.setModel(listModel);
 		
-		
-		JList list = new JList();
 		panel_center.addTab("Item List", null, list, null);
 
 		// MenuBar
