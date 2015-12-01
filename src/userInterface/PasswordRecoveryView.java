@@ -61,7 +61,7 @@ public class PasswordRecoveryView {
 	 */
 	public PasswordRecoveryView(JFrame frame) {
 		initialize();
-		this.parentFrame = frame;
+		this.parentFrame = frame; //This is needed so that PasswordChangeRecovery can show LoginView again.
 	}
 	/**
 	 * Initialize the contents of the frame.
