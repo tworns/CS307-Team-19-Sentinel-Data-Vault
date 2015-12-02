@@ -169,7 +169,7 @@ public class NewDataEntryView {
 							public void actionPerformed(ActionEvent e) {
 								if (textField.getText().equals("") || textField_1.getText().equals("")
 										|| textField_2.getText().equals("") || textField_3.getText().equals("")) {
-									JOptionPane.showMessageDialog(null, "Please fill all the field!");
+									JOptionPane.showMessageDialog(null, "Please complete all the fields!");
 									return;
 								}
 								LocalDateTime createdtime = LocalDateTime.now();
@@ -269,7 +269,7 @@ public class NewDataEntryView {
 							public void actionPerformed(ActionEvent e) {
 								if (textField.getText().equals("") || textField_1.getText().equals("")
 										|| textField_2.getText().equals("")) {
-									JOptionPane.showMessageDialog(null, "Please fill all the field!");
+									JOptionPane.showMessageDialog(null, "Please complete all the fields!");
 									return;
 								}
 								LocalDateTime createdtime = LocalDateTime.now();
@@ -293,7 +293,7 @@ public class NewDataEntryView {
 											"The Entry Name has already existed! Please Try another Entry Name!");
 									return;
 								} else {
-									JOptionPane.showMessageDialog(null, "You have successfully Added DataEntry");
+									JOptionPane.showMessageDialog(null, "You have successfully added a new data entry!");
 									System.gc();
 									for (Window window : Window.getWindows()) {
 										window.dispose();
@@ -407,7 +407,7 @@ public class NewDataEntryView {
 							public void actionPerformed(ActionEvent e) {
 								if (textField.getText().equals("") || textField_1.getText().equals("")
 										|| textField_2.getText().equals("") || textField_3.getText().equals("")) {
-									JOptionPane.showMessageDialog(null, "Please fill all the field!");
+									JOptionPane.showMessageDialog(null, "Please complete all the fields!");
 									return;
 								}
 								LocalDateTime createdtime = LocalDateTime.now();
@@ -433,7 +433,7 @@ public class NewDataEntryView {
 									return;
 								} else {
 
-									JOptionPane.showMessageDialog(null, "You have successfully Added DataEntry");
+									JOptionPane.showMessageDialog(null, "You have successfully added a new data entry!");
 									System.gc();
 									for (Window window : Window.getWindows()) {
 										window.dispose();
@@ -508,7 +508,7 @@ public class NewDataEntryView {
 							public void actionPerformed(ActionEvent e) {
 								if (textField.getText().equals("") || textField_1.getText().equals("")
 										|| textField_2.getText().equals("")) {
-									JOptionPane.showMessageDialog(null, "Please fill all the field!");
+									JOptionPane.showMessageDialog(null, "Please complete all the fields!");
 									return;
 								}
 								LocalDateTime createdtime = LocalDateTime.now();
@@ -532,7 +532,7 @@ public class NewDataEntryView {
 											"The Entry Name has already existed! Please Try another Entry Name!");
 									return;
 								} else {
-									JOptionPane.showMessageDialog(null, "You have successfully Added DataEntry");
+									JOptionPane.showMessageDialog(null, "You have successfully added a new data entry!");
 									System.gc();
 									for (Window window : Window.getWindows()) {
 										window.dispose();
@@ -757,7 +757,7 @@ public class NewDataEntryView {
 										|| textField_4.getText().equals("") || textField_5.getText().equals("")
 										|| textField_6.getText().equals("") || textField_7.getText().equals("")
 										|| textField_8.getText().equals("")) {
-									JOptionPane.showMessageDialog(null, "Please fill all the field!");
+									JOptionPane.showMessageDialog(null, "Please complete all the fields!");
 									return;
 								}
 								LocalDateTime createdtime = LocalDateTime.now();
@@ -785,7 +785,7 @@ public class NewDataEntryView {
 											"The Entry Name has already existed! Please Try another Entry Name!");
 									return;
 								} else {
-									JOptionPane.showMessageDialog(null, "You have successfully Added DataEntry");
+									JOptionPane.showMessageDialog(null, "You have successfully added a new data entry!");
 									System.gc();
 									for (Window window : Window.getWindows()) {
 										window.dispose();
@@ -860,7 +860,7 @@ public class NewDataEntryView {
 							public void actionPerformed(ActionEvent e) {
 								if (textField.getText().equals("") || textField_1.getText().equals("")
 										|| textField_2.getText().equals("")) {
-									JOptionPane.showMessageDialog(null, "Please fill all the field!");
+									JOptionPane.showMessageDialog(null, "Please complete all the fields!");
 									return;
 								}
 								LocalDateTime createdtime = LocalDateTime.now();
@@ -884,7 +884,7 @@ public class NewDataEntryView {
 											"The Entry Name has already existed! Please Try another Entry Name!");
 									return;
 								} else {
-									JOptionPane.showMessageDialog(null, "You have successfully Added DataEntry");
+									JOptionPane.showMessageDialog(null, "You have successfully added a new data entry!");
 									System.gc();
 									for (Window window : Window.getWindows()) {
 										window.dispose();
@@ -1028,7 +1028,7 @@ public class NewDataEntryView {
 								if (textField.getText().equals("") || textField_1.getText().equals("")
 										|| textField_2.getText().equals("") || textField_3.getText().equals("")
 										|| textField_4.getText().equals("")) {
-									JOptionPane.showMessageDialog(null, "Please fill all the field!");
+									JOptionPane.showMessageDialog(null, "Please complete all the fields!");
 									return;
 								}
 								LocalDateTime createdtime = LocalDateTime.now();
@@ -1055,7 +1055,7 @@ public class NewDataEntryView {
 											"The Entry Name has already existed! Please Try another Entry Name!");
 									return;
 								} else {
-									JOptionPane.showMessageDialog(null, "You have successfully Added DataEntry");
+									JOptionPane.showMessageDialog(null, "You have successfully added a new data entry!");
 									System.gc();
 									for (Window window : Window.getWindows()) {
 										window.dispose();
@@ -1158,7 +1158,7 @@ public class NewDataEntryView {
 								if (textField.getText().equals("") || textField_1.getText().equals("")
 										|| textField_2.getText().equals("") || textField_3.getText().equals("")
 										|| textField_4.getText().equals("") || textField_5.getText().equals("")) {
-									JOptionPane.showMessageDialog(null, "Please fill all the field!");
+									JOptionPane.showMessageDialog(null, "Please complete all the fields!");
 									return;
 								}
 								LocalDateTime createdtime = LocalDateTime.now();
@@ -1183,7 +1183,7 @@ public class NewDataEntryView {
 									return;
 								} else {
 
-									JOptionPane.showMessageDialog(null, "You have successfully Added DataEntry");
+									JOptionPane.showMessageDialog(null, "You have successfully added a new data entry!");
 									System.gc();
 									for (Window window : Window.getWindows()) {
 										window.dispose();
@@ -1317,7 +1317,7 @@ public class NewDataEntryView {
 										|| textField_4.getText().equals("") || textField_5.getText().equals("")
 										|| textField_6.getText().equals("") || textField_7.getText().equals("")
 										|| textField_8.getText().equals("")) {
-									JOptionPane.showMessageDialog(null, "Please fill all the field!");
+									JOptionPane.showMessageDialog(null, "Please complete all the fields!");
 									return;
 								}
 								LocalDateTime createdtime = LocalDateTime.now();
@@ -1343,7 +1343,7 @@ public class NewDataEntryView {
 									return;
 								} else {
 
-									JOptionPane.showMessageDialog(null, "You have successfully Added DataEntry");
+									JOptionPane.showMessageDialog(null, "You have successfully added a new data entry!");
 									System.gc();
 									for (Window window : Window.getWindows()) {
 										window.dispose();
@@ -1428,7 +1428,7 @@ public class NewDataEntryView {
 							public void actionPerformed(ActionEvent e) {
 								if (textField.getText().equals("") || textField_1.getText().equals("")
 										|| textField_2.getText().equals("") || textField_3.getText().equals("")) {
-									JOptionPane.showMessageDialog(null, "Please fill all the field!");
+									JOptionPane.showMessageDialog(null, "Please complete all the fields!");
 									return;
 								}
 								LocalDateTime createdtime = LocalDateTime.now();
@@ -1452,7 +1452,7 @@ public class NewDataEntryView {
 											"The Entry Name has already existed! Please Try another Entry Name!");
 									return;
 								} else {
-									JOptionPane.showMessageDialog(null, "You have successfully Added DataEntry");
+									JOptionPane.showMessageDialog(null, "You have successfully added a new data entry!");
 									System.gc();
 									for (Window window : Window.getWindows()) {
 										window.dispose();
@@ -1526,7 +1526,7 @@ public class NewDataEntryView {
 							public void actionPerformed(ActionEvent e) {
 								if (textField.getText().equals("") || textField_1.getText().equals("")
 										|| textField_2.getText().equals("")) {
-									JOptionPane.showMessageDialog(null, "Please fill all the field!");
+									JOptionPane.showMessageDialog(null, "Please complete all the fields!");
 									return;
 								}
 								LocalDateTime createdtime = LocalDateTime.now();
@@ -1550,7 +1550,7 @@ public class NewDataEntryView {
 											"The Entry Name has already existed! Please Try another Entry Name!");
 									return;
 								} else {
-									JOptionPane.showMessageDialog(null, "You have successfully Added DataEntry");
+									JOptionPane.showMessageDialog(null, "You have successfully added a new data entry!");
 									System.gc();
 									for (Window window : Window.getWindows()) {
 										window.dispose();
@@ -1625,7 +1625,7 @@ public class NewDataEntryView {
 							public void actionPerformed(ActionEvent e) {
 								if (textField.getText().equals("") || textField_1.getText().equals("")
 										|| textField_2.getText().equals("")) {
-									JOptionPane.showMessageDialog(null, "Please fill all the field!");
+									JOptionPane.showMessageDialog(null, "Please complete all the fields!");
 									return;
 								}
 								LocalDateTime createdtime = LocalDateTime.now();
@@ -1649,7 +1649,7 @@ public class NewDataEntryView {
 											"The Entry Name has already existed! Please Try another Entry Name!");
 									return;
 								} else {
-									JOptionPane.showMessageDialog(null, "You have successfully Added DataEntry");
+									JOptionPane.showMessageDialog(null, "You have successfully added a new data entry!");
 									System.gc();
 									for (Window window : Window.getWindows()) {
 										window.dispose();
@@ -1725,7 +1725,7 @@ public class NewDataEntryView {
 							public void actionPerformed(ActionEvent e) {
 								if (textField.getText().equals("") || textField_1.getText().equals("")
 										|| textField_2.getText().equals("")) {
-									JOptionPane.showMessageDialog(null, "Please fill all the field!");
+									JOptionPane.showMessageDialog(null, "Please complete all the fields!");
 									return;
 								}
 								LocalDateTime createdtime = LocalDateTime.now();
@@ -1750,7 +1750,7 @@ public class NewDataEntryView {
 									return;
 								} else {
 
-									JOptionPane.showMessageDialog(null, "You have successfully Added DataEntry");
+									JOptionPane.showMessageDialog(null, "You have successfully added a new data entry!");
 									System.gc();
 									for (Window window : Window.getWindows()) {
 										window.dispose();
@@ -1833,7 +1833,7 @@ public class NewDataEntryView {
 							public void actionPerformed(ActionEvent e) {
 								if (textField.getText().equals("") || textField_1.getText().equals("")
 										|| textField_2.getText().equals("") || textField_3.getText().equals("")) {
-									JOptionPane.showMessageDialog(null, "Please fill all the field!");
+									JOptionPane.showMessageDialog(null, "Please complete all the fields!");
 									return;
 								}
 								LocalDateTime createdtime = LocalDateTime.now();
@@ -1857,7 +1857,7 @@ public class NewDataEntryView {
 											"The Entry Name has already existed! Please Try another Entry Name!");
 									return;
 								} else {
-									JOptionPane.showMessageDialog(null, "You have successfully Added DataEntry");
+									JOptionPane.showMessageDialog(null, "You have successfully added a new data entry!");
 									System.gc();
 									for (Window window : Window.getWindows()) {
 										window.dispose();
