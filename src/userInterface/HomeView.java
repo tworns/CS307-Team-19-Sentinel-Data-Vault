@@ -117,7 +117,7 @@ public class HomeView {
 			public void actionPerformed(ActionEvent e) {
 				Locale locale = new Locale("EN", "US");
 				JOptionPane.setDefaultLocale(locale);
-				if(JOptionPane.showConfirmDialog(null, "Are You Sure?", "Sign Out",JOptionPane.YES_NO_OPTION, JOptionPane.DEFAULT_OPTION) == 0) {
+				if(JOptionPane.showConfirmDialog(null, "Are you sure you want to sign out? You will be returned to Sign In.", "Sign Out",JOptionPane.YES_NO_OPTION, JOptionPane.DEFAULT_OPTION) == 0) {
 					currentUser = null;
 					LoginView frmLog = new LoginView();
 					frmLog.frmSignIn.setVisible(true);
