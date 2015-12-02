@@ -111,7 +111,7 @@ public class EditDataEntryView {
 				public void actionPerformed(ActionEvent e) {
 					if (textField.getText().equals("") || textField_1.getText().equals("")
 							|| textField_2.getText().equals("")) {
-						JOptionPane.showMessageDialog(null, "Please fill all the field!");
+						JOptionPane.showMessageDialog(null, "Please complete all the fields!");
 						return;
 					}
 					LocalDateTime modifytime = LocalDateTime.now();
@@ -123,10 +123,10 @@ public class EditDataEntryView {
 					int result = m.updateEntry(currentUser, currentEntry, newEntry);
 					if (result == -1) {
 						JOptionPane.showMessageDialog(null,
-								"The Entry Name has already existed! Please Try another Entry Name!");
+								"This entry name already exists! Please choose a different entry name!");
 						return;
 					} else {
-						JOptionPane.showMessageDialog(null, "You have successfully modify DataEntry");
+						JOptionPane.showMessageDialog(null, "You have successfully modified this data entry!");
 						System.gc();
 						for (Window window : Window.getWindows()) {
 							window.dispose();
@@ -192,7 +192,7 @@ public class EditDataEntryView {
 				public void actionPerformed(ActionEvent e) {
 					if (textField.getText().equals("") || textField_1.getText().equals("")
 							|| textField_2.getText().equals("")) {
-						JOptionPane.showMessageDialog(null, "Please fill all the field!");
+						JOptionPane.showMessageDialog(null, "Please complete all the fields!");
 						return;
 					}
 					LocalDateTime createdtime = LocalDateTime.now();
@@ -204,11 +204,11 @@ public class EditDataEntryView {
 					int result = m.updateEntry(currentUser, currentEntry, newEntry);
 					if (result == -1) {
 						JOptionPane.showMessageDialog(null,
-								"The Entry Name has already existed! Please Try another Entry Name!");
+								"This entry name already exists! Please choose a different entry name!");
 						return;
 					} else {
 
-						JOptionPane.showMessageDialog(null, "You have successfully modify DataEntry");
+						JOptionPane.showMessageDialog(null, "You have successfully modified this data entry!");
 						System.gc();
 						for (Window window : Window.getWindows()) {
 							window.dispose();
@@ -316,7 +316,7 @@ public class EditDataEntryView {
 				public void actionPerformed(ActionEvent e) {
 					if (textField.getText().equals("") || textField_1.getText().equals("")
 							|| textField_2.getText().equals("") || textField_3.getText().equals("")) {
-						JOptionPane.showMessageDialog(null, "Please fill all the field!");
+						JOptionPane.showMessageDialog(null, "Please complete all the fields!");
 						return;
 					}
 					LocalDateTime modifytime = LocalDateTime.now();
@@ -331,10 +331,10 @@ public class EditDataEntryView {
 					int result = m.updateEntry(currentUser, currentEntry, newEntry);
 					if (result == -1) {
 						JOptionPane.showMessageDialog(null,
-								"The Entry Name has already existed! Please Try another Entry Name!");
+								"This entry name already exists! Please choose a different entry name!");
 						return;
 					} else {
-						JOptionPane.showMessageDialog(null, "You have successfully modify DataEntry");
+						JOptionPane.showMessageDialog(null, "You have successfully modified this data entry!");
 						System.gc();
 						for (Window window : Window.getWindows()) {
 							window.dispose();
@@ -459,7 +459,7 @@ public class EditDataEntryView {
 							|| textField_4.getText().equals("") || textField_5.getText().equals("")
 							|| textField_6.getText().equals("") || textField_7.getText().equals("")
 							|| textField_8.getText().equals("")) {
-						JOptionPane.showMessageDialog(null, "Please fill all the field!");
+						JOptionPane.showMessageDialog(null, "Please complete all the fields!");
 						return;
 					}
 					LocalDateTime createdtime = LocalDateTime.now();
@@ -478,7 +478,7 @@ public class EditDataEntryView {
 					int result = m.updateEntry(currentUser, currentEntry, newEntry);
 					if (result == -1) {
 						JOptionPane.showMessageDialog(null,
-								"The Entry Name has already existed! Please Try another Entry Name!");
+								"This entry name already exists! Please choose a different entry name!");
 						return;
 					} else {
 
@@ -550,7 +550,7 @@ public class EditDataEntryView {
 				public void actionPerformed(ActionEvent e) {
 					if (textField.getText().equals("") || textField_1.getText().equals("")
 							|| textField_2.getText().equals("")) {
-						JOptionPane.showMessageDialog(null, "Please fill all the field!");
+						JOptionPane.showMessageDialog(null, "Please complete all the fields!");
 						return;
 					}
 					LocalDateTime createdtime = LocalDateTime.now();
@@ -563,10 +563,10 @@ public class EditDataEntryView {
 					int result = m.updateEntry(currentUser, currentEntry, newEntry);
 					if (result == -1) {
 						JOptionPane.showMessageDialog(null,
-								"The Entry Name has already existed! Please Try another Entry Name!");
+								"This entry name already exists! Please choose a different entry name!");
 						return;
 					} else {
-						JOptionPane.showMessageDialog(null, "You have successfully modify DataEntry");
+						JOptionPane.showMessageDialog(null, "You have successfully modified this data entry!");
 						System.gc();
 						for (Window window : Window.getWindows()) {
 							window.dispose();
@@ -633,7 +633,7 @@ public class EditDataEntryView {
 				public void actionPerformed(ActionEvent e) {
 					if (textField.getText().equals("") || textField_1.getText().equals("")
 							|| textField_2.getText().equals("")) {
-						JOptionPane.showMessageDialog(null, "Please fill all the field!");
+						JOptionPane.showMessageDialog(null, "Please complete all the fields!");
 						return;
 					}
 					LocalDateTime createdtime = LocalDateTime.now();
@@ -645,11 +645,11 @@ public class EditDataEntryView {
 					int result = m.updateEntry(currentUser, currentEntry, newEntry);
 					if (result == -1) {
 						JOptionPane.showMessageDialog(null,
-								"The Entry Name has already existed! Please Try another Entry Name!");
+								"This entry name already exists! Please choose a different entry name!");
 						return;
 					} else {
 
-						JOptionPane.showMessageDialog(null, "You have successfully modify DataEntry");
+						JOptionPane.showMessageDialog(null, "You have successfully modified this data entry!");
 						System.gc();
 						for (Window window : Window.getWindows()) {
 							window.dispose();
@@ -717,7 +717,7 @@ public class EditDataEntryView {
 				public void actionPerformed(ActionEvent e) {
 					if (textField.getText().equals("") || textField_1.getText().equals("")
 							|| textField_2.getText().equals("")) {
-						JOptionPane.showMessageDialog(null, "Please fill all the field!");
+						JOptionPane.showMessageDialog(null, "Please complete all the fields!");
 						return;
 					}
 					LocalDateTime createdtime = LocalDateTime.now();
@@ -729,11 +729,11 @@ public class EditDataEntryView {
 					int result = m.updateEntry(currentUser, currentEntry, newEntry);
 					if (result == -1) {
 						JOptionPane.showMessageDialog(null,
-								"The Entry Name has already existed! Please Try another Entry Name!");
+								"This entry name already exists! Please choose a different entry name!");
 						return;
 					} else {
 
-						JOptionPane.showMessageDialog(null, "You have successfully modify DataEntry");
+						JOptionPane.showMessageDialog(null, "You have successfully modified this data entry!");
 						System.gc();
 						for (Window window : Window.getWindows()) {
 							window.dispose();
@@ -800,7 +800,7 @@ public class EditDataEntryView {
 				public void actionPerformed(ActionEvent e) {
 					if (textField.getText().equals("") || textField_1.getText().equals("")
 							|| textField_2.getText().equals("")) {
-						JOptionPane.showMessageDialog(null, "Please fill all the field!");
+						JOptionPane.showMessageDialog(null, "Please complete all the fields!");
 						return;
 					}
 					LocalDateTime createdtime = LocalDateTime.now();
@@ -812,11 +812,11 @@ public class EditDataEntryView {
 					int result = m.updateEntry(currentUser, currentEntry, newEntry);
 					if (result == -1) {
 						JOptionPane.showMessageDialog(null,
-								"The Entry Name has already existed! Please Try another Entry Name!");
+								"This entry name already exists! Please choose a different entry name!");
 						return;
 					} else {
 
-						JOptionPane.showMessageDialog(null, "You have successfully modify DataEntry");
+						JOptionPane.showMessageDialog(null, "You have successfully modified this data entry!");
 						System.gc();
 						for (Window window : Window.getWindows()) {
 							window.dispose();
@@ -954,7 +954,7 @@ public class EditDataEntryView {
 					if (textField.getText().equals("") || textField_1.getText().equals("")
 							|| textField_2.getText().equals("") || textField_3.getText().equals("")
 							|| textField_4.getText().equals("")) {
-						JOptionPane.showMessageDialog(null, "Please fill all the field!");
+						JOptionPane.showMessageDialog(null, "Please complete all the fields!");
 						return;
 					}
 					LocalDateTime createdtime = LocalDateTime.now();
@@ -973,7 +973,7 @@ public class EditDataEntryView {
 					int result = m.updateEntry(currentUser, currentEntry, newEntry);
 					if (result == -1) {
 						JOptionPane.showMessageDialog(null,
-								"The Entry Name has already existed! Please Try another Entry Name!");
+								"This entry name already exists! Please choose a different entry name!");
 						return;
 					} else {
 						JOptionPane.showMessageDialog(null, "You have successfully Added DataEntry");
@@ -1198,7 +1198,7 @@ public class EditDataEntryView {
 							|| textField_4.getText().equals("") || textField_5.getText().equals("")
 							|| textField_6.getText().equals("") || textField_7.getText().equals("")
 							|| textField_8.getText().equals("")) {
-						JOptionPane.showMessageDialog(null, "Please fill all the field!");
+						JOptionPane.showMessageDialog(null, "Please complete all the fields!");
 						return;
 					}
 					LocalDateTime createdtime = LocalDateTime.now();
@@ -1223,7 +1223,7 @@ public class EditDataEntryView {
 					int result = m.updateEntry(currentUser, currentEntry, newEntry);
 					if (result == -1) {
 						JOptionPane.showMessageDialog(null,
-								"The Entry Name has already existed! Please Try another Entry Name!");
+								"This entry name already exists! Please choose a different entry name!");
 						return;
 					} else {
 						JOptionPane.showMessageDialog(null, "You have successfully Added DataEntry");
@@ -1321,7 +1321,7 @@ public class EditDataEntryView {
 					if (textField.getText().equals("") || textField_1.getText().equals("")
 							|| textField_2.getText().equals("") || textField_3.getText().equals("")
 							|| textField_4.getText().equals("") || textField_5.getText().equals("")) {
-						JOptionPane.showMessageDialog(null, "Please fill all the field!");
+						JOptionPane.showMessageDialog(null, "Please complete all the fields!");
 						return;
 					}
 					LocalDateTime createdtime = LocalDateTime.now();
@@ -1336,11 +1336,11 @@ public class EditDataEntryView {
 					int result = m.updateEntry(currentUser, currentEntry, newEntry);
 					if (result == -1) {
 						JOptionPane.showMessageDialog(null,
-								"The Entry Name has already existed! Please Try another Entry Name!");
+								"This entry name already exists! Please choose a different entry name!");
 						return;
 					} else {
 
-						JOptionPane.showMessageDialog(null, "You have successfully modify DataEntry");
+						JOptionPane.showMessageDialog(null, "You have successfully modified this data entry!");
 						System.gc();
 						for (Window window : Window.getWindows()) {
 							window.dispose();
@@ -1418,7 +1418,7 @@ public class EditDataEntryView {
 				public void actionPerformed(ActionEvent e) {
 					if (textField.getText().equals("") || textField_1.getText().equals("")
 							|| textField_2.getText().equals("") || textField_3.getText().equals("")) {
-						JOptionPane.showMessageDialog(null, "Please fill all the field!");
+						JOptionPane.showMessageDialog(null, "Please complete all the fields!");
 						return;
 					}
 					LocalDateTime createdtime = LocalDateTime.now();
@@ -1432,10 +1432,10 @@ public class EditDataEntryView {
 					int result = m.updateEntry(currentUser, currentEntry, newEntry);
 					if (result == -1) {
 						JOptionPane.showMessageDialog(null,
-								"The Entry Name has already existed! Please Try another Entry Name!");
+								"This entry name already exists! Please choose a different entry name!");
 						return;
 					} else {
-						JOptionPane.showMessageDialog(null, "You have successfully modify DataEntry");
+						JOptionPane.showMessageDialog(null, "You have successfully modified this data entry!");
 						System.gc();
 						for (Window window : Window.getWindows()) {
 							window.dispose();
@@ -1512,7 +1512,7 @@ public class EditDataEntryView {
 				public void actionPerformed(ActionEvent e) {
 					if (textField.getText().equals("") || textField_1.getText().equals("")
 							|| textField_2.getText().equals("") || textField_3.getText().equals("")) {
-						JOptionPane.showMessageDialog(null, "Please fill all the field!");
+						JOptionPane.showMessageDialog(null, "Please complete all the fields!");
 						return;
 					}
 					LocalDateTime createdtime = LocalDateTime.now();
@@ -1525,10 +1525,10 @@ public class EditDataEntryView {
 					int result = m.updateEntry(currentUser, currentEntry, newEntry);
 					if (result == -1) {
 						JOptionPane.showMessageDialog(null,
-								"The Entry Name has already existed! Please Try another Entry Name!");
+								"This entry name already exists! Please choose a different entry name!");
 						return;
 					} else {
-						JOptionPane.showMessageDialog(null, "You have successfully modify DataEntry");
+						JOptionPane.showMessageDialog(null, "You have successfully modified this data entry!");
 						System.gc();
 						for (Window window : Window.getWindows()) {
 							window.dispose();
@@ -1604,7 +1604,7 @@ public class EditDataEntryView {
 				public void actionPerformed(ActionEvent e) {
 					if (textField.getText().equals("") || textField_1.getText().equals("")
 							|| textField_2.getText().equals("") || textField_3.getText().equals("")) {
-						JOptionPane.showMessageDialog(null, "Please fill all the field!");
+						JOptionPane.showMessageDialog(null, "Please complete all the fields!");
 						return;
 					}
 					LocalDateTime createdtime = LocalDateTime.now();
@@ -1617,10 +1617,10 @@ public class EditDataEntryView {
 					int result = m.updateEntry(currentUser, currentEntry, newEntry);
 					if (result == -1) {
 						JOptionPane.showMessageDialog(null,
-								"The Entry Name has already existed! Please Try another Entry Name!");
+								"This entry name already exists! Please choose a different entry name!");
 						return;
 					} else {
-						JOptionPane.showMessageDialog(null, "You have successfully modify DataEntry");
+						JOptionPane.showMessageDialog(null, "You have successfully modified this data entry!");
 						System.gc();
 						for (Window window : Window.getWindows()) {
 							window.dispose();

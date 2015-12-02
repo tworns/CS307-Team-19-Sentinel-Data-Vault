@@ -118,16 +118,14 @@ public class HomeView {
 			public void actionPerformed(ActionEvent e) {
 				Locale locale = new Locale("EN", "US");
 				JOptionPane.setDefaultLocale(locale);
-				if(JOptionPane.showConfirmDialog(null, "Are You Sure?", "Sign Out",JOptionPane.YES_NO_OPTION, JOptionPane.DEFAULT_OPTION) == 0) {
-					currentUser.setLastLogin(LocalDateTime.now());
-					DatabaseManager d = new DatabaseManager("vault_database");
-					currentUser.getLastLogin();
-					String time = currentUser.getLastLogin().toString();
-					d.modifyUserField(currentUser, "last_login", time );
-					currentUser = null;
-					LoginView frmLog = new LoginView();
-					frmLog.frmSignIn.setVisible(true);
-					frmSentinelDataVault.dispose();
+
+				if(JOptionPane.showConfirmDialog(null, "Are you sure you want to sign out? You will be returned to Sign In.", "Sign Out",JOptionPane.YES_NO_OPTION, JOptionPane.DEFAULT_OPTION) == 0) {
+
+						currentUser.setLastLogin(LocalDateTime.now());
+						DatabaseManager d = new DatabaseManager("vault_database");
+						currentUser.getLastLogin();
+						String time = currentUser.getLastLogin().toString();
+						d.modifyUserField(currentUser, "last_login", time );
 				}
 			}
 		});
@@ -176,7 +174,7 @@ public class HomeView {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println(currentEntry.getEntryName());
 				Object[] options = { "OK", "CANCEL" };
-				int result = JOptionPane.showOptionDialog(null, "Data Entry will be deleted permanently.\nAre you sure you want to delete the Entry?", "Warning", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+				int result = JOptionPane.showOptionDialog(null, "Are you sure you want to permanently delete this data entry?", "Warning", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
 						null, options, options[1]);
 				if (result == 0) {
 					System.out.println("Delete Entry");
@@ -184,7 +182,7 @@ public class HomeView {
 					m.deleteEntryFromDatabase(currentEntry);
 
 
-					JOptionPane.showMessageDialog(null,"You have successfully Deleted DataEntry");
+					JOptionPane.showMessageDialog(null, "You have successfully deleted the data entry.");
 					System.gc(); 
 					for (Window window : Window.getWindows()){
 						window.dispose();
@@ -316,6 +314,7 @@ public class HomeView {
 
 		//panel_west		
 		txtUsername = new JTextField();
+		txtUsername.setFont(new Font("Lucida Grande", Font.PLAIN, 11));
 		txtUsername.setBounds(6, 167, 169, 26);
 		txtUsername.setText(username);
 		txtUsername.setColumns(10);
@@ -330,6 +329,7 @@ public class HomeView {
 		lblUserEmail.setBounds(5, 151, 165, 16);
 
 		textField_1 = new JTextField();
+		textField_1.setFont(new Font("Lucida Grande", Font.PLAIN, 11));
 		textField_1.setBounds(6, 218, 169, 26);
 		textField_1.setText(lastlogin);
 		textField_1.setEditable(false);

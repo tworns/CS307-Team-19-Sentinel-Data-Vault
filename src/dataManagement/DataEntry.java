@@ -70,6 +70,7 @@ public class DataEntry {
 		return this.owner;
 	}
 
+
 	public LocalDateTime getLastModified() {
 		return this.lastModified;
 	}
@@ -109,6 +110,10 @@ public class DataEntry {
 
 	public void removeValidUser(String user) {
 		this.validUsers.remove(user);
+	}
+	
+	public void removeAllValidUser(){
+		this.validUsers.clear();
 	}
 
 	public Boolean checkValidUser(String user) {
