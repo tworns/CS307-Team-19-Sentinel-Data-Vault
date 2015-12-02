@@ -435,7 +435,7 @@ public class DatabaseManager {
 	 * @return Alphabetically-sorted List of all shared data entries a user has
 	 *         permission to view.
 	 */
-	public List<String> retrieveSharedEntryList(String user_email) {
+	public List<String> retrieveSharedEntryNameList(String user_email) {
 		List<String> sharedEntryList = new ArrayList<String>();
 		// Connect to the database
 		Connection DBconnection = connectToDatabase();
@@ -454,6 +454,41 @@ public class DatabaseManager {
 				// search the String array for user_email; add to SharedEntryList
 				if (Arrays.binarySearch(parsedValidUsers, user_email) >= 0) {
 					sharedEntryList.add(allDataEntries.getString("entry_name"));
+				}
+			}
+			// Disconnect and close database
+			allDataEntries.close();
+			stmt.close();
+			DBconnection.close();
+		}
+		catch (SQLException e) {
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			e.printStackTrace();
+		}
+
+		Collections.sort(sharedEntryList);
+		return sharedEntryList;
+	}
+	
+	public List<String> retrieveSharedEntryTypeList(String user_email) {
+		List<String> sharedEntryList = new ArrayList<String>();
+		// Connect to the database
+		Connection DBconnection = connectToDatabase();
+		try {
+			// Initialize a statement to execute
+			Statement stmt = DBconnection.createStatement();
+			// Construct the SQL select statement (gets ALL data entries)
+			String sql = "SELECT entry_name, valid_users FROM data_entries;";
+			// Execute SQL statement and retrieve result set
+			ResultSet allDataEntries = stmt.executeQuery(sql);
+			// Construct list of available shared entries from result set of ALL entries
+			while (allDataEntries.next()) {
+				// parse the valid_users STRING to get resulting LIST of valid users. Delimiter = ' '
+				String validUsers = allDataEntries.getString("valid_users");
+				String[] parsedValidUsers = validUsers.split(" ");
+				// search the String array for user_email; add to SharedEntryList
+				if (Arrays.binarySearch(parsedValidUsers, user_email) >= 0) {
+					sharedEntryList.add(allDataEntries.getString("entry_type"));
 				}
 			}
 			// Disconnect and close database
