@@ -310,6 +310,7 @@ public class HomeView {
 
 		//panel_west		
 		txtUsername = new JTextField();
+		txtUsername.setFont(new Font("Lucida Grande", Font.PLAIN, 11));
 		txtUsername.setBounds(6, 167, 169, 26);
 		txtUsername.setText(username);
 		txtUsername.setColumns(10);
@@ -324,6 +325,7 @@ public class HomeView {
 		lblUserEmail.setBounds(5, 151, 165, 16);
 
 		textField_1 = new JTextField();
+		textField_1.setFont(new Font("Lucida Grande", Font.PLAIN, 11));
 		textField_1.setBounds(6, 218, 169, 26);
 		textField_1.setText(lastlogin);
 		textField_1.setEditable(false);
