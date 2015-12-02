@@ -3,6 +3,7 @@ package userInterface;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
@@ -11,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JMenuBar;
@@ -352,10 +354,16 @@ public class HomeView {
 		panel_west.add(lblUserEmail);
 		panel_west.add(lblNewLabel);
 		
-		JButton btnImport = new JButton("Import");
+		JButton btnImport = new JButton("Import Entries");
 		btnImport.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				JFileChooser fileChooser = new JFileChooser();
+				fileChooser.setDialogTitle("Choose a backup file to import");
+				int result = fileChooser.showDialog(frmSentinelDataVault, "Import");
+				if (result == JFileChooser.APPROVE_OPTION) {
+					File selectedBackupFile = fileChooser.getSelectedFile();
+					System.out.println("Selected backup file: " + selectedBackupFile.getAbsolutePath());
+				}
 			}
 		});
 		btnImport.setBounds(32, 309, 117, 29);
