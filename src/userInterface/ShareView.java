@@ -96,6 +96,12 @@ public class ShareView extends JFrame {
 		JButton btnStopSharing = new JButton("Stop sharing");
 		btnStopSharing.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				sharingData.removeAllValidUser();
+				DatabaseManager d = new DatabaseManager("vault_database");
+				d.deleteEntryFromDatabase(entry);
+				d.addEntryToDatabase(owner, sharingData);
+				JOptionPane.showMessageDialog(null,
+							"You have successfully stopped sharing your file!");
 			}
 		});
 		btnStopSharing.setBounds(294, 30, 113, 27);
@@ -106,7 +112,8 @@ public class ShareView extends JFrame {
 				
 				String user = textField.getText();
 				if (d.retrieveUserFromDatabase(user) != null){
-				
+					List<String> validUsers = entry.getValidUsers();
+					if(!validUsers.contains(user)){
 				//now check if the target user actually exists
 					sharingData.addValidUser(user);
 					d.deleteEntryFromDatabase(entry);
@@ -114,6 +121,11 @@ public class ShareView extends JFrame {
 					//d.updateEntry(owner, entry, sharingData);
 					JOptionPane.showMessageDialog(null,
 							"You have successfully shared your file with the target user!");
+					}
+					else{
+						JOptionPane.showMessageDialog(null,
+							"You are already sharing with this user!");
+					}
 				}
 				else{
 					JOptionPane.showMessageDialog(null,
