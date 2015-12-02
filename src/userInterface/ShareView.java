@@ -109,7 +109,9 @@ public class ShareView extends JFrame {
 				
 				//now check if the target user actually exists
 					sharingData.addValidUser(user);
-					d.updateEntry(owner, oldData, sharingData);
+					d.deleteEntryFromDatabase(entry);
+					d.addEntryToDatabase(owner, sharingData);
+					//d.updateEntry(owner, entry, sharingData);
 					JOptionPane.showMessageDialog(null,
 							"You have successfully shared your file with the target user!");
 				}
