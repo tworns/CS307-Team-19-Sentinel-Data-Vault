@@ -83,7 +83,7 @@ public class NewDataEntryView {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame("Choose New Date Entry Type");
+		frame = new JFrame("Choose a data entry type");
 		frame.setBounds(150, 150, 300, 200);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
@@ -191,10 +191,10 @@ public class NewDataEntryView {
 								int result = m.addEntryToDatabase(currentUser, newEntry);
 								if (result == -1) {
 									JOptionPane.showMessageDialog(null,
-											"The Entry Name has already existed! Please Try another Entry Name!");
+											"This entry name already exists! Please use a different entry name!");
 									return;
 								} else {
-									JOptionPane.showMessageDialog(null, "You have successfully Added DataEntry");
+									JOptionPane.showMessageDialog(null, "You have successfully added a new data entry!");
 									System.gc();
 									for (Window window : Window.getWindows()) {
 										window.dispose();
