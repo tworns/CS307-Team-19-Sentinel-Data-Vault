@@ -482,7 +482,7 @@ public class EditDataEntryView {
 						return;
 					} else {
 
-						JOptionPane.showMessageDialog(null, "You have successfully Added DataEntry");
+						JOptionPane.showMessageDialog(null, "You have successfully modified DataEntry");
 						System.gc();
 						for (Window window : Window.getWindows()) {
 							window.dispose();
@@ -976,7 +976,7 @@ public class EditDataEntryView {
 								"This entry name already exists! Please choose a different entry name!");
 						return;
 					} else {
-						JOptionPane.showMessageDialog(null, "You have successfully Added DataEntry");
+						JOptionPane.showMessageDialog(null, "You have successfully modified DataEntry");
 						System.gc();
 						for (Window window : Window.getWindows()) {
 							window.dispose();
@@ -1226,7 +1226,7 @@ public class EditDataEntryView {
 								"This entry name already exists! Please choose a different entry name!");
 						return;
 					} else {
-						JOptionPane.showMessageDialog(null, "You have successfully Added DataEntry");
+						JOptionPane.showMessageDialog(null, "You have successfully modified DataEntry");
 						System.gc();
 						for (Window window : Window.getWindows()) {
 							window.dispose();
