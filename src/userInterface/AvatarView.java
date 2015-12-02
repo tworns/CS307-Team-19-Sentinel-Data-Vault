@@ -21,7 +21,7 @@ import java.awt.Font;
 public class AvatarView { //ANY NEW AVATAR PHOTO SHOULD BE ~100 X ~75 (height X width).
 
 	public JFrame frame;
-	private String [] avatars = { "/Avatars/Avatar1.jpg","/Avatars/Avatar2.jpg", "/Avatars/Avatar3.jpg", "/Avatars/Avatar3.jpg","/Avatars/Avatar4.jpg",
+	private String [] avatars = { "/Avatars/Avatar1.jpg","/Avatars/Avatar2.jpg", "/Avatars/Avatar3.jpg","/Avatars/Avatar4.jpg",
 			"/Avatars/Avatar5.jpg","/Avatars/Avatar6.jpg"
 	};
 	public User currentUser;
