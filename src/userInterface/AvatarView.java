@@ -55,6 +55,7 @@ public class AvatarView { //ANY NEW AVATAR PHOTO SHOULD BE ~100 X ~75 (height X 
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setLocationRelativeTo(null);
 		frame.setBounds(100, 100, 711, 453);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
