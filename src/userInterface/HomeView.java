@@ -344,7 +344,7 @@ public class HomeView {
 		});
 
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setBounds(5, 8, 170, 140);
+		lblNewLabel.setBounds(30, 8, 120, 120);
 		lblNewLabel.setIcon(new ImageIcon(HomeView.class.getResource(currentUser.getDataKey())));
 		panel_west.setLayout(null);
 		panel_west.add(btnCreatebackup);
