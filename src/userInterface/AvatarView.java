@@ -88,7 +88,7 @@ public class AvatarView { //ANY NEW AVATAR PHOTO SHOULD BE ~100 X ~75 (height X 
 		
 		JLabel lblNewLabel = new JLabel("New label");
 		lblNewLabel.setIcon(new ImageIcon(AvatarView.class.getResource("/Avatars/Yep.jpg")));
-		lblNewLabel.setBounds(94, 26, 75, 100);
+		lblNewLabel.setBounds(66, 15, 120, 120);
 		frame.getContentPane().add(lblNewLabel);
 	}
 }

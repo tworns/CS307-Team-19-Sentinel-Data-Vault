@@ -61,11 +61,20 @@ public class Crypto {
 		return key;
 	}
 
+	public Key shareKeyGen (String dataKey, int security) throws UnsupportedEncodingException { 
+		Key key = null;
+		if(security == 1) { 
+			key = new SecretKeySpec(dataKey.getBytes(charEncoding), "AES");
+		}
+		else { 
+			key =new SecretKeySpec(dataKey.getBytes(charEncoding),"DESede");
+		}
+		return key;
+	}
+	
+	
 	public byte[] ivGen(User user, int security) throws UnsupportedEncodingException { // Encryption
-																						// was
-																						// insecure,
-																						// needed
-																						// salt.
+																						// was insecure, needed salt.
 		String iv = user.getPasswordSalt();
 		if (security == 1) { // AES
 			char[] salt16 = new char[16];
@@ -79,12 +88,20 @@ public class Crypto {
 			return new String(salt8).getBytes(charEncoding);
 		}
 	}
+	public byte[] shareIvGen(String iv, int security) throws UnsupportedEncodingException { 
+		if (security == 1) { // AES
+			char[] salt16 = new char[16];
+			iv.getChars(0, 16, salt16, 0);
+			return new String(salt16).getBytes(charEncoding);
+		}
 
-	public DataEntry encrypt(User user, DataEntry data) { // TODO figure out
-															// where the high
-															// security is being
-															// retrieved from.
-
+		else { // 3DES
+			char[] salt8 = new char[8];
+			iv.getChars(0, 8, salt8, 0);
+			return new String(salt8).getBytes(charEncoding);
+		}
+	}
+	public DataEntry encrypt(User user, DataEntry data) {
 		try {
 			Cipher c;
 			IvParameterSpec iv = new IvParameterSpec(ivGen(user, data.isHighSecurity()));
@@ -122,7 +139,33 @@ public class Crypto {
 		}
 		return data;
 	}
+	public String shareDecrypt (int security, String userPasswordSalt, String dataKey, String data) {
+	
+		Key key;
+		String output = null;
+		try {
+			key = shareKeyGen(dataKey, security);
 
+		Cipher c;
+		IvParameterSpec iv = new IvParameterSpec(shareIvGen(userPasswordSalt,security));
+		if (security == 1) { // AES encryption decrypt
+			c = Cipher.getInstance("AES/CBC/PKCS5Padding");
+			c.init(Cipher.DECRYPT_MODE, key, iv);
+		}
+		else { // 3DES encryption decrypt
+			c = Cipher.getInstance("DESede/CBC/PKCS5Padding");
+			c.init(Cipher.DECRYPT_MODE, key, iv);
+		}
+		BASE64Decoder k = new BASE64Decoder();
+		byte[] decryptedBytes = k.decodeBuffer(data);
+		byte[] decryptedData = c.doFinal(decryptedBytes);
+		output = new String(decryptedData);
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		return output;
+	}
 	public DataEntry decrypt(User user, DataEntry data) { // Return type is
 															// temporary
 		try {

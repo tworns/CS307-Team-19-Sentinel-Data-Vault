@@ -14,7 +14,7 @@ public class CryptoTest {
 	public static void main(String[] args) { 
 		Crypto test = new Crypto();
 		int secLvl = 1;
-		DataEntry testData = new DataEntry(null, null, null, null, 1, null);
+		DataEntry testData = new DataEntry(null, null, null, null, secLvl, null);
 		User u = new User(null, null, null, null, null, null, null);
 		try{
 		SaltGenerator twitch = new SaltGenerator();
@@ -31,16 +31,21 @@ public class CryptoTest {
 			e.printStackTrace();
 		}		
 		System.out.println(testData.getEncryptionKey()+ "\n");
-		testData.addDataField("This is SPARTA.");
-		testData.addDataField("This too is a test.");
-		testData.addDataField("TESTING!");
+		
+		//testData.addDataField("\n");
+		//testData.addDataField("This is SPARTA.");
+		//testData.addDataField("This too is a test.");
+		//testData.addDataField("TESTING!");
 		testData.addDataField("ASDFASDLKJFALSDKJF!#@!#!@##@LRKAJSFLIAJ[]);;;''");
-		testData.addDataField("You may have a mild case of... er.. severe brain damage.");
+		//testData.addDataField("You may have a mild case of... er.. severe brain damage.");
 		
 			test.encrypt(u, testData);
-			System.out.println(testData.getFieldDataList());
-			test.decrypt(u, testData);
-			System.out.println(testData.getFieldDataList());
+			String encrypted = testData.getFieldDataList().get(0);
+			System.out.println(encrypted+"\n");
+			/*test.decrypt(u, testData);
+			System.out.println(testData.getFieldDataList());*/
+		String decrypted = test.shareDecrypt(secLvl, u.getPasswordSalt(), testData.getEncryptionKey(), encrypted);
+		System.out.println(decrypted+"\n");
 		
 	}
 	
