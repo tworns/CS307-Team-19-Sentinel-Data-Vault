@@ -40,6 +40,7 @@ import javax.swing.tree.TreePath;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.JList;
+import javax.swing.ImageIcon;
 
 public class HomeView {
 
@@ -301,15 +302,21 @@ public class HomeView {
 
 		//panel_west		
 		textField = new JTextField();
+		textField.setBounds(6, 167, 169, 26);
 		textField.setText(username);
 		textField.setColumns(10);
 		textField.setEditable(false);
 
 		JLabel lblLastLogin = new JLabel("Last Login");
+		lblLastLogin.setFont(new Font("Lucida Grande", Font.BOLD, 13));
+		lblLastLogin.setBounds(6, 198, 175, 16);
 
 		JLabel lblUserEmail = new JLabel("User Email");
+		lblUserEmail.setFont(new Font("Lucida Grande", Font.BOLD, 13));
+		lblUserEmail.setBounds(10, 151, 165, 16);
 
 		textField_1 = new JTextField();
+		textField_1.setBounds(6, 218, 169, 26);
 		textField_1.setText(lastlogin);
 		if(currentUser != null){
 			if (currentUser.getLastLogin().toString() != null){
@@ -319,45 +326,24 @@ public class HomeView {
 		textField_1.setColumns(10);
 		
 		JButton btnCreatebackup = new JButton("Create Backup");
+		btnCreatebackup.setBounds(25, 323, 133, 29);
 		btnCreatebackup.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				BackupManager bm = new BackupManager();
 				bm.createUserBackupDatabase(currentUser);
 			}
 		});
-		GroupLayout gl_panel_west = new GroupLayout(panel_west);
-		gl_panel_west.setHorizontalGroup(
-			gl_panel_west.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_west.createSequentialGroup()
-					.addGroup(gl_panel_west.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel_west.createSequentialGroup()
-							.addContainerGap()
-							.addGroup(gl_panel_west.createParallelGroup(Alignment.LEADING, false)
-								.addComponent(lblLastLogin)
-								.addComponent(lblUserEmail)
-								.addComponent(textField_1, GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
-								.addComponent(textField)))
-						.addGroup(gl_panel_west.createSequentialGroup()
-							.addGap(20)
-							.addComponent(btnCreatebackup)))
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-		);
-		gl_panel_west.setVerticalGroup(
-			gl_panel_west.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_west.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(lblUserEmail)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(lblLastLogin)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(116)
-					.addComponent(btnCreatebackup)
-					.addContainerGap(122, Short.MAX_VALUE))
-		);
-		panel_west.setLayout(gl_panel_west);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setBounds(5, 8, 170, 140);
+		lblNewLabel.setIcon(new ImageIcon(HomeView.class.getResource("/Avatars/screenshot.jpg")));
+		panel_west.setLayout(null);
+		panel_west.add(btnCreatebackup);
+		panel_west.add(textField_1);
+		panel_west.add(lblLastLogin);
+		panel_west.add(textField);
+		panel_west.add(lblUserEmail);
+		panel_west.add(lblNewLabel);
 		panel_south.setLayout(gl_panel_south);
 
 		//panel_east		
