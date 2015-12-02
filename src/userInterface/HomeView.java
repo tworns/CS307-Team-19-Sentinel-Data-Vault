@@ -311,7 +311,7 @@ public class HomeView {
 		//panel_west		
 		txtUsername = new JTextField();
 		txtUsername.setBounds(6, 167, 169, 26);
-		txtUsername.setText("username");
+		txtUsername.setText(username);
 		txtUsername.setColumns(10);
 		txtUsername.setEditable(false);
 
