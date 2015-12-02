@@ -69,21 +69,37 @@ public class ShareView extends JFrame {
 		panel.setLayout(null);
 		
 		JLabel lblEmailAccountYou = new JLabel("Enter the email account you want to share with:");
-		lblEmailAccountYou.setBounds(31, 5, 376, 18);
+		lblEmailAccountYou.setBounds(31, 65, 376, 18);
 		panel.add(lblEmailAccountYou);
 		
 		JButton btnShareLocally = new JButton("Share locally");
-		btnShareLocally.setBounds(31, 129, 137, 27);
+		btnShareLocally.setBounds(31, 147, 137, 27);
 		panel.add(btnShareLocally);
 		
 		JButton btnShareViaEmail = new JButton("Share via email");
-		btnShareViaEmail.setBounds(182, 129, 153, 27);
+		btnShareViaEmail.setBounds(182, 147, 153, 27);
 		panel.add(btnShareViaEmail);
 		
 		textField = new JTextField();
-		textField.setBounds(31, 63, 199, 24);
+		textField.setBounds(31, 96, 199, 24);
 		panel.add(textField);
 		textField.setColumns(10);
+		
+		JLabel lblTheDataYour = new JLabel("The data your are sharing is:");
+		lblTheDataYour.setBounds(31, 13, 242, 18);
+		panel.add(lblTheDataYour);
+		
+		JLabel lblNewLabel = new JLabel(oldData.getEntryName());
+		lblNewLabel.setBounds(41, 34, 232, 18);
+		panel.add(lblNewLabel);
+		
+		JButton btnStopSharing = new JButton("Stop sharing");
+		btnStopSharing.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		btnStopSharing.setBounds(294, 30, 113, 27);
+		panel.add(btnStopSharing);
 		btnShareLocally.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				DatabaseManager d = new DatabaseManager("vault_database");
