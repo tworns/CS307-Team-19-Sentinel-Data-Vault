@@ -208,8 +208,6 @@ public class HomeView {
 		btnDeleteData.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
 
 		JLabel lblEmpty_1 = new JLabel("     ");
-
-		JLabel lblEmpty_2 = new JLabel("     ");
 		
 		GroupLayout gl_panel_north = new GroupLayout(panel_north);
 		gl_panel_north.setHorizontalGroup(
@@ -226,9 +224,7 @@ public class HomeView {
 					.addComponent(btnDeleteData, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(btnSecurity, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(lblEmpty_2, GroupLayout.PREFERRED_SIZE, 55, GroupLayout.PREFERRED_SIZE)
-					.addGap(172))
+					.addGap(233))
 		);
 		gl_panel_north.setVerticalGroup(
 			gl_panel_north.createParallelGroup(Alignment.TRAILING)
@@ -240,7 +236,6 @@ public class HomeView {
 							.addComponent(btnAddData, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
 							.addComponent(btnDeleteData, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
 							.addComponent(lblEmpty_1)
-							.addComponent(lblEmpty_2)
 							.addComponent(btnSecurity, GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)))
 					.addGap(15))
 		);

@@ -41,7 +41,7 @@ public class DataEntryPanel extends JPanel{
 		
 	}
 	
-
+/*
 	public JPanel getAccountLoginPanel(DataEntry data){
 			
 		panel.removeAll();	
@@ -78,6 +78,7 @@ public class DataEntryPanel extends JPanel{
 		
 		return panel;
 	}
+	*/
 	
 	public JPanel getAccountLoginPanelWithData(DataEntry data){
 		
@@ -128,8 +129,36 @@ public class DataEntryPanel extends JPanel{
 		formattedTextField.setText(data.getFieldDataList().get(2));
 		panel.add(formattedTextField, "cell 0 7,growx");
 		
+		JButton btnEditData = new JButton("Edit Entry");
+		btnEditData.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				DatabaseManager dm = new DatabaseManager("vault_database");
+				EditDataEntryView editDataEntry = new EditDataEntryView(dm.retrieveUserFromDatabase(data.getOwner()), data);
+				editDataEntry.getJframe().setVisible(true);
+			}
+		});
+		btnEditData.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
+		
+		JButton btnShareData = new JButton("Share Entry");
+		btnShareData.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(data != null){
+					DatabaseManager dm = new DatabaseManager("vault_database");
+					ShareView share = new ShareView(dm.retrieveUserFromDatabase(data.getOwner()), data);
+					share.setLocationRelativeTo(null);
+					share.setVisible(true);
+				}
+			}
+		});
+		btnShareData.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
+
+		panel.add(btnEditData, "cell 0 8,growx");
+		panel.add(btnShareData, "cell 0 8,growx");
+		
 		return panel;
 	}
+	/*
 	
 	public JPanel getCreditCardPanel(DataEntry data) {
 		panel.removeAll();	
@@ -182,7 +211,7 @@ public class DataEntryPanel extends JPanel{
 		
 		return panel;
 		
-	}
+	}*/
 	
 	public JPanel getCreditCardPanelWithData(DataEntry data) {
 		panel.removeAll();	
@@ -238,6 +267,33 @@ public class DataEntryPanel extends JPanel{
 		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30"}));
 		panel.add(comboBox_2, "cell 0 10,growx");
 		*/
+		
+		JButton btnEditData = new JButton("Edit Entry");
+		btnEditData.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				DatabaseManager dm = new DatabaseManager("vault_database");
+				EditDataEntryView editDataEntry = new EditDataEntryView(dm.retrieveUserFromDatabase(data.getOwner()), data);
+				editDataEntry.getJframe().setVisible(true);
+			}
+		});
+		btnEditData.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
+		
+		JButton btnShareData = new JButton("Share Entry");
+		btnShareData.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(data != null){
+					DatabaseManager dm = new DatabaseManager("vault_database");
+					ShareView share = new ShareView(dm.retrieveUserFromDatabase(data.getOwner()), data);
+					share.setLocationRelativeTo(null);
+					share.setVisible(true);
+				}
+			}
+		});
+		btnShareData.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
+
+		panel.add(btnEditData, "cell 0 11,growx");
+		panel.add(btnShareData, "cell 0 11,growx");
 		
 		return panel;
 		
@@ -340,6 +396,32 @@ public class DataEntryPanel extends JPanel{
 		formattedTextField_3.setText(data.getFieldDataList().get(4));
 		panel.add(formattedTextField_3, "cell 0 10,growx");
 		
+		JButton btnEditData = new JButton("Edit Entry");
+		btnEditData.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				DatabaseManager dm = new DatabaseManager("vault_database");
+				EditDataEntryView editDataEntry = new EditDataEntryView(dm.retrieveUserFromDatabase(data.getOwner()), data);
+				editDataEntry.getJframe().setVisible(true);
+			}
+		});
+		btnEditData.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
+		
+		JButton btnShareData = new JButton("Share Entry");
+		btnShareData.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(data != null){
+					DatabaseManager dm = new DatabaseManager("vault_database");
+					ShareView share = new ShareView(dm.retrieveUserFromDatabase(data.getOwner()), data);
+					share.setLocationRelativeTo(null);
+					share.setVisible(true);
+				}
+			}
+		});
+		btnShareData.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
+
+		panel.add(btnEditData, "cell 0 11,growx");
+		panel.add(btnShareData, "cell 0 11,growx");
 		
 		return panel;
 	}
@@ -374,6 +456,33 @@ public class DataEntryPanel extends JPanel{
 		formattedTextField_1.setText(data.getFieldDataList().get(2));
 		panel.add(formattedTextField_1, "cell 0 6,growx");		
 		
+		JButton btnEditData = new JButton("Edit Entry");
+		btnEditData.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				DatabaseManager dm = new DatabaseManager("vault_database");
+				EditDataEntryView editDataEntry = new EditDataEntryView(dm.retrieveUserFromDatabase(data.getOwner()), data);
+				editDataEntry.getJframe().setVisible(true);
+			}
+		});
+		btnEditData.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
+		
+		JButton btnShareData = new JButton("Share Entry");
+		btnShareData.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(data != null){
+					DatabaseManager dm = new DatabaseManager("vault_database");
+					ShareView share = new ShareView(dm.retrieveUserFromDatabase(data.getOwner()), data);
+					share.setLocationRelativeTo(null);
+					share.setVisible(true);
+				}
+			}
+		});
+		btnShareData.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
+
+		panel.add(btnEditData, "cell 0 7,growx");
+		panel.add(btnShareData, "cell 0 7,growx");
+		
 		return panel;
 	}
 	
@@ -400,6 +509,33 @@ public class DataEntryPanel extends JPanel{
 		formattedTextField.setText(data.getFieldDataList().get(1));
 		panel.add(formattedTextField, "cell 0 4,growx");
 		
+		
+		JButton btnEditData = new JButton("Edit Entry");
+		btnEditData.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				DatabaseManager dm = new DatabaseManager("vault_database");
+				EditDataEntryView editDataEntry = new EditDataEntryView(dm.retrieveUserFromDatabase(data.getOwner()), data);
+				editDataEntry.getJframe().setVisible(true);
+			}
+		});
+		btnEditData.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
+		
+		JButton btnShareData = new JButton("Share Entry");
+		btnShareData.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(data != null){
+					DatabaseManager dm = new DatabaseManager("vault_database");
+					ShareView share = new ShareView(dm.retrieveUserFromDatabase(data.getOwner()), data);
+					share.setLocationRelativeTo(null);
+					share.setVisible(true);
+				}
+			}
+		});
+		btnShareData.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
+
+		panel.add(btnEditData, "cell 0 5,growx");
+		panel.add(btnShareData, "cell 0 5,growx");
 		
 		return panel;
 	}
@@ -433,6 +569,33 @@ public class DataEntryPanel extends JPanel{
 		formattedTextField3.setText(data.getFieldDataList().get(1));
 		panel.add(formattedTextField3, "cell 0 6,growx");
 				
+		JButton btnEditData = new JButton("Edit Entry");
+		btnEditData.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				DatabaseManager dm = new DatabaseManager("vault_database");
+				EditDataEntryView editDataEntry = new EditDataEntryView(dm.retrieveUserFromDatabase(data.getOwner()), data);
+				editDataEntry.getJframe().setVisible(true);
+			}
+		});
+		btnEditData.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
+		
+		JButton btnShareData = new JButton("Share Entry");
+		btnShareData.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(data != null){
+					DatabaseManager dm = new DatabaseManager("vault_database");
+					ShareView share = new ShareView(dm.retrieveUserFromDatabase(data.getOwner()), data);
+					share.setLocationRelativeTo(null);
+					share.setVisible(true);
+				}
+			}
+		});
+		btnShareData.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
+
+		panel.add(btnEditData, "cell 0 7,growx");
+		panel.add(btnShareData, "cell 0 7,growx");
+		
 		return panel;
 	}	
 	
@@ -507,8 +670,7 @@ public class DataEntryPanel extends JPanel{
 		});
 		btnShareData.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
 
-		panel.add(btnEditData, "cell 0 "+ Integer.toString(row++) +",growx");
-
+		panel.add(btnEditData, "cell 0 "+ Integer.toString(row) +",growx");
 		panel.add(btnShareData, "cell 0 "+ Integer.toString(row++) +",growx");
 						
 		return panel;
