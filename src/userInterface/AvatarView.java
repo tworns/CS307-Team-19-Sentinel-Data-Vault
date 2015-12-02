@@ -7,17 +7,24 @@ import javax.swing.JLabel;
 
 import com.oracle.webservices.internal.api.databinding.Databinding.Builder;
 
+import controllers.DatabaseManager;
+import dataManagement.User;
+
 import java.awt.BorderLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 public class AvatarView { //ANY NEW AVATAR PHOTO SHOULD BE ~100 X ~75 (height X width).
 
 	private JFrame frame;
-
+	private String [] avatars = { "/Avatars/Avatar1.jpg","/Avatars/Avatar2.jpg", "/Avatars/Avatar3.jpg", "/Avatars/Avatar3.jpg","/Avatars/Avatar4.jpg",
+			"/Avatars/Avatar5.jpg","/Avatars/Avatar6.jpg"
+	};
+	public User currentUser;
 	/**
 	 * Launch the application.
 	 */
@@ -25,7 +32,8 @@ public class AvatarView { //ANY NEW AVATAR PHOTO SHOULD BE ~100 X ~75 (height X 
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AvatarView window = new AvatarView();
+					User u = new User(null,null,null,null,null,null, null);
+					AvatarView window = new AvatarView(u);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -37,8 +45,9 @@ public class AvatarView { //ANY NEW AVATAR PHOTO SHOULD BE ~100 X ~75 (height X 
 	/**
 	 * Create the application.
 	 */
-	public AvatarView() {
+	public AvatarView(User user) {
 		initialize();
+		this.currentUser = user;
 	}
 
 	/**
@@ -46,7 +55,7 @@ public class AvatarView { //ANY NEW AVATAR PHOTO SHOULD BE ~100 X ~75 (height X 
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 747, 418);
+		frame.setBounds(100, 100, 711, 453);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -59,36 +68,109 @@ public class AvatarView { //ANY NEW AVATAR PHOTO SHOULD BE ~100 X ~75 (height X 
 				//| 1 | 2 | 3 | 
 				//| 4 | 5 | 6 | ...  
 				// can be expanded to fit needs, preferably continuing with rows of 3. 
+				currentUser.setDataKey(avatars[0]);
+				DatabaseManager v = new DatabaseManager("vault_database");
+				v.modifyUserField(currentUser, "data_key", avatars[0]);
 				frame.dispose();
 				
 			}
 		});
-		rdbtnNewRadioButton.setBounds(115, 144, 25, 25);
+		rdbtnNewRadioButton.setBounds(112, 173, 25, 25);
 		frame.getContentPane().add(rdbtnNewRadioButton);
 		
 		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("");
-		rdbtnNewRadioButton_1.setBounds(327, 144, 25, 25);
+		rdbtnNewRadioButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				currentUser.setDataKey(avatars[1]);
+				DatabaseManager v = new DatabaseManager("vault_database");
+				v.modifyUserField(currentUser, "data_key", avatars[1]);
+				frame.dispose();
+			}
+		});
+		rdbtnNewRadioButton_1.setBounds(324, 173, 25, 25);
 		frame.getContentPane().add(rdbtnNewRadioButton_1);
 		
 		JRadioButton rdbtnNewRadioButton_2 = new JRadioButton("");
-		rdbtnNewRadioButton_2.setBounds(569, 144, 25, 25);
+		rdbtnNewRadioButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				currentUser.setDataKey(avatars[2]);
+				DatabaseManager v = new DatabaseManager("vault_database");
+				v.modifyUserField(currentUser, "data_key", avatars[2]);
+				frame.dispose();
+			}
+		});
+		rdbtnNewRadioButton_2.setBounds(566, 173, 25, 25);
 		frame.getContentPane().add(rdbtnNewRadioButton_2);
 		
 		JRadioButton radioButton = new JRadioButton("");
-		radioButton.setBounds(115, 319, 25, 25);
+		radioButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				currentUser.setDataKey(avatars[3]);
+				DatabaseManager v = new DatabaseManager("vault_database");
+				v.modifyUserField(currentUser, "data_key", avatars[3]);
+				frame.dispose();
+			}
+		});
+		radioButton.setBounds(112, 348, 25, 25);
 		frame.getContentPane().add(radioButton);
 		
 		JRadioButton radioButton_1 = new JRadioButton("");
-		radioButton_1.setBounds(327, 319, 25, 25);
+		radioButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				currentUser.setDataKey(avatars[4]);
+				DatabaseManager v = new DatabaseManager("vault_database");
+				v.modifyUserField(currentUser, "data_key", avatars[4]);
+				frame.dispose();
+			}
+		});
+		radioButton_1.setBounds(324, 348, 25, 25);
 		frame.getContentPane().add(radioButton_1);
 		
 		JRadioButton radioButton_2 = new JRadioButton("");
-		radioButton_2.setBounds(569, 319, 25, 25);
+		radioButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				currentUser.setDataKey(avatars[5]);
+				DatabaseManager v = new DatabaseManager("vault_database");
+				v.modifyUserField(currentUser, "data_key", avatars[5]);
+				frame.dispose();
+			}
+		});
+		radioButton_2.setBounds(566, 348, 25, 25);
 		frame.getContentPane().add(radioButton_2);
 		
 		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setIcon(new ImageIcon(AvatarView.class.getResource("/Avatars/Yep.jpg")));
-		lblNewLabel.setBounds(66, 15, 120, 120);
+		lblNewLabel.setIcon(new ImageIcon(AvatarView.class.getResource("/Avatars/Avatar1.jpg")));
+		lblNewLabel.setBounds(63, 44, 120, 120);
 		frame.getContentPane().add(lblNewLabel);
+		
+		JLabel label = new JLabel("New label");
+		label.setIcon(new ImageIcon(AvatarView.class.getResource("/Avatars/Avatar2.jpg")));
+		label.setBounds(274, 44, 120, 120);
+		frame.getContentPane().add(label);
+		
+		JLabel label_1 = new JLabel("New label");
+		label_1.setIcon(new ImageIcon(AvatarView.class.getResource("/Avatars/Avatar3.jpg")));
+		label_1.setBounds(519, 44, 120, 120);
+		frame.getContentPane().add(label_1);
+		
+		JLabel label_2 = new JLabel("New label");
+		label_2.setIcon(new ImageIcon(AvatarView.class.getResource("/Avatars/Avatar4.jpg")));
+		label_2.setBounds(63, 219, 120, 120);
+		frame.getContentPane().add(label_2);
+		
+		JLabel label_3 = new JLabel("New label");
+		label_3.setIcon(new ImageIcon(AvatarView.class.getResource("/Avatars/Avatar5.jpg")));
+		label_3.setBounds(274, 219, 120, 120);
+		frame.getContentPane().add(label_3);
+		
+		JLabel label_4 = new JLabel("New label");
+		label_4.setIcon(new ImageIcon(AvatarView.class.getResource("/Avatars/Avatar6.jpg")));
+		label_4.setBounds(519, 219, 120, 120);
+		frame.getContentPane().add(label_4);
+		
+		JLabel lblSelectYourAvatar = new JLabel("Select your avatar");
+		lblSelectYourAvatar.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblSelectYourAvatar.setBounds(262, 13, 153, 16);
+		frame.getContentPane().add(lblSelectYourAvatar);
 	}
 }
