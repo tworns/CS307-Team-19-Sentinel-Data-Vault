@@ -759,7 +759,10 @@ public class HomeView {
 				JTree tree = (JTree) e.getSource();
 
 				DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
-
+				if (selectedNode == null) {
+					currentEntry = null;
+					return;
+				}
 				String selectedNodeName = selectedNode.toString();
 
 				panel_east.removeAll();
