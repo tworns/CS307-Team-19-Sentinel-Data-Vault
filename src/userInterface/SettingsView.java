@@ -292,7 +292,13 @@ public class SettingsView {
 		frmSettings.getContentPane().add(btnDeleteAccount);
 		
 		JButton btnChangeAvatar = new JButton("Change Avatars Picture");
-		btnChangeAvatar.setBounds(58, 190, 169, 29);
+		btnChangeAvatar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AvatarView a = new AvatarView(currentUser);
+				a.frame.setVisible(true);
+			}
+		});
+		btnChangeAvatar.setBounds(137, 189, 169, 29);
 		frmSettings.getContentPane().add(btnChangeAvatar);
 	}
 }
