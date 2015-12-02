@@ -20,6 +20,7 @@ import java.awt.event.ActionListener;
 import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.JTabbedPane;
+import java.awt.ComponentOrientation;
 
 public class ShareView extends JFrame {
 
@@ -53,6 +54,7 @@ public class ShareView extends JFrame {
 		this.oldData = entry;
 		this.sharingData = entry;
 		setResizable(false);
+		setLocationRelativeTo(null);
 		setTitle("Share with your friend");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 446, 265);
@@ -60,6 +62,7 @@ public class ShareView extends JFrame {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPanel);
 		contentPanel.setLayout(null);
+		
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setBounds(0, -1, 440, 233);
@@ -103,6 +106,8 @@ public class ShareView extends JFrame {
 				d.addEntryToDatabase(owner, sharingData);
 				JOptionPane.showMessageDialog(null,
 							"You have successfully stopped sharing your file!");
+				dispose();
+				
 			}
 		});
 		btnStopSharing.setBounds(294, 30, 113, 27);
@@ -122,6 +127,7 @@ public class ShareView extends JFrame {
 					//d.updateEntry(owner, entry, sharingData);
 					JOptionPane.showMessageDialog(null,
 							"You have successfully shared your file with the target user!");
+					dispose();
 					}
 					else{
 						JOptionPane.showMessageDialog(null,

@@ -221,6 +221,7 @@ public class HomeView {
 			public void actionPerformed(ActionEvent e) {
 				if(currentEntry != null){
 					ShareView share = new ShareView(currentUser, currentEntry);
+					share.setLocationRelativeTo(null);
 					share.setVisible(true);
 				}
 				else{
