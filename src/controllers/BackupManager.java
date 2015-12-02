@@ -22,14 +22,17 @@ public class BackupManager {
 		List<DataEntry> dataEntryList = dbm.retrieveUserDataEntries(user.getUsername());
 		// Create a new backup database to store account data
 		dbm.setWorkingDatabase(backup_database_name); // DatabaseManager dbm = new DatabaseManager(backup_database_name);
-		// If backup does not already exist, create the users and data_entries tables in new database
+		// If backup does not already exist, create the users and data_entries tables in new database, and add the current user.
 		File databaseFile = new File(backup_database_name);
-		if (!databaseFile.exists()) {
+		if (!databaseFile.exists()) { // New backup; prepare a new backup database
 			dbm.createUsersTable();
 			dbm.createDataEntriesTable();
+			dbm.addUserToDatabase(user);
 		}
-		// Fill the new database with the user and their entries from the List of user's data entries
-		dbm.addUserToDatabase(user);
+		else {
+			dbm.deleteAllEntriesFromDatabase(user); // Backup already exists; delete old entries
+		}
+		// Fill the new backup database with the user and their entries from the List of user's data entries
 		for (DataEntry entry : dataEntryList) {
 			dbm.addEntryToDatabase(user, entry);
 		}
