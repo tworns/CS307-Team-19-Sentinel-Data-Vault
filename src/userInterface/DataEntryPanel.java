@@ -1,13 +1,17 @@
 package userInterface;
 
 
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.event.TreeSelectionEvent;
 
 import dataManagement.DataEntry;
@@ -89,16 +93,34 @@ public class DataEntryPanel extends JPanel{
 		JLabel label_2 = new JLabel("Password");
 		panel.add(label_2, "cell 0 3");
 		
-		JFormattedTextField formattedTextField_1 = new JFormattedTextField();
-		formattedTextField_1.setText(data.getFieldDataList().get(1));
-		panel.add(formattedTextField_1, "cell 0 4,growx");
+		JPasswordField passwordField = new JPasswordField();
+		passwordField.setText(data.getFieldDataList().get(1));
+		panel.add(passwordField, "cell 0 4,growx");
+		passwordField.setEditable(false);
+		passwordField.putClientProperty("JPasswordField.cutCopyAllowed",true);
+		
+		char a = passwordField.getEchoChar();
+
+		JCheckBox chckbxShowPassword = new JCheckBox("Show Password");
+		chckbxShowPassword.setBounds(130, 176, 128, 23);
+
+		chckbxShowPassword.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if (e.getStateChange() == ItemEvent.SELECTED) {
+					passwordField.setEchoChar((char)0);
+				} else {
+					passwordField.setEchoChar(a); 
+				}
+			}
+		});
+		panel.add(chckbxShowPassword, "cell 0 5,growx");
 		
 		JLabel label_3 = new JLabel("Web URL");
-		panel.add(label_3, "cell 0 5");
+		panel.add(label_3, "cell 0 6");
 		
 		JFormattedTextField formattedTextField = new JFormattedTextField();
 		formattedTextField.setText(data.getFieldDataList().get(2));
-		panel.add(formattedTextField, "cell 0 6,growx");
+		panel.add(formattedTextField, "cell 0 7,growx");
 		
 		return panel;
 	}
@@ -416,17 +438,42 @@ public class DataEntryPanel extends JPanel{
 			JLabel label_0 = new JLabel(title);
 			panel.add(label_0, "cell 0 0");
 		
-		for (int i=0; i < index.size(); i++) {
-			
-			JLabel label_1 = new JLabel(index.get(i));
-			int row = (i*2+1);
-			panel.add(label_1, "cell 0 " + Integer.toString(row) );
+		int row = 1;
 		
-			row = (i*2+2);
+		for (int i=0; i < index.size(); i++) {
+			if((title.equals("Wifi Network") || title.equals("General Password")) && i == 1) {
+				JLabel label_1 = new JLabel(index.get(i));
+				panel.add(label_1, "cell 0 " + Integer.toString(row++) );
+			
+				JPasswordField passwordField = new JPasswordField();
+				passwordField.setText(data.getFieldDataList().get(i));
+				passwordField.setEditable(false);
+				passwordField.putClientProperty("JPasswordField.cutCopyAllowed",true);
+				panel.add(passwordField, "cell 0 "+ Integer.toString(row++) +",growx");
+				char a = passwordField.getEchoChar();
+
+				JCheckBox chckbxShowPassword = new JCheckBox("Show Password");
+				chckbxShowPassword.setBounds(130, 176, 128, 23);
+
+				chckbxShowPassword.addItemListener(new ItemListener() {
+					public void itemStateChanged(ItemEvent e) {
+						if (e.getStateChange() == ItemEvent.SELECTED) {
+							passwordField.setEchoChar((char)0);
+						} else {
+							passwordField.setEchoChar(a); 
+						}
+					}
+				});
+				panel.add(chckbxShowPassword, "cell 0 "+ Integer.toString(row++) +",growx");
+				continue;
+			}
+			JLabel label_1 = new JLabel(index.get(i));
+			panel.add(label_1, "cell 0 " + Integer.toString(row++) );
+		
 			JFormattedTextField formattedTextField1 = new JFormattedTextField();
 			formattedTextField1.setText(data.getFieldDataList().get(i));
 			formattedTextField1.setEditable(false);
-			panel.add(formattedTextField1, "cell 0 "+ Integer.toString(row) +",growx");
+			panel.add(formattedTextField1, "cell 0 "+ Integer.toString(row++) +",growx");
 		}
 						
 		return panel;
