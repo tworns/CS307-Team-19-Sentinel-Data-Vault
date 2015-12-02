@@ -178,7 +178,7 @@ public class HomeView {
 					m.deleteEntryFromDatabase(currentEntry);
 
 
-					JOptionPane.showMessageDialog(null,"You have successfully Deleted DataEntry");
+					JOptionPane.showMessageDialog(null, "You have successfully deleted the data entry.");
 					System.gc(); 
 					for (Window window : Window.getWindows()){
 						window.dispose();
