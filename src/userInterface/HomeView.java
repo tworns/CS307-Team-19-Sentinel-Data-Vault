@@ -317,7 +317,7 @@ public class HomeView {
 				// Launch file choose to determine backup file location
 				JFileChooser fileChooser = new JFileChooser();
 				fileChooser.setDialogTitle("Choose a location to save backup database file");
-				fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+				fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY); // User can only select a directory to store a backup
 				fileChooser.setAcceptAllFileFilterUsed(false);
 				int result = fileChooser.showDialog(frmSentinelDataVault, "Select");
 				if (result == JFileChooser.APPROVE_OPTION) {
@@ -345,10 +345,25 @@ public class HomeView {
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser fileChooser = new JFileChooser();
 				fileChooser.setDialogTitle("Choose a backup file to import");
+				fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY); // User can only select a backup file to import from
 				int result = fileChooser.showDialog(frmSentinelDataVault, "Import");
 				if (result == JFileChooser.APPROVE_OPTION) {
+					// Execute the import
 					File selectedBackupFile = fileChooser.getSelectedFile();
-					System.out.println("Selected backup file: " + selectedBackupFile.getAbsolutePath());
+					String importLocation = selectedBackupFile.getAbsolutePath();
+					// Need to get the user info of the backup file to import from
+					// TODO retrieve these user-entered credentials from an input window
+					String backupUserEmail = "adam@email.com"; // ***TESTING PURPOSES ONLY***
+					String backupUserPassword = "sdfSDF123!@#"; // ***TESTING PURPOSES ONLY***
+					// Need to validate that current user has valid access privileges to import file
+					BackupManager bum = new BackupManager();
+					if (bum.isValidBackupUser(backupUserEmail, backupUserPassword, importLocation)) {
+						//bum.importEntriesFromBackup(currentUser, backupUser, currentDatabaseName, backupDatabaseName);
+						System.out.println("User has valid access. Can proceed to import.");
+					}
+					else {
+						System.out.println("ACCESS FAILED. Something is wrong.");
+					}
 				}
 			}
 		});
