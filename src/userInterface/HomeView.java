@@ -317,6 +317,11 @@ public class HomeView {
 				// Launch file choose to determine backup file location
 				JFileChooser fileChooser = new JFileChooser();
 				fileChooser.setDialogTitle("Choose a location to save backup database file");
+				int result = fileChooser.showDialog(frmSentinelDataVault, "Select");
+				if (result == JFileChooser.APPROVE_OPTION) {
+					File selectedBackupLocation = fileChooser.getSelectedFile();
+					System.out.println(selectedBackupLocation.getAbsolutePath());
+				}
 				// Execute the backup
 				BackupManager bm = new BackupManager();
 				bm.createUserBackupDatabase(currentUser);
