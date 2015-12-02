@@ -350,6 +350,11 @@ public class HomeView {
 		panel_west.add(lblNewLabel);
 		
 		JButton btnImport = new JButton("Import");
+		btnImport.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		btnImport.setBounds(32, 309, 117, 29);
 		panel_west.add(btnImport);
 		panel_south.setLayout(gl_panel_south);
