@@ -4,6 +4,8 @@ import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
@@ -89,7 +91,6 @@ public class HomeView {
 		currentSharedDataEntryNameList = dbmanger.retrieveSharedEntryNameList(username);
 		currentSharedDataEntryTypeList = dbmanger.retrieveSharedEntryTypeList(username);
 		currentSharedDataEntryOwnerList= dbmanger.retrieveSharedEntryOwnerList(username);
-
 		initialize();	
 	}
 
@@ -118,6 +119,11 @@ public class HomeView {
 				Locale locale = new Locale("EN", "US");
 				JOptionPane.setDefaultLocale(locale);
 				if(JOptionPane.showConfirmDialog(null, "Are You Sure?", "Sign Out",JOptionPane.YES_NO_OPTION, JOptionPane.DEFAULT_OPTION) == 0) {
+					currentUser.setLastLogin(LocalDateTime.now());
+					DatabaseManager d = new DatabaseManager("vault_database");
+					currentUser.getLastLogin();
+					String time = currentUser.getLastLogin().toString();
+					d.modifyUserField(currentUser, "last_login", time );
 					currentUser = null;
 					LoginView frmLog = new LoginView();
 					frmLog.frmSignIn.setVisible(true);
@@ -329,7 +335,7 @@ public class HomeView {
 		textField_1.setEditable(false);
 		if(currentUser != null){
 			if (currentUser.getLastLogin().toString() != null){
-				textField_1.setText(currentUser.getLastLogin().toString());
+				textField_1.setText(currentUser.getLastLogin().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")));
 			}
 		}
 		textField_1.setColumns(10);
