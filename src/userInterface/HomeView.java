@@ -170,7 +170,7 @@ public class HomeView {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println(currentEntry.getEntryName());
 				Object[] options = { "OK", "CANCEL" };
-				int result = JOptionPane.showOptionDialog(null, "Data Entry will be deleted permanently.\nAre you sure you want to delete the Entry?", "Warning", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+				int result = JOptionPane.showOptionDialog(null, "Are you sure you want to permanently delete this data entry?", "Warning", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
 						null, options, options[1]);
 				if (result == 0) {
 					System.out.println("Delete Entry");
