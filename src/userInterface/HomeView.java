@@ -126,6 +126,10 @@ public class HomeView {
 						currentUser.getLastLogin();
 						String time = currentUser.getLastLogin().toString();
 						d.modifyUserField(currentUser, "last_login", time );
+						currentUser = null;
+						LoginView frmLog = new LoginView();
+						frmLog.frmSignIn.setVisible(true);
+						frmSentinelDataVault.dispose();
 				}
 			}
 		});
