@@ -20,12 +20,7 @@ public class Crypto {
 
 	}
 
-	public String randomDataKey(int security) throws UnsupportedEncodingException {// USE
-																					// THE
-																					// DATAENTRY
-																					// SECURITY
-																					// KEY
-																					// HERE!
+	public String randomDataKey(int security) throws UnsupportedEncodingException {
 		String output = null;
 		SecureRandom r = new SecureRandom();
 
@@ -73,8 +68,7 @@ public class Crypto {
 	}
 	
 	
-	public byte[] ivGen(User user, int security) throws UnsupportedEncodingException { // Encryption
-																						// was insecure, needed salt.
+	public byte[] ivGen(User user, int security) throws UnsupportedEncodingException {
 		String iv = user.getPasswordSalt();
 		if (security == 1) { // AES
 			char[] salt16 = new char[16];
@@ -88,6 +82,7 @@ public class Crypto {
 			return new String(salt8).getBytes(charEncoding);
 		}
 	}
+	
 	public byte[] shareIvGen(String iv, int security) throws UnsupportedEncodingException { 
 		if (security == 1) { // AES
 			char[] salt16 = new char[16];
@@ -101,6 +96,19 @@ public class Crypto {
 			return new String(salt8).getBytes(charEncoding);
 		}
 	}
+	
+	public String generateShareString(User user, DataEntry entry) {
+		String shareString = entry.getEntryType() + "\n\n";
+		
+		for (String fieldData : entry.getFieldDataList()) {
+			if (!fieldData.equals(""))
+			shareString += fieldData;
+			shareString += "\n\n";
+		}
+		
+		return shareString.substring(0, shareString.length() - 2);
+	}
+	
 	public DataEntry encrypt(User user, DataEntry data) {
 		try {
 			Cipher c;
@@ -139,6 +147,7 @@ public class Crypto {
 		}
 		return data;
 	}
+	
 	public String shareDecrypt (int security, String userPasswordSalt, String dataKey, String data) {
 	
 		Key key;
@@ -166,6 +175,7 @@ public class Crypto {
 		}
 		return output;
 	}
+	
 	public DataEntry decrypt(User user, DataEntry data) { // Return type is
 															// temporary
 		try {
