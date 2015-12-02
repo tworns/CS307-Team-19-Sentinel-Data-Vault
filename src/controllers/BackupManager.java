@@ -13,7 +13,7 @@ public class BackupManager {
 	 * 
 	 * @param user User object to create an account backup database file for
 	 */
-	public void createUserBackupDatabase(User user) {
+	public void createUserBackupDatabase(User user, String backupLocation) {
 		// Parse username from user_email to use as backup database name
 		String username = user.getUsername().substring(0, user.getUsername().indexOf('@'));
 		String backup_database_name = username + "_backup_database";
@@ -21,9 +21,9 @@ public class BackupManager {
 		DatabaseManager dbm = new DatabaseManager("vault_database");
 		List<DataEntry> dataEntryList = dbm.retrieveUserDataEntries(user.getUsername());
 		// Create a new backup database to store account data
-		dbm.setWorkingDatabase(backup_database_name); // DatabaseManager dbm = new DatabaseManager(backup_database_name);
+		dbm.setCurrentDatabase(backupLocation + "/" + backup_database_name); // DatabaseManager dbm = new DatabaseManager(backup_database_name);
 		// If backup does not already exist, create the users and data_entries tables in new database, and add the current user.
-		File databaseFile = new File(backup_database_name);
+		File databaseFile = new File(backupLocation + "/" + backup_database_name);
 		if (!databaseFile.exists()) { // New backup; prepare a new backup database
 			dbm.createUsersTable();
 			dbm.createDataEntriesTable();
@@ -51,7 +51,7 @@ public class BackupManager {
 		DatabaseManager dbm = new DatabaseManager(backupDatabaseName);
 		List<DataEntry> importedDataEntryList = dbm.retrieveUserDataEntries(backupUser.getUsername());
 		// Switch to the database of currentUser
-		dbm.setWorkingDatabase(currentDatabaseName);
+		dbm.setCurrentDatabase(currentDatabaseName);
 		// Put all entries from the List into the current database for the current user
 		for (DataEntry entry : importedDataEntryList) {
 			dbm.addEntryToDatabase(currentUser, entry);

@@ -317,14 +317,15 @@ public class HomeView {
 				// Launch file choose to determine backup file location
 				JFileChooser fileChooser = new JFileChooser();
 				fileChooser.setDialogTitle("Choose a location to save backup database file");
+				fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+				fileChooser.setAcceptAllFileFilterUsed(false);
 				int result = fileChooser.showDialog(frmSentinelDataVault, "Select");
 				if (result == JFileChooser.APPROVE_OPTION) {
+					// Execute the backup
 					File selectedBackupLocation = fileChooser.getSelectedFile();
-					System.out.println(selectedBackupLocation.getAbsolutePath());
+					BackupManager bum = new BackupManager();
+					bum.createUserBackupDatabase(currentUser, selectedBackupLocation.getAbsolutePath());
 				}
-				// Execute the backup
-				BackupManager bm = new BackupManager();
-				bm.createUserBackupDatabase(currentUser);
 			}
 		});
 

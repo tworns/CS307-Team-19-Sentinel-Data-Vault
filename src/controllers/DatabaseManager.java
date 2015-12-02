@@ -24,7 +24,7 @@ public class DatabaseManager {
 		return database_name;
 	}
 	
-	public void setWorkingDatabase(String newDatabase) {
+	public void setCurrentDatabase(String newDatabase) {
 		database_name = newDatabase;
 	}
 
