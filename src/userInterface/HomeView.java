@@ -176,6 +176,10 @@ public class HomeView {
 		JButton btnDeleteData = new JButton("Delete Entry");
 		btnDeleteData.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (currentEntry == null) {
+					JOptionPane.showMessageDialog(null, "Please choose an entry!");
+					return;
+				}
 				System.out.println(currentEntry.getEntryName());
 				Object[] options = { "OK", "CANCEL" };
 				int result = JOptionPane.showOptionDialog(null, "Are you sure you want to permanently delete this data entry?", "Warning", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
@@ -206,78 +210,40 @@ public class HomeView {
 		JLabel lblEmpty_1 = new JLabel("     ");
 
 		JLabel lblEmpty_2 = new JLabel("     ");
-
-		JButton btnEditData = new JButton("Edit Entry");
-		btnEditData.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				EditDataEntryView editDataEntry = new EditDataEntryView(currentUser, currentEntry);
-				editDataEntry.getJframe().setVisible(true);
-			}
-		});
-		btnEditData.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
-
-		JButton btnShareData = new JButton("Share Entry");
-		btnShareData.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(currentEntry != null){
-					ShareView share = new ShareView(currentUser, currentEntry);
-					share.setVisible(true);
-				}
-				else{
-					JOptionPane.showMessageDialog(null,
-							"You need to select a data entry before sharing!");
-				}
-			}
-		});
-		btnShareData.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
-		btnEditData.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				EditDataEntryView editDataEntry = new EditDataEntryView(currentUser, currentEntry);
-				editDataEntry.getJframe().setVisible(true);
-			}
-		});
-		btnEditData.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
-
-
+		
 		GroupLayout gl_panel_north = new GroupLayout(panel_north);
 		gl_panel_north.setHorizontalGroup(
-				gl_panel_north.createParallelGroup(Alignment.LEADING)
+			gl_panel_north.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_north.createSequentialGroup()
-						.addComponent(btnSignOut, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(btnSetting, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(lblEmpty_1, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(btnAddData, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(btnDeleteData, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(lblEmpty_2, GroupLayout.PREFERRED_SIZE, 55, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(btnEditData, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(btnShareData, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(btnSecurity, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
-						.addGap(326))
-				);
+					.addComponent(btnSignOut, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnSetting, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(lblEmpty_1, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnAddData, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnDeleteData, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnSecurity, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(lblEmpty_2, GroupLayout.PREFERRED_SIZE, 55, GroupLayout.PREFERRED_SIZE)
+					.addGap(172))
+		);
 		gl_panel_north.setVerticalGroup(
-				gl_panel_north.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, gl_panel_north.createSequentialGroup()
-						.addGroup(gl_panel_north.createParallelGroup(Alignment.TRAILING)
-								.addComponent(btnSignOut, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
-								.addGroup(gl_panel_north.createParallelGroup(Alignment.BASELINE)
-										.addComponent(btnSetting, GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
-										.addComponent(btnAddData, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
-										.addComponent(btnDeleteData, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
-										.addComponent(btnSecurity, GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
-										.addComponent(lblEmpty_1)
-										.addComponent(lblEmpty_2)
-										.addComponent(btnEditData, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
-										.addComponent(btnShareData, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)))
-						.addGap(15))
-				);
+			gl_panel_north.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_panel_north.createSequentialGroup()
+					.addGroup(gl_panel_north.createParallelGroup(Alignment.TRAILING)
+						.addComponent(btnSignOut, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+						.addGroup(gl_panel_north.createParallelGroup(Alignment.BASELINE)
+							.addComponent(btnSetting, GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+							.addComponent(btnAddData, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
+							.addComponent(btnDeleteData, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
+							.addComponent(lblEmpty_1)
+							.addComponent(lblEmpty_2)
+							.addComponent(btnSecurity, GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)))
+					.addGap(15))
+		);
 		panel_north.setLayout(gl_panel_north);
 
 		JPanel panel_south = new JPanel();
@@ -345,7 +311,7 @@ public class HomeView {
 		textField_1.setColumns(10);
 
 		JButton btnCreatebackup = new JButton("Create Backup");
-		btnCreatebackup.setBounds(24, 276, 133, 29);
+		btnCreatebackup.setBounds(-1, 312, 181, 29);
 		btnCreatebackup.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Launch file choose to determine backup file location
@@ -380,7 +346,7 @@ public class HomeView {
 				}
 			}
 		});
-		btnImport.setBounds(32, 309, 117, 29);
+		btnImport.setBounds(-1, 340, 181, 29);
 		panel_west.add(btnImport);
 		panel_south.setLayout(gl_panel_south);
 
@@ -421,11 +387,13 @@ public class HomeView {
 
 
 
-
+/* ************************************************************************** */ 
+/* 	TREE Constructor														  */
+/*																			  */
+/* ************************************************************************** */		
 		//Tree		
 
 		JTree tree = new JTree();
-
 
 		DatabaseManager dbmanger = new DatabaseManager("vault_database");
 		currentUser = dbmanger.retrieveUserFromDatabase(username);
@@ -480,6 +448,7 @@ public class HomeView {
 							DatabaseManager db = new DatabaseManager("vault_database");
 							cd = db.retrieveOneDataEntry(currentDataEntryNameList.get(i), currentUser, currentDataEntryTypeList.get(i));
 
+							
 							System.out.println("here");
 
 							if (cd.getOwner().equals(currentUser.getUsername())) {
@@ -531,7 +500,6 @@ public class HomeView {
 						}
 
 
-
 						List<String> owners = new ArrayList<String>();
 						DefaultMutableTreeNode ownerNode = new DefaultMutableTreeNode();
 
@@ -550,63 +518,63 @@ public class HomeView {
 								owners.add(currentDE.getOwner().toString());
 								DefaultMutableTreeNode newOwnerNode = new DefaultMutableTreeNode(currentDE.getOwner().toString());
 								ownerNode = newOwnerNode;
+								
+							}/*
+							else{
+								int ci = 0;
+								while (true) {
+									
+									if(node_15.getChildAt(ci).toString().equals(currentDE.getOwner().toString())){
+										break;
+									}
+									ci++;
+								}
+								ownerNode = (DefaultMutableTreeNode) node_15.getChildAt(ci);
 								node_15.add(ownerNode);
-							}
+							}*/
+							
+							node_15.add(ownerNode);
 
 							if(currentSharedDataEntryTypeList.contains("Account Login")) {
-								sharednode_1.add(child);
 								ownerNode.add(sharednode_1);
 							}
 							if(currentSharedDataEntryTypeList.contains("Confirmation Number")) {
-								sharednode_2.add(child);
 								ownerNode.add(sharednode_2);
 							}
 							if(currentSharedDataEntryTypeList.contains("Credit/Debit Card")) {
-								sharednode_3.add(child);
 								ownerNode.add(sharednode_3);
 							}
 							if(currentSharedDataEntryTypeList.contains("Entry Code")) {
-								sharednode_4.add(child);
 								ownerNode.add(sharednode_4);
 							}
 							if(currentSharedDataEntryTypeList.contains("Flight Ticket")) {
-								sharednode_5.add(child);
 								ownerNode.add(sharednode_5);
 							}
 							if(currentSharedDataEntryTypeList.contains("General Password")) {
-								sharednode_6.add(child);
 								ownerNode.add(sharednode_6);
 							}
 							if(currentSharedDataEntryTypeList.contains("ID Card")) {
-								sharednode_7.add(child);
 								ownerNode.add(sharednode_7);
 							}
 							if(currentSharedDataEntryTypeList.contains("License")) {
-								sharednode_8.add(child);
 								ownerNode.add(sharednode_8);
 							}
 							if(currentSharedDataEntryTypeList.contains("Passport")) {
-								sharednode_9.add(child);
 								ownerNode.add(sharednode_9);
 							}
 							if(currentSharedDataEntryTypeList.contains("Phone Number")) {
-								sharednode_10.add(child);
 								ownerNode.add(sharednode_10);
 							}
 							if(currentSharedDataEntryTypeList.contains("Serial Number")) {
-								sharednode_11.add(child);
 								ownerNode.add(sharednode_11);
 							}
 							if(currentSharedDataEntryTypeList.contains("Shipment Tracking Number")) {
-								sharednode_12.add(child);
 								ownerNode.add(sharednode_12);
 							}
 							if(currentSharedDataEntryTypeList.contains("SSN")) {
-								sharednode_13.add(child);
 								ownerNode.add(sharednode_13);
 							}	
 							if(currentSharedDataEntryTypeList.contains("Wifi Network")) {
-								sharednode_14.add(child);
 								ownerNode.add(sharednode_14);
 							}
 						}
@@ -649,66 +617,66 @@ public class HomeView {
 			listModel.addElement(currentDataEntryNameList.get(i));
 
 			if (currentDataEntryTypeList.get(i).equals("Account Login")) {
-				System.out.println(currentDataEntryTypeList.get(i));
+				//System.out.println(currentDataEntryTypeList.get(i));
 				node_1.add(child);
 			}
 			else if (currentDataEntryTypeList.get(i).equals("Confirmation Number")) {
-				System.out.println(currentDataEntryTypeList.get(i));
+				//System.out.println(currentDataEntryTypeList.get(i));
 				node_2.add(child);	
 			}
 			else if (currentDataEntryTypeList.get(i).equals("Credit/Debit Card")) {
-				System.out.println(currentDataEntryTypeList.get(i));
+				//System.out.println(currentDataEntryTypeList.get(i));
 				node_3.add(child);	
 			}
 			else if (currentDataEntryTypeList.get(i).equals("Entry Code")) {
-				System.out.println(currentDataEntryTypeList.get(i));
+				//System.out.println(currentDataEntryTypeList.get(i));
 				node_4.add(child);	
 			}
 			else if (currentDataEntryTypeList.get(i).equals("Flight Ticket")) {
-				System.out.println(currentDataEntryTypeList.get(i));
+				//System.out.println(currentDataEntryTypeList.get(i));
 				node_5.add(child);	
 			}
 			else if (currentDataEntryTypeList.get(i).equals("General Password")) {
-				System.out.println(currentDataEntryTypeList.get(i));
+				//System.out.println(currentDataEntryTypeList.get(i));
 				node_6.add(child);	
 			}
 			else if (currentDataEntryTypeList.get(i).equals("ID Card")) {
-				System.out.println(currentDataEntryTypeList.get(i));
+				//System.out.println(currentDataEntryTypeList.get(i));
 				node_7.add(child);	
 			}
 			else if (currentDataEntryTypeList.get(i).equals("License")) {
-				System.out.println(currentDataEntryTypeList.get(i));
+				//System.out.println(currentDataEntryTypeList.get(i));
 				node_8.add(child);	
 			}
 			else if (currentDataEntryTypeList.get(i).equals("Passport")) {
-				System.out.println(currentDataEntryTypeList.get(i));
+				//System.out.println(currentDataEntryTypeList.get(i));
 				node_9.add(child);	
 			}
 			else if (currentDataEntryTypeList.get(i).equals("Phone Number")) {
-				System.out.println(currentDataEntryTypeList.get(i));
+				//System.out.println(currentDataEntryTypeList.get(i));
 				node_10.add(child);	
 			}
 			else if (currentDataEntryTypeList.get(i).equals("Serial Number")) {
-				System.out.println(currentDataEntryTypeList.get(i));
+				//System.out.println(currentDataEntryTypeList.get(i));
 				node_11.add(child);	
 			}
 			else if (currentDataEntryTypeList.get(i).equals("Shipment Tracking Number")) {
-				System.out.println(currentDataEntryTypeList.get(i));
+				//System.out.println(currentDataEntryTypeList.get(i));
 				node_12.add(child);	
 			}
 			else if (currentDataEntryTypeList.get(i).equals("SSN")) {
-				System.out.println(currentDataEntryTypeList.get(i));
+				//System.out.println(currentDataEntryTypeList.get(i));
 				node_13.add(child);	
 			}
 			else if (currentDataEntryTypeList.get(i).equals("Wifi Network")) {
-				System.out.println(currentDataEntryTypeList.get(i));
+				//System.out.println(currentDataEntryTypeList.get(i));
 				node_14.add(child);	
 			}
 
 		}
 
 
-/*		for (int i=0; i < currentSharedDataEntryNameList.size(); i++) {
+		for (int i=0; i < currentSharedDataEntryNameList.size(); i++) {
 
 			DefaultMutableTreeNode child = new DefaultMutableTreeNode(currentSharedDataEntryNameList.get(i));
 			// listModel.addElement(currentSharedDataEntryNameList.get(i));
@@ -716,7 +684,7 @@ public class HomeView {
 			if (currentSharedDataEntryTypeList.get(i).equals("Account Login")) {
 				sharednode_1.add(child);
 			}
-			else if (currentSharedDataEntryTypeList.contains("Confirmation Number")) {
+			else if (currentSharedDataEntryTypeList.get(i).equals("Confirmation Number")) {
 				sharednode_2.add(child);	
 			}
 			else if (currentSharedDataEntryTypeList.get(i).equals("Credit/Debit Card")) {
@@ -756,13 +724,14 @@ public class HomeView {
 				sharednode_14.add(child);	
 			}
 
-		}*/
+		}
 
 
 		/* ************************************************************************** */ 
 		/* 	TREE LISTENER															  */
 		/*																			  */
 		/* ************************************************************************** */
+		
 		tree.addTreeSelectionListener(new TreeSelectionListener() {
 
 			public void valueChanged(TreeSelectionEvent e) {
@@ -790,20 +759,27 @@ public class HomeView {
 				System.out.println(selectedNodeName);
 
 				//if data item
+				
 				if (selectedNode.isLeaf()) {
 
 					DatabaseManager dm = new DatabaseManager("vault_database");
+					User owner = currentUser;
+					
+					if (!selectedNode.getParent().getParent().toString().equals("Data Entry")) {
+						owner = dm.retrieveUserFromDatabase(selectedNode.getParent().getParent().toString());
+					}
 
-					DataEntry selectedDataEntry = dm.retrieveOneDataEntry(selectedNodeName, currentUser, selectedNode.getParent().toString());
+					DataEntry selectedDataEntry = dm.retrieveOneDataEntry(selectedNodeName, owner, selectedNode.getParent().toString());
 
 					currentEntry = selectedDataEntry;
 
 					ArrayList<String> indexList = new ArrayList<String>();
 
 
-					System.out.println(selectedNodeName);
-					System.out.println(username);
-					System.out.println(selectedNode.getParent().toString());
+					System.out.println("selectedNodeName 					: "+ selectedNodeName);
+					System.out.println("username							: "+ username);
+					System.out.println("selectedNode.getParent().toString() : "+ selectedNode.getParent().toString());
+					System.out.println("owner"+selectedNode.getParent().getParent().toString());
 
 					if(selectedNode.getParent().toString() == "Account Login") {
 						panel = dataPanel.getAccountLoginPanelWithData(selectedDataEntry);
@@ -935,6 +911,9 @@ public class HomeView {
 					System.out.println("Leaf: " + selectedNodeName);
 					indexList.clear();
 				}
+				else {
+					currentEntry = null;
+				}
 
 				return;
 			}
@@ -950,7 +929,11 @@ public class HomeView {
 		JScrollPane jsp = new JScrollPane(tree);
 		panel_center.addTab("Category", null, jsp, null);
 		//panel_center.addTab("Category", null, tree, null);
-
+		
+		
+		/* ************************************************************************** */ 
+		/* 	TREE Constructor														  */
+		/* ************************************************************************** */
 
 		JList<String> list = new JList<String>();
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
