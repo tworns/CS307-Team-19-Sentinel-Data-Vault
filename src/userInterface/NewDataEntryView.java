@@ -290,7 +290,7 @@ public class NewDataEntryView {
 								int result = m.addEntryToDatabase(currentUser, newEntry);
 								if (result == -1) {
 									JOptionPane.showMessageDialog(null,
-											"The Entry Name has already existed! Please Try another Entry Name!");
+											"This entry name already exists! Please choose a different entry name!");
 									return;
 								} else {
 									JOptionPane.showMessageDialog(null, "You have successfully added a new data entry!");
@@ -429,7 +429,7 @@ public class NewDataEntryView {
 								int result = m.addEntryToDatabase(currentUser, newEntry);
 								if (result == -1) {
 									JOptionPane.showMessageDialog(null,
-											"The Entry Name has already existed! Please Try another Entry Name!");
+											"This entry name already exists! Please choose a different entry name!");
 									return;
 								} else {
 
@@ -529,7 +529,7 @@ public class NewDataEntryView {
 								int result = m.addEntryToDatabase(currentUser, newEntry);
 								if (result == -1) {
 									JOptionPane.showMessageDialog(null,
-											"The Entry Name has already existed! Please Try another Entry Name!");
+											"This entry name already exists! Please choose a different entry name!");
 									return;
 								} else {
 									JOptionPane.showMessageDialog(null, "You have successfully added a new data entry!");
@@ -782,7 +782,7 @@ public class NewDataEntryView {
 								int result = m.addEntryToDatabase(currentUser, newEntry);
 								if (result == -1) {
 									JOptionPane.showMessageDialog(null,
-											"The Entry Name has already existed! Please Try another Entry Name!");
+											"This entry name already exists! Please choose a different entry name!");
 									return;
 								} else {
 									JOptionPane.showMessageDialog(null, "You have successfully added a new data entry!");
@@ -881,7 +881,7 @@ public class NewDataEntryView {
 								int result = m.addEntryToDatabase(currentUser, newEntry);
 								if (result == -1) {
 									JOptionPane.showMessageDialog(null,
-											"The Entry Name has already existed! Please Try another Entry Name!");
+											"This entry name already exists! Please choose a different entry name!");
 									return;
 								} else {
 									JOptionPane.showMessageDialog(null, "You have successfully added a new data entry!");
@@ -1052,7 +1052,7 @@ public class NewDataEntryView {
 								int result = m.addEntryToDatabase(currentUser, newEntry);
 								if (result == -1) {
 									JOptionPane.showMessageDialog(null,
-											"The Entry Name has already existed! Please Try another Entry Name!");
+											"This entry name already exists! Please choose a different entry name!");
 									return;
 								} else {
 									JOptionPane.showMessageDialog(null, "You have successfully added a new data entry!");
@@ -1179,7 +1179,7 @@ public class NewDataEntryView {
 								int result = m.addEntryToDatabase(currentUser, newEntry);
 								if (result == -1) {
 									JOptionPane.showMessageDialog(null,
-											"The Entry Name has already existed! Please Try another Entry Name!");
+											"This entry name already exists! Please choose a different entry name!");
 									return;
 								} else {
 
@@ -1339,7 +1339,7 @@ public class NewDataEntryView {
 								int result = m.addEntryToDatabase(currentUser, newEntry);
 								if (result == -1) {
 									JOptionPane.showMessageDialog(null,
-											"The Entry Name has already existed! Please Try another Entry Name!");
+											"This entry name already exists! Please choose a different entry name!");
 									return;
 								} else {
 
@@ -1449,7 +1449,7 @@ public class NewDataEntryView {
 								int result = m.addEntryToDatabase(currentUser, newEntry);
 								if (result == -1) {
 									JOptionPane.showMessageDialog(null,
-											"The Entry Name has already existed! Please Try another Entry Name!");
+											"This entry name already exists! Please choose a different entry name!");
 									return;
 								} else {
 									JOptionPane.showMessageDialog(null, "You have successfully added a new data entry!");
@@ -1547,7 +1547,7 @@ public class NewDataEntryView {
 								int result = m.addEntryToDatabase(currentUser, newEntry);
 								if (result == -1) {
 									JOptionPane.showMessageDialog(null,
-											"The Entry Name has already existed! Please Try another Entry Name!");
+											"This entry name already exists! Please choose a different entry name!");
 									return;
 								} else {
 									JOptionPane.showMessageDialog(null, "You have successfully added a new data entry!");
@@ -1646,7 +1646,7 @@ public class NewDataEntryView {
 								int result = m.addEntryToDatabase(currentUser, newEntry);
 								if (result == -1) {
 									JOptionPane.showMessageDialog(null,
-											"The Entry Name has already existed! Please Try another Entry Name!");
+											"This entry name already exists! Please choose a different entry name!");
 									return;
 								} else {
 									JOptionPane.showMessageDialog(null, "You have successfully added a new data entry!");
@@ -1746,7 +1746,7 @@ public class NewDataEntryView {
 								int result = m.addEntryToDatabase(currentUser, newEntry);
 								if (result == -1) {
 									JOptionPane.showMessageDialog(null,
-											"The Entry Name has already existed! Please Try another Entry Name!");
+											"This entry name already exists! Please choose a different entry name!");
 									return;
 								} else {
 
@@ -1854,7 +1854,7 @@ public class NewDataEntryView {
 								int result = m.addEntryToDatabase(currentUser, newEntry);
 								if (result == -1) {
 									JOptionPane.showMessageDialog(null,
-											"The Entry Name has already existed! Please Try another Entry Name!");
+											"This entry name already exists! Please choose a different entry name!");
 									return;
 								} else {
 									JOptionPane.showMessageDialog(null, "You have successfully added a new data entry!");
