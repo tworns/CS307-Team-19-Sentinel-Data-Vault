@@ -330,7 +330,7 @@ public class HomeView {
 		textField_1.setColumns(10);
 
 		JButton btnCreatebackup = new JButton("Create Backup");
-		btnCreatebackup.setBounds(25, 323, 133, 29);
+		btnCreatebackup.setBounds(24, 276, 133, 29);
 		btnCreatebackup.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				BackupManager bm = new BackupManager();
@@ -348,6 +348,10 @@ public class HomeView {
 		panel_west.add(txtUsername);
 		panel_west.add(lblUserEmail);
 		panel_west.add(lblNewLabel);
+		
+		JButton btnImport = new JButton("Import");
+		btnImport.setBounds(32, 309, 117, 29);
+		panel_west.add(btnImport);
 		panel_south.setLayout(gl_panel_south);
 
 		//panel_east		
