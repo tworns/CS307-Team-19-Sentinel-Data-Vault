@@ -348,6 +348,10 @@ public class HomeView {
 		btnCreatebackup.setBounds(24, 276, 133, 29);
 		btnCreatebackup.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				// Launch file choose to determine backup file location
+				JFileChooser fileChooser = new JFileChooser();
+				fileChooser.setDialogTitle("Choose a location to save backup database file");
+				// Execute the backup
 				BackupManager bm = new BackupManager();
 				bm.createUserBackupDatabase(currentUser);
 			}
