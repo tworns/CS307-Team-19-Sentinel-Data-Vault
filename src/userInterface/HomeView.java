@@ -358,8 +358,11 @@ public class HomeView {
 					// Need to validate that current user has valid access privileges to import file
 					BackupManager bum = new BackupManager();
 					if (bum.isValidBackupUser(backupUserEmail, backupUserPassword, importLocation)) {
-						//bum.importEntriesFromBackup(currentUser, backupUser, currentDatabaseName, backupDatabaseName);
-						System.out.println("User has valid access. Can proceed to import.");
+						DatabaseManager dbm = new DatabaseManager(importLocation);
+						User backupUser = dbm.retrieveUserFromDatabase(backupUserEmail);
+						bum.importEntriesFromBackup(currentUser, backupUser, "vault_database", importLocation);
+						// TODO refresh MainView!
+						System.out.println("IMPORT WAS SUCCESSFUL!.");
 					}
 					else {
 						System.out.println("ACCESS FAILED. Something is wrong.");
