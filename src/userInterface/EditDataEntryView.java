@@ -204,11 +204,11 @@ public class EditDataEntryView {
 					int result = m.updateEntry(currentUser, currentEntry, newEntry);
 					if (result == -1) {
 						JOptionPane.showMessageDialog(null,
-								"The Entry Name has already existed! Please Try another Entry Name!");
+								"This entry name already exists! Please choose a different entry name!");
 						return;
 					} else {
 
-						JOptionPane.showMessageDialog(null, "You have successfully modify DataEntry");
+						JOptionPane.showMessageDialog(null, "You have successfully modified this data entry!");
 						System.gc();
 						for (Window window : Window.getWindows()) {
 							window.dispose();
@@ -331,10 +331,10 @@ public class EditDataEntryView {
 					int result = m.updateEntry(currentUser, currentEntry, newEntry);
 					if (result == -1) {
 						JOptionPane.showMessageDialog(null,
-								"The Entry Name has already existed! Please Try another Entry Name!");
+								"This entry name already exists! Please choose a different entry name!");
 						return;
 					} else {
-						JOptionPane.showMessageDialog(null, "You have successfully modify DataEntry");
+						JOptionPane.showMessageDialog(null, "You have successfully modified this data entry!");
 						System.gc();
 						for (Window window : Window.getWindows()) {
 							window.dispose();
@@ -478,7 +478,7 @@ public class EditDataEntryView {
 					int result = m.updateEntry(currentUser, currentEntry, newEntry);
 					if (result == -1) {
 						JOptionPane.showMessageDialog(null,
-								"The Entry Name has already existed! Please Try another Entry Name!");
+								"This entry name already exists! Please choose a different entry name!");
 						return;
 					} else {
 
@@ -563,10 +563,10 @@ public class EditDataEntryView {
 					int result = m.updateEntry(currentUser, currentEntry, newEntry);
 					if (result == -1) {
 						JOptionPane.showMessageDialog(null,
-								"The Entry Name has already existed! Please Try another Entry Name!");
+								"This entry name already exists! Please choose a different entry name!");
 						return;
 					} else {
-						JOptionPane.showMessageDialog(null, "You have successfully modify DataEntry");
+						JOptionPane.showMessageDialog(null, "You have successfully modified this data entry!");
 						System.gc();
 						for (Window window : Window.getWindows()) {
 							window.dispose();
@@ -645,11 +645,11 @@ public class EditDataEntryView {
 					int result = m.updateEntry(currentUser, currentEntry, newEntry);
 					if (result == -1) {
 						JOptionPane.showMessageDialog(null,
-								"The Entry Name has already existed! Please Try another Entry Name!");
+								"This entry name already exists! Please choose a different entry name!");
 						return;
 					} else {
 
-						JOptionPane.showMessageDialog(null, "You have successfully modify DataEntry");
+						JOptionPane.showMessageDialog(null, "You have successfully modified this data entry!");
 						System.gc();
 						for (Window window : Window.getWindows()) {
 							window.dispose();
@@ -729,11 +729,11 @@ public class EditDataEntryView {
 					int result = m.updateEntry(currentUser, currentEntry, newEntry);
 					if (result == -1) {
 						JOptionPane.showMessageDialog(null,
-								"The Entry Name has already existed! Please Try another Entry Name!");
+								"This entry name already exists! Please choose a different entry name!");
 						return;
 					} else {
 
-						JOptionPane.showMessageDialog(null, "You have successfully modify DataEntry");
+						JOptionPane.showMessageDialog(null, "You have successfully modified this data entry!");
 						System.gc();
 						for (Window window : Window.getWindows()) {
 							window.dispose();
@@ -812,11 +812,11 @@ public class EditDataEntryView {
 					int result = m.updateEntry(currentUser, currentEntry, newEntry);
 					if (result == -1) {
 						JOptionPane.showMessageDialog(null,
-								"The Entry Name has already existed! Please Try another Entry Name!");
+								"This entry name already exists! Please choose a different entry name!");
 						return;
 					} else {
 
-						JOptionPane.showMessageDialog(null, "You have successfully modify DataEntry");
+						JOptionPane.showMessageDialog(null, "You have successfully modified this data entry!");
 						System.gc();
 						for (Window window : Window.getWindows()) {
 							window.dispose();
@@ -973,7 +973,7 @@ public class EditDataEntryView {
 					int result = m.updateEntry(currentUser, currentEntry, newEntry);
 					if (result == -1) {
 						JOptionPane.showMessageDialog(null,
-								"The Entry Name has already existed! Please Try another Entry Name!");
+								"This entry name already exists! Please choose a different entry name!");
 						return;
 					} else {
 						JOptionPane.showMessageDialog(null, "You have successfully Added DataEntry");
@@ -1223,7 +1223,7 @@ public class EditDataEntryView {
 					int result = m.updateEntry(currentUser, currentEntry, newEntry);
 					if (result == -1) {
 						JOptionPane.showMessageDialog(null,
-								"The Entry Name has already existed! Please Try another Entry Name!");
+								"This entry name already exists! Please choose a different entry name!");
 						return;
 					} else {
 						JOptionPane.showMessageDialog(null, "You have successfully Added DataEntry");
@@ -1336,11 +1336,11 @@ public class EditDataEntryView {
 					int result = m.updateEntry(currentUser, currentEntry, newEntry);
 					if (result == -1) {
 						JOptionPane.showMessageDialog(null,
-								"The Entry Name has already existed! Please Try another Entry Name!");
+								"This entry name already exists! Please choose a different entry name!");
 						return;
 					} else {
 
-						JOptionPane.showMessageDialog(null, "You have successfully modify DataEntry");
+						JOptionPane.showMessageDialog(null, "You have successfully modified this data entry!");
 						System.gc();
 						for (Window window : Window.getWindows()) {
 							window.dispose();
@@ -1432,10 +1432,10 @@ public class EditDataEntryView {
 					int result = m.updateEntry(currentUser, currentEntry, newEntry);
 					if (result == -1) {
 						JOptionPane.showMessageDialog(null,
-								"The Entry Name has already existed! Please Try another Entry Name!");
+								"This entry name already exists! Please choose a different entry name!");
 						return;
 					} else {
-						JOptionPane.showMessageDialog(null, "You have successfully modify DataEntry");
+						JOptionPane.showMessageDialog(null, "You have successfully modified this data entry!");
 						System.gc();
 						for (Window window : Window.getWindows()) {
 							window.dispose();
@@ -1525,10 +1525,10 @@ public class EditDataEntryView {
 					int result = m.updateEntry(currentUser, currentEntry, newEntry);
 					if (result == -1) {
 						JOptionPane.showMessageDialog(null,
-								"The Entry Name has already existed! Please Try another Entry Name!");
+								"This entry name already exists! Please choose a different entry name!");
 						return;
 					} else {
-						JOptionPane.showMessageDialog(null, "You have successfully modify DataEntry");
+						JOptionPane.showMessageDialog(null, "You have successfully modified this data entry!");
 						System.gc();
 						for (Window window : Window.getWindows()) {
 							window.dispose();
@@ -1617,10 +1617,10 @@ public class EditDataEntryView {
 					int result = m.updateEntry(currentUser, currentEntry, newEntry);
 					if (result == -1) {
 						JOptionPane.showMessageDialog(null,
-								"The Entry Name has already existed! Please Try another Entry Name!");
+								"This entry name already exists! Please choose a different entry name!");
 						return;
 					} else {
-						JOptionPane.showMessageDialog(null, "You have successfully modify DataEntry");
+						JOptionPane.showMessageDialog(null, "You have successfully modified this data entry!");
 						System.gc();
 						for (Window window : Window.getWindows()) {
 							window.dispose();
