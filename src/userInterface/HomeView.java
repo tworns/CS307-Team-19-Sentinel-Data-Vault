@@ -322,6 +322,7 @@ public class HomeView {
 		textField_1 = new JTextField();
 		textField_1.setBounds(6, 218, 169, 26);
 		textField_1.setText(lastlogin);
+		textField_1.setEditable(false);
 		if(currentUser != null){
 			if (currentUser.getLastLogin().toString() != null){
 				textField_1.setText(currentUser.getLastLogin().toString());
