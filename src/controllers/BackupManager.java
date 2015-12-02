@@ -50,7 +50,10 @@ public class BackupManager {
 		// Connect to backup database and retrieve all the entries into a List
 		DatabaseManager dbm = new DatabaseManager(backupDatabaseName);
 		List<DataEntry> importedDataEntryList = dbm.retrieveUserDataEntries(backupUser.getUsername());
-		// TODO Change owner of all entries to currentUser
+		// Change owner of all entries to currentUser
+		for (DataEntry entry : importedDataEntryList) {
+			entry.setOwner(currentUser.getUsername());
+		}
 		// Switch to the database of currentUser
 		dbm.setCurrentDatabase(currentDatabaseName);
 		// Put all entries from the List into the current database for the current user

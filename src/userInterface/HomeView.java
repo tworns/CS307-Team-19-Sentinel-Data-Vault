@@ -361,7 +361,8 @@ public class HomeView {
 						DatabaseManager dbm = new DatabaseManager(importLocation);
 						User backupUser = dbm.retrieveUserFromDatabase(backupUserEmail);
 						bum.importEntriesFromBackup(currentUser, backupUser, "vault_database", importLocation);
-						// TODO refresh MainView!
+						// refresh MainView
+						frmSentinelDataVault.repaint();
 						System.out.println("IMPORT WAS SUCCESSFUL!.");
 					}
 					else {
