@@ -40,6 +40,7 @@ public class User {
 		return this.username;
 	}
 
+
 	public String getPasswordHash() {
 		return this.passwordHash;
 	}
@@ -123,5 +124,6 @@ public class User {
 	public void setMaxBackupSize(int maxBackupSize) {
 		this.maxBackupSize = maxBackupSize;
 	}
+
 }
 

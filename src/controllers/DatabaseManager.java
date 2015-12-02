@@ -478,7 +478,7 @@ public class DatabaseManager {
 			// Initialize a statement to execute
 			Statement stmt = DBconnection.createStatement();
 			// Construct the SQL select statement (gets ALL data entries)
-			String sql = "SELECT entry_name, valid_users FROM data_entries;";
+			String sql = "SELECT entry_type, valid_users FROM data_entries;";
 			// Execute SQL statement and retrieve result set
 			ResultSet allDataEntries = stmt.executeQuery(sql);
 			// Construct list of available shared entries from result set of ALL entries
@@ -489,6 +489,41 @@ public class DatabaseManager {
 				// search the String array for user_email; add to SharedEntryList
 				if (Arrays.binarySearch(parsedValidUsers, user_email) >= 0) {
 					sharedEntryList.add(allDataEntries.getString("entry_type"));
+				}
+			}
+			// Disconnect and close database
+			allDataEntries.close();
+			stmt.close();
+			DBconnection.close();
+		}
+		catch (SQLException e) {
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			e.printStackTrace();
+		}
+
+		Collections.sort(sharedEntryList);
+		return sharedEntryList;
+	}
+
+	public List<String> retrieveSharedEntryOwnerList(String user_email) {
+		List<String> sharedEntryList = new ArrayList<String>();
+		// Connect to the database
+		Connection DBconnection = connectToDatabase();
+		try {
+			// Initialize a statement to execute
+			Statement stmt = DBconnection.createStatement();
+			// Construct the SQL select statement (gets ALL data entries)
+			String sql = "SELECT owner, valid_users FROM data_entries;";
+			// Execute SQL statement and retrieve result set
+			ResultSet allDataEntries = stmt.executeQuery(sql);
+			// Construct list of available shared entries from result set of ALL entries
+			while (allDataEntries.next()) {
+				// parse the valid_users STRING to get resulting LIST of valid users. Delimiter = ' '
+				String validUsers = allDataEntries.getString("valid_users");
+				String[] parsedValidUsers = validUsers.split(" ");
+				// search the String array for user_email; add to SharedEntryList
+				if (Arrays.binarySearch(parsedValidUsers, user_email) >= 0) {
+					sharedEntryList.add(allDataEntries.getString("owner"));
 				}
 			}
 			// Disconnect and close database
