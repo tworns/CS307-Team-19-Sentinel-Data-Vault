@@ -210,75 +210,40 @@ public class HomeView {
 		JLabel lblEmpty_1 = new JLabel("     ");
 
 		JLabel lblEmpty_2 = new JLabel("     ");
-
-		JButton btnEditData = new JButton("Edit Entry");
-		btnEditData.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (currentEntry == null) {
-					JOptionPane.showMessageDialog(null, "Please choose an entry!");
-					return;
-				}
-				EditDataEntryView editDataEntry = new EditDataEntryView(currentUser, currentEntry);
-				editDataEntry.getJframe().setVisible(true);
-			}
-		});
-		btnEditData.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
-		
-		JButton btnShareData = new JButton("Share Entry");
-		btnShareData.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(currentEntry != null){
-					ShareView share = new ShareView(currentUser, currentEntry);
-					share.setLocationRelativeTo(null);
-					share.setVisible(true);
-				}
-				else{
-					JOptionPane.showMessageDialog(null,
-							"You need to select a data entry before sharing!");
-				}
-			}
-		});
-		btnShareData.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
 		
 		GroupLayout gl_panel_north = new GroupLayout(panel_north);
 		gl_panel_north.setHorizontalGroup(
-				gl_panel_north.createParallelGroup(Alignment.LEADING)
+			gl_panel_north.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_north.createSequentialGroup()
-						.addComponent(btnSignOut, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(btnSetting, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(lblEmpty_1, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(btnAddData, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(btnDeleteData, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(lblEmpty_2, GroupLayout.PREFERRED_SIZE, 55, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(btnEditData, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(btnShareData, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(btnSecurity, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
-						.addGap(326))
-				);
+					.addComponent(btnSignOut, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnSetting, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(lblEmpty_1, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnAddData, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnDeleteData, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnSecurity, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(lblEmpty_2, GroupLayout.PREFERRED_SIZE, 55, GroupLayout.PREFERRED_SIZE)
+					.addGap(172))
+		);
 		gl_panel_north.setVerticalGroup(
-				gl_panel_north.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, gl_panel_north.createSequentialGroup()
-						.addGroup(gl_panel_north.createParallelGroup(Alignment.TRAILING)
-								.addComponent(btnSignOut, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
-								.addGroup(gl_panel_north.createParallelGroup(Alignment.BASELINE)
-										.addComponent(btnSetting, GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
-										.addComponent(btnAddData, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
-										.addComponent(btnDeleteData, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
-										.addComponent(btnSecurity, GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
-										.addComponent(lblEmpty_1)
-										.addComponent(lblEmpty_2)
-										.addComponent(btnEditData, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
-										.addComponent(btnShareData, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)))
-						.addGap(15))
-				);
+			gl_panel_north.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_panel_north.createSequentialGroup()
+					.addGroup(gl_panel_north.createParallelGroup(Alignment.TRAILING)
+						.addComponent(btnSignOut, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+						.addGroup(gl_panel_north.createParallelGroup(Alignment.BASELINE)
+							.addComponent(btnSetting, GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+							.addComponent(btnAddData, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
+							.addComponent(btnDeleteData, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
+							.addComponent(lblEmpty_1)
+							.addComponent(lblEmpty_2)
+							.addComponent(btnSecurity, GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)))
+					.addGap(15))
+		);
 		panel_north.setLayout(gl_panel_north);
 
 		JPanel panel_south = new JPanel();

@@ -1,19 +1,25 @@
 package userInterface;
 
 
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.event.TreeSelectionEvent;
 
+import controllers.DatabaseManager;
 import dataManagement.DataEntry;
 
 import net.miginfocom.swing.MigLayout;
@@ -439,8 +445,8 @@ public class DataEntryPanel extends JPanel{
 			panel.add(label_0, "cell 0 0");
 		
 		int row = 1;
-		
-		for (int i=0; i < index.size(); i++) {
+		int i;
+		for (i=0; i < index.size(); i++) {
 			if((title.equals("Wifi Network") || title.equals("General Password")) && i == 1) {
 				JLabel label_1 = new JLabel(index.get(i));
 				panel.add(label_1, "cell 0 " + Integer.toString(row++) );
@@ -475,6 +481,35 @@ public class DataEntryPanel extends JPanel{
 			formattedTextField1.setEditable(false);
 			panel.add(formattedTextField1, "cell 0 "+ Integer.toString(row++) +",growx");
 		}
+		
+
+		JButton btnEditData = new JButton("Edit Entry");
+		btnEditData.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				DatabaseManager dm = new DatabaseManager("vault_database");
+				EditDataEntryView editDataEntry = new EditDataEntryView(dm.retrieveUserFromDatabase(data.getOwner()), data);
+				editDataEntry.getJframe().setVisible(true);
+			}
+		});
+		btnEditData.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
+		
+		JButton btnShareData = new JButton("Share Entry");
+		btnShareData.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(data != null){
+					DatabaseManager dm = new DatabaseManager("vault_database");
+					ShareView share = new ShareView(dm.retrieveUserFromDatabase(data.getOwner()), data);
+					share.setLocationRelativeTo(null);
+					share.setVisible(true);
+				}
+			}
+		});
+		btnShareData.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
+
+		panel.add(btnEditData, "cell 0 "+ Integer.toString(row++) +",growx");
+
+		panel.add(btnShareData, "cell 0 "+ Integer.toString(row++) +",growx");
 						
 		return panel;
 	}	
