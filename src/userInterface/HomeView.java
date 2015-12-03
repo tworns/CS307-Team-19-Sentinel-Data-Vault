@@ -27,6 +27,7 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
+import javax.swing.SwingUtilities;
 
 import dataManagement.*;
 import controllers.BackupManager;
@@ -386,11 +387,15 @@ public class HomeView {
 						bum.importEntriesFromBackup(currentUser, backupUser, "vault_database", importLocation);
 						// refresh MainView
 						
+						SwingUtilities.updateComponentTreeUI(frmSentinelDataVault);
 						
+						/*
+						frmSentinelDataVault.invalidate();
 						frmSentinelDataVault.revalidate();
 						frmSentinelDataVault.repaint();
 						panel_center.revalidate();
 						panel_center.repaint();
+						*/
 						
 						
 						System.out.println("IMPORT WAS SUCCESSFUL!.");
