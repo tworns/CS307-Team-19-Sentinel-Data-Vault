@@ -96,7 +96,7 @@ public class ShareView extends JFrame {
 				try {
 					VaultController.Send("sentineldatavault", "SENTINELDATA", user, "Data sharing",
 							"security level: "+ sec + "\nsalt: "+ salt + "\ndatakey: " + datakey 
-							+ "\ncontent: " + sharestr);
+							+ "\ncontent: \n" + sharestr);
 				} catch (MessagingException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
