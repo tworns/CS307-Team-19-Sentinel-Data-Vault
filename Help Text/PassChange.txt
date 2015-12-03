@@ -1,0 +1,7 @@
+In order to change the user account password, the user must go to the settings view.
+Selecting the button labeled \"Change Password\" in the settings view will bring up
+the window that allows for the changing of user account password and/or user security question and answer.
+To change only the password, simply fill in the fields under the \"New Password\" heading.
+To change only the security question and answer simply fill in the fields under the \"New Security Question\" heading.
+To change both at the same time, simply fill in all the fields.
+When finished with the changes, select the button labeled \"Change\" and credentials will be changed.

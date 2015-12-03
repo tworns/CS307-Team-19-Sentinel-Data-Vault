@@ -67,7 +67,24 @@ public class HelpView {
 	
 	public String existingEntry= "existing Entry";
 	
-	public String changingPassword= "changePass";
+	public String changingPassword= 
+			"In order to change the user account password, the \n"
+			+ "user must go to the settings view.\n"
+			+ "Selecting the button labeled \"Change Password\"\n"
+			+ "in the settings view will bring up\n"
+			+ "the window that allows for the changing of user \n"
+			+ "account password and/or user security question and \n"
+			+ "answer."
+			+ "To change only the password, simply fill in\n"
+			+ "the fields under the \"New Password\" heading.\n"
+			+ "To change only the security question and answer \n"
+			+ "simply fill in the fields under the\n "
+			+ "\"New Security Question\" heading.\n"
+			+ "To change both at the same time, simply fill\n"
+			+ "in all the fields."
+			+ "When finished with the changes,\n"
+			+ "select the button labeled \"Change\" and \n"
+			+ "credentials will be changed.";
 	
 	public String changingAvatar = "changAvi"; 
 	
@@ -118,12 +135,12 @@ public class HelpView {
 	private void initialize() {
 		frmHelp = new JFrame();
 		frmHelp.setTitle("Help");
-		frmHelp.setBounds(100, 100, 540, 369);
+		frmHelp.setBounds(100, 100, 540, 402);
 		frmHelp.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frmHelp.setLocationRelativeTo(null);
 		JTree tree = new JTree();
 		tree.setRootVisible(false);
-		tree.setBounds(7, 7, 177, 260);
+		tree.setBounds(7, 7, 177, 284);
 		tree.addTreeSelectionListener(new TreeSelectionListener() {
 			public void valueChanged(TreeSelectionEvent e) {
 				JTree tree = (JTree) e.getSource();
@@ -131,9 +148,8 @@ public class HelpView {
 				DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
 
 				String selectedNodeName = selectedNode.toString();
-				System.out.println(selectedNodeName);
+				
 				if(selectedNodeName.equals("Signing Up") && selectedNode.isLeaf()) { 
-					System.out.println(signingUp);
 					textPane.setText(signingUp);
 					frmHelp.repaint();
 				}
@@ -206,7 +222,7 @@ public class HelpView {
 		frmHelp.getContentPane().add(tree);
 		
 		JButton btnNewButton = new JButton("Close");
-		btnNewButton.setBounds(213, 284, 127, 25);
+		btnNewButton.setBounds(214, 317, 127, 25);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				frmHelp.dispose();
@@ -216,7 +232,7 @@ public class HelpView {
 		textPane = new JTextArea();
 		textPane.setWrapStyleWord(true);
 		textPane.setEditable(false);
-		textPane.setBounds(214, 7, 298, 260);
+		textPane.setBounds(214, 7, 298, 284);
 		frmHelp.getContentPane().add(textPane);
 		frmHelp.getContentPane().add(btnNewButton);
 	}
