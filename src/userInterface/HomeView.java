@@ -333,7 +333,7 @@ public class HomeView {
 		textField_1.setColumns(10);
 
 		JButton btnCreatebackup = new JButton("Create Backup");
-		btnCreatebackup.setBounds(-1, 312, 181, 29);
+		btnCreatebackup.setBounds(-1, 278, 181, 29);
 		btnCreatebackup.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Launch file choose to determine backup file location
@@ -394,7 +394,7 @@ public class HomeView {
 				}
 			}
 		});
-		btnImport.setBounds(-1, 340, 181, 29);
+		btnImport.setBounds(-1, 302, 181, 29);
 		panel_west.add(btnImport);
 		panel_south.setLayout(gl_panel_south);
 
