@@ -22,20 +22,52 @@ public class HelpView {
 	
 	public JFrame frmHelp;
 	private JTextArea textPane;
-	public String signingUp = "Sign up";
-	public String loggingIn = "login";
+	public String signingUp = 
+			"To create a new account in the\n"
+			+ "Sentinel Data Vault from the login screen:\n"
+			+ "Click on the \"Create new Account Button\",\n"
+			+ "When the account creation screen appears,\n"
+			+ "fill in all the fields that are displayed,\n"
+			+ "Keep in mind that passwords MUST include\n"
+			+ "at least one of ALL of the following:\n"
+			+ "Uppercase letter, lowercase letter,\n"
+			+ "special character, and a Number.\n"
+			+ "The username is the email address you\n"
+			+ "wish to associate with the account.\n"
+			+ "To create your account, click the\n"
+			+ "\"Create my account\" button.\n"
+			+ "Any fields that contain errors or remain\n"
+			+ "empty will keep the account from being created\n"
+			+ "until such errors are corrected.\n";
+	
+	public String loggingIn = 
+			"To login to the Sentinel Data Vault (SDV):\n"
+			+ "After starting the SDV desktop application,\n"
+			+ "a login screen will appear.\n"
+			+ "The login screen will prompt\n"
+			+ "you for a username and password.\n"
+			+ "If you have previously created anaccount\n"
+			+ "in the SDV, enter your username and password.\n"
+			+ "If you have not created an account,\n"
+			+ "follow the Account creation tutorial.";
+	
 	public String recoveringPassword = "recover";
+	
 	public String newEntry = "newEntry";
+	
 	public String existingEntry= "existing Entry";
+	
 	public String changingPassword= "changePass";
+	
 	public String changingAvatar = "changAvi"; 
+	
 	public String localShare = "local share";
+	
 	public String emailShare ="mailshare";
+	
 	public String backup = "backup";
 
-	/**
-	 * Launch the application.
-	 */
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -62,12 +94,12 @@ public class HelpView {
 	private void initialize() {
 		frmHelp = new JFrame();
 		frmHelp.setTitle("Help");
-		frmHelp.setBounds(100, 100, 489, 341);
+		frmHelp.setBounds(100, 100, 540, 369);
 		frmHelp.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frmHelp.setLocationRelativeTo(null);
 		JTree tree = new JTree();
 		tree.setRootVisible(false);
-		tree.setBounds(7, 7, 177, 244);
+		tree.setBounds(7, 7, 177, 260);
 		tree.addTreeSelectionListener(new TreeSelectionListener() {
 			public void valueChanged(TreeSelectionEvent e) {
 				JTree tree = (JTree) e.getSource();
@@ -150,7 +182,7 @@ public class HelpView {
 		frmHelp.getContentPane().add(tree);
 		
 		JButton btnNewButton = new JButton("Close");
-		btnNewButton.setBounds(157, 264, 127, 25);
+		btnNewButton.setBounds(213, 284, 127, 25);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				frmHelp.dispose();
@@ -158,8 +190,9 @@ public class HelpView {
 		});
 		
 		textPane = new JTextArea();
+		textPane.setWrapStyleWord(true);
 		textPane.setEditable(false);
-		textPane.setBounds(214, 4, 247, 247);
+		textPane.setBounds(214, 7, 298, 260);
 		frmHelp.getContentPane().add(textPane);
 		frmHelp.getContentPane().add(btnNewButton);
 	}

@@ -1,0 +1,8 @@
+"To create a new account in the Sentinel Data Vault \n(SDV) from the login screen:
+Click on the \"Create new Account Button\",
+When the account creation screen appears, fill in all the fields that are displayed,\n
+Keep in mind that passwords MUST include at least one of ALL of the following:\n
+Uppercase letter, lowercase letter, special character, and a Number.\n
+The username is the email address you wish to associate with the account (eg: sentinel@datavault.org).\n
+To create your account, click the \"Create my account\" button. Any fields that contain errors or remain\n
+empty will keep the account from being created until such errors are corrected.\n"

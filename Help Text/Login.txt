@@ -1,0 +1,5 @@
+To login to the Sentinel Data Vault (SDV):\n
+After starting the SDV desktop application, a login screen will appear.\n
+The login screen will prompt you for a username and password.\n
+If you have previously created an account in the SDV, enter your username and password.\n
+If you have not created an account, follow the Account creation tutorial.
