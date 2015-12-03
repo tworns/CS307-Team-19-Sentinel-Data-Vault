@@ -15,9 +15,7 @@ public class ImportView {
 	private JFrame frame;
 	private JTextField textField;
 	private JPasswordField passwordField;
-	private String username;
-	private String password;
-
+	private String[] credentials = new String [2];
 	/**
 	 * Launch the application.
 	 */
@@ -27,8 +25,11 @@ public class ImportView {
 				try {
 					String name = null;
 					String pass = null;
+					String [] stuff = new String [2];
 					ImportView window = new ImportView( name,  pass);
+					window.initialize(name, pass);
 					window.frame.setVisible(true);
+					System.out.println(window.getUser()+ " " + window.getPass());
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -39,16 +40,19 @@ public class ImportView {
 	 * Create the application.
 	 */
 	public ImportView(String username, String password) {
-		initialize();
-		username = this.username;
-		password = this.password;
-		frame.dispose();
+		initialize(username, password);
+		
 	}
-
+	public String getUser() { 
+		return credentials[0];
+	}
+	public String getPass() { 
+		return credentials[1];
+	}
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize(String username, String password) {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -78,9 +82,8 @@ public class ImportView {
 		JButton btnConfirm = new JButton("Confirm");
 		btnConfirm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				username = textField.getText();
-				password = new String(passwordField.getPassword());
-			
+				credentials[0] = textField.getText();
+				credentials[1] = new String(passwordField.getPassword());
 			}
 		});
 		btnConfirm.setBounds(45, 185, 97, 25);
@@ -94,5 +97,6 @@ public class ImportView {
 		});
 		btnCancel.setBounds(231, 185, 97, 25);
 		frame.getContentPane().add(btnCancel);
+	
 	}
 }
