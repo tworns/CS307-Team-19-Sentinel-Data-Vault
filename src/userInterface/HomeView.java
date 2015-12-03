@@ -385,7 +385,16 @@ public class HomeView {
 						User backupUser = dbm.retrieveUserFromDatabase(backupUserEmail);
 						bum.importEntriesFromBackup(currentUser, backupUser, "vault_database", importLocation);
 						// refresh MainView
-						frmSentinelDataVault.repaint();
+						
+						System.gc();
+						for (Window window : Window.getWindows()) {
+							window.dispose();
+						}
+						frmSentinelDataVault.dispose();
+						HomeView hv = new HomeView(currentEntry.getOwner());
+						hv.frmSentinelDataVault.setVisible(true);
+						
+						
 						System.out.println("IMPORT WAS SUCCESSFUL!.");
 					}
 					else {

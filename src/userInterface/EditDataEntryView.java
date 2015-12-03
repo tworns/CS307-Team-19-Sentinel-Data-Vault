@@ -131,9 +131,7 @@ public class EditDataEntryView {
 						for (Window window : Window.getWindows()) {
 							window.dispose();
 						}
-
 						frame.dispose();
-
 						HomeView hv = new HomeView(currentEntry.getOwner());
 						hv.frmSentinelDataVault.setVisible(true);
 					}
