@@ -8,8 +8,11 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import controllers.DatabaseManager;
+import controllers.VaultController;
+import cryptography.Crypto;
 
 import javax.swing.JTextField;
+import javax.mail.MessagingException;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -29,6 +32,7 @@ public class ShareView extends JFrame {
 	private DataEntry sharingData;
 	private User owner;
 	private JTextField textField;
+	private JTextField textField_1;
 	/**
 	 * Launch the application.
 	 */
@@ -81,6 +85,24 @@ public class ShareView extends JFrame {
 		panel.add(btnShareLocally);
 		
 		JButton btnShareViaEmail = new JButton("Share via email");
+		btnShareViaEmail.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Crypto c = new Crypto();
+				String user = textField.getText();
+				String sharestr = c.generateShareString(owner, entry);
+				int sec = owner.isHighSecurity();
+				String salt = owner.getPasswordSalt();
+				String datakey = owner.getDataKey();
+				try {
+					VaultController.Send("sentineldatavault", "SENTINELDATA", user, "Data sharing",
+							"security level: "+ sec + "\nsalt: "+ salt + "\ndatakey: " + datakey 
+							+ "\ncontent: " + sharestr);
+				} catch (MessagingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
 		btnShareViaEmail.setBounds(182, 147, 153, 27);
 		panel.add(btnShareViaEmail);
 		
@@ -143,5 +165,19 @@ public class ShareView extends JFrame {
 		
 		JPanel panel_1 = new JPanel();
 		tabbedPane.addTab("Decrypt", null, panel_1, null);
+		panel_1.setLayout(null);
+		
+		textField_1 = new JTextField();
+		textField_1.setBounds(14, 44, 407, 119);
+		panel_1.add(textField_1);
+		textField_1.setColumns(10);
+		
+		JButton btnDecrypt = new JButton("Decrypt");
+		btnDecrypt.setBounds(308, 174, 113, 27);
+		panel_1.add(btnDecrypt);
+		
+		JLabel lblPleaseEnterThe = new JLabel("Please enter the encrpted information below:");
+		lblPleaseEnterThe.setBounds(14, 13, 407, 18);
+		panel_1.add(lblPleaseEnterThe);
 	}
 }
