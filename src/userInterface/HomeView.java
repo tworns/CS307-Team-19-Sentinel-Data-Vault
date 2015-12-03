@@ -388,6 +388,10 @@ public class HomeView {
 						
 						
 						frmSentinelDataVault.revalidate();
+						frmSentinelDataVault.repaint();
+						panel_center.revalidate();
+						panel_center.repaint();
+						
 						
 						System.out.println("IMPORT WAS SUCCESSFUL!.");
 					}
