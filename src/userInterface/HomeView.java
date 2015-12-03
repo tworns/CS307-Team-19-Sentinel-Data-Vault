@@ -389,13 +389,12 @@ public class HomeView {
 						
 						SwingUtilities.updateComponentTreeUI(frmSentinelDataVault);
 						
-						/*
 						frmSentinelDataVault.invalidate();
 						frmSentinelDataVault.revalidate();
 						frmSentinelDataVault.repaint();
+						panel_center.invalidate();
 						panel_center.revalidate();
 						panel_center.repaint();
-						*/
 						
 						
 						System.out.println("IMPORT WAS SUCCESSFUL!.");
