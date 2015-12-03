@@ -19,7 +19,7 @@ public class BackupManager {
 		String backup_database_name = username + "_backup_database";
 		// Retrieve all of user's data entries into a list
 		DatabaseManager dbm = new DatabaseManager("vault_database");
-		List<DataEntry> dataEntryList = dbm.retrieveUserDataEntries(user.getUsername());
+		List<DataEntry> dataEntryList = dbm.retrieveUserDataEntries(user);
 		// Create a new backup database to store account data
 		dbm.setCurrentDatabase(backupLocation + "/" + backup_database_name); // DatabaseManager dbm = new DatabaseManager(backup_database_name);
 		// If backup does not already exist, create the users and data_entries tables in new database, and add the current user.
@@ -49,7 +49,7 @@ public class BackupManager {
 	public void importEntriesFromBackup(User currentUser, User backupUser, String currentDatabaseName, String backupDatabaseLocation) {
 		// Connect to backup database and retrieve all the entries into a List
 		DatabaseManager dbm = new DatabaseManager(backupDatabaseLocation);
-		List<DataEntry> importedDataEntryList = dbm.retrieveUserDataEntries(backupUser.getUsername());
+		List<DataEntry> importedDataEntryList = dbm.retrieveUserDataEntries(backupUser);
 		// Change owner of all entries to currentUser
 		for (DataEntry entry : importedDataEntryList) {
 			entry.setOwner(currentUser.getUsername());

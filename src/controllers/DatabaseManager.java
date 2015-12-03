@@ -280,7 +280,7 @@ public class DatabaseManager {
 	 * @param	database	name of database to access
 	 * @return	List<DataEntry> of all a user's data entries
 	 */
-	public List<DataEntry> retrieveUserDataEntries(String userEmail) {
+	public List<DataEntry> retrieveUserDataEntries(User user) {
 		// Connect to the database
 		Connection DBconnection = connectToDatabase();
 		// Create an empty List to populate with data entries
@@ -289,7 +289,7 @@ public class DatabaseManager {
 			// Initialize a statement to execute
 			Statement stmt = DBconnection.createStatement();
 			// Construct the SQL DELETE statement
-			String sql = "SELECT * FROM data_entries WHERE owner = " + "'" + userEmail + "';";
+			String sql = "SELECT * FROM data_entries WHERE owner = " + "'" + user.getUsername() + "';";
 			// Execute the statement and commit database changes
 			ResultSet dataEntrySet = stmt.executeQuery(sql);
 			while (dataEntrySet.next()) {
@@ -335,7 +335,6 @@ public class DatabaseManager {
 				// Create a data entry to encapsulate the information; add entry to List
 				DataEntry entry = new DataEntry(entry_name, entry_type, encryption_key, owner, validUsers, secure_entry, last_modified, data_field_list);
 				Crypto crypto = new Crypto();
-				User user = retrieveUserFromDatabase(userEmail);
 				DataEntry decryptedEntry = crypto.decrypt(user, entry);
 				dataEntryList.add(decryptedEntry);
 			}
