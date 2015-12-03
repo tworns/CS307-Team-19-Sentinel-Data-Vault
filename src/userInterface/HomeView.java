@@ -386,14 +386,8 @@ public class HomeView {
 						bum.importEntriesFromBackup(currentUser, backupUser, "vault_database", importLocation);
 						// refresh MainView
 						
-						System.gc();
-						for (Window window : Window.getWindows()) {
-							window.dispose();
-						}
-						frmSentinelDataVault.dispose();
-						HomeView hv = new HomeView(currentEntry.getOwner());
-						hv.frmSentinelDataVault.setVisible(true);
 						
+						frmSentinelDataVault.revalidate();
 						
 						System.out.println("IMPORT WAS SUCCESSFUL!.");
 					}
