@@ -319,6 +319,7 @@ public class HomeView {
 					// Execute the backup
 					File selectedBackupLocation = fileChooser.getSelectedFile();
 					BackupManager bum = new BackupManager();
+					System.out.println(selectedBackupLocation.getAbsolutePath());
 					bum.createUserBackupDatabase(currentUser, selectedBackupLocation.getAbsolutePath());
 				}
 			}

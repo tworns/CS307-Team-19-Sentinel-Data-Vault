@@ -44,11 +44,11 @@ public class BackupManager {
 	 * @param currentUser			Current user who will receive entries from the backup
 	 * @param backupUser			User of the backup file whose entries will be added to the current user
 	 * @param currentDatabaseName	Name of the current working database to receive entries from the backup
-	 * @param backupDatabaseName	Name of the backup database whose entries will be added to the current database
+	 * @param backupDatabaseLocation	Name of the backup database whose entries will be added to the current database
 	 */
-	public void importEntriesFromBackup(User currentUser, User backupUser, String currentDatabaseName, String backupDatabaseName) {
+	public void importEntriesFromBackup(User currentUser, User backupUser, String currentDatabaseName, String backupDatabaseLocation) {
 		// Connect to backup database and retrieve all the entries into a List
-		DatabaseManager dbm = new DatabaseManager(backupDatabaseName);
+		DatabaseManager dbm = new DatabaseManager(backupDatabaseLocation);
 		List<DataEntry> importedDataEntryList = dbm.retrieveUserDataEntries(backupUser.getUsername());
 		// Change owner of all entries to currentUser
 		for (DataEntry entry : importedDataEntryList) {

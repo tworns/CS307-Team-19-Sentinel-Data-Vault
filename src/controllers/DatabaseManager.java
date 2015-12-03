@@ -334,7 +334,10 @@ public class DatabaseManager {
 				
 				// Create a data entry to encapsulate the information; add entry to List
 				DataEntry entry = new DataEntry(entry_name, entry_type, encryption_key, owner, validUsers, secure_entry, last_modified, data_field_list);
-				dataEntryList.add(entry);
+				Crypto crypto = new Crypto();
+				User user = retrieveUserFromDatabase(userEmail);
+				DataEntry decryptedEntry = crypto.decrypt(user, entry);
+				dataEntryList.add(decryptedEntry);
 			}
 			// Disconnect from database
 			dataEntrySet.close();
