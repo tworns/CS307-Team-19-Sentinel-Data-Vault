@@ -699,9 +699,6 @@ public class DatabaseManager {
 		Connection DBconnection = connectToDatabase();
 		Crypto c = new Crypto();
 		newEntry = c.encrypt(user, newEntry);
-		for(int i = 0; i < newEntry.getFieldDataList().size(); i++) {
-			System.out.println(newEntry.getFieldDataList().get(i));
-		}
 		try {
 			if (!oldEntry.getEntryName().equals(newEntry.getEntryName())) {
 				String count = "SELECT COUNT(*) FROM data_entries WHERE entry_name=? AND owner=?;";
@@ -733,11 +730,9 @@ public class DatabaseManager {
 			int j = 2;
 			preparedStatement.setString(1, newEntry.getEntryName());
 			for (int i = 0; i < size_of_datafield; i++) {
-				System.out.println(newEntry.getFieldDataList().get(i));
 				preparedStatement.setString(2 + i, newEntry.getFieldDataList().get(i));
 				j++;
-			}
-			System.out.println(newEntry.getEntryName() + oldEntry.getOwner());
+			}	
 			preparedStatement.setString(j , oldEntry.getEntryName());
 			preparedStatement.setString(j + 1 , oldEntry.getOwner());
 			// Execute the statement and commit database changes
@@ -821,7 +816,6 @@ public class DatabaseManager {
 				preparedStatement.setString(8 + i, "null");
 			}
 
-			System.out.println(preparedStatement.toString());
 			preparedStatement.executeUpdate();
 			// Execute the statement and commit database changes stmt.executeUpdate(sql);
 			DBconnection.commit();
@@ -854,7 +848,6 @@ public class DatabaseManager {
 			// Construct the SQL INSERT statement
 			String sql = "DELETE FROM data_entries WHERE entry_name='" + entry.getEntryName() + "'" + " AND "
 					+ "owner='" + entry.getOwner() + "';";
-			System.out.println(sql);
 			// Execute the statement and commit database changes
 			stmt.executeUpdate(sql);
 			DBconnection.commit();
@@ -886,7 +879,6 @@ public class DatabaseManager {
 			Statement stmt = DBconnection.createStatement();
 			// Construct the SQL INSERT statement
 			String sql = "DELETE FROM data_entries WHERE owner='" + destroyer.getUsername() + "';";
-			System.out.println(sql);
 			// Execute the statement and commit database changes
 			stmt.executeUpdate(sql);
 			DBconnection.commit();
