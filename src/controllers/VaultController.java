@@ -222,7 +222,7 @@ public class VaultController {
 		
 		
 		String freq = user.getBackupFrequency();
-		if(seconds>30){
+		if(days>=7){
 			JOptionPane.showMessageDialog(null,"It's been a week since the last time you change your password!");
 		}
 		
