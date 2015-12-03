@@ -1,0 +1,7 @@
+Modifying a data entry must be done from the main screen that is displayed after a user logs in.
+To modify an entry, first select that entry from the middle column of the main screen.
+The data entry will appear in the right column of the main screen.
+At the bottom of the data entry, a button labeled \"Edit Entry\" will display.
+Clicking this button brings up a window similar to the entry creation window.
+After modifying data, click save.
+The newly modified data will display when the data entry is next selected.

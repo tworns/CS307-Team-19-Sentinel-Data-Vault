@@ -230,6 +230,7 @@ public class PasswordRecoveryView {
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frmSentinelDataVault.dispose();
+				parentFrame.setVisible(true);
 			}
 		});
 		btnCancel.setBounds(167, 278, 97, 25);

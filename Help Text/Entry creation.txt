@@ -1,0 +1,5 @@
+Creating a new data entry must be done from the main screen that is displayed after a user logs in.
+The button labeled /"New Entry" will initiate the process of creating a new entry.
+The user must then select a type of data entry from the drop down that appears.
+The user will then be prompted for the data necessary to complete then entry.
+Once the user is satisfied with their entries, clicking the save button saves the entry.

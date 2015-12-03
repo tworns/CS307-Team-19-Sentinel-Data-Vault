@@ -53,7 +53,17 @@ public class HelpView {
 	
 	public String recoveringPassword = "recover";
 	
-	public String newEntry = "newEntry";
+	public String newEntry = 
+			"Creating a new data entry must be done from\n the main\n"
+			+ "screen that is displayed after a user logs in.\n"
+			+ "The button labeled \"New Entry\" will\n"
+			+ "initiate the process of creating a new entry.\n"
+			+ "The user must then select a type of data\n"
+			+ "entry from the drop down that appears.\n"
+			+ "The user will then be prompted for the\n"
+			+ " data necessary to complete then entry.\n"
+			+ "Once the user is satisfied with their entries,\n"
+			+ "clicking the save button saves the entry.";
 	
 	public String existingEntry= "existing Entry";
 	
@@ -61,7 +71,21 @@ public class HelpView {
 	
 	public String changingAvatar = "changAvi"; 
 	
-	public String localShare = "local share";
+	public String localShare = 
+			"To share a data entry with another user with\n"
+			+ "an account in the same data vault,\n"
+			+ "select the entry to be shared in the main\n"
+			+ "view and in the right column, the data entry will appear.\n"
+			+ "At the bottom of the data entry, a\n"
+			+ "button labeled \"Share entry\" will appear.\n"
+			+ "Selecting this button brings up the window\n"
+			+ "that data entries can be shared from.\n"
+			+ "after entering the necessary username,\n"
+			+ "select the button labeled \"Share locally\",\n"
+			+ "Your data entry is now being shared with the\n"
+			+ "selected user."
+			+ "This sharing can be ended at any time\n"
+			+ "by selecting the button labeled \"Stop Sharing\".";
 	
 	public String emailShare ="mailshare";
 	

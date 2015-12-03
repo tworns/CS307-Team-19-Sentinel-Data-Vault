@@ -1,0 +1,7 @@
+To share a data entry with another user with an account in the same data vault,
+select the entry to be shared in the main view and in the right column, the data entry will appear.
+At the bottom of the data entry, a button labeled \"Share entry\" will appear.
+Selecting this button brings up the window that data entries can be shared from.
+after entering the necessary username, select the button labeled \"Share locally\",
+Your data entry is now being shared with the selected user.
+This sharing can be ended at any time by selecting the button labeled \"Stop Sharing\".
