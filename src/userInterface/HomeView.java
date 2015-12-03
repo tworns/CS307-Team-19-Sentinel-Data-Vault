@@ -45,6 +45,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.JList;
 import javax.swing.ImageIcon;
+import net.miginfocom.swing.MigLayout;
 
 public class HomeView {
 
@@ -61,6 +62,7 @@ public class HomeView {
 	public List<String> currentSharedDataEntryNameList;
 	public List<String> currentSharedDataEntryTypeList;
 	public List<String> currentSharedDataEntryOwnerList;
+	private JTextField txtSearch;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -209,6 +211,9 @@ public class HomeView {
 
 		JLabel lblEmpty_1 = new JLabel("     ");
 		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(Color.WHITE);
+		
 		GroupLayout gl_panel_north = new GroupLayout(panel_north);
 		gl_panel_north.setHorizontalGroup(
 			gl_panel_north.createParallelGroup(Alignment.LEADING)
@@ -224,7 +229,9 @@ public class HomeView {
 					.addComponent(btnDeleteData, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(btnSecurity, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
-					.addGap(233))
+					.addGap(61)
+					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 166, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap())
 		);
 		gl_panel_north.setVerticalGroup(
 			gl_panel_north.createParallelGroup(Alignment.TRAILING)
@@ -238,7 +245,27 @@ public class HomeView {
 							.addComponent(lblEmpty_1)
 							.addComponent(btnSecurity, GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)))
 					.addGap(15))
+				.addGroup(Alignment.LEADING, gl_panel_north.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(19, Short.MAX_VALUE))
 		);
+		panel_1.setLayout(null);
+		
+		txtSearch = new JTextField();
+		txtSearch.setBounds(6, 6, 114, 30);
+		txtSearch.setText("Search");
+		panel_1.add(txtSearch);
+		txtSearch.setColumns(10);
+		
+		JButton btnSearch = new JButton("");
+		btnSearch.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnSearch.setBounds(122, 6, 38, 30);
+		btnSearch.setIcon(new ImageIcon(HomeView.class.getResource("/Avatars/search.png")));
+		panel_1.add(btnSearch);
 		panel_north.setLayout(gl_panel_north);
 
 		JPanel panel_south = new JPanel();
