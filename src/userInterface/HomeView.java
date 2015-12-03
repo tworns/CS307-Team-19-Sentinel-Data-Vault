@@ -376,8 +376,8 @@ public class HomeView {
 					String importLocation = selectedBackupFile.getAbsolutePath();
 					// Need to get the user info of the backup file to import from
 					// TODO retrieve these user-entered credentials from an input window
-					String backupUserEmail = "iamadampetty@gmail.com"; // ***TESTING PURPOSES ONLY***
-					String backupUserPassword = "sdfSDF123!@#"; // ***TESTING PURPOSES ONLY***
+					String backupUserEmail = JOptionPane.showInputDialog(null, "Enter the username for the account you're trying to import from"); // ***TESTING PURPOSES ONLY***
+					String backupUserPassword = JOptionPane.showInputDialog(null, "Enter the password for the account you're trying to import from"); // ***TESTING PURPOSES ONLY***
 					// Need to validate that current user has valid access privileges to import file
 					BackupManager bum = new BackupManager();
 					if (bum.isValidBackupUser(backupUserEmail, backupUserPassword, importLocation)) {
