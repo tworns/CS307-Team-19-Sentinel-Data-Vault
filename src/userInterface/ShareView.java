@@ -94,9 +94,11 @@ public class ShareView extends JFrame {
 				String salt = owner.getPasswordSalt();
 				String datakey = owner.getDataKey();
 				try {
-					VaultController.Send("sentineldatavault", "SENTINELDATA", user, "Data sharing",
-							"security level: "+ sec + "\nsalt: "+ salt + "\ndatakey: " + datakey 
-							+ "\ncontent: \n" + sharestr);
+					VaultController.Send("sentineldatavault", "SENTINELDATA", user, "Data sharing", "content: \n" + sharestr);
+					
+					JOptionPane.showMessageDialog(null,"You have successfully shared your entry via email!");
+				
+					
 				} catch (MessagingException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
