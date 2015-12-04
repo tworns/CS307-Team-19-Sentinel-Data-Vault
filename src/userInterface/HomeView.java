@@ -387,6 +387,12 @@ public class HomeView {
 						bum.importEntriesFromBackup(currentUser, backupUser, "vault_database", importLocation);
 						// refresh MainView
 						
+						
+						Refresh rf = new Refresh(username);
+						rf.refresh();
+						
+						
+						/*
 						SwingUtilities.updateComponentTreeUI(frmSentinelDataVault);
 						
 						frmSentinelDataVault.invalidate();
@@ -395,7 +401,7 @@ public class HomeView {
 						panel_center.invalidate();
 						panel_center.revalidate();
 						panel_center.repaint();
-						
+						*/
 						
 						System.out.println("IMPORT WAS SUCCESSFUL!.");
 					}
