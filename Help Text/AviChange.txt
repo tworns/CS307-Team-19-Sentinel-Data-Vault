@@ -1,0 +1,5 @@
+The Sentinel Data Vault allows the user to select an avatar picture.
+This is done by clicking the \"Settings\" button in the main screen after logging in.
+In the settings window, clicking on the \"Change Avatar\" button brings up a window
+that allows for the choosing of an avatar.
+Once the avatar has been selected, the main screen will display the selected avatar.

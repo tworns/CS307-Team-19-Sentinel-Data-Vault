@@ -1,0 +1,8 @@
+In the event that a user forgets his/her password, it can be recovered via the login screen.
+This is done by clicking the \"I forgot my Password\" button.
+When this button is clicked, a window prompting for the username of the account that needs recovery.
+After entering the username, the user must answer his/her security question.
+After a correctly answered security question, the user will be emailed a security code
+that needs to be entered into the window.
+After all these steps are completed, the user will be taken to a screen where they can change their password
+by following the on screen prompts. 
