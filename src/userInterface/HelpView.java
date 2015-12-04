@@ -51,7 +51,21 @@ public class HelpView {
 			+ "If you have not created an account,\n"
 			+ "follow the Account creation tutorial.";
 	
-	public String recoveringPassword = "recover";
+	public String recoveringPassword = 
+			"In the event that a user forgets his/her password,\n"
+			+ "it can be recovered via the login screen. "
+			+ "This is done\n"
+			+ "by clicking the \"I forgot my Password\" button.\n"
+			+ "When this button is clicked, a window prompting\n"
+			+ "for the username of the account that needs recovery.\n"
+			+ "After entering the username, the user must answer\n"
+			+ "his/her security question."
+			+ "After a correctly answered\n"
+			+ "security question, the user will be emailed a security\n"
+			+ "code that needs to be entered into the window.\n"
+			+ "After all these steps are completed, the user will\n"
+			+ "be taken to a screen where they can change their\n"
+			+ "password by following the on screen prompts.";
 	
 	public String newEntry = 
 			"Creating a new data entry must be done from\n the main\n"
@@ -65,7 +79,18 @@ public class HelpView {
 			+ "Once the user is satisfied with their entries,\n"
 			+ "clicking the save button saves the entry.";
 	
-	public String existingEntry= "existing Entry";
+	public String existingEntry=
+			"Modifying a data entry must be done from the main\n"
+			+ "screen that is displayed after a user logs in.\n"
+			+ "To modify an entry, first select that entry from\n"
+			+ "the middle column of the main screen. The data entry\n"
+			+ "will appear in the right column of the main screen.\n"
+			+ "At the bottom of the data entry, a button labeled\n"
+			+ "\"Edit Entry\" will display. Clicking this button brings\n"
+			+ "up a window similar to the entry creation window.\n"
+			+ "After modifying data, click save.\n"
+			+ "The newly modified data will display\n"
+			+ "when the data entry is next selected.";
 	
 	public String changingPassword= 
 			"In order to change the user account password, the \n"
@@ -86,7 +111,16 @@ public class HelpView {
 			+ "select the button labeled \"Change\" and \n"
 			+ "credentials will be changed.";
 	
-	public String changingAvatar = "changAvi"; 
+	public String changingAvatar = 
+			"The Sentinel Data Vault allows the user\n"
+			+ "to select an avatar picture. This is done by\n"
+			+ "clicking the \"Settings\" button in the\n"
+			+ "main screen after logging in. In the settings\n"
+			+ "window, clicking on the \"Change Avatar\"\n"
+			+ "button brings up a window that allows for\n"
+			+ "the choosing of an avatar. Once the avatar\n"
+			+ "has been selected, the main screen will\n"
+			+ "display the selected avatar."; 
 	
 	public String localShare = 
 			"To share a data entry with another user with\n"
