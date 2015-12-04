@@ -386,27 +386,12 @@ public class HomeView {
 						User backupUser = dbm.retrieveUserFromDatabase(backupUserEmail);
 						bum.importEntriesFromBackup(currentUser, backupUser, "vault_database", importLocation);
 						// refresh MainView
-						
-						
+						JOptionPane.showMessageDialog(null, "Entries have been imported into your account!", "Import Success", JOptionPane.INFORMATION_MESSAGE);
 						Refresh rf = new Refresh(username);
 						rf.refresh();
-						
-						
-						/*
-						SwingUtilities.updateComponentTreeUI(frmSentinelDataVault);
-						
-						frmSentinelDataVault.invalidate();
-						frmSentinelDataVault.revalidate();
-						frmSentinelDataVault.repaint();
-						panel_center.invalidate();
-						panel_center.revalidate();
-						panel_center.repaint();
-						*/
-						
-						System.out.println("IMPORT WAS SUCCESSFUL!.");
 					}
 					else {
-						System.out.println("ACCESS FAILED. Something is wrong.");
+						JOptionPane.showMessageDialog(null, "Invalid Email/Password. Please try again.", "Unauthorized Backup Access", JOptionPane.ERROR_MESSAGE);
 					}
 				}
 			}
