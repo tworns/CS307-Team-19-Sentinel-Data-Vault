@@ -21,6 +21,13 @@ public class HelpView {
 	
 	public JFrame frmHelp;
 	private JTextArea textPane;
+	public String credits = 
+			"Sentinel Data Vault brought to you by Team 19:\n"
+			+ "Scrum Master: Adam Petty\n"
+			+ "Zhaoji Jiang,\n"
+			+ "Dingfu Sun,\n"
+			+ "Jiho Choi,\n"
+			+ "and Thomas Worns";
 	public String signingUp = 
 			"To create a new account in the\n"
 			+ "Sentinel Data Vault from the login screen:\n"
@@ -137,9 +144,30 @@ public class HelpView {
 			+ "This sharing can be ended at any time\n"
 			+ "by selecting the button labeled \"Stop Sharing\".";
 	
-	public String emailShare ="mailshare";
+	public String emailShare =
+			"To share a data entry via email, select the data\n"
+			+ "entry that is to be shared from the main screen.\n"
+			+ "A button labeled \"Share Entry\" will appear.\n"
+			+ "Selecting this button will bring up a window that\n"
+			+ "data entries can be shared from. After entering\n"
+			+ "the username of the user that the data will be shared\n"
+			+ "with, selecting the \"Share via email\" button will share\n"
+			+ "the entry with the selected user.\n"
+			+ "The email will contain encrypted text that the\n"
+			+ "recieving user will need to decrypt using their\n"
+			+ "Sentinel Data Vault.";
 	
-	public String backup = "backup";
+	public String backup = 
+			"From the main screen that appears after the user logs in,\n"
+			+ "selecting the \"Create Backup\" button displays a\n"
+			+ "file browser. From the displayed file browser,\n"
+			+ "selecting the backup location will create a backup\n"
+			+ "in that directory.\n"
+			+ "NOTE: the selected location MUST be a folder or\n"
+			+ "directory. To import a backup, simply select the\n"
+			+ "\"Import Entries\" button. In the file browser that\n"
+			+ "appears upon the selection of that button\n"
+			+ "select the desired backup, and confirm the selection.";
 
 
 	public static void main(String[] args) {
@@ -173,7 +201,7 @@ public class HelpView {
 		frmHelp.setLocationRelativeTo(null);
 		JTree tree = new JTree();
 		tree.setRootVisible(false);
-		tree.setBounds(7, 7, 177, 284);
+		tree.setBounds(7, 7, 195, 297);
 		tree.addTreeSelectionListener(new TreeSelectionListener() {
 			public void valueChanged(TreeSelectionEvent e) {
 				JTree tree = (JTree) e.getSource();
@@ -222,6 +250,10 @@ public class HelpView {
 					textPane.setText(backup);
 					frmHelp.repaint();
 				}
+				else if(selectedNodeName.equals("Credits")){ 
+					textPane.setText(credits);
+					frmHelp.repaint();
+				}
 
 			}
 		});
@@ -248,6 +280,8 @@ public class HelpView {
 						node_1.add(new DefaultMutableTreeNode("Sharing Entries Via Email"));
 						node_1.add(new DefaultMutableTreeNode("Backing up files"));
 					add(node_1);
+					node_1 = new DefaultMutableTreeNode("Credits");
+					add(node_1);
 				}
 			}
 		));
@@ -265,7 +299,7 @@ public class HelpView {
 		textPane = new JTextArea();
 		textPane.setWrapStyleWord(true);
 		textPane.setEditable(false);
-		textPane.setBounds(214, 7, 298, 284);
+		textPane.setBounds(214, 7, 298, 297);
 		frmHelp.getContentPane().add(textPane);
 		frmHelp.getContentPane().add(btnNewButton);
 	}
