@@ -2,7 +2,6 @@ package userInterface;
 import java.awt.EventQueue;
 import javax.swing.*;
 import javax.swing.tree.*;
-import net.miginfocom.swing.MigLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.event.TreeSelectionListener;
