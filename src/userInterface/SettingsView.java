@@ -119,9 +119,9 @@ public class SettingsView {
 		comboBox.setBounds(228, 126, 129, 22);
 		frmSettings.getContentPane().add(comboBox);
 		
-		JLabel lblBackupFrequency = new JLabel("Backup/Reminder Frequency:");
+		JLabel lblBackupFrequency = new JLabel("Password Reminder:");
 		lblBackupFrequency.setToolTipText("This field sets how often all user data is backed up on disk.");
-		lblBackupFrequency.setBounds(14, 129, 200, 16);
+		lblBackupFrequency.setBounds(67, 129, 139, 16);
 		frmSettings.getContentPane().add(lblBackupFrequency);
 		
 		JLabel lblUserSettings = new JLabel("User Settings");
