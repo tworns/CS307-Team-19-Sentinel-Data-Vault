@@ -986,6 +986,21 @@ public class HomeView {
 
 		JScrollPane jsp = new JScrollPane(tree);
 		panel_center.addTab("Category", null, jsp, null);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		panel_center.addTab("Item List", null, scrollPane, null);
+		
+		JPanel panel = new JPanel();
+		scrollPane.setViewportView(panel);
+		panel.setLayout(null);
+		
+		JButton btnSortByEntry = new JButton("Sort by\\nEntry Name");
+		btnSortByEntry.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnSortByEntry.setBounds(6, 6, 100, 66);
+		panel.add(btnSortByEntry);
 		//panel_center.addTab("Category", null, tree, null);
 
 
@@ -997,7 +1012,11 @@ public class HomeView {
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		list.setModel(listModel);
 
-		panel_center.addTab("Item List", null, list, null);
+		// panel_center.addTab("Item List", null, list, null);
+		
+		
+		
+		
 
 		// MenuBar
 		JMenuBar menuBar = new JMenuBar();
