@@ -1031,6 +1031,12 @@ public class HomeView {
 		list_1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		list_1.setModel(listModel);
 		
+		List<DataEntry> allData = new ArrayList<DataEntry>();
+		DatabaseManager dm = new DatabaseManager("vault_database");
+		allData = dm.retrieveDataEntryList(currentUser);
+		
+		System.out.println("HERE" + allData.get(6).getEntryName());
+		
 		panel.add(list_1);
 		
 		//panel_center.addTab("Category", null, tree, null);
