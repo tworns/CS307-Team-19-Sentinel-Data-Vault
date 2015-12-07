@@ -630,6 +630,8 @@ public class DatabaseManager {
 
 	public List<DataEntry> retrieveDataEntryList(User user) {
 		// Connect to the database
+		List<DataEntry> resultList = new ArrayList<DataEntry>();
+
 		Connection DBconnection = connectToDatabase();
 		try {
 			// Initialize a statement to execute
@@ -637,8 +639,7 @@ public class DatabaseManager {
 			// Construct the SQL select statement
 			String sql = "SELECT * FROM data_entries WHERE owner = " + "'" + user.getUsername() + "';";
 
-			List<DataEntry> resultList = new ArrayList<DataEntry>();
-
+			
 			ResultSet allDataEntries = stmt.executeQuery(sql);
 			// Construct list of available shared entries from result set of ALL entries
 			while (allDataEntries.next()) {
