@@ -198,7 +198,6 @@ public class VaultController {
 		
 		LocalDateTime fromDateTime = user.getLastLogin();
 		LocalDateTime toDateTime = LocalDateTime.now();
-		
 		LocalDateTime tempDateTime = LocalDateTime.from( fromDateTime );
 		
 		long years = tempDateTime.until( toDateTime, ChronoUnit.YEARS);
@@ -210,7 +209,6 @@ public class VaultController {
 		long days = tempDateTime.until( toDateTime, ChronoUnit.DAYS);
 		tempDateTime = tempDateTime.plusDays( days );
 		
-		
 		long hours = tempDateTime.until( toDateTime, ChronoUnit.HOURS);
 		tempDateTime = tempDateTime.plusHours( hours );
 		
@@ -218,18 +216,14 @@ public class VaultController {
 		tempDateTime = tempDateTime.plusMinutes( minutes );
 
 		long seconds = tempDateTime.until( toDateTime, ChronoUnit.SECONDS);
-		
-		
+		tempDateTime = tempDateTime.plusSeconds(seconds);
 		
 		String freq = user.getBackupFrequency();
+		
 		if(days>=7){
 			JOptionPane.showMessageDialog(null,"It's been a week since the last time you change your password!");
 		}
 		
-		if(user == null){
-			//JOptionPane.showMessageDialog(null,"Incorrect email / password!");
-			return 0;
-		}
 		/******TODO: MainView should take in user OBJECT!**********/
 		PasswordValidation p = new PasswordValidation();
 		if(p.isValidPassword(user, password)){
@@ -242,6 +236,14 @@ public class VaultController {
 			//JOptionPane.showMessageDialog(null,"Incorrect email / password!");
 			return 0;
 		}
+	}
+	
+	/**
+	 * TODO
+	 * Determine if a backup should be created. Create one if needed.
+	 */
+	public void checkForAutoBackup() {
+		
 	}
 	 
     public static void Send(final String username, final String password, String recipientEmail, String title, String message) throws AddressException, MessagingException {
