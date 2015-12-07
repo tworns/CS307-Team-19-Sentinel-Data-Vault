@@ -54,7 +54,7 @@ public class SettingsView {
 		frmSettings = new JFrame();
 		frmSettings.setResizable(false);
 		frmSettings.setTitle("Settings");
-		frmSettings.setBounds(100, 100, 431, 345);
+		frmSettings.setBounds(100, 100, 431, 392);
 		frmSettings.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frmSettings.getContentPane().setLayout(null);
 		frmSettings.setLocationRelativeTo(null);
@@ -205,7 +205,7 @@ public class SettingsView {
 		comboBox_1.setBounds(228, 159, 129, 22);
 		frmSettings.getContentPane().add(comboBox_1);
 		
-		JLabel lblFileSizeLimit = new JLabel("Backup Size Limit:");
+		JLabel lblFileSizeLimit = new JLabel("Auto-Backup Frequency:");
 		lblFileSizeLimit.setBounds(68, 162, 190, 16);
 		lblFileSizeLimit.setToolTipText("This field is the maximum size a backup file can reach before the user is warned. ");
 
@@ -224,7 +224,7 @@ public class SettingsView {
 				
 			}
 		});
-		btnOk.setBounds(81, 276, 97, 25);
+		btnOk.setBounds(81, 325, 97, 25);
 		frmSettings.getContentPane().add(btnOk);
 		
 		//closes window
@@ -239,7 +239,7 @@ public class SettingsView {
 				}
 			}
 		});
-		btnCancel.setBounds(248, 276, 97, 25);
+		btnCancel.setBounds(248, 325, 97, 25);
 		frmSettings.getContentPane().add(btnCancel);
 		
 		JCheckBox chckbxD = new JCheckBox("Turn on account wipe after 6 failed login attemps");
@@ -269,7 +269,7 @@ public class SettingsView {
 				frmSettings.dispose();
 			}
 		});
-		btnChangePassword.setBounds(58, 231, 139, 25);
+		btnChangePassword.setBounds(218, 194, 139, 25);
 		frmSettings.getContentPane().add(btnChangePassword);
 		
 		JButton btnDeleteAccount = new JButton("Delete Account"); //Delete Account Button
@@ -295,17 +295,17 @@ public class SettingsView {
 				}
 			}
 		});
-		btnDeleteAccount.setBounds(228, 231, 129, 25);
+		btnDeleteAccount.setBounds(151, 260, 129, 25);
 		frmSettings.getContentPane().add(btnDeleteAccount);
 		
-		JButton btnChangeAvatar = new JButton("Change Avatars Picture");
+		JButton btnChangeAvatar = new JButton("Change Avatar");
 		btnChangeAvatar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				AvatarView a = new AvatarView(currentUser, h);
 				a.frame.setVisible(true);
 			}
 		});
-		btnChangeAvatar.setBounds(137, 189, 169, 29);
+		btnChangeAvatar.setBounds(67, 192, 116, 29);
 		frmSettings.getContentPane().add(btnChangeAvatar);
 	}
 }
