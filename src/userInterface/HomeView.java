@@ -32,6 +32,8 @@ import javax.swing.SwingUtilities;
 import dataManagement.*;
 import controllers.BackupManager;
 import controllers.DatabaseManager;
+
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Window;
@@ -986,21 +988,46 @@ public class HomeView {
 
 		JScrollPane jsp = new JScrollPane(tree);
 		panel_center.addTab("Category", null, jsp, null);
-		
+
 		JScrollPane scrollPane = new JScrollPane();
 		panel_center.addTab("Item List", null, scrollPane, null);
-		
+
 		JPanel panel = new JPanel();
 		scrollPane.setViewportView(panel);
 		panel.setLayout(null);
-		
-		JButton btnSortByEntry = new JButton("Sort by\\nEntry Name");
+
+		JButton btnSortByEntry = new JButton();
+		btnSortByEntry.setLayout(new BorderLayout());
+		JLabel label1 = new JLabel("Sort by");
+		JLabel label2 = new JLabel("Entry Name");
+		btnSortByEntry.add(BorderLayout.NORTH,label1);
+		btnSortByEntry.add(BorderLayout.SOUTH,label2);
 		btnSortByEntry.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnSortByEntry.setBounds(6, 6, 100, 66);
+		btnSortByEntry.setBounds(6, 6, 94, 44);
 		panel.add(btnSortByEntry);
+
+		JButton button = new JButton();
+
+		button.setLayout(new BorderLayout());
+		JLabel label3 = new JLabel("Sort by");
+		JLabel label4 = new JLabel("Modified Time");
+		button.add(BorderLayout.NORTH,label3);
+		button.add(BorderLayout.SOUTH,label4);
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		button.setBounds(102, 6, 112, 44);
+		panel.add(button);
+		
+		JPanel pane = new JPanel();
+		pane.setBounds(6, 57, 208, 262);
+		
+		
+		panel.add(pane);
 		//panel_center.addTab("Category", null, tree, null);
 
 
@@ -1011,12 +1038,14 @@ public class HomeView {
 		JList<String> list = new JList<String>();
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		list.setModel(listModel);
-
+		
+		pane.add(list);
+		
 		// panel_center.addTab("Item List", null, list, null);
-		
-		
-		
-		
+
+
+
+
 
 		// MenuBar
 		JMenuBar menuBar = new JMenuBar();
