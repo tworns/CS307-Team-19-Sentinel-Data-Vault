@@ -27,6 +27,7 @@ public class AvatarView { // ANY NEW AVATAR PHOTO SHOULD BE ~100 X ~75 (height X
 			"/Avatars/Avatar5.jpg","/Avatars/Avatar6.jpg"
 	};
 	public User currentUser;
+	public HomeView h;
 
 	/**
 	 * Launch the application.
@@ -36,7 +37,7 @@ public class AvatarView { // ANY NEW AVATAR PHOTO SHOULD BE ~100 X ~75 (height X
 			public void run() {
 				try {
 					User u = new User(null, null, null, null, null, null, null);
-					AvatarView window = new AvatarView(u);
+					AvatarView window = new AvatarView(u, new HomeView(u.getUsername()));
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -48,9 +49,10 @@ public class AvatarView { // ANY NEW AVATAR PHOTO SHOULD BE ~100 X ~75 (height X
 	/**
 	 * Create the application.
 	 */
-	public AvatarView(User user) {
+	public AvatarView(User user, HomeView h) {
 		initialize();
 		this.currentUser = user;
+		this.h = h;
 	}
 
 	/**
@@ -77,15 +79,10 @@ public class AvatarView { // ANY NEW AVATAR PHOTO SHOULD BE ~100 X ~75 (height X
 				currentUser.setDataKey(avatars[0]);
 				DatabaseManager v = new DatabaseManager("vault_database");
 				v.modifyUserField(currentUser, "data_key", avatars[0]);
-				System.gc();
-				for (Window window : Window.getWindows()) {
-					window.dispose();
-				}
+				h.lblNewLabel.setIcon(new ImageIcon(HomeView.class.getResource(currentUser.getDataKey())));
 
 				frame.dispose();
 
-				HomeView hv = new HomeView(currentUser.getUsername());
-				hv.frmSentinelDataVault.setVisible(true);
 			}
 		});
 		rdbtnNewRadioButton.setBounds(112, 173, 25, 25);
@@ -97,15 +94,10 @@ public class AvatarView { // ANY NEW AVATAR PHOTO SHOULD BE ~100 X ~75 (height X
 				currentUser.setDataKey(avatars[1]);
 				DatabaseManager v = new DatabaseManager("vault_database");
 				v.modifyUserField(currentUser, "data_key", avatars[1]);
-				System.gc();
-				for (Window window : Window.getWindows()) {
-					window.dispose();
-				}
+				h.lblNewLabel.setIcon(new ImageIcon(HomeView.class.getResource(currentUser.getDataKey())));
 
 				frame.dispose();
 
-				HomeView hv = new HomeView(currentUser.getUsername());
-				hv.frmSentinelDataVault.setVisible(true);
 			}
 		});
 		rdbtnNewRadioButton_1.setBounds(324, 173, 25, 25);
@@ -117,15 +109,10 @@ public class AvatarView { // ANY NEW AVATAR PHOTO SHOULD BE ~100 X ~75 (height X
 				currentUser.setDataKey(avatars[2]);
 				DatabaseManager v = new DatabaseManager("vault_database");
 				v.modifyUserField(currentUser, "data_key", avatars[2]);
-				System.gc();
-				for (Window window : Window.getWindows()) {
-					window.dispose();
-				}
+				h.lblNewLabel.setIcon(new ImageIcon(HomeView.class.getResource(currentUser.getDataKey())));
 
 				frame.dispose();
 
-				HomeView hv = new HomeView(currentUser.getUsername());
-				hv.frmSentinelDataVault.setVisible(true);
 			}
 		});
 		rdbtnNewRadioButton_2.setBounds(566, 173, 25, 25);
@@ -137,15 +124,11 @@ public class AvatarView { // ANY NEW AVATAR PHOTO SHOULD BE ~100 X ~75 (height X
 				currentUser.setDataKey(avatars[3]);
 				DatabaseManager v = new DatabaseManager("vault_database");
 				v.modifyUserField(currentUser, "data_key", avatars[3]);
-				System.gc();
-				for (Window window : Window.getWindows()) {
-					window.dispose();
-				}
-
+				
+				h.lblNewLabel.setIcon(new ImageIcon(HomeView.class.getResource(currentUser.getDataKey())));
 				frame.dispose();
 
-				HomeView hv = new HomeView(currentUser.getUsername());
-				hv.frmSentinelDataVault.setVisible(true);
+				
 			}
 		});
 		radioButton.setBounds(112, 348, 25, 25);
@@ -157,15 +140,9 @@ public class AvatarView { // ANY NEW AVATAR PHOTO SHOULD BE ~100 X ~75 (height X
 				currentUser.setDataKey(avatars[4]);
 				DatabaseManager v = new DatabaseManager("vault_database");
 				v.modifyUserField(currentUser, "data_key", avatars[4]);
-				System.gc();
-				for (Window window : Window.getWindows()) {
-					window.dispose();
-				}
-
+				h.lblNewLabel.setIcon(new ImageIcon(HomeView.class.getResource(currentUser.getDataKey())));
 				frame.dispose();
 
-				HomeView hv = new HomeView(currentUser.getUsername());
-				hv.frmSentinelDataVault.setVisible(true);
 			}
 		});
 		radioButton_1.setBounds(324, 348, 25, 25);
@@ -177,15 +154,11 @@ public class AvatarView { // ANY NEW AVATAR PHOTO SHOULD BE ~100 X ~75 (height X
 				currentUser.setDataKey(avatars[5]);
 				DatabaseManager v = new DatabaseManager("vault_database");
 				v.modifyUserField(currentUser, "data_key", avatars[5]);
-				System.gc();
-				for (Window window : Window.getWindows()) {
-					window.dispose();
-				}
+				h.lblNewLabel.setIcon(new ImageIcon(HomeView.class.getResource(currentUser.getDataKey())));
+
 
 				frame.dispose();
 
-				HomeView hv = new HomeView(currentUser.getUsername());
-				hv.frmSentinelDataVault.setVisible(true);
 			}
 		});
 		radioButton_2.setBounds(566, 348, 25, 25);

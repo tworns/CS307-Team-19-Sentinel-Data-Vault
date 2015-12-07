@@ -66,6 +66,8 @@ public class HomeView {
 	public List<String> currentSharedDataEntryTypeList;
 	public List<String> currentSharedDataEntryOwnerList;
 	private JTextField txtSearch;
+	private HomeView h;
+	public JLabel lblNewLabel;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -85,6 +87,7 @@ public class HomeView {
 	 * Create the application.
 	 */
 	public HomeView(String username) {
+		h = this;
 		this.username = username;
 		lastlogin = "last login time";
 
@@ -144,7 +147,7 @@ public class HomeView {
 
 		btnSetting.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				SettingsView frmSettings = new SettingsView(currentUser);
+				SettingsView frmSettings = new SettingsView(currentUser, h);
 				frmSettings.currentUser = currentUser;
 				frmSettings.frmSettings.setVisible(true);
 			}
@@ -360,7 +363,7 @@ public class HomeView {
 			}
 		});
 
-		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel = new JLabel("");
 		lblNewLabel.setBounds(30, 8, 120, 120);
 		lblNewLabel.setIcon(new ImageIcon(HomeView.class.getResource(currentUser.getDataKey())));
 		panel_west.setLayout(null);

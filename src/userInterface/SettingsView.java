@@ -13,6 +13,8 @@ public class SettingsView {
 
 	public JFrame frmSettings; // TO SET THIS: create new SettingsView object, then objectname.username = <string>;
 	public User currentUser; //Returns the User object that's been modified by the GUI.
+	public HomeView h;
+	public String avatar;
 	
 	/**
 	 * Launch the application.
@@ -22,7 +24,7 @@ public class SettingsView {
 			public void run() {
 				try {
 					User s = new User(null, null, null, null, null, null, null); //If anything tries to run on this user it's going to throw NullPointerExceptions
-					SettingsView window = new SettingsView(s);
+					SettingsView window = new SettingsView(s, new HomeView(s.getUsername()));
 					window.frmSettings.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -34,8 +36,10 @@ public class SettingsView {
 	/**
 	 * Create the application.
 	 */
-	public SettingsView(User user) {
+	public SettingsView(User user, HomeView h) {
 		this.currentUser = user;
+		this.h = h;
+		this.avatar = user.getDataKey();
 		initialize();
 	}
 
@@ -228,6 +232,9 @@ public class SettingsView {
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent clickCancel) {
 				if(clickCancel.getActionCommand().equalsIgnoreCase("Cancel")) {
+					DatabaseManager newVegas =  new DatabaseManager("vault_database");
+					newVegas.modifyUserField(currentUser, "data_key", avatar);
+					h.lblNewLabel.setIcon(new ImageIcon(HomeView.class.getResource(avatar)));
 					frmSettings.dispose();
 				}
 			}
@@ -294,7 +301,7 @@ public class SettingsView {
 		JButton btnChangeAvatar = new JButton("Change Avatars Picture");
 		btnChangeAvatar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AvatarView a = new AvatarView(currentUser);
+				AvatarView a = new AvatarView(currentUser, h);
 				a.frame.setVisible(true);
 			}
 		});
