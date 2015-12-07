@@ -80,7 +80,7 @@ public class SettingsView {
 		
 		//box lets user decide when to back up & tooltip
 		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Select Value", "Manually", "Hourly", "Daily", "Weekly", "Monthly", "Annually"}));
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Select Frequency", "Manually", "Hourly", "Daily", "Weekly", "Monthly", "Annually"}));
 		if(currentUser.getBackupFrequency().equals("Manually")) { 
 			comboBox.setSelectedIndex(1);
 		}
@@ -116,7 +116,7 @@ public class SettingsView {
 		comboBox.setToolTipText("This field sets how often all user data is backed up on disk.");
 
 		
-		comboBox.setBounds(228, 126, 129, 22);
+		comboBox.setBounds(228, 126, 156, 22);
 		frmSettings.getContentPane().add(comboBox);
 		
 		JLabel lblBackupFrequency = new JLabel("Password Reminder:");
@@ -131,7 +131,7 @@ public class SettingsView {
 		
 		//Lets user set the file size past which they'll be warned about file size. & tool tip
 		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Select Value", "10 MB", "50 MB", "100 MB", "512 MB", "1 GB", "2 GB", "3 GB", "4 GB", "5 GB"}));
+		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Select Frequency", "10 MB", "50 MB", "100 MB", "512 MB", "1 GB", "2 GB", "3 GB", "4 GB", "5 GB"}));
 		String current = "";
 		if(currentUser.getMaxBackupSize() < 1024){ //sets combo box to user's selected value
 		 current += currentUser.getMaxBackupSize() + " MB";
@@ -202,10 +202,10 @@ public class SettingsView {
 		});
 		comboBox_1.setToolTipText("This field is the maximum size a backup file can reach before the user is warned. ");
 		
-		comboBox_1.setBounds(228, 159, 129, 22);
+		comboBox_1.setBounds(228, 159, 157, 22);
 		frmSettings.getContentPane().add(comboBox_1);
 		
-		JLabel lblFileSizeLimit = new JLabel("Auto-Backup Frequency:");
+		JLabel lblFileSizeLimit = new JLabel("Automatic Backups:");
 		lblFileSizeLimit.setBounds(68, 162, 190, 16);
 		lblFileSizeLimit.setToolTipText("This field is the maximum size a backup file can reach before the user is warned. ");
 
