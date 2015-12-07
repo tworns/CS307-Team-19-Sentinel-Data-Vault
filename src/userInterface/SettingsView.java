@@ -120,7 +120,7 @@ public class SettingsView {
 		frmSettings.getContentPane().add(comboBox);
 		
 		JLabel lblBackupFrequency = new JLabel("Password Reminder:");
-		lblBackupFrequency.setToolTipText("This field sets how often all user data is backed up on disk.");
+		lblBackupFrequency.setToolTipText("This field sets how often users are reminded to change their password.");
 		lblBackupFrequency.setBounds(67, 129, 139, 16);
 		frmSettings.getContentPane().add(lblBackupFrequency);
 		
@@ -133,22 +133,23 @@ public class SettingsView {
 		JComboBox comboBox_1 = new JComboBox();
 		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Select Frequency", "Manually", "Hourly", "Daily", "Weekly", "Monthly", "Annually"}));
 		String current = "";
-		if(currentUser.getBackupFrequency().equals("Manually")) { 
+		if(currentUser.getMaxBackupSize() == 1) { //number corresponds to position in the comboBox_1 String []. 
+												  // 1 = manually, 2 = hourly, 3= daily, 4 = weekly, 5 = monthly, 6 = annually.
 			comboBox.setSelectedIndex(1);
 		}
-		if(currentUser.getBackupFrequency().equals("Hourly")){ 
+		if(currentUser.getMaxBackupSize() == 2){ 
 			comboBox.setSelectedIndex(2);
 		}
-		if(currentUser.getBackupFrequency().equals("Daily")){ 
+		if(currentUser.getMaxBackupSize() == 3){ 
 			comboBox.setSelectedIndex(3);
 		}
-		if(currentUser.getBackupFrequency().equals("Weekly")){ 
+		if(currentUser.getMaxBackupSize() == 4){ 
 			comboBox.setSelectedIndex(4);
 		}
-		if(currentUser.getBackupFrequency().equals("Monthly")){ 
+		if(currentUser.getMaxBackupSize() == 5){ 
 			comboBox.setSelectedIndex(5);
 		}
-		if(currentUser.getBackupFrequency().equals("Annually")){ 
+		if(currentUser.getMaxBackupSize() == 6){ 
 			comboBox.setSelectedIndex(6);
 		}
 		else{comboBox.setSelectedIndex(-1); }
@@ -157,45 +158,33 @@ public class SettingsView {
 		comboBox_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String s = (String) comboBox_1.getSelectedItem();
-				int size = 0;
+				int freq = 0;
 				if(s.equals("Select Value")) { 
-					JOptionPane.showMessageDialog(null, "Must select a max back up file size.", "Settings", 0);
+					JOptionPane.showMessageDialog(null, "Must select a max back up frequency.", "Settings", 0);
 				}
-				else if(s.equals("10 MB")) { 
-					size = 10;
-					currentUser.setMaxBackupSize(size);//Adds max back up size to current user.
+				else if(s.equals("Manually")) { 
+					freq = 1;
+					currentUser.setMaxBackupSize(freq);//Adds max back up size to current user.
 				}
-				else if (s.equals("50 MB")) { 
-					size = 50;
-					currentUser.setMaxBackupSize(size);//Adds max back up size to current user.
+				else if (s.equals("Hourly")) { 
+					freq = 2;
+					currentUser.setMaxBackupSize(freq);//Adds max back up size to current user.
 				}
-				else if (s.equals("100 MB")){
-					size = 100;
-					currentUser.setMaxBackupSize(size);//Adds max back up size to current user.
+				else if (s.equals("Daily")){
+					freq = 3;
+					currentUser.setMaxBackupSize(freq);//Adds max back up size to current user.
 				}
-				else if (s.equals("512 MB")) { 
-					size = 512;
-					currentUser.setMaxBackupSize(size);//Adds max back up size to current user.
+				else if (s.equals("Weekly")) { 
+					freq = 4;
+					currentUser.setMaxBackupSize(freq);//Adds max back up size to current user.
 				}
-				else if ( s.equals("1 GB")){ 
-					size = 1024;
-					currentUser.setMaxBackupSize(size);//Adds max back up size to current user.
+				else if ( s.equals("Monthly")){ 
+					freq = 5;
+					currentUser.setMaxBackupSize(freq);//Adds max back up size to current user.
 				}
-				else if (s.equals("2 GB")) {
-					size = 2048;
-					currentUser.setMaxBackupSize(size);//Adds max back up size to current user.
-				}
-				else if (s.equals("3 GB")) { 
-					size = 3072;
-					currentUser.setMaxBackupSize(size);//Adds max back up size to current user.
-				}
-				else if(s.equals("4 GB")) { 
-					size = 4096;
-					currentUser.setMaxBackupSize(size);//Adds max back up size to current user.
-				}
-				else if (s.equals("5 GB")){ 
-					size = 5120;
-					currentUser.setMaxBackupSize(size);//Adds max back up size to current user.
+				else if (s.equals("Annually")) {
+					freq = 6;
+					currentUser.setMaxBackupSize(freq);//Adds max back up size to current user.
 				}
 				
 			}
@@ -207,7 +196,7 @@ public class SettingsView {
 		
 		JLabel lblFileSizeLimit = new JLabel("Automatic Backups:");
 		lblFileSizeLimit.setBounds(68, 162, 190, 16);
-		lblFileSizeLimit.setToolTipText("This field is the maximum size a backup file can reach before the user is warned. ");
+		lblFileSizeLimit.setToolTipText("This field is the frequency with which user data is backed up.");
 
 		frmSettings.getContentPane().add(lblFileSizeLimit);
 		
