@@ -7,6 +7,8 @@ import java.io.File;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.Locale;
@@ -41,9 +43,13 @@ import java.awt.Window;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreePath;
+
+
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.JList;
@@ -1001,8 +1007,17 @@ public class HomeView {
 		List<DataEntry> allData = new ArrayList<DataEntry>();
 		DatabaseManager dm = new DatabaseManager("vault_database");
 		allData = dm.retrieveDataEntryList(currentUser);
-		
-		
+		List<DataEntry> sortedAllData = allData;
+
+		int numOfData = allData.size();
+		System.out.println("numOfData :" + numOfData);
+
+		/*
+		 *  sorting
+		 *  sort by name
+		 *  
+		 * */
+
 		JButton btnSortByEntry = new JButton();
 		btnSortByEntry.setLayout(new BorderLayout());
 		JLabel label1 = new JLabel("Sort by");
@@ -1012,8 +1027,9 @@ public class HomeView {
 		btnSortByEntry.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				listModel.clear();
-				for(int i=0; i< currentDataEntryNameList.size();i++) {
-					listModel.add(i, currentDataEntryNameList.get(i));
+				for(int i=0; i< numOfData;i++) {
+					listModel.add(i, sortedAllData.get(i).getEntryName());
+					//sortedAllData.set(i, allData.get(i));
 				}
 				panel.repaint();
 			}
@@ -1023,6 +1039,7 @@ public class HomeView {
 
 		JButton button = new JButton();
 
+
 		button.setLayout(new BorderLayout());
 		JLabel label3 = new JLabel("Sort by");
 		JLabel label4 = new JLabel("Modified Time");
@@ -1031,15 +1048,19 @@ public class HomeView {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				listModel.clear();
-				for(int i=0; i< currentDataEntryNameList.size();i++) {
-					listModel.add(i, currentDataEntryTypeList.get(i));
+				for(int i=0; i< numOfData;i++) {
+
+
+					//Collections.sort(sortedAllData, sortedAllData.get(i).getLastModified());
+					//sortedAllData.set(i, allData.get(i));
 				}
+
 				panel.repaint();
 			}
 		});
 		button.setBounds(102, 6, 112, 44);
 		panel.add(button);
-		
+
 		JList list_1 = new JList();
 		list_1.setBounds(6, 53, 208, 266);
 		list_1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -1049,12 +1070,168 @@ public class HomeView {
 			listModel.add(i, currentDataEntryTypeList.get(i));
 		}
 		panel.repaint();
-		
-		//System.out.println("HERE" + allData.get(6).getEntryName());
-		
-		
+
+
+		list_1.addListSelectionListener( new ListSelectionListener() {
+
+			
+			public void valueChanged(ListSelectionEvent e) {
+
+				JList list = (JList) e.getSource();
+
+				panel_east.removeAll();
+				
+				int num = list.getSelectedIndex();
+
+				
+				DataEntry selectedDataEntry = sortedAllData.get(num);
+				
+				System.out.println(selectedDataEntry.getEntryName());
+				System.out.println(selectedDataEntry.getOwner());
+				System.out.println(selectedDataEntry.getEntryType());
+				System.out.println("HEREHERE");
+				System.out.println("");
+
+				currentEntry = selectedDataEntry;
+
+				ArrayList<String> indexList = new ArrayList<String>();
+
+				DataEntryPanel dataPanel = new DataEntryPanel();
+				JPanel panel = new JPanel();
+				
+				if(selectedDataEntry.getEntryType().toString().equals("Account Login")) {
+					panel = dataPanel.getAccountLoginPanelWithData(selectedDataEntry);
+				}
+				else if(selectedDataEntry.getEntryType().toString().equals("Confirmation Number")) {
+					indexList.add("Confirmation Name");
+					indexList.add("Confirmation Number");
+
+					panel = dataPanel.getGeneralPanelWithData(indexList, selectedDataEntry);
+				}
+				else if(selectedDataEntry.getEntryType().toString().equals("Credit/Debit Card")) {
+					panel = dataPanel.getCreditCardPanelWithData(selectedDataEntry);
+				}
+				else if(selectedDataEntry.getEntryType().toString().equals("Entry Code")) {
+					indexList.add("Code Name");
+					indexList.add("Code");
+
+					panel = dataPanel.getGeneralPanelWithData(indexList, selectedDataEntry);
+				}
+				else if(selectedDataEntry.getEntryType().toString().equals("Flight Ticket")) {
+					indexList.add("Passenger");
+					indexList.add("Destination");
+					indexList.add("Airport (Origin)");
+					indexList.add("Airport (Dest.)");
+					indexList.add("Gate (Origin)");
+					indexList.add("Gate (Dest.)");
+					indexList.add("Departure");
+					indexList.add("Arrival");
+					indexList.add("Group");
+					indexList.add("Seat");
+
+
+					panel = dataPanel.getGeneralPanelWithData(indexList, selectedDataEntry);
+				}
+				else if(selectedDataEntry.getEntryType().toString().equals("General Password")) {
+
+					indexList.add("Password Name");
+					indexList.add("Password");
+
+					panel = dataPanel.getGeneralPanelWithData(indexList, selectedDataEntry);
+				}
+				else if(selectedDataEntry.getEntryType().toString().equals("ID Card")) {
+
+					indexList.add("ID Card Name");
+					indexList.add("ID Card Number");
+					indexList.add("Cardholder Name");
+					indexList.add("Address");
+					indexList.add("Issue Date");
+					indexList.add("Expiration Date");
+
+					panel = dataPanel.getGeneralPanelWithData(indexList, selectedDataEntry);
+				}
+				else if(selectedDataEntry.getEntryType().toString().equals("License")) {
+
+					panel = dataPanel.getLicensePaneWithData(selectedDataEntry);
+					/*
+						indexList.add("License Name");
+						indexList.add("PCardholder Name");
+						indexList.add("License Number");
+						indexList.add("Address");
+						indexList.add("Date of Birth");
+						indexList.add("Expiration Date");
+						indexList.add("Class");
+						indexList.add("Restrictions");	
+						panel = dataPanel.getGeneralPanelWithData(indexList, selectedDataEntry);
+					 */
+
+				}
+				else if(selectedDataEntry.getEntryType().toString().equals("Passport") ){
+					indexList.add("Name");
+					indexList.add("Passport Number");
+					indexList.add("Nationality");
+					indexList.add("Sex");
+					indexList.add("Date of Birth");
+					indexList.add("Place of Birth");
+					indexList.add("Issued Date");
+					indexList.add("Expiration Date");
+
+
+					panel = dataPanel.getGeneralPanelWithData(indexList, selectedDataEntry);
+				}
+				else if(selectedDataEntry.getEntryType().toString().equals("Phone Number") ){
+					panel = dataPanel.getPhoneNumberPaneWithData(selectedDataEntry);
+					/*
+						indexList.add("Name");
+						indexList.add("Phone Number");
+						indexList.add("Group");
+						panel = dataPanel.getGeneralPanelWithData(indexList, selectedDataEntry);
+					 */
+				}
+				else if(selectedDataEntry.getEntryType().toString().equals("Serial Number")) {
+					indexList.add("Product Name");
+					indexList.add("Serial Number");
+
+					panel = dataPanel.getGeneralPanelWithData(indexList, selectedDataEntry);
+				}
+				else if(selectedDataEntry.getEntryType().toString().equals("Shipment Tracking Number")) {
+					indexList.add("Company/Item Name");
+					indexList.add("Shipment Tracking Number");
+
+					panel = dataPanel.getGeneralPanelWithData(indexList, selectedDataEntry);
+				}
+				else if(selectedDataEntry.getEntryType().toString() == "SSN") {
+					panel = dataPanel.getSSNWithData(selectedDataEntry);
+					/*
+						indexList.add("Name");
+						indexList.add("SSN");
+						panel = dataPanel.getGeneralPanelWithData(indexList, selectedDataEntry);
+					 */
+				}
+				else if(selectedDataEntry.getEntryType().toString().equals("Wifi Network") ){
+					//panel = dataPanel.getWifiNetworkWithData(selectedDataEntry);
+					indexList.add("Network Name");
+					indexList.add("Password");
+					indexList.add("Security");
+					panel = dataPanel.getGeneralPanelWithData(indexList, selectedDataEntry);
+
+				}
+
+
+				JScrollPane scroll = new JScrollPane(panel);
+				panel_east.addTab(selectedDataEntry.getEntryType().toString(), null, scroll, null);
+
+
+				//panel_east.addTab(panelName, null, panel, null);
+
+				indexList.clear();
+			}
+
+
+		});
+
 		panel.add(list_1);
-		
+
 		//panel_center.addTab("Category", null, tree, null);
 
 
@@ -1062,9 +1239,9 @@ public class HomeView {
 		/* 	TREE Constructor														  */
 		/* ************************************************************************** */
 
-	
+
 		//pane.add(list);
-		
+
 		// panel_center.addTab("Item List", null, list, null);
 
 
