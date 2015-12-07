@@ -111,8 +111,8 @@ public class SearchResultView {
 		
 		scrollPane.setViewportView(txtpnSearchResultText);
 		
-		JLabel lblResult = new JLabel("Search Result");
-		lblResult.setBounds(175, 8, 100, 30);
+		JLabel lblResult = new JLabel("Search Result for \""+ text + "\" ");
+		lblResult.setBounds(135, 8, 215, 30);
 		frame.getContentPane().add(lblResult);
 		
 		JButton btnClose = new JButton("Close");
