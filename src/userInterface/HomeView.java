@@ -124,15 +124,15 @@ public class HomeView {
 
 				if(JOptionPane.showConfirmDialog(null, "Are you sure you want to sign out? You will be returned to Sign In.", "Sign Out",JOptionPane.YES_NO_OPTION, JOptionPane.DEFAULT_OPTION) == 0) {
 
-						currentUser.setLastLogin(LocalDateTime.now());
-						DatabaseManager d = new DatabaseManager("vault_database");
-						currentUser.getLastLogin();
-						String time = currentUser.getLastLogin().toString();
-						d.modifyUserField(currentUser, "last_login", time );
-						currentUser = null;
-						LoginView frmLog = new LoginView();
-						frmLog.frmSignIn.setVisible(true);
-						frmSentinelDataVault.dispose();
+					currentUser.setLastLogin(LocalDateTime.now());
+					DatabaseManager d = new DatabaseManager("vault_database");
+					currentUser.getLastLogin();
+					String time = currentUser.getLastLogin().toString();
+					d.modifyUserField(currentUser, "last_login", time );
+					currentUser = null;
+					LoginView frmLog = new LoginView();
+					frmLog.frmSignIn.setVisible(true);
+					frmSentinelDataVault.dispose();
 				}
 			}
 		});
@@ -211,59 +211,64 @@ public class HomeView {
 		btnDeleteData.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
 
 		JLabel lblEmpty_1 = new JLabel("     ");
-		
+
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Color.WHITE);
-		
+
 		GroupLayout gl_panel_north = new GroupLayout(panel_north);
 		gl_panel_north.setHorizontalGroup(
-			gl_panel_north.createParallelGroup(Alignment.LEADING)
+				gl_panel_north.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_north.createSequentialGroup()
-					.addComponent(btnSignOut, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnSetting, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(lblEmpty_1, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnAddData, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnDeleteData, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnSecurity, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
-					.addGap(61)
-					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 166, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
-		);
+						.addComponent(btnSignOut, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addComponent(btnSetting, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addComponent(lblEmpty_1, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addComponent(btnAddData, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addComponent(btnDeleteData, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addComponent(btnSecurity, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+						.addGap(61)
+						.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 166, GroupLayout.PREFERRED_SIZE)
+						.addContainerGap())
+				);
 		gl_panel_north.setVerticalGroup(
-			gl_panel_north.createParallelGroup(Alignment.TRAILING)
+				gl_panel_north.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_panel_north.createSequentialGroup()
-					.addGroup(gl_panel_north.createParallelGroup(Alignment.TRAILING)
-						.addComponent(btnSignOut, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
-						.addGroup(gl_panel_north.createParallelGroup(Alignment.BASELINE)
-							.addComponent(btnSetting, GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
-							.addComponent(btnAddData, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
-							.addComponent(btnDeleteData, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
-							.addComponent(lblEmpty_1)
-							.addComponent(btnSecurity, GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)))
-					.addGap(15))
+						.addGroup(gl_panel_north.createParallelGroup(Alignment.TRAILING)
+								.addComponent(btnSignOut, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+								.addGroup(gl_panel_north.createParallelGroup(Alignment.BASELINE)
+										.addComponent(btnSetting, GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+										.addComponent(btnAddData, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
+										.addComponent(btnDeleteData, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
+										.addComponent(lblEmpty_1)
+										.addComponent(btnSecurity, GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)))
+						.addGap(15))
 				.addGroup(Alignment.LEADING, gl_panel_north.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(19, Short.MAX_VALUE))
-		);
+						.addContainerGap()
+						.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+						.addContainerGap(19, Short.MAX_VALUE))
+				);
 		panel_1.setLayout(null);
-		
+
 		txtSearch = new JTextField();
 		txtSearch.setBounds(6, 6, 114, 30);
 		txtSearch.setText("Search");
 		panel_1.add(txtSearch);
 		txtSearch.setColumns(10);
-		
+
 		JButton btnSearch = new JButton("");
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String inputText = txtSearch.getText();
+				SearchResultView regFace =new SearchResultView( inputText, currentUser );
+				regFace.frame.setVisible(true);
+
 			}
 		});
+
 		btnSearch.setBounds(122, 6, 38, 30);
 		btnSearch.setIcon(new ImageIcon(HomeView.class.getResource("/Avatars/search.png")));
 		panel_1.add(btnSearch);
@@ -363,7 +368,7 @@ public class HomeView {
 		panel_west.add(txtUsername);
 		panel_west.add(lblUserEmail);
 		panel_west.add(lblNewLabel);
-		
+
 		JButton btnImport = new JButton("Import Entries");
 		btnImport.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -437,10 +442,10 @@ public class HomeView {
 
 
 
-/* ************************************************************************** */ 
-/* 	TREE Constructor														  */
-/*																			  */
-/* ************************************************************************** */		
+		/* ************************************************************************** */ 
+		/* 	TREE Constructor														  */
+		/*																			  */
+		/* ************************************************************************** */		
 		//Tree		
 
 		JTree tree = new JTree();
@@ -498,7 +503,7 @@ public class HomeView {
 							DatabaseManager db = new DatabaseManager("vault_database");
 							cd = db.retrieveOneDataEntry(currentDataEntryNameList.get(i), currentUser, currentDataEntryTypeList.get(i));
 
-							
+
 							System.out.println("here");
 
 							if (cd.getOwner().equals(currentUser.getUsername())) {
@@ -555,25 +560,25 @@ public class HomeView {
 
 						for (int i=0; i < currentSharedDataEntryNameList.size(); i++) {
 							add(node_15);
-							
+
 							DatabaseManager db = new DatabaseManager("vault_database");
 							DataEntry currentDE = db.retrieveOneDataEntry(currentSharedDataEntryNameList.get(i),db.retrieveUserFromDatabase(currentSharedDataEntryOwnerList.get(i)),currentSharedDataEntryTypeList.get(i));
 							DefaultMutableTreeNode child = new DefaultMutableTreeNode(currentSharedDataEntryNameList.get(i));
 							// listModel.addElement(currentSharedDataEntryNameList.get(i));
 
-						
-							
+
+
 							// new owner > add node
 							if ( !owners.contains(currentDE.getOwner().toString()) ) {
 								owners.add(currentDE.getOwner().toString());
 								DefaultMutableTreeNode newOwnerNode = new DefaultMutableTreeNode(currentDE.getOwner().toString());
 								ownerNode = newOwnerNode;
-								
+
 							}/*
 							else{
 								int ci = 0;
 								while (true) {
-									
+
 									if(node_15.getChildAt(ci).toString().equals(currentDE.getOwner().toString())){
 										break;
 									}
@@ -582,7 +587,7 @@ public class HomeView {
 								ownerNode = (DefaultMutableTreeNode) node_15.getChildAt(ci);
 								node_15.add(ownerNode);
 							}*/
-							
+
 							node_15.add(ownerNode);
 
 							if(currentSharedDataEntryTypeList.contains("Account Login")) {
@@ -781,7 +786,7 @@ public class HomeView {
 		/* 	TREE LISTENER															  */
 		/*																			  */
 		/* ************************************************************************** */
-		
+
 		tree.addTreeSelectionListener(new TreeSelectionListener() {
 
 			public void valueChanged(TreeSelectionEvent e) {
@@ -812,12 +817,12 @@ public class HomeView {
 				System.out.println(selectedNodeName);
 
 				//if data item
-				
+
 				if (selectedNode.isLeaf()) {
 
 					DatabaseManager dm = new DatabaseManager("vault_database");
 					User owner = currentUser;
-					
+
 					if (!selectedNode.getParent().getParent().toString().equals("Data Entry")) {
 						owner = dm.retrieveUserFromDatabase(selectedNode.getParent().getParent().toString());
 					}
@@ -982,8 +987,8 @@ public class HomeView {
 		JScrollPane jsp = new JScrollPane(tree);
 		panel_center.addTab("Category", null, jsp, null);
 		//panel_center.addTab("Category", null, tree, null);
-		
-		
+
+
 		/* ************************************************************************** */ 
 		/* 	TREE Constructor														  */
 		/* ************************************************************************** */
