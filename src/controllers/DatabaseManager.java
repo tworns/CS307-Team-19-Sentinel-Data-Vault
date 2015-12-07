@@ -13,17 +13,17 @@ import java.util.List;
 import cryptography.Crypto;
 
 public class DatabaseManager {
-	
+
 	private static String database_name;
-	
+
 	public DatabaseManager(String database) {
 		database_name = database;
 	}
-	
+
 	public static String getCurrentDatabase() {
 		return database_name;
 	}
-	
+
 	public void setCurrentDatabase(String newDatabase) {
 		database_name = newDatabase;
 	}
@@ -47,7 +47,7 @@ public class DatabaseManager {
 		}
 		return connection;
 	}
-		
+
 	/**
 	 * Create the "users" table in a given database to set up for use with Sentinel Data Vault
 	 * 
@@ -84,7 +84,7 @@ public class DatabaseManager {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Create the "data_entries" table in a given database to set up for use with Sentinel Data Vault
 	 * 
@@ -176,7 +176,7 @@ public class DatabaseManager {
 			return -1;
 		}
 	}
-	
+
 	/**
 	 * Deletes a given user from the vault database.
 	 * 
@@ -300,7 +300,7 @@ public class DatabaseManager {
 				String owner = dataEntrySet.getString("owner");
 				int secure_entry = dataEntrySet.getInt("secure_entry");
 				LocalDateTime last_modified = LocalDateTime.parse(dataEntrySet.getString("last_modified"));
-				
+
 				// Parse the valid_users String and convert to List<String> to assign to validUsers field of DataEntry
 				List<String> validUsers = new ArrayList<String>();
 				String validUsersString = dataEntrySet.getString("valid_users");
@@ -308,7 +308,7 @@ public class DatabaseManager {
 				for (int i = 0; i < parsedValidUsers.length; i++) {
 					validUsers.add(parsedValidUsers[i]);
 				}
-				
+
 				// Retrieve the data_fields; create a List of the fields
 				List<String> data_field_list = new ArrayList<String>();
 				String data_field_1 = dataEntrySet.getString("data_field_1");
@@ -331,7 +331,7 @@ public class DatabaseManager {
 				data_field_list.add(data_field_8);
 				data_field_list.add(data_field_9);
 				data_field_list.add(data_field_10);
-				
+
 				// Create a data entry to encapsulate the information; add entry to List
 				DataEntry entry = new DataEntry(entry_name, entry_type, encryption_key, owner, validUsers, secure_entry, last_modified, data_field_list);
 				Crypto crypto = new Crypto();
@@ -471,7 +471,7 @@ public class DatabaseManager {
 		Collections.sort(sharedEntryList);
 		return sharedEntryList;
 	}
-	
+
 	public List<String> retrieveSharedEntryTypeList(String user_email) {
 		List<String> sharedEntryList = new ArrayList<String>();
 		// Connect to the database
@@ -626,6 +626,91 @@ public class DatabaseManager {
 			// return a failure value
 			return null;
 		}
+	}
+
+	public List<DataEntry> retrieveDataEntryList(User user) {
+		// Connect to the database
+		Connection DBconnection = connectToDatabase();
+		try {
+			// Initialize a statement to execute
+			Statement stmt = DBconnection.createStatement();
+			// Construct the SQL select statement
+			String sql = "SELECT * FROM data_entries WHERE owner = " + "'" + user.getUsername() + "';";
+
+			List<DataEntry> resultList = new ArrayList<DataEntry>();
+
+			ResultSet allDataEntries = stmt.executeQuery(sql);
+			// Construct list of available shared entries from result set of ALL entries
+			while (allDataEntries.next()) {
+				// reconstruct entry
+				String entryName = allDataEntries.getString("entry_name");
+				String entryType = allDataEntries.getString("entry_type");
+				String encryptionKey = allDataEntries.getString("encryption_key");
+				String owner = allDataEntries.getString("owner");
+
+				// Parse the valid_users String and convert to List<String> to assign to validUsers field of DataEntry
+				List<String> validUsers = new ArrayList<String>();
+				String validUsersString = allDataEntries.getString("valid_users");
+				String[] parsedValidUsers = validUsersString.split(" ");
+				for (int i = 0; i < parsedValidUsers.length; i++) {
+					validUsers.add(parsedValidUsers[i]);
+				} 
+				{
+
+					int highSecurity = allDataEntries.getInt("secure_entry");
+					String lastModified = allDataEntries.getString("last_modified");
+					LocalDateTime modifiedLDT = LocalDateTime.parse(lastModified);
+
+					String datafield_1 = allDataEntries.getString("data_field_1");
+					String datafield_2 = allDataEntries.getString("data_field_2");
+					String datafield_3 = allDataEntries.getString("data_field_3");
+					String datafield_4 = allDataEntries.getString("data_field_4");
+					String datafield_5 = allDataEntries.getString("data_field_5");
+					String datafield_6 = allDataEntries.getString("data_field_6");
+					String datafield_7 = allDataEntries.getString("data_field_7");
+					String datafield_8 = allDataEntries.getString("data_field_8");
+					String datafield_9 = allDataEntries.getString("data_field_9");
+					String datafield_10 = allDataEntries.getString("data_field_10");
+
+					List<String> fields = new ArrayList<String>();
+					fields.add(datafield_1);
+					fields.add(datafield_2);
+					fields.add(datafield_3);
+					fields.add(datafield_4);
+					fields.add(datafield_5);
+					fields.add(datafield_6);
+					fields.add(datafield_7);
+					fields.add(datafield_8);
+					fields.add(datafield_9);
+					fields.add(datafield_10);
+
+					// Reconstruct DataEntry
+					DataEntry dataEntry = new DataEntry(entryName, entryType, encryptionKey, owner, highSecurity, modifiedLDT);
+					dataEntry.setHighSecurity(highSecurity);
+					dataEntry.setDataFields(fields);
+					dataEntry.setValidUsers(validUsers);
+					Crypto c = new Crypto();
+					c.decrypt(user, dataEntry);
+					resultList.add(dataEntry);
+				}
+			}
+			allDataEntries.close();
+			stmt.close();
+			DBconnection.close();
+		}
+
+		catch (SQLException e) {
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			e.printStackTrace();
+			// return a failure value
+			return null;
+		}
+
+
+		// return a success value
+
+		return resultList;
+
 	}
 
 	/**
@@ -806,7 +891,7 @@ public class DatabaseManager {
 			preparedStatement.setString(5, entry.buildValidUsersString());
 			preparedStatement.setInt(6, entry.isHighSecurity());
 			preparedStatement.setString(7, entry.getLastModified().toString());
-			
+
 			int j = 0;
 			for (int i = 0; i < field_number; i++) {
 				preparedStatement.setString(8 + i, entry.getFieldDataList().get(i));

@@ -1026,11 +1026,13 @@ public class HomeView {
 		button.setBounds(102, 6, 112, 44);
 		panel.add(button);
 		
-		JPanel pane = new JPanel();
-		pane.setBounds(6, 57, 208, 262);
+		JList list_1 = new JList();
+		list_1.setBounds(6, 53, 208, 266);
+		list_1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		list_1.setModel(listModel);
 		
+		panel.add(list_1);
 		
-		panel.add(pane);
 		//panel_center.addTab("Category", null, tree, null);
 
 
@@ -1038,11 +1040,8 @@ public class HomeView {
 		/* 	TREE Constructor														  */
 		/* ************************************************************************** */
 
-		JList<String> list = new JList<String>();
-		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		list.setModel(listModel);
-		
-		pane.add(list);
+	
+		//pane.add(list);
 		
 		// panel_center.addTab("Item List", null, list, null);
 
