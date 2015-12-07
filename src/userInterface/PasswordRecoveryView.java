@@ -59,6 +59,7 @@ public class PasswordRecoveryView {
 	/**
 	 * Create the application.
 	 */
+	
 	public PasswordRecoveryView(JFrame frame) {
 		initialize();
 		this.parentFrame = frame; //This is needed so that PasswordChangeRecovery can show LoginView again.
@@ -156,9 +157,9 @@ public class PasswordRecoveryView {
 						 code = chat.generateSalt();
 						VaultController.Send("sentineldatavault", "SENTINELDATA", user.getUsername(), 
 								"Changed Password", "Dear user,\n\n To continue recovering your account password, please enter the code below into the Sentinel Data Vault.\n"
-										+ "If you did not initiate this change, this e-mail can be safely disregarded.\n\n"+
-										"Your security code is: " + code +"\n\n" +
-										"Sincerely,\nSentinel Data Vault Team");
+									+ "If you did not initiate this change, this e-mail can be safely disregarded.\n\n"+
+									"Your security code is: " + code +"\n\n" +
+									"Sincerely,\nSentinel Data Vault Team");
 						txtIncorrectAnswer.setText("");
 					} catch (Exception e1) {
 						
