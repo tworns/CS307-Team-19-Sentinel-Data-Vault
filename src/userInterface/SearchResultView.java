@@ -51,6 +51,8 @@ public class SearchResultView {
 	}
 
 	public SearchResultView(String text, User currentUser) {
+		
+		
 		this.text = text;
 		this.currentUser = currentUser;
 		this.username = currentUser.getUsername();
@@ -67,14 +69,20 @@ public class SearchResultView {
 		String resultText = "";
 		int numOfResult = 0;
 		
-		resultText = "We Found \"" + numOfResult +"\" item(s) related to \""+ text +"\". \n" + "\n";
 		
 		for(int i=0; i < currentDataEntryNameList.size(); i++ ) {
-			if(currentDataEntryNameList.get(i).contains(text)) {
+			
+			if(currentDataEntryNameList.get(i).toLowerCase().contains(text.toLowerCase())) {
 				resultText = resultText + 
-						"<"+ currentDataEntryNameList.get(i) + "> is founded under <" +currentDataEntryTypeList.get(i) + ">.\n";
-			}
+						"Entry <"+ currentDataEntryNameList.get(i) + "> is founded under <" +currentDataEntryTypeList.get(i) + ">.\n\n";
+				}
+			numOfResult++;
 		}
+		
+		resultText = "We Found \"" + numOfResult +"\" item(s) related to \""+ text +"\". \n" + "\n" 
+				+ "------------------------------------------------ \n"
+				+ resultText;
+		
 		
 		
 		text = resultText;
@@ -87,8 +95,12 @@ public class SearchResultView {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
+		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frame.setLocationRelativeTo(null);
+		
 		frame.getContentPane().setLayout(null);
+		
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(30, 50, 400, 185);
