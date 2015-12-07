@@ -512,7 +512,6 @@ public class HomeView {
 							System.out.println("here");
 
 							if (cd.getOwner().equals(currentUser.getUsername())) {
-								System.out.println("here currentUser");
 
 								if(currentDataEntryTypeList.contains("Account Login")) {
 									add(node_1);
@@ -999,6 +998,11 @@ public class HomeView {
 		scrollPane.setViewportView(panel);
 		panel.setLayout(null);
 
+		List<DataEntry> allData = new ArrayList<DataEntry>();
+		DatabaseManager dm = new DatabaseManager("vault_database");
+		allData = dm.retrieveDataEntryList(currentUser);
+		
+		
 		JButton btnSortByEntry = new JButton();
 		btnSortByEntry.setLayout(new BorderLayout());
 		JLabel label1 = new JLabel("Sort by");
@@ -1007,6 +1011,11 @@ public class HomeView {
 		btnSortByEntry.add(BorderLayout.SOUTH,label2);
 		btnSortByEntry.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				listModel.clear();
+				for(int i=0; i< currentDataEntryNameList.size();i++) {
+					listModel.add(i, currentDataEntryNameList.get(i));
+				}
+				panel.repaint();
 			}
 		});
 		btnSortByEntry.setBounds(6, 6, 94, 44);
@@ -1021,6 +1030,11 @@ public class HomeView {
 		button.add(BorderLayout.SOUTH,label4);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				listModel.clear();
+				for(int i=0; i< currentDataEntryNameList.size();i++) {
+					listModel.add(i, currentDataEntryTypeList.get(i));
+				}
+				panel.repaint();
 			}
 		});
 		button.setBounds(102, 6, 112, 44);
@@ -1030,12 +1044,14 @@ public class HomeView {
 		list_1.setBounds(6, 53, 208, 266);
 		list_1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		list_1.setModel(listModel);
+		listModel.clear();
+		for(int i=0; i< currentDataEntryNameList.size();i++) {
+			listModel.add(i, currentDataEntryTypeList.get(i));
+		}
+		panel.repaint();
 		
-		List<DataEntry> allData = new ArrayList<DataEntry>();
-		DatabaseManager dm = new DatabaseManager("vault_database");
-		allData = dm.retrieveDataEntryList(currentUser);
+		//System.out.println("HERE" + allData.get(6).getEntryName());
 		
-		System.out.println("HERE" + allData.get(6).getEntryName());
 		
 		panel.add(list_1);
 		
