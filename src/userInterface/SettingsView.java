@@ -164,32 +164,32 @@ public class SettingsView {
 				}
 				else if(s.equals("Manually")) { 
 					freq = 1;
-					currentUser.setMaxBackupSize(freq);//Adds max back up size to current user.
+					currentUser.setMaxBackupSize(freq);//Adds back up freq to current user.
 				}
 				else if (s.equals("Hourly")) { 
 					freq = 2;
-					currentUser.setMaxBackupSize(freq);//Adds max back up size to current user.
+					currentUser.setMaxBackupSize(freq);//Adds back up freq to current user.
 				}
 				else if (s.equals("Daily")){
 					freq = 3;
-					currentUser.setMaxBackupSize(freq);//Adds max back up size to current user.
+					currentUser.setMaxBackupSize(freq);
 				}
 				else if (s.equals("Weekly")) { 
 					freq = 4;
-					currentUser.setMaxBackupSize(freq);//Adds max back up size to current user.
+					currentUser.setMaxBackupSize(freq);
 				}
 				else if ( s.equals("Monthly")){ 
 					freq = 5;
-					currentUser.setMaxBackupSize(freq);//Adds max back up size to current user.
+					currentUser.setMaxBackupSize(freq);
 				}
 				else if (s.equals("Annually")) {
 					freq = 6;
-					currentUser.setMaxBackupSize(freq);//Adds max back up size to current user.
+					currentUser.setMaxBackupSize(freq);
 				}
 				
 			}
 		});
-		comboBox_1.setToolTipText("This field is the maximum size a backup file can reach before the user is warned. ");
+		comboBox_1.setToolTipText("This field is the frequency with which a user's data is backed up.");
 		
 		comboBox_1.setBounds(228, 159, 157, 22);
 		frmSettings.getContentPane().add(comboBox_1);
