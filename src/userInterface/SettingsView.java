@@ -131,27 +131,27 @@ public class SettingsView {
 		
 		//Lets user set the file size past which they'll be warned about file size. & tool tip
 		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Select Frequency", "10 MB", "50 MB", "100 MB", "512 MB", "1 GB", "2 GB", "3 GB", "4 GB", "5 GB"}));
+		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Select Frequency", "Manually", "Hourly", "Daily", "Weekly", "Monthly", "Annually"}));
 		String current = "";
-		if(currentUser.getMaxBackupSize() < 1024){ //sets combo box to user's selected value
-		 current += currentUser.getMaxBackupSize() + " MB";
+		if(currentUser.getBackupFrequency().equals("Manually")) { 
+			comboBox.setSelectedIndex(1);
 		}
-		if(currentUser.getMaxBackupSize() == 1024) { 
-			current+=1 + " GB";
+		if(currentUser.getBackupFrequency().equals("Hourly")){ 
+			comboBox.setSelectedIndex(2);
 		}
-		if(currentUser.getMaxBackupSize() == 2048) { 
-			current+=2 + " GB";
+		if(currentUser.getBackupFrequency().equals("Daily")){ 
+			comboBox.setSelectedIndex(3);
 		}
-		if(currentUser.getMaxBackupSize() == 3072){
-			current+=3 + " GB";
+		if(currentUser.getBackupFrequency().equals("Weekly")){ 
+			comboBox.setSelectedIndex(4);
 		}
-		if(currentUser.getMaxBackupSize() == 4096){
-			current+=4 + " GB";
+		if(currentUser.getBackupFrequency().equals("Monthly")){ 
+			comboBox.setSelectedIndex(5);
 		}
-		if(currentUser.getMaxBackupSize() == 5120){
-			current += 5 + " GB";
+		if(currentUser.getBackupFrequency().equals("Annually")){ 
+			comboBox.setSelectedIndex(6);
 		}
-		else{ comboBox_1.setSelectedIndex(0); }
+		else{comboBox.setSelectedIndex(-1); }
 
 		comboBox_1.setSelectedItem(current);
 		comboBox_1.addActionListener(new ActionListener() {
