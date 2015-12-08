@@ -1026,7 +1026,11 @@ public class HomeView {
 		btnSortByEntry.add(BorderLayout.SOUTH,label2);
 		btnSortByEntry.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+
+				panel_east.removeAll();
+				
 				listModel.clear();
+				
 				for(int i=0; i< numOfData;i++) {
 					listModel.add(i, sortedAllData.get(i).getEntryName());
 					//sortedAllData.set(i, allData.get(i));
@@ -1047,7 +1051,10 @@ public class HomeView {
 		button.add(BorderLayout.SOUTH,label4);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+
+				panel_east.removeAll();
 				listModel.clear();
+				
 				for(int i=0; i< numOfData;i++) {
 
 
@@ -1066,10 +1073,12 @@ public class HomeView {
 		list_1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		list_1.setModel(listModel);
 		listModel.clear();
+		
 		/*
 		for(int i=0; i< currentDataEntryNameList.size();i++) {
 			listModel.add(i, currentDataEntryTypeList.get(i));
 		}*/
+		
 		panel.repaint();
 
 
