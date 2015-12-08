@@ -1066,9 +1066,10 @@ public class HomeView {
 		list_1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		list_1.setModel(listModel);
 		listModel.clear();
+		/*
 		for(int i=0; i< currentDataEntryNameList.size();i++) {
 			listModel.add(i, currentDataEntryTypeList.get(i));
-		}
+		}*/
 		panel.repaint();
 
 
