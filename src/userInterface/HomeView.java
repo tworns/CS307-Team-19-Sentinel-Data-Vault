@@ -1055,9 +1055,11 @@ public class HomeView {
 				panel_east.removeAll();
 				listModel.clear();
 				
+				Collections.sort(sortedAllData);
+				
 				for(int i=0; i< numOfData;i++) {
-
-
+					
+					listModel.add(i, sortedAllData.get(i).getEntryName());
 					//Collections.sort(sortedAllData, sortedAllData.get(i).getLastModified());
 					//sortedAllData.set(i, allData.get(i));
 				}
@@ -1083,7 +1085,6 @@ public class HomeView {
 
 
 		list_1.addListSelectionListener( new ListSelectionListener() {
-
 			
 			public void valueChanged(ListSelectionEvent e) {
 
@@ -1093,7 +1094,12 @@ public class HomeView {
 				
 				int num = list.getSelectedIndex();
 
-				
+				System.out.println("HERE");
+				System.out.println(num);
+				if(num == -1){
+					panel_east.removeAll();
+					return;
+				}
 				DataEntry selectedDataEntry = sortedAllData.get(num);
 				
 				System.out.println(selectedDataEntry.getEntryName());
@@ -1235,6 +1241,7 @@ public class HomeView {
 				//panel_east.addTab(panelName, null, panel, null);
 
 				indexList.clear();
+				
 			}
 
 

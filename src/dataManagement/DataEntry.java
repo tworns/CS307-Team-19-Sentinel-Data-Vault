@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class DataEntry {
+public class DataEntry implements Comparable<DataEntry> {
 
 	private String entryName;
 	private String entryType;
@@ -26,7 +26,7 @@ public class DataEntry {
 		this.highSecurity = highSecurity;
 		this.lastModified = lastModified;
 	}
-	
+
 	public DataEntry(String entryName, String entryType, String encryptionKey, String owner, List<String> validUsers, int highSecurity, LocalDateTime lastModified, List<String> fieldDataList) {
 		this.entryName = entryName;
 		this.entryType = entryType;
@@ -45,19 +45,19 @@ public class DataEntry {
 	public List<String> getValidUsers() {
 		return this.validUsers;
 	}
-	
+
 	public void setDataFields( List<String> fields) {
 		fieldDataList = fields;
 	}
-	
+
 	public void addDataField(String field) {
 		this.fieldDataList.add(field);
 	}
-	
+
 	public String getEntryName() {
 		return this.entryName;
 	}
-	
+
 	public String getEntryType() {
 		return this.entryType;
 	}
@@ -78,7 +78,7 @@ public class DataEntry {
 	public int isHighSecurity() {
 		return this.highSecurity;
 	}
-	
+
 	public void setEntryName(String entryName) {
 		this.entryName = entryName;
 	}
@@ -94,11 +94,11 @@ public class DataEntry {
 	public void setOwner(String owner) {
 		this.owner = owner;
 	}
-	
+
 	public void setValidUsers(List<String> validUsers) {
 		this.validUsers = validUsers;
 	}
-	
+
 	public void setHighSecurity(int highSecurity) {
 		this.highSecurity = highSecurity;
 	}
@@ -111,7 +111,7 @@ public class DataEntry {
 	public void removeValidUser(String user) {
 		this.validUsers.remove(user);
 	}
-	
+
 	public void removeAllValidUser(){
 		this.validUsers.clear();
 	}
@@ -119,21 +119,31 @@ public class DataEntry {
 	public Boolean checkValidUser(String user) {
 		return this.validUsers.contains(user);
 	}
-	
+
 	public String buildValidUsersString() {
 		String validUsersString = "";
-		
+
 		// Construct a String of all valid users separated by " " (space) for later parsing
 		boolean atLeastOneUser = false;
 		for (String validUser : validUsers) {
 			validUsersString += (validUser + " ");
 			atLeastOneUser = true;
 		}
-		
+
 		if (atLeastOneUser) {
 			validUsersString = validUsersString.substring(0, validUsersString.length() - 1);
 		}
-		
+
 		return validUsersString;
 	}
+
+	public void setDateTime(LocalDateTime datetime) {
+		this.lastModified = lastModified;
+	}
+
+	public int compareTo(DataEntry o) {
+		return getLastModified().compareTo(o.getLastModified());
+	}
 }
+
+
