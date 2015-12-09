@@ -257,7 +257,7 @@ public class VaultController {
 			return;
 		}
 		else if (user.getMaxBackupSize() == 2 && hoursSinceLastLogin >= 1) {
-			if (JOptionPane.showConfirmDialog(null, "It has been over an hour since your last backup. Do you want to create one now?", "Automatic Backup", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == 1) {
+			if (JOptionPane.showConfirmDialog(null, "It has been over an hour since your last backup. Do you want to create one now?", "Automatic Backup", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
 				performBackup(user);
 			}
 			else {
@@ -265,7 +265,7 @@ public class VaultController {
 			}
 		}
 		else if (user.getMaxBackupSize() == 3 && daysSinceLastLogin >= 1) {
-			if (JOptionPane.showConfirmDialog(null, "It has been over a day since your last backup. Do you want to create one now?", "Automatic Backup", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == 1) {
+			if (JOptionPane.showConfirmDialog(null, "It has been over a day since your last backup. Do you want to create one now?", "Automatic Backup", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
 				performBackup(user);
 			}
 			else {
@@ -273,7 +273,7 @@ public class VaultController {
 			}
 		}
 		else if (user.getMaxBackupSize() == 4 && daysSinceLastLogin >= 7) {
-			if (JOptionPane.showConfirmDialog(null, "It has been over a week since your last backup. Do you want to create one now?", "Automatic Backup", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == 1) {
+			if (JOptionPane.showConfirmDialog(null, "It has been over a week since your last backup. Do you want to create one now?", "Automatic Backup", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
 				performBackup(user);
 			}
 			else {
@@ -281,7 +281,7 @@ public class VaultController {
 			}
 		}
 		else if (user.getMaxBackupSize() == 5 && monthsSinceLastLogin >= 1) {
-			if (JOptionPane.showConfirmDialog(null, "It has been over a month since your last backup. Do you want to create one now?", "Automatic Backup", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == 1) {
+			if (JOptionPane.showConfirmDialog(null, "It has been over a month since your last backup. Do you want to create one now?", "Automatic Backup", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
 				performBackup(user);
 			}
 			else {
@@ -289,7 +289,7 @@ public class VaultController {
 			}
 		}
 		else if (user.getMaxBackupSize() == 6 && yearsSinceLastLogin >= 1) {
-			if (JOptionPane.showConfirmDialog(null, "It has been over a year since your last backup. Do you want to create one now?", "Automatic Backup", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == 1) {
+			if (JOptionPane.showConfirmDialog(null, "It has been over a year since your last backup. Do you want to create one now?", "Automatic Backup", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
 				performBackup(user);
 			}
 			else {
