@@ -1,6 +1,7 @@
 package controllers;
 
 
+import java.io.File;
 import java.security.NoSuchAlgorithmException;
 import java.security.Security;
 import java.time.LocalDateTime;
@@ -9,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Properties;
 
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.tree.DefaultMutableTreeNode;
 
@@ -240,37 +242,75 @@ public class VaultController {
 	}
 	
 	/**
-	 * TODO
 	 * Determine if a backup should be created. Create one if needed.
 	 */
 	private static void checkForAutoBackup(User user, LocalDateTime fromDateTime) {
 		LocalDateTime toDateTime = LocalDateTime.now();
-		LocalDateTime tempDateTime = LocalDateTime.from( fromDateTime );
+		LocalDateTime tempDateTime = LocalDateTime.from(fromDateTime);
 		
-		long yearsSinceLastLogin = tempDateTime.until( toDateTime, ChronoUnit.YEARS);
-		long monthsSinceLastLogin = tempDateTime.until( toDateTime, ChronoUnit.MONTHS);
-		long daysSinceLastLogin = tempDateTime.until( toDateTime, ChronoUnit.DAYS);
-		long hoursSinceLastLogin = tempDateTime.until( toDateTime, ChronoUnit.HOURS);
+		long yearsSinceLastLogin = tempDateTime.until(toDateTime, ChronoUnit.YEARS);
+		long monthsSinceLastLogin = tempDateTime.until(toDateTime, ChronoUnit.MONTHS);
+		long daysSinceLastLogin = tempDateTime.until(toDateTime, ChronoUnit.DAYS);
+		long hoursSinceLastLogin = tempDateTime.until(toDateTime, ChronoUnit.HOURS);
 		
 		if (user.getMaxBackupSize() == 1) {
 			return;
 		}
 		else if (user.getMaxBackupSize() == 2 && hoursSinceLastLogin >= 1) {
-			
+			if (JOptionPane.showConfirmDialog(null, "It has been over an hour since your last backup. Do you want to create one now?", "Automatic Backup", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == 1) {
+				performBackup(user);
+			}
+			else {
+				return;
+			}
 		}
-		else if (user.getMaxBackupSize() == 2 && daysSinceLastLogin >= 1) {
-			
+		else if (user.getMaxBackupSize() == 3 && daysSinceLastLogin >= 1) {
+			if (JOptionPane.showConfirmDialog(null, "It has been over a day since your last backup. Do you want to create one now?", "Automatic Backup", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == 1) {
+				performBackup(user);
+			}
+			else {
+				return;
+			}
 		}
-		else if (user.getMaxBackupSize() == 2 && daysSinceLastLogin >= 7) {
-			
+		else if (user.getMaxBackupSize() == 4 && daysSinceLastLogin >= 7) {
+			if (JOptionPane.showConfirmDialog(null, "It has been over a week since your last backup. Do you want to create one now?", "Automatic Backup", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == 1) {
+				performBackup(user);
+			}
+			else {
+				return;
+			}
 		}
-		else if (user.getMaxBackupSize() == 2 && monthsSinceLastLogin >= 1) {
-			
+		else if (user.getMaxBackupSize() == 5 && monthsSinceLastLogin >= 1) {
+			if (JOptionPane.showConfirmDialog(null, "It has been over a month since your last backup. Do you want to create one now?", "Automatic Backup", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == 1) {
+				performBackup(user);
+			}
+			else {
+				return;
+			}
 		}
-		else if (user.getMaxBackupSize() == 2 && yearsSinceLastLogin >= 1) {
-			
+		else if (user.getMaxBackupSize() == 6 && yearsSinceLastLogin >= 1) {
+			if (JOptionPane.showConfirmDialog(null, "It has been over a year since your last backup. Do you want to create one now?", "Automatic Backup", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == 1) {
+				performBackup(user);
+			}
+			else {
+				return;
+			}
 		}
-		
+	}
+	
+	public static void performBackup(User currentUser) {
+		JFileChooser fileChooser = new JFileChooser();
+		fileChooser.setDialogTitle("Choose a location to save backup database file");
+		fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY); // User can only select a directory to store a backup
+		fileChooser.setAcceptAllFileFilterUsed(false);
+		int result = fileChooser.showDialog(null, "Save Backup");
+		if (result == JFileChooser.APPROVE_OPTION) {
+			// Execute the backup
+			File selectedBackupLocation = fileChooser.getSelectedFile();
+			BackupManager bum = new BackupManager();
+			System.out.println(selectedBackupLocation.getAbsolutePath());
+			bum.createUserBackupDatabase(currentUser, selectedBackupLocation.getAbsolutePath());
+		}
 	}
 	 
     public static void Send(final String username, final String password, String recipientEmail, String title, String message) throws AddressException, MessagingException {

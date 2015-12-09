@@ -30,16 +30,14 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingUtilities;
-
 import dataManagement.*;
 import controllers.BackupManager;
 import controllers.DatabaseManager;
-
+import controllers.VaultController;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Window;
-
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
@@ -48,8 +46,6 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreePath;
-
-
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.JList;
@@ -353,19 +349,21 @@ public class HomeView {
 		btnCreatebackup.setBounds(-1, 278, 181, 29);
 		btnCreatebackup.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// Launch file choose to determine backup file location
-				JFileChooser fileChooser = new JFileChooser();
-				fileChooser.setDialogTitle("Choose a location to save backup database file");
-				fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY); // User can only select a directory to store a backup
-				fileChooser.setAcceptAllFileFilterUsed(false);
-				int result = fileChooser.showDialog(frmSentinelDataVault, "Select");
-				if (result == JFileChooser.APPROVE_OPTION) {
-					// Execute the backup
-					File selectedBackupLocation = fileChooser.getSelectedFile();
-					BackupManager bum = new BackupManager();
-					System.out.println(selectedBackupLocation.getAbsolutePath());
-					bum.createUserBackupDatabase(currentUser, selectedBackupLocation.getAbsolutePath());
-				}
+//				// Launch file choose to determine backup file location
+//				JFileChooser fileChooser = new JFileChooser();
+//				fileChooser.setDialogTitle("Choose a location to save backup database file");
+//				fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY); // User can only select a directory to store a backup
+//				fileChooser.setAcceptAllFileFilterUsed(false);
+//				int result = fileChooser.showDialog(frmSentinelDataVault, "Save Backup");
+//				if (result == JFileChooser.APPROVE_OPTION) {
+//					// Execute the backup
+//					File selectedBackupLocation = fileChooser.getSelectedFile();
+//					BackupManager bum = new BackupManager();
+//					System.out.println(selectedBackupLocation.getAbsolutePath());
+//					bum.createUserBackupDatabase(currentUser, selectedBackupLocation.getAbsolutePath());
+//				}
+				
+				VaultController.performBackup(currentUser);
 			}
 		});
 
