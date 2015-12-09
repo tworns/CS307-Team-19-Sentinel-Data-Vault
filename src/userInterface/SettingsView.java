@@ -78,34 +78,36 @@ public class SettingsView {
 		chckbxHighSecurityLevel.setBounds(58, 62, 222, 25);
 		frmSettings.getContentPane().add(chckbxHighSecurityLevel);
 		
-		//box lets user decide when to back up & tooltip
+		//box lets user decide when to be reminded of needing to change their password
 		JComboBox comboBox = new JComboBox();
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Select Frequency", "Manually", "Hourly", "Daily", "Weekly", "Monthly", "Annually"}));
+		System.out.println("Password Reminder every: " + currentUser.getBackupFrequency());
 		if(currentUser.getBackupFrequency().equals("Manually")) { 
 			comboBox.setSelectedIndex(1);
 		}
-		if(currentUser.getBackupFrequency().equals("Hourly")){ 
+		else if(currentUser.getBackupFrequency().equals("Hourly")){ 
 			comboBox.setSelectedIndex(2);
 		}
-		if(currentUser.getBackupFrequency().equals("Daily")){ 
+		else if(currentUser.getBackupFrequency().equals("Daily")){ 
 			comboBox.setSelectedIndex(3);
 		}
-		if(currentUser.getBackupFrequency().equals("Weekly")){ 
+		else if(currentUser.getBackupFrequency().equals("Weekly")){ 
 			comboBox.setSelectedIndex(4);
 		}
-		if(currentUser.getBackupFrequency().equals("Monthly")){ 
+		else if(currentUser.getBackupFrequency().equals("Monthly")){ 
 			comboBox.setSelectedIndex(5);
 		}
-		if(currentUser.getBackupFrequency().equals("Annually")){ 
+		else if(currentUser.getBackupFrequency().equals("Annually")){ 
 			comboBox.setSelectedIndex(6);
 		}
-		else{comboBox.setSelectedIndex(-1); }
+		else{comboBox.setSelectedIndex(0); }
 		
 		comboBox.setSelectedItem(currentUser.getBackupFrequency());
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) { //GETS VALUE FROM COMBO BOX
 				String s  = (String) comboBox.getSelectedItem();
-				if(s.equals("Select Value")) {
+				System.out.println(s);
+				if(s.equals("Select Frequency")) {
 					JOptionPane.showMessageDialog(null, "Must select a max back up file size.", "Settings", 0);
 				}
 				else{
@@ -132,29 +134,28 @@ public class SettingsView {
 		//Lets user set the file size past which they'll be warned about file size. & tool tip
 		JComboBox comboBox_1 = new JComboBox();
 		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Select Frequency", "Manually", "Hourly", "Daily", "Weekly", "Monthly", "Annually"}));
-		String current = "";
+		//comboBox.setSelectedIndex(currentUser.getMaxBackupSize());
 		if(currentUser.getMaxBackupSize() == 1) { //number corresponds to position in the comboBox_1 String []. 
 												  // 1 = manually, 2 = hourly, 3= daily, 4 = weekly, 5 = monthly, 6 = annually.
-			comboBox.setSelectedIndex(1);
+			comboBox_1.setSelectedIndex(1);
 		}
-		if(currentUser.getMaxBackupSize() == 2){ 
-			comboBox.setSelectedIndex(2);
+		else if(currentUser.getMaxBackupSize() == 2){ 
+			comboBox_1.setSelectedIndex(2);
 		}
-		if(currentUser.getMaxBackupSize() == 3){ 
-			comboBox.setSelectedIndex(3);
+		else if(currentUser.getMaxBackupSize() == 3){ 
+			comboBox_1.setSelectedIndex(3);
 		}
-		if(currentUser.getMaxBackupSize() == 4){ 
-			comboBox.setSelectedIndex(4);
+		else if(currentUser.getMaxBackupSize() == 4){ 
+			comboBox_1.setSelectedIndex(4);
 		}
-		if(currentUser.getMaxBackupSize() == 5){ 
-			comboBox.setSelectedIndex(5);
+		else if(currentUser.getMaxBackupSize() == 5){ 
+			comboBox_1.setSelectedIndex(5);
 		}
-		if(currentUser.getMaxBackupSize() == 6){ 
-			comboBox.setSelectedIndex(6);
+		else if(currentUser.getMaxBackupSize() == 6){ 
+			comboBox_1.setSelectedIndex(6);
 		}
-		else{comboBox.setSelectedIndex(-1); }
+		else{comboBox_1.setSelectedIndex(0); }
 
-		comboBox_1.setSelectedItem(current);
 		comboBox_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String s = (String) comboBox_1.getSelectedItem();
