@@ -70,7 +70,9 @@ public class HomeView {
 	private JTextField txtSearch;
 	private HomeView h;
 	public JLabel lblNewLabel;
-
+	public int buttonIndex_1 = 0;
+	
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -1005,7 +1007,8 @@ public class HomeView {
 		List<DataEntry> allData = new ArrayList<DataEntry>();
 		DatabaseManager dm = new DatabaseManager("vault_database");
 		allData = dm.retrieveDataEntryList(currentUser);
-		List<DataEntry> sortedAllData = allData;
+		List<DataEntry> sortedTimeData = allData;
+		List<DataEntry> sortedNameData = allData;
 
 		int numOfData = allData.size();
 		System.out.println("numOfData :" + numOfData);
@@ -1015,6 +1018,9 @@ public class HomeView {
 		 *  sort by name
 		 *  
 		 * */
+		JList<String> list = new JList();
+		list.setBounds(6, 53, 208, 266);
+		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
 		JButton btnSortByEntry = new JButton();
 		btnSortByEntry.setLayout(new BorderLayout());
@@ -1022,18 +1028,27 @@ public class HomeView {
 		JLabel label2 = new JLabel("Entry Name");
 		btnSortByEntry.add(BorderLayout.NORTH,label1);
 		btnSortByEntry.add(BorderLayout.SOUTH,label2);
+		
 		btnSortByEntry.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
+				
+				buttonIndex_1 = 1;
+				
 				panel_east.removeAll();
 				
 				listModel.clear();
 				
 				for(int i=0; i< numOfData;i++) {
-					listModel.add(i, sortedAllData.get(i).getEntryName());
+					listModel.add(i, sortedNameData.get(i).getEntryName());
 					//sortedAllData.set(i, allData.get(i));
 				}
+				
+				
+				list.setModel(listModel);
 				panel.repaint();
+				panel_center.repaint();
+				scrollPane.repaint();
 			}
 		});
 		btnSortByEntry.setBounds(6, 6, 94, 44);
@@ -1050,28 +1065,32 @@ public class HomeView {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
+				buttonIndex_1 = 2;
+				
 				panel_east.removeAll();
 				listModel.clear();
 				
-				Collections.sort(sortedAllData);
+				Collections.sort(sortedTimeData);
 				
 				for(int i=0; i< numOfData;i++) {
 					
-					listModel.add(i, sortedAllData.get(i).getEntryName());
+					listModel.add(i, sortedTimeData.get(sortedTimeData.size() - i -1).getEntryName());
 					//Collections.sort(sortedAllData, sortedAllData.get(i).getLastModified());
 					//sortedAllData.set(i, allData.get(i));
 				}
+				list.setModel(listModel);
 
 				panel.repaint();
+				panel_center.repaint();
+				scrollPane.repaint();
 			}
 		});
 		button.setBounds(102, 6, 112, 44);
 		panel.add(button);
 
-		JList list_1 = new JList();
-		list_1.setBounds(6, 53, 208, 266);
-		list_1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		list_1.setModel(listModel);
+		
+		
+		
 		listModel.clear();
 		
 		/*
@@ -1082,23 +1101,32 @@ public class HomeView {
 		panel.repaint();
 
 
-		list_1.addListSelectionListener( new ListSelectionListener() {
+		list.addListSelectionListener( new ListSelectionListener() {
 			
 			public void valueChanged(ListSelectionEvent e) {
 
 				JList list = (JList) e.getSource();
 
+				System.out.println(e.getSource().toString());
+				
+				
+				
 				panel_east.removeAll();
 				
 				int num = list.getSelectedIndex();
 
-				System.out.println("HERE");
 				System.out.println(num);
 				if(num == -1){
 					panel_east.removeAll();
 					return;
 				}
-				DataEntry selectedDataEntry = sortedAllData.get(num);
+				DataEntry selectedDataEntry = null;
+				if(buttonIndex_1 == 1){
+					selectedDataEntry = sortedNameData.get(num);
+				}
+				else if(buttonIndex_1 == 2) {
+					selectedDataEntry = sortedTimeData.get(num);
+				}
 				
 				System.out.println(selectedDataEntry.getEntryName());
 				System.out.println(selectedDataEntry.getOwner());
@@ -1245,23 +1273,9 @@ public class HomeView {
 
 		});
 
-		panel.add(list_1);
-
-		//panel_center.addTab("Category", null, tree, null);
-
-
-		/* ************************************************************************** */ 
-		/* 	TREE Constructor														  */
-		/* ************************************************************************** */
-
-
-		//pane.add(list);
-
-		// panel_center.addTab("Item List", null, list, null);
-
-
-
-
+		panel.add(list);
+		
+		
 
 		// MenuBar
 		JMenuBar menuBar = new JMenuBar();
