@@ -310,6 +310,7 @@ public class VaultController {
 			BackupManager bum = new BackupManager();
 			System.out.println(selectedBackupLocation.getAbsolutePath());
 			bum.createUserBackupDatabase(currentUser, selectedBackupLocation.getAbsolutePath());
+			JOptionPane.showMessageDialog(null, "You have successfully backed up your account!", "Backup Successfully Created", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
 	 

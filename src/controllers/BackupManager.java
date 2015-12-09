@@ -57,7 +57,6 @@ public class BackupManager {
 		// Switch to the database of currentUser
 		dbm.setCurrentDatabase(currentDatabaseName);
 		// Put all entries from the List into the current database for the current user
-		// TODO PERFORM DUPLICATE ENTRY DETECTION?????
 		for (DataEntry entry : importedDataEntryList) {
 			dbm.addEntryToDatabase(currentUser, entry);
 		}
