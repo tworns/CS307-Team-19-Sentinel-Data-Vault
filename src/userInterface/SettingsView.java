@@ -81,7 +81,7 @@ public class SettingsView {
 		//box lets user decide when to be reminded of needing to change their password
 		JComboBox comboBox = new JComboBox();
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Select Frequency", "Manually", "Hourly", "Daily", "Weekly", "Monthly", "Annually"}));
-		System.out.println("Password Reminder every: " + currentUser.getBackupFrequency());
+		
 		if(currentUser.getBackupFrequency().equals("Manually")) { 
 			comboBox.setSelectedIndex(1);
 		}
@@ -106,7 +106,6 @@ public class SettingsView {
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) { //GETS VALUE FROM COMBO BOX
 				String s  = (String) comboBox.getSelectedItem();
-				System.out.println(s);
 				if(s.equals("Select Frequency")) {
 					JOptionPane.showMessageDialog(null, "Must select a max back up file size.", "Settings", 0);
 				}
