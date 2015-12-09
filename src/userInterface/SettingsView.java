@@ -133,7 +133,7 @@ public class SettingsView {
 		JComboBox comboBox_1 = new JComboBox();
 		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Select Frequency", "Manually", "Hourly", "Daily", "Weekly", "Monthly", "Annually"}));
 		String current = "";
-		if(currentUser.getMaxBackupSize() == 1) { //number corresponds to position in the comboBox_1 String []. 
+		if(currentUser.getMaxBackupSize() == 1) { // number corresponds to position in the comboBox_1 String []. 
 												  // 1 = manually, 2 = hourly, 3= daily, 4 = weekly, 5 = monthly, 6 = annually.
 			comboBox.setSelectedIndex(1);
 		}

@@ -221,19 +221,20 @@ public class VaultController {
 		String freq = user.getBackupFrequency();
 		
 		if(days>=7){
-			JOptionPane.showMessageDialog(null,"It's been a week since the last time you change your password!");
+			JOptionPane.showMessageDialog(null,"It's been a week since the last time you changed your password!");
 		}
 		
 		/******TODO: MainView should take in user OBJECT!**********/
 		PasswordValidation p = new PasswordValidation();
-		if(p.isValidPassword(user, password)){
+		if (p.isValidPassword(user, password)) {
 			HomeView window = new HomeView(username);
 			//MainView window = new MainView(username);
 			window.frmSentinelDataVault.setVisible(true);
+			//TODO Perform an automatic backup check here
+			checkForAutoBackup(user, user.getLastLogin());
 			return 1;
 		}
-		else{
-			//JOptionPane.showMessageDialog(null,"Incorrect email / password!");
+		else {
 			return 0;
 		}
 	}
@@ -242,7 +243,33 @@ public class VaultController {
 	 * TODO
 	 * Determine if a backup should be created. Create one if needed.
 	 */
-	public void checkForAutoBackup() {
+	private static void checkForAutoBackup(User user, LocalDateTime fromDateTime) {
+		LocalDateTime toDateTime = LocalDateTime.now();
+		LocalDateTime tempDateTime = LocalDateTime.from( fromDateTime );
+		
+		long yearsSinceLastLogin = tempDateTime.until( toDateTime, ChronoUnit.YEARS);
+		long monthsSinceLastLogin = tempDateTime.until( toDateTime, ChronoUnit.MONTHS);
+		long daysSinceLastLogin = tempDateTime.until( toDateTime, ChronoUnit.DAYS);
+		long hoursSinceLastLogin = tempDateTime.until( toDateTime, ChronoUnit.HOURS);
+		
+		if (user.getMaxBackupSize() == 1) {
+			return;
+		}
+		else if (user.getMaxBackupSize() == 2 && hoursSinceLastLogin >= 1) {
+			
+		}
+		else if (user.getMaxBackupSize() == 2 && daysSinceLastLogin >= 1) {
+			
+		}
+		else if (user.getMaxBackupSize() == 2 && daysSinceLastLogin >= 7) {
+			
+		}
+		else if (user.getMaxBackupSize() == 2 && monthsSinceLastLogin >= 1) {
+			
+		}
+		else if (user.getMaxBackupSize() == 2 && yearsSinceLastLogin >= 1) {
+			
+		}
 		
 	}
 	 
