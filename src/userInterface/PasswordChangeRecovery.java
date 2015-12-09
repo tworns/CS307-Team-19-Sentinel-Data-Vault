@@ -93,7 +93,7 @@ public class PasswordChangeRecovery {
 				String pass1 = new String(textField.getPassword());
 				String pass2 = new String(textField_1.getPassword());
 				PasswordValidation v = new PasswordValidation();
-				if(pass1.trim().equals(pass2.trim()) && v.minStandard(pass1) ) { 
+				if(pass1.equals(pass2) && v.minStandard(pass1) ) { 
 					PasswordHasher p = new PasswordHasher();
 					System.out.println(pass1);
 					System.out.println(currentUser.getUsername());
@@ -103,7 +103,7 @@ public class PasswordChangeRecovery {
 					grandParentFrame.setVisible(true);
 				}
 				
-				else if(pass1.trim().equals(pass2.trim()) != true) { 
+				else if(pass1.equals(pass2) != true) { 
 					textField_2.setText("Passwords must match. Please try again.");
 				}
 				else if(v.minStandard(pass1) != true){ 
