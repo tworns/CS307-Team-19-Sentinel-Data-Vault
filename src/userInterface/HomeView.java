@@ -593,6 +593,7 @@ public class HomeView {
 								owners.add(currentDE.getOwner().toString());
 								DefaultMutableTreeNode newOwnerNode = new DefaultMutableTreeNode(currentDE.getOwner().toString());
 								ownerNode = newOwnerNode;
+								node_15.add(ownerNode);
 
 							}/*
 							else{
@@ -605,10 +606,10 @@ public class HomeView {
 									ci++;
 								}
 								ownerNode = (DefaultMutableTreeNode) node_15.getChildAt(ci);
-								node_15.add(ownerNode);
+								
 							}*/
 
-							node_15.add(ownerNode);
+							
 
 							if(currentSharedDataEntryTypeList.contains("Account Login")) {
 								ownerNode.add(sharednode_1);
