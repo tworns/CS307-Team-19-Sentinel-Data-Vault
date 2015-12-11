@@ -71,8 +71,11 @@ public class HomeView {
 	private HomeView h;
 	public JLabel lblNewLabel;
 	public int buttonIndex_1 = 0;
+	List<DataEntry> sortedNameData;
+	List<DataEntry> sortedTimeData;
 	
-	
+
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -117,6 +120,13 @@ public class HomeView {
 		frmSentinelDataVault.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmSentinelDataVault.getContentPane().setLayout(null);
 		frmSentinelDataVault.setLocationRelativeTo(null);
+		
+		DatabaseManager dm = new DatabaseManager("vault_database");;
+		List<DataEntry> allData = dm.retrieveDataEntryList(currentUser);
+		
+		//List<DataEntry> sortedNameData = allData;
+		//List<DataEntry> sortedTimeData = allData;
+		
 		//		anel_south		
 		JPanel panel_north = new JPanel();
 		panel_north.setBounds(6, 6, 688, 65);			// margins between object 8 
@@ -351,20 +361,20 @@ public class HomeView {
 		btnCreatebackup.setBounds(-1, 278, 181, 29);
 		btnCreatebackup.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-//				// Launch file choose to determine backup file location
-//				JFileChooser fileChooser = new JFileChooser();
-//				fileChooser.setDialogTitle("Choose a location to save backup database file");
-//				fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY); // User can only select a directory to store a backup
-//				fileChooser.setAcceptAllFileFilterUsed(false);
-//				int result = fileChooser.showDialog(frmSentinelDataVault, "Save Backup");
-//				if (result == JFileChooser.APPROVE_OPTION) {
-//					// Execute the backup
-//					File selectedBackupLocation = fileChooser.getSelectedFile();
-//					BackupManager bum = new BackupManager();
-//					System.out.println(selectedBackupLocation.getAbsolutePath());
-//					bum.createUserBackupDatabase(currentUser, selectedBackupLocation.getAbsolutePath());
-//				}
-				
+				//				// Launch file choose to determine backup file location
+				//				JFileChooser fileChooser = new JFileChooser();
+				//				fileChooser.setDialogTitle("Choose a location to save backup database file");
+				//				fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY); // User can only select a directory to store a backup
+				//				fileChooser.setAcceptAllFileFilterUsed(false);
+				//				int result = fileChooser.showDialog(frmSentinelDataVault, "Save Backup");
+				//				if (result == JFileChooser.APPROVE_OPTION) {
+				//					// Execute the backup
+				//					File selectedBackupLocation = fileChooser.getSelectedFile();
+				//					BackupManager bum = new BackupManager();
+				//					System.out.println(selectedBackupLocation.getAbsolutePath());
+				//					bum.createUserBackupDatabase(currentUser, selectedBackupLocation.getAbsolutePath());
+				//				}
+
 				VaultController.performBackup(currentUser);
 			}
 		});
@@ -1004,11 +1014,8 @@ public class HomeView {
 		scrollPane.setViewportView(panel);
 		panel.setLayout(null);
 
-		List<DataEntry> allData = new ArrayList<DataEntry>();
-		DatabaseManager dm = new DatabaseManager("vault_database");
-		allData = dm.retrieveDataEntryList(currentUser);
-		List<DataEntry> sortedTimeData = allData;
-		List<DataEntry> sortedNameData = allData;
+
+
 
 		int numOfData = allData.size();
 		System.out.println("numOfData :" + numOfData);
@@ -1028,27 +1035,53 @@ public class HomeView {
 		JLabel label2 = new JLabel("Entry Name");
 		btnSortByEntry.add(BorderLayout.NORTH,label1);
 		btnSortByEntry.add(BorderLayout.SOUTH,label2);
-		
+
 		btnSortByEntry.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				//ortedNameData.clear();
+				
+				sortedNameData = allData;
 				
 				buttonIndex_1 = 1;
-				
 				panel_east.removeAll();
-				
+
 				listModel.clear();
-				
+/*
 				for(int i=0; i< numOfData;i++) {
 					listModel.add(i, sortedNameData.get(i).getEntryName());
+					System.out.println(sortedNameData.get(i).getEntryName());
+					//sortedAllData.set(i, allData.get(i));
+				}
+*/
+				
+				for (int c = 0; c < ( sortedNameData.size() - 1 ); c++) {
+					for (int d = 0; d < sortedNameData.size() - c - 1; d++) {
+						if ( sortedNameData.get(d).getEntryName().compareToIgnoreCase(sortedNameData.get(d+1).getEntryName()) > 0) /* For descending order use < */
+						{
+							System.out.println(sortedNameData.get(d).getEntryName());
+							DataEntry swap;
+							swap       = sortedNameData.get(d);
+							sortedNameData.set(d, sortedNameData.get(d+1));
+							sortedNameData.set(d+1, swap);
+						}
+					}
+				}
+
+				for(int i=0; i< numOfData;i++) {
+
+					listModel.add(i, sortedNameData.get(i).getEntryName());
+					//Collections.sort(sortedAllData, sortedAllData.get(i).getLastModified());
 					//sortedAllData.set(i, allData.get(i));
 				}
 				
 				
 				list.setModel(listModel);
+				
+				panel.add(list);
 				panel.repaint();
 				panel_center.repaint();
 				scrollPane.repaint();
+
 			}
 		});
 		btnSortByEntry.setBounds(6, 6, 94, 44);
@@ -1066,20 +1099,47 @@ public class HomeView {
 			public void actionPerformed(ActionEvent e) {
 
 				buttonIndex_1 = 2;
-				
+				//sortedTimeData.clear();
+				sortedTimeData = allData;
 				panel_east.removeAll();
 				listModel.clear();
-				
-				Collections.sort(sortedTimeData);
-				
-				for(int i=0; i< numOfData;i++) {
+
+				//Collections.sort(sortedTimeData);
+
+				//bubble sort
+
+				for (int c = 0; c < ( sortedTimeData.size() - 1 ); c++) {
+					for (int d = 0; d < sortedTimeData.size() - c - 1; d++) {
+						if (sortedTimeData.get(d).getLastModified().compareTo( sortedTimeData.get(d+1).getLastModified()) > 0) /* For descending order use < */
+						{
+							DataEntry swap;
+							swap       = sortedTimeData.get(d);
+							sortedTimeData.set(d, sortedTimeData.get(d+1));
+							sortedTimeData.set(d+1, swap);
+						}
+					}
+				}
+
+				for (int d = 0; d < (sortedTimeData.size() ) / 2; d++) {
 					
-					listModel.add(i, sortedTimeData.get(sortedTimeData.size() - i -1).getEntryName());
+					DataEntry swap;
+					swap       = sortedTimeData.get(d);
+					sortedTimeData.set(d, sortedTimeData.get(sortedTimeData.size()-1-d));
+					sortedTimeData.set(sortedTimeData.size()-1-d, swap);
+
+				}
+
+
+
+				for(int i=0; i< numOfData;i++) {
+
+					listModel.add(i, sortedTimeData.get(i).getEntryName());
 					//Collections.sort(sortedAllData, sortedAllData.get(i).getLastModified());
 					//sortedAllData.set(i, allData.get(i));
 				}
 				list.setModel(listModel);
 
+				panel.add(list);
 				panel.repaint();
 				panel_center.repaint();
 				scrollPane.repaint();
@@ -1088,31 +1148,31 @@ public class HomeView {
 		button.setBounds(102, 6, 112, 44);
 		panel.add(button);
 
-		
-		
-		
+
+
+
 		listModel.clear();
-		
+
 		/*
 		for(int i=0; i< currentDataEntryNameList.size();i++) {
 			listModel.add(i, currentDataEntryTypeList.get(i));
 		}*/
-		
+
 		panel.repaint();
 
 
 		list.addListSelectionListener( new ListSelectionListener() {
-			
+
 			public void valueChanged(ListSelectionEvent e) {
 
 				JList list = (JList) e.getSource();
 
 				System.out.println(e.getSource().toString());
-				
-				
-				
+
+
+
 				panel_east.removeAll();
-				
+
 				int num = list.getSelectedIndex();
 
 				System.out.println(num);
@@ -1120,6 +1180,7 @@ public class HomeView {
 					panel_east.removeAll();
 					return;
 				}
+
 				DataEntry selectedDataEntry = null;
 				if(buttonIndex_1 == 1){
 					selectedDataEntry = sortedNameData.get(num);
@@ -1127,11 +1188,10 @@ public class HomeView {
 				else if(buttonIndex_1 == 2) {
 					selectedDataEntry = sortedTimeData.get(num);
 				}
-				
+
 				System.out.println(selectedDataEntry.getEntryName());
 				System.out.println(selectedDataEntry.getOwner());
 				System.out.println(selectedDataEntry.getEntryType());
-				System.out.println("HEREHERE");
 				System.out.println("");
 
 				currentEntry = selectedDataEntry;
@@ -1140,7 +1200,7 @@ public class HomeView {
 
 				DataEntryPanel dataPanel = new DataEntryPanel();
 				JPanel panel = new JPanel();
-				
+
 				if(selectedDataEntry.getEntryType().toString().equals("Account Login")) {
 					panel = dataPanel.getAccountLoginPanelWithData(selectedDataEntry);
 				}
@@ -1242,7 +1302,7 @@ public class HomeView {
 
 					panel = dataPanel.getGeneralPanelWithData(indexList, selectedDataEntry);
 				}
-				else if(selectedDataEntry.getEntryType().toString() == "SSN") {
+				else if(selectedDataEntry.getEntryType().toString().equals("SSN")) {
 					panel = dataPanel.getSSNWithData(selectedDataEntry);
 					/*
 						indexList.add("Name");
@@ -1267,15 +1327,15 @@ public class HomeView {
 				//panel_east.addTab(panelName, null, panel, null);
 
 				indexList.clear();
-				
+
 			}
 
 
 		});
 
 		panel.add(list);
-		
-		
+
+
 
 		// MenuBar
 		JMenuBar menuBar = new JMenuBar();
