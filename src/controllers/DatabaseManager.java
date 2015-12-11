@@ -810,6 +810,7 @@ public class DatabaseManager {
 				if (i != size_of_datafield - 1)
 					sql += ",";
 			}
+			sql+= ", last_modifie=?";
 			sql += " WHERE entry_name=? AND owner=?;";
 
 			PreparedStatement preparedStatement = DBconnection.prepareStatement(sql);
@@ -818,9 +819,10 @@ public class DatabaseManager {
 			for (int i = 0; i < size_of_datafield; i++) {
 				preparedStatement.setString(2 + i, newEntry.getFieldDataList().get(i));
 				j++;
-			}	
-			preparedStatement.setString(j , oldEntry.getEntryName());
-			preparedStatement.setString(j + 1 , oldEntry.getOwner());
+			}
+			preparedStatement.setString(j , newEntry.getLastModified().toString());
+			preparedStatement.setString(j + 1 , oldEntry.getEntryName());
+			preparedStatement.setString(j + 2 , oldEntry.getOwner());
 			// Execute the statement and commit database changes
 			preparedStatement.executeUpdate();
 			DBconnection.commit();
