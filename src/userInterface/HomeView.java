@@ -525,7 +525,6 @@ public class HomeView {
 							cd = db.retrieveOneDataEntry(currentDataEntryNameList.get(i), currentUser, currentDataEntryTypeList.get(i));
 
 
-							System.out.println("here");
 
 							if (cd.getOwner().equals(currentUser.getUsername())) {
 
@@ -578,38 +577,46 @@ public class HomeView {
 						List<String> owners = new ArrayList<String>();
 						DefaultMutableTreeNode ownerNode = new DefaultMutableTreeNode();
 
+System.out.println("here");
 						for (int i=0; i < currentSharedDataEntryNameList.size(); i++) {
 							add(node_15);
 
+System.out.println("here2"+currentSharedDataEntryNameList.get(i));
+System.out.println("here2"+currentSharedDataEntryTypeList.get(i));
+System.out.println("here2"+currentSharedDataEntryOwnerList.get(i));
 							DatabaseManager db = new DatabaseManager("vault_database");
 							DataEntry currentDE = db.retrieveOneDataEntry(currentSharedDataEntryNameList.get(i),db.retrieveUserFromDatabase(currentSharedDataEntryOwnerList.get(i)),currentSharedDataEntryTypeList.get(i));
 							DefaultMutableTreeNode child = new DefaultMutableTreeNode(currentSharedDataEntryNameList.get(i));
 							// listModel.addElement(currentSharedDataEntryNameList.get(i));
 
 
-
 							// new owner > add node
 							if ( !owners.contains(currentDE.getOwner().toString()) ) {
+
+System.out.println("if"+currentSharedDataEntryNameList.get(i));
 								owners.add(currentDE.getOwner().toString());
 								DefaultMutableTreeNode newOwnerNode = new DefaultMutableTreeNode(currentDE.getOwner().toString());
 								ownerNode = newOwnerNode;
 								node_15.add(ownerNode);
 
-							}/*
-							else{
-								int ci = 0;
-								while (true) {
 
-									if(node_15.getChildAt(ci).toString().equals(currentDE.getOwner().toString())){
-										break;
-									}
+System.out.println("here4"+currentSharedDataEntryNameList.get(i));
+								
+							}
+							else{
+System.out.println("else"+currentSharedDataEntryNameList.get(i));
+								int ci = 0;
+								while (!node_15.getChildAt(ci).toString().equals(currentDE.getOwner().toString())) {
 									ci++;
 								}
 								ownerNode = (DefaultMutableTreeNode) node_15.getChildAt(ci);
-								
-							}*/
 
-							
+System.out.println(currentSharedDataEntryNameList.get(i));
+							}
+
+
+System.out.println(currentSharedDataEntryNameList.get(i));
+
 
 							if(currentSharedDataEntryTypeList.contains("Account Login")) {
 								ownerNode.add(sharednode_1);

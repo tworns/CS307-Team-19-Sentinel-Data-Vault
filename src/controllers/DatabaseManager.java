@@ -468,7 +468,7 @@ public class DatabaseManager {
 			e.printStackTrace();
 		}
 
-		Collections.sort(sharedEntryList);
+		//Collections.sort(sharedEntryList);
 		return sharedEntryList;
 	}
 
@@ -503,7 +503,7 @@ public class DatabaseManager {
 			e.printStackTrace();
 		}
 
-		Collections.sort(sharedEntryList);
+	//	Collections.sort(sharedEntryList);
 		return sharedEntryList;
 	}
 
@@ -538,7 +538,7 @@ public class DatabaseManager {
 			e.printStackTrace();
 		}
 
-		Collections.sort(sharedEntryList);
+		//Collections.sort(sharedEntryList);
 		return sharedEntryList;
 	}
 
