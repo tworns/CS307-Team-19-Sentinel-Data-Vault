@@ -810,7 +810,7 @@ public class DatabaseManager {
 				if (i != size_of_datafield - 1)
 					sql += ",";
 			}
-			sql+= ", last_modifie=?";
+			sql+= ", last_modified=?";
 			sql += " WHERE entry_name=? AND owner=?;";
 
 			PreparedStatement preparedStatement = DBconnection.prepareStatement(sql);
