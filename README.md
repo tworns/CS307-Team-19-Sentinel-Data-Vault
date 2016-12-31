@@ -11,4 +11,4 @@ Original project that this branch was forked from [here](https://github.com/Jiho
 
 #Getting started
 
-This is the development copy, so after the code is downloaded, it must be compiled and then saved as a Jar OR it can be run in an IDE like [Eclipse](http://www.eclipse.org/users/). Please note that the project has been primarily developed for OSX and as such, features may not work properly in Windows.
+This is the development copy, so after the code is downloaded, it must be compiled and then saved as a Jar OR it can be run in an IDE like [Eclipse](http://www.eclipse.org/users/). Please note that the project has been primarily optimized for OSX and as such, features may not work properly in Windows.
